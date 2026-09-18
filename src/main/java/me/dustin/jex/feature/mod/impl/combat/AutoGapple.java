@@ -8,7 +8,6 @@ import me.dustin.jex.event.player.EventPlayerPackets;
 import me.dustin.jex.feature.mod.core.Category;
 import me.dustin.jex.feature.mod.core.Feature;
 import me.dustin.jex.feature.property.Property;
-import me.dustin.jex.helper.baritone.BaritoneHelper;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.network.NetworkHelper;
 import me.dustin.jex.helper.player.InventoryHelper;
@@ -93,7 +92,6 @@ public class AutoGapple extends Feature {
                 putBackSlot = -1;
             }
             isEating = false;
-            BaritoneHelper.INSTANCE.resume();
             NetworkHelper.INSTANCE.sendPacket(new PlayerActionC2SPacket(PlayerActionC2SPacket.Action.RELEASE_USE_ITEM, BlockPos.ORIGIN, Direction.UP));
             if (pressKeyProperty.value())
                 Wrapper.INSTANCE.getOptions().useKey.setPressed(false);
@@ -123,11 +121,9 @@ public class AutoGapple extends Feature {
                     InventoryHelper.INSTANCE.setSlot(gappleHotbar, true, true);
                 if (gappleHotbar != -1 || (putIntoProperty.value() == PutInto.HOTBAR && takeFromInvProperty.value())) {
                     isEating = true;
-                    BaritoneHelper.INSTANCE.pause();
                 }
             } else {
                 isEating = true;
-                BaritoneHelper.INSTANCE.pause();
             }
         }
     }, new PlayerPacketsFilter(EventPlayerPackets.Mode.PRE));
