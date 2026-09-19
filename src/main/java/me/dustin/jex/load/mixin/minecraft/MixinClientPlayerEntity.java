@@ -31,7 +31,6 @@ import net.minecraft.network.message.MessageMetadata;
 import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;

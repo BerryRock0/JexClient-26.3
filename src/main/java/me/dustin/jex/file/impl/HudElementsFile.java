@@ -8,7 +8,6 @@ import me.dustin.jex.helper.file.JsonHelper;
 import me.dustin.jex.helper.file.ModFileHelper;
 import me.dustin.jex.helper.file.YamlHelper;
 import me.dustin.jex.helper.render.Render2DHelper;
-import net.minecraft.util.math.MathHelper;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;

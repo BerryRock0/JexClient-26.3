@@ -6,7 +6,6 @@ import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.player.PlayerHelper;
 import me.dustin.jex.helper.render.font.FontHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.util.math.MathHelper;
 
 public class LookElement extends HudElement {
     public LookElement(float x, float y, float minWidth, float minHeight) {

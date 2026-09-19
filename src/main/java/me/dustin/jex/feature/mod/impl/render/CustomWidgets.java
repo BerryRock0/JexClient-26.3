@@ -19,7 +19,6 @@ import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.CyclingButtonWidget;
 import net.minecraft.client.gui.widget.SliderWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.util.math.MathHelper;
 import java.util.HashMap;
 import java.util.Map;
 

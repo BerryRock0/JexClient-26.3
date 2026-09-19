@@ -17,7 +17,6 @@ import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.render.*;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Matrix4f;
 
 import java.awt.*;

@@ -1,7 +1,6 @@
 package me.dustin.jex.load.mixin.minecraft;
 
 import me.dustin.jex.event.world.EventWeatherGradient;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

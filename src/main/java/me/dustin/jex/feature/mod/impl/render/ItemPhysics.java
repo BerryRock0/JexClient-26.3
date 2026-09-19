@@ -13,7 +13,6 @@ import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.util.math.MathHelper;
 import org.joml.Quaterniond;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.Vec3;

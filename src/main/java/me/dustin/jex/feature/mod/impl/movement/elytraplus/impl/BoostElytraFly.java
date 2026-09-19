@@ -8,7 +8,6 @@ import me.dustin.jex.feature.mod.impl.movement.elytraplus.ElytraPlus;
 import me.dustin.jex.helper.misc.KeyboardHelper;
 import me.dustin.jex.helper.misc.Wrapper;
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.util.math.MathHelper;
 
 public class BoostElytraFly extends FeatureExtension {
     private ElytraPlus elytraPlus;

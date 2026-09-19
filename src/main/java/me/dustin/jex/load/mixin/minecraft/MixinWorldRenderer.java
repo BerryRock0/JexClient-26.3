@@ -7,7 +7,6 @@ import net.minecraft.client.gl.Framebuffer;
 import net.minecraft.client.render.*;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.shape.VoxelShape;
 import org.jetbrains.annotations.Nullable;

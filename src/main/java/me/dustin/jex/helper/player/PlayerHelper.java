@@ -35,7 +35,6 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.core.Direction;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.HashMap;

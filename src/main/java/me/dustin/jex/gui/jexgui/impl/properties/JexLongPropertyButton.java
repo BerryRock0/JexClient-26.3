@@ -11,7 +11,6 @@ import me.dustin.jex.helper.render.Button;
 import me.dustin.jex.helper.render.Render2DHelper;
 import me.dustin.jex.helper.render.font.FontHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
 

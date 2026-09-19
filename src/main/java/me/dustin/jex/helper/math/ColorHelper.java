@@ -6,7 +6,6 @@ import me.dustin.jex.event.filters.TickFilter;
 import me.dustin.jex.event.misc.EventTick;
 import me.dustin.jex.feature.mod.core.Feature;
 import me.dustin.jex.feature.mod.impl.render.hud.Hud;
-import net.minecraft.util.math.MathHelper;
 
 import java.awt.*;
 

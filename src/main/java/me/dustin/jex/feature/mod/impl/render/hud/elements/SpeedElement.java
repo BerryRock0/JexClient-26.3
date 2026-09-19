@@ -4,7 +4,6 @@ import me.dustin.jex.helper.math.ColorHelper;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.render.font.FontHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.phys.Vec3;
 import org.apache.commons.lang3.text.WordUtils;
 
