@@ -7,7 +7,7 @@ import com.google.common.collect.Sets;
 import net.minecraft.nbt.*;
 import net.minecraft.nbt.visitor.NbtElementVisitor;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import net.minecraft.util.Util;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -287,14 +287,14 @@ public class PrettyPrintTextFormatter implements NbtElementVisitor {
             return textList;
         }
 
-        private Formatting byColor(int color) {
-            for (Formatting value : Formatting.values()) {
+        private ChatFormatting byColor(int color) {
+            for (ChatFormatting value : ChatFormatting.values()) {
                 if (value == null)
                     continue;
                 if (value.getColorValue() == color)
                     return value;
             }
-            return Formatting.WHITE;
+            return ChatFormatting.WHITE;
         }
 
         public record RGBEntry(String value, int color) {

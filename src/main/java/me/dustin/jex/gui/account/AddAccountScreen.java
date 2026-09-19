@@ -13,7 +13,7 @@ import net.minecraft.client.gui.widget.TextFieldWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
 import me.dustin.jex.helper.render.Render2DHelper;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 
 import java.util.UUID;
 
@@ -91,9 +91,9 @@ public class AddAccountScreen extends Screen {
 		}));
 
 		if (editingAccount == null)
-			this.addDrawableChild(new ButtonWidget((Render2DHelper.INSTANCE.getScaledWidth() / 2) - 60, Render2DHelper.INSTANCE.getScaledHeight() - 105, 120, 20, Text.translatable("jex.account.mojang").styled(style -> style.withColor(Formatting.GOLD)), button -> {
+			this.addDrawableChild(new ButtonWidget((Render2DHelper.INSTANCE.getScaledWidth() / 2) - 60, Render2DHelper.INSTANCE.getScaledHeight() - 105, 120, 20, Text.translatable("jex.account.mojang").styled(style -> style.withColor(ChatFormatting.GOLD)), button -> {
 				isMicrosoft = !isMicrosoft;
-				button.setMessage(isMicrosoft ? Text.translatable("jex.account.microsoft").styled(style -> style.withColor(Formatting.GREEN)) : Text.translatable("jex.account.mojang").styled(style -> style.withColor(Formatting.GOLD)));
+				button.setMessage(isMicrosoft ? Text.translatable("jex.account.microsoft").styled(style -> style.withColor(ChatFormatting.GREEN)) : Text.translatable("jex.account.mojang").styled(style -> style.withColor(ChatFormatting.GOLD)));
 			}));
 		super.init();
 	}

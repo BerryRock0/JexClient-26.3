@@ -42,7 +42,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.item.TridentItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import net.minecraft.world.phys.Vec3;
 import me.dustin.jex.helper.render.Render2DHelper;
 import java.awt.*;
@@ -423,11 +423,11 @@ public class Nametag extends Feature {
             PlayerListEntry entry = Wrapper.INSTANCE.getLocalPlayer().networkHandler.getPlayerListEntry(playerEntity.getUuid());
             if (entry != null) {
                 int ping = entry.getLatency();
-                name += String.format(" %s[%s%dms%s]%s", Formatting.GRAY, getPingFormatting(ping), ping, Formatting.GRAY, Formatting.RESET);
+                name += String.format(" %s[%s%dms%s]%s", ChatFormatting.GRAY, getPingFormatting(ping), ping, ChatFormatting.GRAY, ChatFormatting.RESET);
             }
         }
         if (distanceProperty.value()) {
-            name += String.format(" %s[%s%.1f%s]%s", Formatting.GRAY, Formatting.WHITE, Wrapper.INSTANCE.getLocalPlayer().distanceTo(entity), Formatting.GRAY, Formatting.RESET);
+            name += String.format(" %s[%s%.1f%s]%s", ChatFormatting.GRAY, ChatFormatting.WHITE, Wrapper.INSTANCE.getLocalPlayer().distanceTo(entity), ChatFormatting.GRAY, ChatFormatting.RESET);
         }
         if (entity instanceof LivingEntity)
             if (healthProperty.value() && healthModeProperty.value() != HealthMode.BAR) {
@@ -436,14 +436,14 @@ public class Nametag extends Feature {
         return name;
     }
 
-    public Formatting getPingFormatting(int ping) {
+    public ChatFormatting getPingFormatting(int ping) {
         if (ping <= 50)
-            return Formatting.GREEN;
+            return ChatFormatting.GREEN;
         else if (ping <= 75)
-            return Formatting.YELLOW;
+            return ChatFormatting.YELLOW;
         else if (ping <= 100)
-            return Formatting.RED;
-        return Formatting.DARK_RED;
+            return ChatFormatting.RED;
+        return ChatFormatting.DARK_RED;
     }
 
     private int getColor(Entity entity) {

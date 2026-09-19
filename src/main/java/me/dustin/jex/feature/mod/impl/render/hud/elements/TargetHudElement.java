@@ -22,7 +22,7 @@ import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.mob.SpiderEntity;
 import net.minecraft.entity.mob.WardenEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import net.minecraft.util.math.Matrix4f;
 import net.minecraft.world.phys.Vec3;
 
@@ -81,7 +81,7 @@ public class TargetHudElement extends HudElement{
             InventoryScreen.drawEntity((int) (getX() + xOff), (int) (getY() + (30 * target.getHeight())) + 10, 30, 0, 0, target);
             ArrayList<String> lines = new ArrayList<>();
             lines.add(target.getName().getString());
-            lines.add("Health: %s%.1f%s/%s%.1f".formatted(Render2DHelper.INSTANCE.getPercentFormatting((target.getHealth() / target.getMaxHealth()) * 100), target.getHealth(), Formatting.RESET, Formatting.GREEN, target.getMaxHealth()));
+            lines.add("Health: %s%.1f%s/%s%.1f".formatted(Render2DHelper.INSTANCE.getPercentFormatting((target.getHealth() / target.getMaxHealth()) * 100), target.getHealth(), ChatFormatting.RESET, ChatFormatting.GREEN, target.getMaxHealth()));
             lines.add("Armor Level: %d".formatted(target.getArmor()));
             lines.add("Item Damage: %.1f".formatted(InventoryHelper.INSTANCE.getAdjustedDamage(target.getMainHandStack())));
 

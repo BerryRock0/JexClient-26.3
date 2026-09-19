@@ -52,7 +52,7 @@ import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
 import net.minecraft.network.packet.s2c.play.SignEditorOpenS2CPacket;
 import net.minecraft.network.packet.s2c.play.UpdateSelectedSlotS2CPacket;
 import net.minecraft.network.packet.s2c.play.WorldTimeUpdateS2CPacket;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
@@ -193,7 +193,7 @@ public class BotClientPlayNetworkHandler extends ClientPlayNetworkHandler {
 
     @Override
     public void onDisconnect(DisconnectS2CPacket packet) {
-        ChatHelper.INSTANCE.addClientMessage(playerBot.getGameProfile().getName() + " disconnected for reason: " + Formatting.RED + packet.getReason().getString());
+        ChatHelper.INSTANCE.addClientMessage(playerBot.getGameProfile().getName() + " disconnected for reason: " + ChatFormatting.RED + packet.getReason().getString());
         playerBot.setPlayer(null);
         playerBot.setPlayerInventory(null);
         playerBot.setConnected(false);
@@ -206,7 +206,7 @@ public class BotClientPlayNetworkHandler extends ClientPlayNetworkHandler {
         IChatHud iChatHud = (IChatHud) Wrapper.INSTANCE.getMinecraft().inGameHud.getChatHud();
         try {
             if (!iChatHud.containsMessage(packet.message().getContent().getString()))
-                ChatHelper.INSTANCE.addRawMessage(String.format("%s[%s%s%s]%s: %s%s", Formatting.DARK_GRAY, Formatting.GREEN, playerBot.getGameProfile().getName(), Formatting.DARK_GRAY, Formatting.WHITE, Formatting.GRAY, packet.message().getContent().getString()));
+                ChatHelper.INSTANCE.addRawMessage(String.format("%s[%s%s%s]%s: %s%s", ChatFormatting.DARK_GRAY, ChatFormatting.GREEN, playerBot.getGameProfile().getName(), ChatFormatting.DARK_GRAY, ChatFormatting.WHITE, ChatFormatting.GRAY, packet.message().getContent().getString()));
         } catch (Exception e){}
     }
 

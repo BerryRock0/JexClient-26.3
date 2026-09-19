@@ -17,7 +17,7 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import org.lwjgl.glfw.GLFW;
 
 public class JexEditKeybindScreen extends Screen {
@@ -36,7 +36,7 @@ public class JexEditKeybindScreen extends Screen {
     @Override
     protected void init() {
         addSelectableChild(commandField = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 125, height / 2 - 30, 250, 20, Text.literal("")));
-        addDrawableChild(setKeyButton = new ButtonWidget(width / 2 - 125, height / 2 + 5, 250, 20, Text.literal(keybind == null ? "Key: %sNone".formatted(Formatting.AQUA) : "Key: %s%s".formatted(Formatting.AQUA, KeyboardHelper.INSTANCE.getKeyName(keybind.key()))), button -> {
+        addDrawableChild(setKeyButton = new ButtonWidget(width / 2 - 125, height / 2 + 5, 250, 20, Text.literal(keybind == null ? "Key: %sNone".formatted(ChatFormatting.AQUA) : "Key: %s%s".formatted(ChatFormatting.AQUA, KeyboardHelper.INSTANCE.getKeyName(keybind.key()))), button -> {
             EventManager.register(this);
             setKeyButton.setMessage(Text.translatable("jex.button.presskey"));
         }));
@@ -84,10 +84,10 @@ public class JexEditKeybindScreen extends Screen {
         int keyCode = event.getKey();
         if (keyCode != GLFW.GLFW_KEY_ENTER && keyCode != GLFW.GLFW_KEY_ESCAPE) {
             this.key = keyCode;
-            setKeyButton.setMessage(Text.translatable("jex.keybinds.key", Formatting.AQUA, KeyboardHelper.INSTANCE.getKeyName(keyCode)));
+            setKeyButton.setMessage(Text.translatable("jex.keybinds.key", ChatFormatting.AQUA, KeyboardHelper.INSTANCE.getKeyName(keyCode)));
         } else {
             this.key = 0;
-            setKeyButton.setMessage(Text.translatable("jex.keybinds.key.none", Formatting.AQUA));
+            setKeyButton.setMessage(Text.translatable("jex.keybinds.key.none", ChatFormatting.AQUA));
         }
         while (EventManager.isRegistered(this))
             EventManager.unregister(this);

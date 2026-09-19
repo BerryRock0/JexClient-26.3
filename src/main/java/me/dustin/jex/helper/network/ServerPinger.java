@@ -15,7 +15,7 @@ import net.minecraft.network.packet.s2c.query.QueryPongS2CPacket;
 import net.minecraft.network.packet.s2c.query.QueryResponseS2CPacket;
 import net.minecraft.server.ServerMetadata;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import java.net.InetSocketAddress;
 import java.util.Optional;
 import java.util.UUID;
@@ -44,20 +44,20 @@ public class ServerPinger {
             public void onResponse(QueryResponseS2CPacket packet) {
                 ServerMetadata serverMetadata = packet.getServerMetadata();
                 //description
-                ChatHelper.INSTANCE.addRawMessage(Formatting.GRAY + "----------------");
+                ChatHelper.INSTANCE.addRawMessage(ChatFormatting.GRAY + "----------------");
                 ChatHelper.INSTANCE.addRawMessage(serverMetadata.getDescription());
-                ChatHelper.INSTANCE.addRawMessage(Formatting.GRAY + "----------------");
+                ChatHelper.INSTANCE.addRawMessage(ChatFormatting.GRAY + "----------------");
 
                 //version info
                 if (serverMetadata.getVersion() != null)
-                    ChatHelper.INSTANCE.addRawMessage("Version: " + Formatting.AQUA + serverMetadata.getVersion().getGameVersion() + Formatting.WHITE + " (Protocol ver: " + Formatting.AQUA + serverMetadata.getVersion().getProtocolVersion() + Formatting.WHITE + ")");
+                    ChatHelper.INSTANCE.addRawMessage("Version: " + ChatFormatting.AQUA + serverMetadata.getVersion().getGameVersion() + ChatFormatting.WHITE + " (Protocol ver: " + ChatFormatting.AQUA + serverMetadata.getVersion().getProtocolVersion() + ChatFormatting.WHITE + ")");
                 //players
                 if (serverMetadata.getPlayers() != null) {
                     ChatHelper.INSTANCE.addRawMessage("Players online: " + serverMetadata.getPlayers().getOnlinePlayerCount() + "/" + serverMetadata.getPlayers().getPlayerLimit());
 
                     for (GameProfile gameProfile : serverMetadata.getPlayers().getSample()) {
                         if (gameProfile.getId().compareTo(emptyUUID) != 0)
-                            ChatHelper.INSTANCE.addRawMessage(Formatting.GREEN + gameProfile.getName());
+                            ChatHelper.INSTANCE.addRawMessage(ChatFormatting.GREEN + gameProfile.getName());
                     }
                 }
             }

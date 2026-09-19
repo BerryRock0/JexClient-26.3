@@ -12,7 +12,7 @@ import me.dustin.jex.helper.file.JsonHelper;
 import me.dustin.jex.helper.misc.ChatHelper;
 import net.minecraft.SharedConstants;
 import net.minecraft.network.NetworkState;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -77,7 +77,7 @@ public enum ServerScrubber {
                             JsonObject playerObj = jsonArray.get(i).getAsJsonObject();
                             String playerName = playerObj.get("name").getAsString();
                             if (playerName.equalsIgnoreCase(name)) {//we found him
-                                ChatHelper.INSTANCE.addClientMessage(Formatting.GOLD + playerName + Formatting.GRAY + " found on server: " + Formatting.AQUA + minecraftServerAddress.getIp() + ":" + minecraftServerAddress.getPort());
+                                ChatHelper.INSTANCE.addClientMessage(ChatFormatting.GOLD + playerName + ChatFormatting.GRAY + " found on server: " + ChatFormatting.AQUA + minecraftServerAddress.getIp() + ":" + minecraftServerAddress.getPort());
                                 found = true;
                                 socket.close();
                             }

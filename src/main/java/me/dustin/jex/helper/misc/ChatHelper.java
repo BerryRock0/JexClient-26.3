@@ -10,7 +10,7 @@ import net.minecraft.network.message.*;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.network.packet.c2s.play.CommandExecutionC2SPacket;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import net.minecraft.util.StringHelper;
 
 import java.time.Instant;
@@ -54,7 +54,7 @@ public enum ChatHelper {
     }
 
     public void addClientMessage(String message) {
-        Wrapper.INSTANCE.getMinecraft().inGameHud.getChatHud().addMessage(Text.of(String.format("%s[%sJex%s]%s: %s%s", Formatting.DARK_GRAY, Formatting.AQUA, Formatting.DARK_GRAY, Formatting.WHITE, Formatting.GRAY, message)));
+        Wrapper.INSTANCE.getMinecraft().inGameHud.getChatHud().addMessage(Text.of(String.format("%s[%sJex%s]%s: %s%s", ChatFormatting.DARK_GRAY, ChatFormatting.AQUA, ChatFormatting.DARK_GRAY, ChatFormatting.WHITE, ChatFormatting.GRAY, message)));
     }
 
     public void addRawMessage(String message) {

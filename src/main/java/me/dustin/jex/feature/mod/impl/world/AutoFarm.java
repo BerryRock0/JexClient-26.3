@@ -35,7 +35,7 @@ import net.minecraft.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.screen.slot.SlotActionType;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -228,7 +228,7 @@ public class AutoFarm extends Feature {
             case PAUSED -> message = "AutoFarm Paused... Press Enter to Resume";
         }
         if (message.isEmpty())
-            message = Formatting.WHITE + "AutoFarm Stage: " + Formatting.GREEN + StringUtils.capitalize(stage.name().toLowerCase().replace("_", " "));
+            message = ChatFormatting.WHITE + "AutoFarm Stage: " + ChatFormatting.GREEN + StringUtils.capitalize(stage.name().toLowerCase().replace("_", " "));
 
         float width = FontHelper.INSTANCE.getStringWidth(message);
         Render2DHelper.INSTANCE.outlineAndFill(event.getPoseStack(), Render2DHelper.INSTANCE.getScaledWidth() / 2.f - width / 2.f - 2, Render2DHelper.INSTANCE.getScaledHeight() / 2.f + 10, Render2DHelper.INSTANCE.getScaledWidth() / 2.f + width / 2.f + 2, Render2DHelper.INSTANCE.getScaledHeight() / 2.f + 24, 0x70696969, 0x40000000);

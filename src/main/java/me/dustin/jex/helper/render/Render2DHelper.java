@@ -34,7 +34,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.FilledMapItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.item.map.MapState;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Matrix4f;
@@ -678,16 +678,16 @@ public enum Render2DHelper {
         BufferHelper.INSTANCE.drawWithShader(buffer, ShaderHelper.INSTANCE.getPosColorShader());
     }
 
-    public Formatting getPercentFormatting(float percent) {
+    public ChatFormatting getPercentFormatting(float percent) {
         if (percent <= 15)
-            return Formatting.DARK_RED;
+            return ChatFormatting.DARK_RED;
         else if (percent <= 25)
-            return Formatting.RED;
+            return ChatFormatting.RED;
         else if (percent <= 50)
-            return Formatting.GOLD;
+            return ChatFormatting.GOLD;
         else if (percent <= 75)
-            return Formatting.YELLOW;
-        return Formatting.GREEN;
+            return ChatFormatting.YELLOW;
+        return ChatFormatting.GREEN;
     }
 
     public Vec3 to2D(Vec3 worldPos, PoseStack poseStack) {

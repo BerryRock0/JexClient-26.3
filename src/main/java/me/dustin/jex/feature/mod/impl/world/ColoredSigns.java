@@ -12,7 +12,7 @@ import me.dustin.jex.helper.render.Render2DHelper;
 import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.client.gui.screen.ingame.SignEditScreen;
 import net.minecraft.network.packet.c2s.play.UpdateSignC2SPacket;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 
 public class ColoredSigns extends Feature {
 
@@ -34,7 +34,7 @@ public class ColoredSigns extends Feature {
         Render2DHelper.INSTANCE.fillAndBorder(event.getPoseStack(), width / 2 - 202, 5, width / 2 - 200 + FontHelper.INSTANCE.getStringWidth("Color Cheat Sheet") + 4, 236, 0xffffffff, 0x60000000, 1);
         FontHelper.INSTANCE.drawWithShadow(event.getPoseStack(), "Color Cheat Sheet", width / 2 - 200, 7, -1);
         int count = 0;
-        for (Formatting value : Formatting.values()) {
+        for (ChatFormatting value : ChatFormatting.values()) {
             String first = value.getCode() == 'k' ? "" : "\247" + value.getCode();
             FontHelper.INSTANCE.drawWithShadow(event.getPoseStack(),  first + "&" + value.getCode(), width / 2 - 200, 16 + count * 10, -1);
             count++;

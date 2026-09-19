@@ -15,7 +15,7 @@ import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.NativeImageBackedTexture;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Matrix4f;
 import org.apache.commons.codec.binary.Base64;
@@ -384,7 +384,7 @@ public class NahrFont {
     }
 
     public final String stripControlCodes(String s) {
-        for (Formatting value : Formatting.values()) {
+        for (ChatFormatting value : ChatFormatting.values()) {
             s = s.replace("\247" + value.getCode(), "");
         }
         return s;

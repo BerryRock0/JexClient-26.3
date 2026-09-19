@@ -15,7 +15,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import net.minecraft.util.Util;
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.glfw.GLFW;
@@ -67,7 +67,7 @@ public class JexPluginScreen extends Screen {
         Render2DHelper.INSTANCE.fill(matrices, 0, 0, width, 45, 0x60000000);
         Render2DHelper.INSTANCE.fill(matrices, 0, height - 45, width, height, 0x60000000);
         FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.plugins"), width / 2.f, 5, -1);
-        FontHelper.INSTANCE.draw(matrices, Text.translatable("jex.plugins.count", Formatting.AQUA + String.valueOf(pluginButtons.size())), 5, 35, -1);
+        FontHelper.INSTANCE.draw(matrices, Text.translatable("jex.plugins.count", ChatFormatting.AQUA + String.valueOf(pluginButtons.size())), 5, 35, -1);
         Scissor.INSTANCE.cut(0, 50, 205, height - 100);
         pluginButtons.forEach(jexPluginButton -> jexPluginButton.render(matrices));
         Scissor.INSTANCE.seal();
@@ -79,7 +79,7 @@ public class JexPluginScreen extends Screen {
                 Render2DHelper.INSTANCE.drawTexture(matrices, 215, 55, 0, 0, 64, 64, 64, 64);
             }
             FontHelper.INSTANCE.draw(matrices, "%s v%s".formatted(selected.getJexPlugin().getInfo().getName(), selected.getJexPlugin().getInfo().getVersion()), 285, 55, -1);
-            FontHelper.INSTANCE.draw(matrices, Text.translatable("jex.plugins.authors", Formatting.GRAY + selected.getAuthors()), 285, 66, -1);
+            FontHelper.INSTANCE.draw(matrices, Text.translatable("jex.plugins.authors", ChatFormatting.GRAY + selected.getAuthors()), 285, 66, -1);
             FontHelper.INSTANCE.draw(matrices, Text.translatable("jex.plugins.allows_disable", greenTrueRedFalse(selected.getJexPlugin().getInfo().isAllowDisable())), 285, 77, -1);
             FontHelper.INSTANCE.draw(matrices, Text.translatable("jex.plugins.enabled", greenTrueRedFalse(selected.getJexPlugin().isEnabled())), 285, 88, -1);
             Wrapper.INSTANCE.getTextRenderer().drawTrimmed(Text.literal(selected.getJexPlugin().getInfo().getDescription()), 215, 125, width - 220, -1);
@@ -182,7 +182,7 @@ public class JexPluginScreen extends Screen {
     }
 
     private String greenTrueRedFalse(boolean bl) {
-        return "%s%s".formatted(bl ? Formatting.GREEN : Formatting.RED, StringUtils.capitalize(String.valueOf(bl)));
+        return "%s%s".formatted(bl ? ChatFormatting.GREEN : ChatFormatting.RED, StringUtils.capitalize(String.valueOf(bl)));
     }
 
     public JexPluginButton getSelected() {

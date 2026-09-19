@@ -19,7 +19,7 @@ import net.minecraft.network.packet.s2c.login.LoginDisconnectS2CPacket;
 import net.minecraft.network.packet.s2c.login.LoginHelloS2CPacket;
 import net.minecraft.network.packet.s2c.login.LoginSuccessS2CPacket;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import org.jetbrains.annotations.Nullable;
 
 import javax.crypto.Cipher;
@@ -102,13 +102,13 @@ public class BotLoginNetworkHandler extends ClientLoginNetworkHandler {
     public void onDisconnected(Text reason) {
         super.onDisconnected(reason);
         playerBot.disconnect();
-        ChatHelper.INSTANCE.addClientMessage(playerBot.getGameProfile().getName() + " could not connect for reason: " + Formatting.RED + reason.getString());
+        ChatHelper.INSTANCE.addClientMessage(playerBot.getGameProfile().getName() + " could not connect for reason: " + ChatFormatting.RED + reason.getString());
     }
 
     @Override
     public void onDisconnect(LoginDisconnectS2CPacket packet) {
         super.onDisconnect(packet);
         playerBot.disconnect();
-        ChatHelper.INSTANCE.addClientMessage(playerBot.getGameProfile().getName() + " could not connect for reason: " + Formatting.RED + packet.getReason().getString());
+        ChatHelper.INSTANCE.addClientMessage(playerBot.getGameProfile().getName() + " could not connect for reason: " + ChatFormatting.RED + packet.getReason().getString());
     }
 }

@@ -11,7 +11,7 @@ import net.fabricmc.loader.impl.launch.FabricLauncherBase;
 import net.minecraft.client.texture.NativeImage;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import net.minecraft.util.Identifier;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,13 +35,13 @@ public class JexPluginButton extends Button {
         String drawName = "%s v%s".formatted(jexPlugin.getInfo().getName(), jexPlugin.getInfo().getVersion());
         Render2DHelper.INSTANCE.fillAndBorder(matrixStack, getX(), getY(), getX() + getWidth(), getY() + getHeight(), isSelected ? ColorHelper.INSTANCE.getClientColor() : 0xaa000000, 0x40000000, 1);
         FontHelper.INSTANCE.draw(matrixStack, drawName, getX() + 37, getY() + 3.5f, -1);
-        String preTrim = "%s%s".formatted(Formatting.GRAY, jexPlugin.getInfo().getDescription());
+        String preTrim = "%s%s".formatted(ChatFormatting.GRAY, jexPlugin.getInfo().getDescription());
         String trimmed = Wrapper.INSTANCE.getTextRenderer().trimToWidth(preTrim, (int)getWidth() - 67);
         if (!trimmed.equalsIgnoreCase(preTrim))
             trimmed = trimmed + "...";
         FontHelper.INSTANCE.draw(matrixStack, trimmed, getX() + 37, getY() + 14.5f, -1);
 
-        preTrim = Text.translatable("jex.plugins.authors", Formatting.GRAY + getAuthors()).getString();
+        preTrim = Text.translatable("jex.plugins.authors", ChatFormatting.GRAY + getAuthors()).getString();
         trimmed = Wrapper.INSTANCE.getTextRenderer().trimToWidth(preTrim, (int)getWidth() - 67);
         if (!trimmed.equalsIgnoreCase(preTrim))
             trimmed = trimmed + "...";
@@ -53,9 +53,9 @@ public class JexPluginButton extends Button {
     }
 
     public String getAuthors() {
-        StringJoiner sj = new StringJoiner(Formatting.RESET + ", ");
+        StringJoiner sj = new StringJoiner(ChatFormatting.RESET + ", ");
         for (String author : jexPlugin.getInfo().getAuthors()) {
-            sj.add(Formatting.GRAY + author);
+            sj.add(ChatFormatting.GRAY + author);
         }
         return sj.toString();
     }

@@ -13,7 +13,7 @@ import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.util.ProfileKeys;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 
 import java.util.UUID;
 
@@ -70,7 +70,7 @@ public class DirectLoginScreen extends Screen {
 						Wrapper.INSTANCE.getIMinecraft().setSession(session);
 						Wrapper.INSTANCE.getMinecraft().setScreen(parent);
 					} else
-						this.errorMessage = Text.translatable("jex.account.login_failed").styled(style -> style.withColor(Formatting.RED)).getString();
+						this.errorMessage = Text.translatable("jex.account.login_failed").styled(style -> style.withColor(ChatFormatting.RED)).getString();
 				}, s -> this.errorMessage = s);
 			} else {
 				MinecraftAccount.MojangAccount mojangAccount = new MinecraftAccount.MojangAccount(username.getText(), email.getText(), password.getText());
@@ -80,15 +80,15 @@ public class DirectLoginScreen extends Screen {
 						Wrapper.INSTANCE.getIMinecraft().setSession(session);
 						Wrapper.INSTANCE.getMinecraft().setScreen(parent);
 					} else
-						this.errorMessage = Text.translatable("jex.account.login_failed").styled(style -> style.withColor(Formatting.RED)).getString();
+						this.errorMessage = Text.translatable("jex.account.login_failed").styled(style -> style.withColor(ChatFormatting.RED)).getString();
 				}).login();
 			}
 		}));
 
 
-		this.addDrawableChild(new ButtonWidget((Render2DHelper.INSTANCE.getScaledWidth() / 2) - 60, Render2DHelper.INSTANCE.getScaledHeight() - 105, 120, 20, Text.translatable("jex.account.mojang").styled(style -> style.withColor(Formatting.GOLD)), button -> {
+		this.addDrawableChild(new ButtonWidget((Render2DHelper.INSTANCE.getScaledWidth() / 2) - 60, Render2DHelper.INSTANCE.getScaledHeight() - 105, 120, 20, Text.translatable("jex.account.mojang").styled(style -> style.withColor(ChatFormatting.GOLD)), button -> {
 			isMicrosoft = !isMicrosoft;
-			button.setMessage(isMicrosoft ? Text.translatable("jex.account.microsoft").styled(style -> style.withColor(Formatting.GREEN)) : Text.translatable("jex.account.mojang").styled(style -> style.withColor(Formatting.GOLD)));
+			button.setMessage(isMicrosoft ? Text.translatable("jex.account.microsoft").styled(style -> style.withColor(ChatFormatting.GREEN)) : Text.translatable("jex.account.mojang").styled(style -> style.withColor(ChatFormatting.GOLD)));
 		}));
 		super.init();
 	}

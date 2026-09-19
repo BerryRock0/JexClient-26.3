@@ -12,7 +12,7 @@ import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.network.NetworkHelper;
 import me.dustin.jex.feature.mod.core.Feature;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 
 public class AutoDisconnect extends Feature {
 
@@ -37,7 +37,7 @@ public class AutoDisconnect extends Feature {
         if (Wrapper.INSTANCE.getLocalPlayer() != null && Wrapper.INSTANCE.getLocalPlayer().age >= 150) {
             if (Wrapper.INSTANCE.getLocalPlayer().getHealth() <= healthProperty.value()) {
                 switch (modeProperty.value()) {
-                    case DISCONNECT -> NetworkHelper.INSTANCE.disconnect("AutoDisconnect", Formatting.RED + "Disconnected because your health was below a set amount");
+                    case DISCONNECT -> NetworkHelper.INSTANCE.disconnect("AutoDisconnect", ChatFormatting.RED + "Disconnected because your health was below a set amount");
                     case CHARS -> ChatHelper.INSTANCE.sendChatMessage("\247r");
                     case INVALID_POS -> NetworkHelper.INSTANCE.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, false));
                 }

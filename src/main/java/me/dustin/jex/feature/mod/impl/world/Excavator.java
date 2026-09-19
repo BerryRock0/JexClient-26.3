@@ -32,7 +32,7 @@ import me.dustin.jex.helper.world.WorldHelper;
 import me.dustin.jex.helper.world.wurstpathfinder.PathProcessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -133,7 +133,7 @@ public class Excavator extends Feature {
             ChatHelper.INSTANCE.addClientMessage("Excavator finished.");
             setState(false);
             if (logoutWhenDone) {
-                NetworkHelper.INSTANCE.disconnect(Formatting.AQUA + "Excavator", Formatting.GREEN + "Excavator has finished.");
+                NetworkHelper.INSTANCE.disconnect(ChatFormatting.AQUA + "Excavator", ChatFormatting.GREEN + "Excavator has finished.");
             }
             return;
         }
@@ -201,7 +201,7 @@ public class Excavator extends Feature {
             }
             case EXCAVATING -> {
                 percent = 1 - ((float)miningArea.blocksLeft() / (float)miningArea.totalBlocks());
-                message = Formatting.WHITE + "Excavating... " + Formatting.RESET + String.format("%.2f", percent * 100) + Formatting.WHITE + "%";
+                message = ChatFormatting.WHITE + "Excavating... " + ChatFormatting.RESET + String.format("%.2f", percent * 100) + ChatFormatting.WHITE + "%";
             }
             case PAUSED -> message = "Excavator Paused... Press Enter to Resume";
         }
@@ -210,7 +210,7 @@ public class Excavator extends Feature {
         FontHelper.INSTANCE.drawCenteredString(event.getPoseStack(), message, Render2DHelper.INSTANCE.getScaledWidth() / 2.f, Render2DHelper.INSTANCE.getScaledHeight() / 2.f + 13, miningArea != null ? getColor(percent).getRGB() : -1);
 
         if (PathingHelper.INSTANCE.isThinking()) {
-            message = Formatting.GREEN + "Wurst AI" + Formatting.GRAY + ": " + Formatting.WHITE + "Thinking";
+            message = ChatFormatting.GREEN + "Wurst AI" + ChatFormatting.GRAY + ": " + ChatFormatting.WHITE + "Thinking";
             width = FontHelper.INSTANCE.getStringWidth(message);
             Render2DHelper.INSTANCE.outlineAndFill(event.getPoseStack(), Render2DHelper.INSTANCE.getScaledWidth() / 2.f - width / 2.f - 2, Render2DHelper.INSTANCE.getScaledHeight() / 2.f + 25, Render2DHelper.INSTANCE.getScaledWidth() / 2.f + width / 2.f + 2, Render2DHelper.INSTANCE.getScaledHeight() / 2.f + 39, 0x70696969, 0x40000000);
             FontHelper.INSTANCE.drawCenteredString(event.getPoseStack(), message, Render2DHelper.INSTANCE.getScaledWidth() / 2.f, Render2DHelper.INSTANCE.getScaledHeight() / 2.f + 28,-1);

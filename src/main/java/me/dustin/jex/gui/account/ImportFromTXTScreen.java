@@ -10,7 +10,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import java.io.File;
 
 public class ImportFromTXTScreen extends Screen {
@@ -29,12 +29,12 @@ public class ImportFromTXTScreen extends Screen {
         importButton = new ButtonWidget(width / 2 - 150, height / 2 + 152, 300, 20, Text.translatable("jex.account.import"), button -> {
             File file = fileBrowser.getSelectedFiles().get(0);
             ConfigManager.INSTANCE.get(AltFile.class).importFromTXT(file);
-            message = Formatting.GREEN + Text.translatable("jex.account.import.txt.success", file.getName()).getString();
+            message = ChatFormatting.GREEN + Text.translatable("jex.account.import.txt.success", file.getName()).getString();
         });
         cancelButton = new ButtonWidget(width / 2 - 150, height / 2 + 174, 300, 20, Text.translatable("jex.button.cancel"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new AccountManagerScreen());
         });
-        message = Formatting.AQUA + Text.translatable("jex.account.import.supports").getString();
+        message = ChatFormatting.AQUA + Text.translatable("jex.account.import.supports").getString();
         this.addDrawableChild(importButton);
         this.addDrawableChild(cancelButton);
         super.init();

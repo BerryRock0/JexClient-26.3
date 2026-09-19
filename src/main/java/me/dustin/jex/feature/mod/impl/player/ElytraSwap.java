@@ -12,7 +12,7 @@ import net.minecraft.item.ElytraItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.screen.slot.SlotActionType;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 
 public class ElytraSwap extends Feature {
 
@@ -54,9 +54,9 @@ public class ElytraSwap extends Feature {
                 }
                 //swap on slot 6 as that's the chest slot
                 InventoryHelper.INSTANCE.windowClick(Wrapper.INSTANCE.getLocalPlayer().currentScreenHandler, 6, SlotActionType.SWAP, bestElytraSlot);
-                ChatHelper.INSTANCE.addRawMessage(String.format("%s[%sElytraSwap%s]%s: %sEquipped %s", Formatting.DARK_GRAY, Formatting.GREEN, Formatting.DARK_GRAY, Formatting.WHITE, Formatting.GRAY, bestSelected.getName().getString()));
+                ChatHelper.INSTANCE.addRawMessage(String.format("%s[%sElytraSwap%s]%s: %sEquipped %s", ChatFormatting.DARK_GRAY, ChatFormatting.GREEN, ChatFormatting.DARK_GRAY, ChatFormatting.WHITE, ChatFormatting.GRAY, bestSelected.getName().getString()));
             } else {
-                ChatHelper.INSTANCE.addRawMessage(String.format("%s[%sElytraSwap%s]%s: %sNo elytra available for swap!", Formatting.DARK_GRAY, Formatting.GREEN, Formatting.DARK_GRAY, Formatting.WHITE, Formatting.GRAY));
+                ChatHelper.INSTANCE.addRawMessage(String.format("%s[%sElytraSwap%s]%s: %sNo elytra available for swap!", ChatFormatting.DARK_GRAY, ChatFormatting.GREEN, ChatFormatting.DARK_GRAY, ChatFormatting.WHITE, ChatFormatting.GRAY));
             }
         } else if (equippedStack.getItem() == Items.ELYTRA){
             //wearing elytra, look for armor

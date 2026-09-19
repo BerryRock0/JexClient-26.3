@@ -21,7 +21,7 @@ import me.dustin.jex.load.impl.IChatScreen;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
 import java.util.StringJoiner;
 import java.util.function.Consumer;
 
@@ -220,7 +220,7 @@ public class IRC extends Feature {
     public static void addIRCMessage(String message) {
         if (message.isEmpty())
             return;
-        for (Formatting value : Formatting.values()) {
+        for (ChatFormatting value : ChatFormatting.values()) {
             message = message.replace("&" + value.getCode(), "\247" + value.getCode());
         }
         String ircString = "\2478[\247cIRC\2478] \2477" + message;
