@@ -12,7 +12,6 @@ repositories {
 dependencies {
 	def dependency = { id ->
 		implementation id
-		shadow id
 	} as Object
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
