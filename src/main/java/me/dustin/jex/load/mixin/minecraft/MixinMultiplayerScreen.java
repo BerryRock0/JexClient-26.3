@@ -8,7 +8,7 @@ import me.dustin.jex.helper.misc.Wrapper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,16 +23,16 @@ public class MixinMultiplayerScreen extends Screen {
 
     @Inject(method = "init", at = @At("RETURN"))
     public void init(CallbackInfo ci) {
-        this.addDrawableChild(new ButtonWidget(2, 2, 75, 20, Text.of("Alt Manager"), button -> {
+        this.addDrawableChild(new ButtonWidget(2, 2, 75, 20, Component.literal("Alt Manager"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new AccountManagerScreen());
         }));
-        this.addDrawableChild(new ButtonWidget(79, 2, 75, 20, Text.of("TheAltening"), button -> {
+        this.addDrawableChild(new ButtonWidget(79, 2, 75, 20, Component.literal("TheAltening"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new TheAlteningScreen((MultiplayerScreen)(Object)this));
         }));
-        this.addDrawableChild(new ButtonWidget(156, 2, 75, 20, Text.of("MCLeaks"), button -> {
+        this.addDrawableChild(new ButtonWidget(156, 2, 75, 20, Component.literal("MCLeaks"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new MCLeaksScreen((MultiplayerScreen)(Object)this, false));
         }));
-        this.addDrawableChild(new ButtonWidget(width - 77, 2, 75, 20, Text.of("Proxy"), button -> {
+        this.addDrawableChild(new ButtonWidget(width - 77, 2, 75, 20, Component.literal("Proxy"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new ProxyScreen());
         }));
     }

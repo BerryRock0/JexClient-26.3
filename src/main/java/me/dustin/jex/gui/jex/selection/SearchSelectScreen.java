@@ -19,7 +19,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.registry.Registry;
 import org.lwjgl.glfw.GLFW;
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class SearchSelectScreen extends Screen {
     private Scrollbar leftScrollbar;
     private Scrollbar rightScrollbar;
     public SearchSelectScreen() {
-        super(Text.translatable("jex.search_select"));
+        super(Component.translatable("jex.search_select"));
     }
 
     @Override
@@ -47,17 +47,17 @@ public class SearchSelectScreen extends Screen {
         float startY = Render2DHelper.INSTANCE.getScaledHeight() / 2.f - 125;
         float buttonWidth = 198;
         loadBlocks();
-        searchField = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), (int) allowedLeftX, (int) startY - 25, 350, 20, Text.of(""));
+        searchField = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), (int) allowedLeftX, (int) startY - 25, 350, 20, Component.literal(""));
         searchField.setVisible(true);
         searchField.setEditable(true);
-        searchButton = new ButtonWidget(Render2DHelper.INSTANCE.getScaledWidth() / 2 + 155, (int) startY - 25, 45, 20, Text.translatable("jex.button.search"), button -> {
+        searchButton = new ButtonWidget(Render2DHelper.INSTANCE.getScaledWidth() / 2 + 155, (int) startY - 25, 45, 20, Component.translatable("jex.button.search"), button -> {
             if (searchField.getText().isEmpty())
                 loadBlocks();
             else
                 loadBlocks(searchField.getText());
         });
 
-        removeSearchBlockButton = new ButtonWidget((int) allowedLeftX, (int) startY + 255, (int) buttonWidth, 20, Text.translatable("jex.search_select.remove"), button -> {
+        removeSearchBlockButton = new ButtonWidget((int) allowedLeftX, (int) startY + 255, (int) buttonWidth, 20, Component.translatable("jex.search_select.remove"), button -> {
             getSelectedAllowed().forEach(blockButton -> {
                 Search.getBlocks().remove(blockButton.getBlock());
                 allowedBlocks.remove(blockButton);
@@ -69,7 +69,7 @@ public class SearchSelectScreen extends Screen {
                 loadBlocks(searchField.getText());
             ConfigManager.INSTANCE.get(SearchFile.class).write();
         });
-        addSearchBlockButton = new ButtonWidget((int) notAllowedLeftX, (int) startY + 255, (int) buttonWidth, 20, Text.translatable("jex.search_select.add"), button -> {
+        addSearchBlockButton = new ButtonWidget((int) notAllowedLeftX, (int) startY + 255, (int) buttonWidth, 20, Component.translatable("jex.search_select.add"), button -> {
             getSelectedNotAllowed().forEach(blockButton -> {
                 Search.getBlocks().put(blockButton.getBlock(), ColorHelper.INSTANCE.getColorViaHue(new Random().nextFloat() * 270).getRGB());
                 allowedBlocks.add(blockButton);
@@ -82,7 +82,7 @@ public class SearchSelectScreen extends Screen {
             ConfigManager.INSTANCE.get(SearchFile.class).write();
         });
 
-        doneButton = new ButtonWidget((int) (Render2DHelper.INSTANCE.getScaledWidth() / 2.f - 100), height - 22, 200, 20, Text.translatable("jex.button.done"), button -> {
+        doneButton = new ButtonWidget((int) (Render2DHelper.INSTANCE.getScaledWidth() / 2.f - 100), height - 22, 200, 20, Component.translatable("jex.button.done"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new JexOptionsScreen());
         });
 

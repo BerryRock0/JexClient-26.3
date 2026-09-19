@@ -15,7 +15,7 @@ import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,7 @@ public class JexKeybindListScreen extends Screen {
     private Scrollbar scrollbar;
     private boolean movingScrollbar;
     public JexKeybindListScreen(Screen parent) {
-        super(Text.translatable("jex.keybinds"));
+        super(Component.translatable("jex.keybinds"));
         this.parent = parent;
     }
 
@@ -35,18 +35,18 @@ public class JexKeybindListScreen extends Screen {
     protected void init() {
         super.init();
         generateButtons();
-        addDrawableChild(deleteButton = new ButtonWidget(width / 2 - 102, height - 25, 100, 20, Text.translatable("jex.button.remove"), button -> {
+        addDrawableChild(deleteButton = new ButtonWidget(width / 2 - 102, height - 25, 100, 20, Component.translatable("jex.button.remove"), button -> {
             Keybind.getKeybinds().remove(getSelected().getKeybind());
             ConfigManager.INSTANCE.get(KeybindFile.class).write();
             generateButtons();
         }));
-        addDrawableChild(editButton = new ButtonWidget(width / 2 - 102, height - 50, 100, 20, Text.translatable("jex.button.edit"), button -> {
+        addDrawableChild(editButton = new ButtonWidget(width / 2 - 102, height - 50, 100, 20, Component.translatable("jex.button.edit"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new JexEditKeybindScreen(getSelected().getKeybind(), this));
         }));
-        addDrawableChild(new ButtonWidget(width / 2 + 2, height - 50, 100, 20, Text.translatable("jex.keybinds.new"), button -> {
+        addDrawableChild(new ButtonWidget(width / 2 + 2, height - 50, 100, 20, Component.translatable("jex.keybinds.new"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new JexEditKeybindScreen(null, this));
         }));
-        addDrawableChild(new ButtonWidget(width / 2 + 2, height - 25, 100, 20, Text.translatable("jex.button.cancel"), button -> {
+        addDrawableChild(new ButtonWidget(width / 2 + 2, height - 25, 100, 20, Component.translatable("jex.button.cancel"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(parent);
         }));
 
@@ -62,7 +62,7 @@ public class JexKeybindListScreen extends Screen {
         renderBackground(matrices);
         Render2DHelper.INSTANCE.fill(matrices, 0, 0, width, 30, 0x80000000);
         Render2DHelper.INSTANCE.fill(matrices, 0, height - 60, width, height, 0x80000000);
-        FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.keybinds.title"), width / 2.f, 12, ColorHelper.INSTANCE.getClientColor());
+        FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.keybinds.title"), width / 2.f, 12, ColorHelper.INSTANCE.getClientColor());
         Scissor.INSTANCE.cut(0, 30, width, height - 90);
         keybindButtonsList.forEach(jexKeybindButton -> jexKeybindButton.render(matrices));
         Scissor.INSTANCE.seal();

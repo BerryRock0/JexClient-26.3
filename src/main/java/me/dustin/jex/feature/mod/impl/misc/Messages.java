@@ -15,7 +15,7 @@ import net.minecraft.network.message.LastSeenMessageList;
 import net.minecraft.network.message.MessageMetadata;
 import net.minecraft.network.message.MessageSignatureData;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 import java.time.Instant;
 import java.util.Random;

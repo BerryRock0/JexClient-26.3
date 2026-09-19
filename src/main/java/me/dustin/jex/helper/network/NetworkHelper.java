@@ -16,7 +16,7 @@ import net.minecraft.client.realms.gui.screen.RealmsMainScreen;
 import net.minecraft.client.util.ProfileKeys;
 import net.minecraft.client.util.Session;
 import net.minecraft.network.Packet;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 import java.io.File;
 import java.util.HashMap;
@@ -76,18 +76,18 @@ public enum NetworkHelper {
         boolean bl2 = Wrapper.INSTANCE.getMinecraft().isConnectedToRealms();
         Wrapper.INSTANCE.getWorld().disconnect();
         if (bl) {
-            Wrapper.INSTANCE.getMinecraft().disconnect(new DisconnectedScreen(new TitleScreen(), Text.of("Disconnect"), Text.translatable("menu.savingLevel")));
+            Wrapper.INSTANCE.getMinecraft().disconnect(new DisconnectedScreen(new TitleScreen(), Component.literal("Disconnect"), Component.translatable("menu.savingLevel")));
         } else {
             Wrapper.INSTANCE.getMinecraft().disconnect();
         }
 
         TitleScreen titleScreen = new TitleScreen();
         if (bl) {
-            Wrapper.INSTANCE.getMinecraft().setScreen(new DisconnectedScreen(titleScreen, Text.of(reason), Text.of(message)));
+            Wrapper.INSTANCE.getMinecraft().setScreen(new DisconnectedScreen(titleScreen, Component.literal(reason), Component.literal(message)));
         } else if (bl2) {
-            Wrapper.INSTANCE.getMinecraft().setScreen(new DisconnectedScreen(new RealmsMainScreen(titleScreen), Text.of(reason), Text.of(message)));
+            Wrapper.INSTANCE.getMinecraft().setScreen(new DisconnectedScreen(new RealmsMainScreen(titleScreen), Component.literal(reason), Component.literal(message)));
         } else {
-            Wrapper.INSTANCE.getMinecraft().setScreen(new DisconnectedScreen(new MultiplayerScreen(titleScreen), Text.of(reason), Text.of(message)));
+            Wrapper.INSTANCE.getMinecraft().setScreen(new DisconnectedScreen(new MultiplayerScreen(titleScreen), Component.literal(reason), Component.literal(message)));
         }
 
     }

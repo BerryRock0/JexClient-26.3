@@ -20,7 +20,7 @@ import me.dustin.jex.helper.render.font.FontHelper;
 import me.dustin.jex.load.impl.IChatScreen;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.gui.screen.ChatScreen;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import java.util.StringJoiner;
 import java.util.function.Consumer;
@@ -227,6 +227,6 @@ public class IRC extends Feature {
         if (Wrapper.INSTANCE.getLocalPlayer() != null) {
             ChatHelper.INSTANCE.addRawMessage(ircString);
         }
-        ircChatHud.addMessage(Text.of(ircString));
+        ircChatHud.addMessage(Component.literal(ircString));
     }
 }

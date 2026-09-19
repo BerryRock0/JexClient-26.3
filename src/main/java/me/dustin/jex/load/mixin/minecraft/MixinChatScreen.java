@@ -9,7 +9,7 @@ import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -29,14 +29,14 @@ public class MixinChatScreen implements IChatScreen {
     @Inject(method = "init", at = @At("RETURN"))
     public void init(CallbackInfo ci) {
         ircMod = Feature.get(IRC.class);
-        normalChatButton = new ButtonWidget(chatField.x - 2, chatField.y - 22, 40, 18, Text.of(ircMod.ircChatOverride ? "\2477Chat": "\247bChat"), button -> {
-            ircChatButton.setMessage(Text.of("\2477IRC"));
-            normalChatButton.setMessage(Text.of("\247bChat"));
+        normalChatButton = new ButtonWidget(chatField.x - 2, chatField.y - 22, 40, 18, Component.literal(ircMod.ircChatOverride ? "\2477Chat": "\247bChat"), button -> {
+            ircChatButton.setMessage(Component.literal("\2477IRC"));
+            normalChatButton.setMessage(Component.literal("\247bChat"));
             ircMod.ircChatOverride = false;
         });
-        ircChatButton = new ButtonWidget(chatField.x - 2 + 42, chatField.y - 22, 40, 18, Text.of(ircMod.ircChatOverride ? "\247cIRC" : "\2477IRC"), button -> {
-            normalChatButton.setMessage(Text.of("\2477Chat"));
-            ircChatButton.setMessage(Text.of("\247cIRC"));
+        ircChatButton = new ButtonWidget(chatField.x - 2 + 42, chatField.y - 22, 40, 18, Component.literal(ircMod.ircChatOverride ? "\247cIRC" : "\2477IRC"), button -> {
+            normalChatButton.setMessage(Component.literal("\2477Chat"));
+            ircChatButton.setMessage(Component.literal("\247cIRC"));
             ircMod.ircChatOverride = true;
         });
     }

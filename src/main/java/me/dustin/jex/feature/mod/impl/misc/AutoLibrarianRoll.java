@@ -36,7 +36,7 @@ import net.minecraft.network.packet.c2s.play.CloseHandledScreenC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket;
 import net.minecraft.screen.MerchantScreenHandler;
 import net.minecraft.screen.slot.SlotActionType;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.AABB;
@@ -106,7 +106,7 @@ public class AutoLibrarianRoll extends Feature {
                         Map<Enchantment, Integer> enchants = EnchantmentHelper.fromNbt(EnchantedBookItem.getEnchantmentNbt(tradeOffer.getSellItem()));
                         for (Map.Entry<Enchantment, ArrayList<Integer>> entry : enchantments.entrySet()) {
                             Enchantment enchantment = entry.getKey();
-                            String enchantName = Text.translatable(enchantment.getTranslationKey()).getString();
+                            String enchantName = Component.translatable(enchantment.getTranslationKey()).getString();
                             if (enchants.containsKey(enchantment) && entry.getValue().contains(enchants.get(enchantment))) {
                                 int count = priceModeProperty.value() == PriceMode.NORMAL ? tradeOffer.getOriginalFirstBuyItem().getCount() : tradeOffer.getAdjustedFirstBuyItem().getCount();
                                 if (count <= priceProperty.value()) {
@@ -216,7 +216,7 @@ public class AutoLibrarianRoll extends Feature {
             String string1 = "Searching:";
             StringBuilder sb = new StringBuilder();
             for (Enchantment enchantment : enchantments.keySet()) {
-                sb.append(Text.translatable(enchantment.getTranslationKey()).getString()).append(": ");
+                sb.append(Component.translatable(enchantment.getTranslationKey()).getString()).append(": ");
                 for (int level : enchantments.get(enchantment)) {
                     sb.append(level).append(", ");
                 }

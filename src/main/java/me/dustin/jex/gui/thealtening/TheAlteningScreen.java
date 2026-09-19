@@ -16,7 +16,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.glfw.GLFW;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class TheAlteningScreen extends Screen {
     public TheAlteningScreen(Screen parent) {
-        super(Text.translatable("jex.thealtening"));
+        super(Component.translatable("jex.thealtening"));
         this.parent = parent;
     }
 
@@ -51,7 +51,7 @@ public class TheAlteningScreen extends Screen {
     private boolean movingScrollbar2;
 
     private String logInStatus = "";
-    private String tokenStatus = Text.translatable("jex.thealtening.use_generated").getString();
+    private String tokenStatus = Component.translatable("jex.thealtening.use_generated").getString();
 
     private TheAlteningHelper.TheAlteningAccount generatedAccount;
 
@@ -60,55 +60,55 @@ public class TheAlteningScreen extends Screen {
 
     @Override
     protected void init() {
-        apiKeyWidget = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 150, 12, 200, 20, Text.of(""));
-        tokenWidget = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 150, 365, 200, 20, Text.of(""));
+        apiKeyWidget = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 150, 12, 200, 20, Component.literal(""));
+        tokenWidget = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 150, 365, 200, 20, Component.literal(""));
         if (!TheAlteningHelper.INSTANCE.getApiKey().isEmpty()) {
             apiKeyWidget.setText(TheAlteningHelper.INSTANCE.getApiKey().substring(0, 4) + "****-****-****");
             updateAPIKey();
         }
-        setApiKeyButton = new ButtonWidget(width / 2 + 52, 12, 98, 20, Text.translatable("jex.thealtening.set_key"), button -> {
+        setApiKeyButton = new ButtonWidget(width / 2 + 52, 12, 98, 20, Component.translatable("jex.thealtening.set_key"), button -> {
             TheAlteningHelper.INSTANCE.setApiKey(this.apiKeyWidget.getText());
             apiKeyWidget.setText(TheAlteningHelper.INSTANCE.getApiKey().substring(0, 4) + "****-****-****");
             updateAPIKey();
             ConfigManager.INSTANCE.get(ClientSettingsFile.class).write();
         });
-        loginButton = new ButtonWidget(width / 2 - 152, 330, 150, 20, Text.translatable("jex.thealtening.login_selected"), button -> {
+        loginButton = new ButtonWidget(width / 2 - 152, 330, 150, 20, Component.translatable("jex.thealtening.login_selected"), button -> {
             if (getSelected() != null) {
                 TheAlteningHelper.INSTANCE.login(getSelected().getAccount(), session -> {
                     if (session != null) {
                         Wrapper.INSTANCE.getIMinecraft().setSession(session);
-                        logInStatus = Text.translatable("jex.thealtening.logged_in", "\247b" + session.getUsername()).getString();
+                        logInStatus = Component.translatable("jex.thealtening.logged_in", "\247b" + session.getUsername()).getString();
                     } else {
-                        logInStatus = Text.translatable("jex.thealtening.login_failed").getString();
+                        logInStatus = Component.translatable("jex.thealtening.login_failed").getString();
                     }
                 });
             }
         });
-        loginGeneratedButton = new ButtonWidget(width / 2 + 2, 330, 150, 20, Text.translatable("jex.thealtening.login_generated"), button -> {
+        loginGeneratedButton = new ButtonWidget(width / 2 + 2, 330, 150, 20, Component.translatable("jex.thealtening.login_generated"), button -> {
             if (generatedAccount != null) {
                 TheAlteningHelper.INSTANCE.login(generatedAccount, session -> {
                     if (session != null) {
                         Wrapper.INSTANCE.getIMinecraft().setSession(session);
-                        logInStatus = Text.translatable("jex.thealtening.logged_in", "\247b" + session.getUsername()).getString();
+                        logInStatus = Component.translatable("jex.thealtening.logged_in", "\247b" + session.getUsername()).getString();
                     } else {
-                        logInStatus = Text.translatable("jex.thealtening.login_failed").getString();
+                        logInStatus = Component.translatable("jex.thealtening.login_failed").getString();
                     }
                 });
             }
         });
-        loginTokenButton = new ButtonWidget(width / 2 + 52, 365, 100, 20, Text.translatable("jex.thealtening.login_token"), button -> {
+        loginTokenButton = new ButtonWidget(width / 2 + 52, 365, 100, 20, Component.translatable("jex.thealtening.login_token"), button -> {
             TheAlteningHelper.INSTANCE.login(this.tokenWidget.getText(), session -> {
                 if (session != null) {
                     Wrapper.INSTANCE.getIMinecraft().setSession(session);
-                    tokenStatus = Text.translatable("jex.thealtening.logged_in", "\247b" + session.getUsername()).getString();
+                    tokenStatus = Component.translatable("jex.thealtening.logged_in", "\247b" + session.getUsername()).getString();
                 } else {
-                    tokenStatus = Text.translatable("jex.thealtening.login_failed").getString();
+                    tokenStatus = Component.translatable("jex.thealtening.login_failed").getString();
                 }
                 this.tokenWidget.setText("");
             });
         });
-        generateButton = new ButtonWidget(width / 2 - 152, 305, 150, 20, Text.translatable("jex.thealtening.generate"), button -> generatedAccount = TheAlteningHelper.INSTANCE.generateAccount());
-        favoriteGeneratedButton = new ButtonWidget(width / 2 + 2, 305, 75, 20, Text.translatable("jex.thealtening.favorite"), button -> {
+        generateButton = new ButtonWidget(width / 2 - 152, 305, 150, 20, Component.translatable("jex.thealtening.generate"), button -> generatedAccount = TheAlteningHelper.INSTANCE.generateAccount());
+        favoriteGeneratedButton = new ButtonWidget(width / 2 + 2, 305, 75, 20, Component.translatable("jex.thealtening.favorite"), button -> {
             if (generatedAccount != null) {
                 if (TheAlteningHelper.INSTANCE.favoriteAcc(generatedAccount)) {
                     this.favoriteAccounts.add(generatedAccount);
@@ -120,7 +120,7 @@ public class TheAlteningScreen extends Screen {
             }
         });
 
-        privateGeneratedButton = new ButtonWidget(width / 2 + 77, 305, 75, 20, Text.translatable("jex.thealtening.private"), button -> {
+        privateGeneratedButton = new ButtonWidget(width / 2 + 77, 305, 75, 20, Component.translatable("jex.thealtening.private"), button -> {
             if (generatedAccount != null) {
                 if (TheAlteningHelper.INSTANCE.privateAcc(generatedAccount)) {
                     this.privateAccounts.add(generatedAccount);
@@ -131,13 +131,13 @@ public class TheAlteningScreen extends Screen {
                 }
             }
         });
-        getTokenButton = new ButtonWidget(width - 127, 2, 125, 20, Text.translatable("jex.thealtening.get_token"), button -> {
+        getTokenButton = new ButtonWidget(width - 127, 2, 125, 20, Component.translatable("jex.thealtening.get_token"), button -> {
             WebHelper.INSTANCE.openLink("https://thealtening.com/free/free-minecraft-alts");
         });
-        signUpButton = new ButtonWidget(width - 127, 25, 125, 20, Text.translatable("jex.thealtening.sign_up"), button -> {
+        signUpButton = new ButtonWidget(width - 127, 25, 125, 20, Component.translatable("jex.thealtening.sign_up"), button -> {
             WebHelper.INSTANCE.openLink("https://thealtening.com/?i=wohc9");
         });
-        ButtonWidget cancelButton = new ButtonWidget(width / 2 - 100, height - 22, 200, 20, Text.translatable("jex.button.cancel"), button -> {
+        ButtonWidget cancelButton = new ButtonWidget(width / 2 - 100, height - 22, 200, 20, Component.translatable("jex.button.cancel"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(parent);
         });
         if (TheAlteningHelper.INSTANCE.isConnectedToAltening())

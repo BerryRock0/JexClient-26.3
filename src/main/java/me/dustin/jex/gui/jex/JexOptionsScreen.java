@@ -26,7 +26,7 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 public class JexOptionsScreen extends Screen {
 
@@ -46,7 +46,7 @@ public class JexOptionsScreen extends Screen {
     private static StopWatch stopWatch = new StopWatch();
     private boolean updating = false;
     public JexOptionsScreen() {
-        super(Text.translatable("jex.options"));
+        super(Component.translatable("jex.options"));
     }
 
     @Override
@@ -54,28 +54,28 @@ public class JexOptionsScreen extends Screen {
         int centerX = Render2DHelper.INSTANCE.getScaledWidth() / 2;
         int centerY = Render2DHelper.INSTANCE.getScaledHeight() / 2;
         int topY = centerY - 100;
-        prefixField = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), centerX - 55, topY, 50, 20, Text.literal(CommandManager.INSTANCE.getPrefix()));
+        prefixField = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), centerX - 55, topY, 50, 20, Component.literal(CommandManager.INSTANCE.getPrefix()));
         prefixField.setMaxLength(1);
         prefixField.setText(CommandManager.INSTANCE.getPrefix());
         prefixField.setVisible(true);
-        setPrefixButton = new ButtonWidget(centerX + 1, topY, 54, 20, Text.translatable("jex.options.set_prefix"), button -> {
+        setPrefixButton = new ButtonWidget(centerX + 1, topY, 54, 20, Component.translatable("jex.options.set_prefix"), button -> {
             CommandManager.INSTANCE.setPrefix(prefixField.getText());
             ConfigManager.INSTANCE.get(ClientSettingsFile.class).write();
         });
         //left
-        downloadInstallerButton = new ButtonWidget(centerX - 230, topY + 25, 150, 20, Text.translatable("jex.options.update", UpdateManager.INSTANCE.getLatestVersion() != null ? UpdateManager.INSTANCE.getLatestVersion().version() : "null"), button -> {
+        downloadInstallerButton = new ButtonWidget(centerX - 230, topY + 25, 150, 20, Component.translatable("jex.options.update", UpdateManager.INSTANCE.getLatestVersion() != null ? UpdateManager.INSTANCE.getLatestVersion().version() : "null"), button -> {
             Update.INSTANCE.update();
             updating = true;
         });
-        changelogButton = new ButtonWidget(centerX - 230, topY + 50, 150, 20, Text.translatable("jex.changelog"), button -> {
+        changelogButton = new ButtonWidget(centerX - 230, topY + 50, 150, 20, Component.translatable("jex.changelog"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new ChangelogScreen());
         });
-        personalSettingsButton = new ButtonWidget(centerX - 230, topY + 75, 150, 20, Text.translatable("jex.personalization"), button -> {
+        personalSettingsButton = new ButtonWidget(centerX - 230, topY + 75, 150, 20, Component.translatable("jex.personalization"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new JexPersonalizationScreen(this));
         });
         downloadInstallerButton.active = UpdateManager.INSTANCE.getStatus() == UpdateManager.Status.OUTDATED || UpdateManager.INSTANCE.getStatus() == UpdateManager.Status.OUTDATED_BOTH;
 
-        reloadAddonsButton = new ButtonWidget(centerX - 230, topY + 100, 150, 20, Text.translatable("jex.options.reload"), button -> {
+        reloadAddonsButton = new ButtonWidget(centerX - 230, topY + 100, 150, 20, Component.translatable("jex.options.reload"), button -> {
             AddonHelper.INSTANCE.clearAddons();
             if (Wrapper.INSTANCE.getWorld() != null) {
                 Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
@@ -88,25 +88,25 @@ public class JexOptionsScreen extends Screen {
         });
 
         //middle
-        waypointScreenButton = new ButtonWidget(centerX - 75, topY + 25, 150, 20, Text.translatable("jex.waypoint"), button -> {
+        waypointScreenButton = new ButtonWidget(centerX - 75, topY + 25, 150, 20, Component.translatable("jex.waypoint"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new WaypointScreen());
         });
-        editKeybindsButton = new ButtonWidget(centerX - 75, topY + 50, 150, 20, Text.translatable("jex.options.open_gui"), button -> {
+        editKeybindsButton = new ButtonWidget(centerX - 75, topY + 50, 150, 20, Component.translatable("jex.options.open_gui"), button -> {
             Feature.get(Gui.class).setState(true);
         });
-        clickGuiButton = new ButtonWidget(centerX - 75, topY + 75, 150, 20, Text.translatable("jex.keybinds"), button -> {
+        clickGuiButton = new ButtonWidget(centerX - 75, topY + 75, 150, 20, Component.translatable("jex.keybinds"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new JexKeybindListScreen(this));
         });
-        pluginManagerButton = new ButtonWidget(centerX - 75, topY + 100, 150, 20, Text.translatable("jex.plugins"), button -> Wrapper.INSTANCE.getMinecraft().setScreen(new JexPluginScreen(this)));
+        pluginManagerButton = new ButtonWidget(centerX - 75, topY + 100, 150, 20, Component.translatable("jex.plugins"), button -> Wrapper.INSTANCE.getMinecraft().setScreen(new JexPluginScreen(this)));
 
         //right
-        xrayButton = new ButtonWidget(centerX + 80, topY + 25, 150, 20, Text.translatable("jex.xray_select"), button -> {
+        xrayButton = new ButtonWidget(centerX + 80, topY + 25, 150, 20, Component.translatable("jex.xray_select"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new XraySelectScreen());
         });
-        searchButton = new ButtonWidget(centerX + 80, topY + 50, 150, 20, Text.translatable("jex.search_select"), button -> {
+        searchButton = new ButtonWidget(centerX + 80, topY + 50, 150, 20, Component.translatable("jex.search_select"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new SearchSelectScreen());
         });
-        autoDropButton = new ButtonWidget(centerX + 80, topY + 75, 150, 20, Text.translatable("jex.autodrop_select"), button -> {
+        autoDropButton = new ButtonWidget(centerX + 80, topY + 75, 150, 20, Component.translatable("jex.autodrop_select"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new AutoDropSelectScreen());
         });
 
@@ -138,10 +138,10 @@ public class JexOptionsScreen extends Screen {
         prefixField.render(matrices, mouseX, mouseY, delta);
         setPrefixButton.active = !prefixField.getText().isEmpty();
         if (!stopWatch.hasPassed(30 * 1000)) {
-            reloadAddonsButton.setMessage(Text.translatable("jex.options.reload_time",30 - ((stopWatch.getCurrentMS() - stopWatch.getLastMS()) / 1000)));
+            reloadAddonsButton.setMessage(Component.translatable("jex.options.reload_time",30 - ((stopWatch.getCurrentMS() - stopWatch.getLastMS()) / 1000)));
             reloadAddonsButton.active = false;
         } else {
-            reloadAddonsButton.setMessage(Text.translatable("jex.options.reload"));
+            reloadAddonsButton.setMessage(Component.translatable("jex.options.reload"));
             reloadAddonsButton.active = true;
         }
         if (updating) {

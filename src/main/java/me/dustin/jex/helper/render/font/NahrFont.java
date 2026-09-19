@@ -238,7 +238,7 @@ public class NahrFont {
             } else {
                 try {
                     String obfText = "\\:><&%$@!/?";
-                    char c = scramble ? obfText.charAt((int)(new Random().nextFloat() * (obfText.length() - 1))) : text.charAt(i);
+                    char c = scramble ? obfComponent.charAt((int)(new Random().nextFloat() * (obfComponent.length() - 1))) : text.charAt(i);
                     drawChar(matrixStack, c, x, y, newColor);
                     x += getStringWidth(Character.toString(c)) * 2.0F;
                 } catch (ArrayIndexOutOfBoundsException indexException) {

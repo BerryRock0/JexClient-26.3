@@ -9,7 +9,7 @@ import net.minecraft.network.encryption.Signer;
 import net.minecraft.network.message.*;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.network.packet.c2s.play.CommandExecutionC2SPacket;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import net.minecraft.util.StringHelper;
 
@@ -54,11 +54,11 @@ public enum ChatHelper {
     }
 
     public void addClientMessage(String message) {
-        Wrapper.INSTANCE.getMinecraft().inGameHud.getChatHud().addMessage(Text.of(String.format("%s[%sJex%s]%s: %s%s", ChatFormatting.DARK_GRAY, ChatFormatting.AQUA, ChatFormatting.DARK_GRAY, ChatFormatting.WHITE, ChatFormatting.GRAY, message)));
+        Wrapper.INSTANCE.getMinecraft().inGameHud.getChatHud().addMessage(Component.literal(String.format("%s[%sJex%s]%s: %s%s", ChatFormatting.DARK_GRAY, ChatFormatting.AQUA, ChatFormatting.DARK_GRAY, ChatFormatting.WHITE, ChatFormatting.GRAY, message)));
     }
 
     public void addRawMessage(String message) {
-        Wrapper.INSTANCE.getMinecraft().inGameHud.getChatHud().addMessage(Text.of(message));
+        Wrapper.INSTANCE.getMinecraft().inGameHud.getChatHud().addMessage(Component.literal(message));
     }
 
     public void addRawMessage(Text message) {

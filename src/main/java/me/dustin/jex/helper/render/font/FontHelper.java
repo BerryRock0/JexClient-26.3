@@ -3,7 +3,7 @@ package me.dustin.jex.helper.render.font;
 import me.dustin.jex.feature.mod.impl.render.CustomFont;
 import me.dustin.jex.helper.misc.Wrapper;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 public enum FontHelper {
     INSTANCE;

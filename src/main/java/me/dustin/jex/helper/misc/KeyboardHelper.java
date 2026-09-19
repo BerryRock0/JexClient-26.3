@@ -1,6 +1,6 @@
 package me.dustin.jex.helper.misc;
 
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
 import java.util.Locale;
 import net.minecraft.client.util.InputUtil;

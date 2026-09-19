@@ -2,7 +2,7 @@ package me.dustin.jex.event.misc;
 
 import me.dustin.events.core.Event;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import java.util.ArrayList;
 import java.util.List;
 

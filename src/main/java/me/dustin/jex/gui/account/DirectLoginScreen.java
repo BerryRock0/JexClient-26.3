@@ -12,7 +12,7 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.util.ProfileKeys;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 
 import java.util.UUID;
@@ -27,7 +27,7 @@ public class DirectLoginScreen extends Screen {
 	private boolean isMicrosoft;
 
 	public DirectLoginScreen(Screen parent) {
-		super(Text.translatable("jex.account.direct"));
+		super(Component.translatable("jex.account.direct"));
 		this.parent = parent;
 	}
 
@@ -43,9 +43,9 @@ public class DirectLoginScreen extends Screen {
 	public void init() {
 		Wrapper.INSTANCE.getMinecraft().keyboard.setRepeatEvents(true);
 
-		username = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), (Render2DHelper.INSTANCE.getScaledWidth() / 2) - 100, 12, 200, 20, Text.of("Username"));
-		email = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), (Render2DHelper.INSTANCE.getScaledWidth() / 2) - 100, 47, 200, 20, Text.of("Email"));
-		password = new GuiPasswordField(Wrapper.INSTANCE.getTextRenderer(), (Render2DHelper.INSTANCE.getScaledWidth() / 2) - 100, 82, 200, 20, Text.of("Password"));
+		username = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), (Render2DHelper.INSTANCE.getScaledWidth() / 2) - 100, 12, 200, 20, Component.literal("Username"));
+		email = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), (Render2DHelper.INSTANCE.getScaledWidth() / 2) - 100, 47, 200, 20, Component.literal("Email"));
+		password = new GuiPasswordField(Wrapper.INSTANCE.getTextRenderer(), (Render2DHelper.INSTANCE.getScaledWidth() / 2) - 100, 82, 200, 20, Component.literal("Password"));
 		username.changeFocus(true);
 		username.setMaxLength(16);
 		this.email.setMaxLength(100);
@@ -56,12 +56,12 @@ public class DirectLoginScreen extends Screen {
 		this.addSelectableChild(username);
 		this.addSelectableChild(email);
 		this.addSelectableChild(password);
-		this.addDrawableChild(new ButtonWidget((Render2DHelper.INSTANCE.getScaledWidth() / 2) - 60, Render2DHelper.INSTANCE.getScaledHeight() - 54, 120, 20, Text.of("Cancel"), button -> {
+		this.addDrawableChild(new ButtonWidget((Render2DHelper.INSTANCE.getScaledWidth() / 2) - 60, Render2DHelper.INSTANCE.getScaledHeight() - 54, 120, 20, Component.literal("Cancel"), button -> {
 			Wrapper.INSTANCE.getMinecraft().setScreen(parent);
 		}));
 
-		this.addDrawableChild(new ButtonWidget((Render2DHelper.INSTANCE.getScaledWidth() / 2) - 60, Render2DHelper.INSTANCE.getScaledHeight() - 75, 120, 20, Text.of("Login"), button -> {
-			this.errorMessage = Text.translatable("jex.account.logging_in").getString();
+		this.addDrawableChild(new ButtonWidget((Render2DHelper.INSTANCE.getScaledWidth() / 2) - 60, Render2DHelper.INSTANCE.getScaledHeight() - 75, 120, 20, Component.literal("Login"), button -> {
+			this.errorMessage = Component.translatable("jex.account.logging_in").getString();
 			if (isMicrosoft) {
 				MinecraftAccount.MicrosoftAccount microsoftAccount = new MinecraftAccount.MicrosoftAccount(username.getText(), email.getText(), password.getText(), "", "", UUID.randomUUID().toString());
 				MSLoginHelper msLoginHelper = new MSLoginHelper(microsoftAccount, false);
@@ -70,7 +70,7 @@ public class DirectLoginScreen extends Screen {
 						Wrapper.INSTANCE.getIMinecraft().setSession(session);
 						Wrapper.INSTANCE.getMinecraft().setScreen(parent);
 					} else
-						this.errorMessage = Text.translatable("jex.account.login_failed").styled(style -> style.withColor(ChatFormatting.RED)).getString();
+						this.errorMessage = Component.translatable("jex.account.login_failed").styled(style -> style.withColor(ChatFormatting.RED)).getString();
 				}, s -> this.errorMessage = s);
 			} else {
 				MinecraftAccount.MojangAccount mojangAccount = new MinecraftAccount.MojangAccount(username.getText(), email.getText(), password.getText());
@@ -80,15 +80,15 @@ public class DirectLoginScreen extends Screen {
 						Wrapper.INSTANCE.getIMinecraft().setSession(session);
 						Wrapper.INSTANCE.getMinecraft().setScreen(parent);
 					} else
-						this.errorMessage = Text.translatable("jex.account.login_failed").styled(style -> style.withColor(ChatFormatting.RED)).getString();
+						this.errorMessage = Component.translatable("jex.account.login_failed").styled(style -> style.withColor(ChatFormatting.RED)).getString();
 				}).login();
 			}
 		}));
 
 
-		this.addDrawableChild(new ButtonWidget((Render2DHelper.INSTANCE.getScaledWidth() / 2) - 60, Render2DHelper.INSTANCE.getScaledHeight() - 105, 120, 20, Text.translatable("jex.account.mojang").styled(style -> style.withColor(ChatFormatting.GOLD)), button -> {
+		this.addDrawableChild(new ButtonWidget((Render2DHelper.INSTANCE.getScaledWidth() / 2) - 60, Render2DHelper.INSTANCE.getScaledHeight() - 105, 120, 20, Component.translatable("jex.account.mojang").styled(style -> style.withColor(ChatFormatting.GOLD)), button -> {
 			isMicrosoft = !isMicrosoft;
-			button.setMessage(isMicrosoft ? Text.translatable("jex.account.microsoft").styled(style -> style.withColor(ChatFormatting.GREEN)) : Text.translatable("jex.account.mojang").styled(style -> style.withColor(ChatFormatting.GOLD)));
+			button.setMessage(isMicrosoft ? Component.translatable("jex.account.microsoft").styled(style -> style.withColor(ChatFormatting.GREEN)) : Component.translatable("jex.account.mojang").styled(style -> style.withColor(ChatFormatting.GOLD)));
 		}));
 		super.init();
 	}
@@ -105,9 +105,9 @@ public class DirectLoginScreen extends Screen {
 		username.render(matrixStack, mouseX, mouseY, partialTicks);
 		email.render(matrixStack, mouseX, mouseY, partialTicks);
 		password.renderButton(matrixStack, mouseX, mouseY, partialTicks);
-		FontHelper.INSTANCE.drawWithShadow(matrixStack, Text.translatable("jex.account.username.title"), username.x, username.y - 10, 0xff696969);
-		FontHelper.INSTANCE.drawWithShadow(matrixStack, Text.translatable("jex.account.email"), email.x, email.y - 10, 0xff696969);
-		FontHelper.INSTANCE.drawWithShadow(matrixStack, Text.translatable("jex.account.password"), email.x, password.y - 10, 0xff696969);
+		FontHelper.INSTANCE.drawWithShadow(matrixStack, Component.translatable("jex.account.username.title"), username.x, username.y - 10, 0xff696969);
+		FontHelper.INSTANCE.drawWithShadow(matrixStack, Component.translatable("jex.account.email"), email.x, email.y - 10, 0xff696969);
+		FontHelper.INSTANCE.drawWithShadow(matrixStack, Component.translatable("jex.account.password"), email.x, password.y - 10, 0xff696969);
 		FontHelper.INSTANCE.drawCenteredString(matrixStack, errorMessage, width / 2.f, password.y + 30, 0xff696969);
 		super.render(matrixStack, mouseX, mouseY, partialTicks);
 	}

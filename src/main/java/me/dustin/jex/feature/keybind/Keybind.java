@@ -2,7 +2,7 @@ package me.dustin.jex.feature.keybind;
 
 import me.dustin.jex.feature.command.CommandManager;
 import me.dustin.jex.helper.misc.Wrapper;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 import java.util.ArrayList;
 
@@ -39,7 +39,7 @@ public record Keybind(int key, String command, boolean isJexCommand) {
     }
     public void execute() {
         if (command().startsWith("/")) {
-            Wrapper.INSTANCE.getLocalPlayer().sendCommand(command().substring(1), Text.literal(command()));
+            Wrapper.INSTANCE.getLocalPlayer().sendCommand(command().substring(1), Component.literal(command()));
             return;
         }
         Wrapper.INSTANCE.getLocalPlayer().sendChatMessage((isJexCommand() ? CommandManager.INSTANCE.getPrefix() : "") + command(), null);

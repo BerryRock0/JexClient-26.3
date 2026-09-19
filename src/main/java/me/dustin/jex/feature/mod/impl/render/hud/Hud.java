@@ -25,7 +25,7 @@ import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexConsumerProvider;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import net.minecraft.util.math.MathHelper;
 import me.dustin.jex.helper.render.Render2DHelper;
@@ -289,10 +289,10 @@ public class Hud extends Feature {
         if (Wrapper.INSTANCE.getOptions().debugEnabled)
             return;
         if (!gaveEditorMessage && ModFileHelper.INSTANCE.isFirstTimeLoading()) {
-            ChatHelper.INSTANCE.addClientMessage(Text.translatable("jex.welcome").getString());
-            ChatHelper.INSTANCE.addClientMessage(Text.translatable("jex.intro.one").getString());
-            ChatHelper.INSTANCE.addClientMessage(Text.translatable("jex.intro.two", ChatFormatting.AQUA + KeyboardHelper.INSTANCE.getKeyName(constrictKeyProperty.value()) + ChatFormatting.GRAY).getString());
-            ChatHelper.INSTANCE.addClientMessage(Text.translatable("jex.intro.three", ChatFormatting.AQUA + KeyboardHelper.INSTANCE.getKeyName(Feature.get(Gui.class).getKey()) + ChatFormatting.GRAY).getString());
+            ChatHelper.INSTANCE.addClientMessage(Component.translatable("jex.welcome").getString());
+            ChatHelper.INSTANCE.addClientMessage(Component.translatable("jex.intro.one").getString());
+            ChatHelper.INSTANCE.addClientMessage(Component.translatable("jex.intro.two", ChatFormatting.AQUA + KeyboardHelper.INSTANCE.getKeyName(constrictKeyProperty.value()) + ChatFormatting.GRAY).getString());
+            ChatHelper.INSTANCE.addClientMessage(Component.translatable("jex.intro.three", ChatFormatting.AQUA + KeyboardHelper.INSTANCE.getKeyName(Feature.get(Gui.class).getKey()) + ChatFormatting.GRAY).getString());
             gaveEditorMessage = true;
         }
         if (hudElements.isEmpty())

@@ -18,7 +18,7 @@ import net.minecraft.network.packet.c2s.login.LoginKeyC2SPacket;
 import net.minecraft.network.packet.s2c.login.LoginDisconnectS2CPacket;
 import net.minecraft.network.packet.s2c.login.LoginHelloS2CPacket;
 import net.minecraft.network.packet.s2c.login.LoginSuccessS2CPacket;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import org.jetbrains.annotations.Nullable;
 
@@ -56,7 +56,7 @@ public class BotLoginNetworkHandler extends ClientLoginNetworkHandler {
         catch (NetworkEncryptionException secretKey) {
             throw new IllegalStateException("Protocol error", secretKey);
         }
-        ChatHelper.INSTANCE.addRawMessage(Text.translatable("connect.authorizing"));
+        ChatHelper.INSTANCE.addRawMessage(Component.translatable("connect.authorizing"));
         NetworkUtils.EXECUTOR.submit(() -> {
             Text text = contactSessionServers(string);
             if (text != null) {
@@ -67,7 +67,7 @@ public class BotLoginNetworkHandler extends ClientLoginNetworkHandler {
                     return;
                 }
             }
-            ChatHelper.INSTANCE.addRawMessage(Text.translatable("connect.encrypting"));
+            ChatHelper.INSTANCE.addRawMessage(Component.translatable("connect.encrypting"));
             this.playerBot.getClientConnection().send(loginKeyC2SPacket, PacketCallbacks.always(() -> this.playerBot.getClientConnection().setupEncryption(cipher, cipher2)));
         });
     }
@@ -82,7 +82,7 @@ public class BotLoginNetworkHandler extends ClientLoginNetworkHandler {
 
         WebHelper.HttpResponse resp = WebHelper.INSTANCE.httpRequest("https://sessionserver.mojang.com/session/minecraft/join", request.toString(), header, "POST");
         if (resp.responseCode() != 204) {
-            return Text.of("Could not verify username!");
+            return Component.literal("Could not verify username!");
         }
         return null;
     }

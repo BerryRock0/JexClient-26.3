@@ -9,7 +9,7 @@ import me.dustin.jex.helper.render.ButtonListener;
 import me.dustin.jex.helper.render.Render2DHelper;
 import me.dustin.jex.helper.render.font.FontHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 
 public class JexKeybindButton extends Button {
@@ -25,8 +25,8 @@ public class JexKeybindButton extends Button {
         super.render(matrixStack);
         if (isSelected())
             Render2DHelper.INSTANCE.outlineAndFill(matrixStack, getX(), getY(), getX() + getWidth(), getY() + getHeight(), ColorHelper.INSTANCE.getClientColor(), 0x00ffffff);
-        FontHelper.INSTANCE.drawWithShadow(matrixStack, Text.translatable("jex.keybinds.key", ChatFormatting.AQUA, KeyboardHelper.INSTANCE.getKeyName(keybind.key())), getX() + 2, getY() + 2, 0xff696969);
-        FontHelper.INSTANCE.drawWithShadow(matrixStack, Text.translatable("jex.keybinds.command", ChatFormatting.AQUA, keybind.isJexCommand() ? CommandManager.INSTANCE.getPrefix() : "", keybind.command()), getX() + 2, getY() + 13, 0xff696969);
+        FontHelper.INSTANCE.drawWithShadow(matrixStack, Component.translatable("jex.keybinds.key", ChatFormatting.AQUA, KeyboardHelper.INSTANCE.getKeyName(keybind.key())), getX() + 2, getY() + 2, 0xff696969);
+        FontHelper.INSTANCE.drawWithShadow(matrixStack, Component.translatable("jex.keybinds.command", ChatFormatting.AQUA, keybind.isJexCommand() ? CommandManager.INSTANCE.getPrefix() : "", keybind.command()), getX() + 2, getY() + 13, 0xff696969);
     }
 
     public boolean isSelected() {

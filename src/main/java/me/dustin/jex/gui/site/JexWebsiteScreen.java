@@ -15,7 +15,7 @@ import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -44,7 +44,7 @@ public class JexWebsiteScreen extends Screen {
     }
 
     public JexWebsiteScreen(Screen parent, String message) {
-        super(Text.translatable("jex.site.edit"));
+        super(Component.translatable("jex.site.edit"));
         this.parent = parent;
         this.message = message;
         this.uuid = JexSiteHelper.INSTANCE.getUser().uuid().equals("NONE") ? null : UUID.fromString(JexSiteHelper.INSTANCE.getUser().uuid().replaceFirst("(\\p{XDigit}{8})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}+)", "$1-$2-$3-$4-$5"));
@@ -72,7 +72,7 @@ public class JexWebsiteScreen extends Screen {
                 }
             }, ".png", ".jpg", ".jpeg", JexSiteHelper.INSTANCE.getUser().donator() ? ".gif" : "");*/
         } else {
-            this.addDrawableChild(this.connectAccountButton = new ButtonWidget(width / 2 - 100, 50, 200, 20, Text.translatable("jex.site.connect"), button -> {
+            this.addDrawableChild(this.connectAccountButton = new ButtonWidget(width / 2 - 100, 50, 200, 20, Component.translatable("jex.site.connect"), button -> {
                JexSiteHelper.INSTANCE.connectAndLinkAccount();
             }));
         }
@@ -82,20 +82,20 @@ public class JexWebsiteScreen extends Screen {
     @Override
     public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
-        FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.site.edit"), width / 2.f, 2, ColorHelper.INSTANCE.getClientColor());
-        FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.site.show_name", JexSiteHelper.INSTANCE.getUser().name()), width / 2.f, 20, -1);
+        FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.site.edit"), width / 2.f, 2, ColorHelper.INSTANCE.getClientColor());
+        FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.site.show_name", JexSiteHelper.INSTANCE.getUser().name()), width / 2.f, 20, -1);
         if (uuid != null) {
-            FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.site.mc_name", mcName), width / 2.f, 30, -1);
-            FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.site.coming_soon"), width / 2.f, 45, -1);
+            FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.site.mc_name", mcName), width / 2.f, 30, -1);
+            FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.site.coming_soon"), width / 2.f, 45, -1);
             String uuidString = uuid.toString().replace("-", "");
             PeglegHelper.INSTANCE.setCurrentRender(uuid);
             Render2DHelper.INSTANCE.renderPlayerIn3D(MCAPIHelper.INSTANCE.getPlayerSkin(uuid), uuidString, width / 2.f, 80, yaw, 75);
 
-            //FontHelper.INSTANCE.drawWithShadow(matrices, Text.translatable("jex.site.cape", mcName), 2, 45, -1);
+            //FontHelper.INSTANCE.drawWithShadow(matrices, Component.translatable("jex.site.cape", mcName), 2, 45, -1);
             if (capeFileBrowser != null)
                 capeFileBrowser.render(matrices);
         } else {
-            FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.site.no_mc"), width / 2.f, 30, -1);
+            FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.site.no_mc"), width / 2.f, 30, -1);
         }
         super.render(matrices, mouseX, mouseY, delta);
     }

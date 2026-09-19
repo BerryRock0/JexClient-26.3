@@ -26,7 +26,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Style;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.Nullable;
@@ -76,7 +76,7 @@ public class GuiPasswordField extends ClickableWidget implements Drawable, Eleme
         this.uneditableColor = 7368816;
         this.textPredicate = Objects::nonNull;
         this.renderTextProvider = (string, integer) -> {
-            return OrderedText.styledForwardsVisitedString(string, Style.EMPTY);
+            return OrderedComponent.styledForwardsVisitedString(string, Style.EMPTY);
         };
         this.textRenderer = textRenderer;
         if (copyFrom != null) {
@@ -99,7 +99,7 @@ public class GuiPasswordField extends ClickableWidget implements Drawable, Eleme
 
     protected MutableText getNarrationMessage() {
         Text text = this.getMessage();
-        return Text.translatable("gui.narrate.editBox", text, this.text);
+        return Component.translatable("gui.narrate.editBox", text, this.text);
     }
 
     public void setText(String text) {
@@ -609,6 +609,6 @@ public class GuiPasswordField extends ClickableWidget implements Drawable, Eleme
     }
 
     public void appendNarrations(NarrationMessageBuilder builder) {
-        builder.put(NarrationPart.TITLE, Text.translatable("narration.edit_box", this.getText()));
+        builder.put(NarrationPart.TITLE, Component.translatable("narration.edit_box", this.getText()));
     }
 }

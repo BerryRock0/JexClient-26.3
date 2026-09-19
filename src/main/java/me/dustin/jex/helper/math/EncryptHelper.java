@@ -33,7 +33,7 @@ public enum EncryptHelper {
             ecipher = Cipher.getInstance(key.getAlgorithm());
             ecipher.init(Cipher.ENCRYPT_MODE, key, paramSpec);
             String charSet = "UTF-8";
-            byte[] in = plainText.getBytes(charSet);
+            byte[] in = plainComponent.getBytes(charSet);
             byte[] out = ecipher.doFinal(in);
             String encStr = new String(Base64.getEncoder().encode(out));
             return encStr;

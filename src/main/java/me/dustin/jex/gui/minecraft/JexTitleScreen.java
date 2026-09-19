@@ -48,7 +48,7 @@ import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.NativeImageBackedTexture;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
@@ -75,7 +75,7 @@ public class JexTitleScreen extends Screen {
     }
 
     public JexTitleScreen(boolean doBackgroundFade) {
-        super(Text.translatable("narrator.screen.title"));
+        super(Component.translatable("narrator.screen.title"));
         this.backgroundRenderer = new RotatingCubeMapRenderer(PANORAMA_CUBE_MAP);
         this.doBackgroundFade = doBackgroundFade;
         this.isMinceraft = (double) (new Random()).nextFloat() < 1.0E-4D;
@@ -112,14 +112,14 @@ public class JexTitleScreen extends Screen {
 
         if (customMainMenu.customBackgroundProperty.value()) {
             if (!backgrounds.isEmpty()) {
-                this.addDrawableChild(new ButtonWidget(this.width - 22, this.height - 22, 20, 20, Text.of(">"), button -> {
+                this.addDrawableChild(new ButtonWidget(this.width - 22, this.height - 22, 20, 20, Component.literal(">"), button -> {
                     JexTitleScreen.background += 1;
                     if (JexTitleScreen.background > backgrounds.size() - 1) {
                         JexTitleScreen.background = 0;
                     }
                     ConfigManager.INSTANCE.get(ClientSettingsFile.class).write();
                 }));
-                this.addDrawableChild(new ButtonWidget(this.width - 44, this.height - 22, 20, 20, Text.of("<"), button -> {
+                this.addDrawableChild(new ButtonWidget(this.width - 44, this.height - 22, 20, 20, Component.literal("<"), button -> {
                     JexTitleScreen.background -= 1;
                     if (JexTitleScreen.background < 0) {
                         JexTitleScreen.background = backgrounds.size() - 1;
@@ -127,7 +127,7 @@ public class JexTitleScreen extends Screen {
                     ConfigManager.INSTANCE.get(ClientSettingsFile.class).write();
                 }));
             } else {
-                this.addDrawableChild(new ButtonWidget(this.width - 152, this.height - 22, 150, 20, Text.of("Open Backgrounds Folder"), button -> {
+                this.addDrawableChild(new ButtonWidget(this.width - 152, this.height - 22, 150, 20, Component.literal("Open Backgrounds Folder"), button -> {
                     Util.getOperatingSystem().open(new File(ModFileHelper.INSTANCE.getJexDirectory(), "backgrounds"));
                 }));
             }
@@ -142,30 +142,30 @@ public class JexTitleScreen extends Screen {
 
     private void initWidgetsNormal(int y) {
         JexTitleScreen titleScreen = this;
-        this.addDrawableChild(new ButtonWidget(2, y, 200, 20, Text.translatable("menu.singleplayer"), button -> {
+        this.addDrawableChild(new ButtonWidget(2, y, 200, 20, Component.translatable("menu.singleplayer"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new SelectWorldScreen(titleScreen));
         }));
-        this.addDrawableChild(new ButtonWidget(2, y + 24, 175, 20, Text.translatable("menu.multiplayer"), button -> {
+        this.addDrawableChild(new ButtonWidget(2, y + 24, 175, 20, Component.translatable("menu.multiplayer"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new MultiplayerScreen(titleScreen));
         }));
-        this.addDrawableChild(new ButtonWidget(2, y + 24 * 2, 150, 20, Text.translatable("menu.online"), button -> {
+        this.addDrawableChild(new ButtonWidget(2, y + 24 * 2, 150, 20, Component.translatable("menu.online"), button -> {
             titleScreen.switchToRealms();
         }));
-        this.addDrawableChild(new ButtonWidget(2, y + 24 * 3, 125, 20, Text.translatable("menu.options"), button -> {
+        this.addDrawableChild(new ButtonWidget(2, y + 24 * 3, 125, 20, Component.translatable("menu.options"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new OptionsScreen(titleScreen, Wrapper.INSTANCE.getOptions()));
         }));
-        this.addDrawableChild(new ButtonWidget(2, y + 24 * 4, 100, 20, Text.translatable("menu.quit"), button -> {
+        this.addDrawableChild(new ButtonWidget(2, y + 24 * 4, 100, 20, Component.translatable("menu.quit"), button -> {
             Wrapper.INSTANCE.getMinecraft().scheduleStop();
         }));
-        this.addDrawableChild(new ButtonWidget(2, height - 22, 100, 20, Text.translatable("jex.changelog"), button -> {
+        this.addDrawableChild(new ButtonWidget(2, height - 22, 100, 20, Component.translatable("jex.changelog"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new ChangelogScreen());
         }));
         if (JexSiteHelper.INSTANCE.getUser() == null) {
-            this.addDrawableChild(new ButtonWidget(107, height - 22, 100, 20, Text.translatable("jex.site.login"), button -> {
+            this.addDrawableChild(new ButtonWidget(107, height - 22, 100, 20, Component.translatable("jex.site.login"), button -> {
                 Wrapper.INSTANCE.getMinecraft().setScreen(new JexLoginRegisterScreen(true, this));
             }));
         } else {
-            this.addDrawableChild(new ButtonWidget(107, height - 22, 100, 20, Text.translatable("jex.site.edit"), button -> {
+            this.addDrawableChild(new ButtonWidget(107, height - 22, 100, 20, Component.translatable("jex.site.edit"), button -> {
                 Wrapper.INSTANCE.getMinecraft().setScreen(new JexWebsiteScreen(this));
             }));
         }
@@ -224,7 +224,7 @@ public class JexTitleScreen extends Screen {
             matrices.pop();
 
             if (UpdateManager.INSTANCE.getStatus() == UpdateManager.Status.OUTDATED || UpdateManager.INSTANCE.getStatus() == UpdateManager.Status.OUTDATED_BOTH) {
-                String updateString = Text.translatable("jex.title.outdated", UpdateManager.INSTANCE.getLatestVersion().version()).getString();
+                String updateString = Component.translatable("jex.title.outdated", UpdateManager.INSTANCE.getLatestVersion().version()).getString();
                 float strWidth = FontHelper.INSTANCE.getStringWidth(updateString);
                 Render2DHelper.INSTANCE.fillAndBorder(matrices, (midX) - (strWidth / 2) - 2, -1, (midX) + (strWidth / 2) + 2, 15, ColorHelper.INSTANCE.getClientColor(), 0x80000000, 1);
                 FontHelper.INSTANCE.drawCenteredString(matrices, updateString, midX, 2, ColorHelper.INSTANCE.getClientColor());
@@ -232,10 +232,10 @@ public class JexTitleScreen extends Screen {
 
             if (customMainMenu.customBackgroundProperty.value()) {
                 if (backgrounds.isEmpty()) {
-                    String backgroundString = Text.translatable("jex.title.no_bgs").getString();
+                    String backgroundString = Component.translatable("jex.title.no_bgs").getString();
                     FontHelper.INSTANCE.drawWithShadow(matrices, backgroundString, width - FontHelper.INSTANCE.getStringWidth(backgroundString) - 2, height - 30, -1);
                 } else {
-                    String backgroundString = Text.translatable("jex.title.bg_index", background + 1, backgrounds.size()).getString();
+                    String backgroundString = Component.translatable("jex.title.bg_index", background + 1, backgrounds.size()).getString();
                     FontHelper.INSTANCE.drawWithShadow(matrices, backgroundString, width - FontHelper.INSTANCE.getStringWidth(backgroundString) - 2, height - 30, -1);
                 }
             }
@@ -250,11 +250,11 @@ public class JexTitleScreen extends Screen {
             float right = 205;
 
             Render2DHelper.INSTANCE.drawFace(matrices, 2, (int)bottom + 2, 4, MCAPIHelper.INSTANCE.getPlayerSkin(Wrapper.INSTANCE.getMinecraft().getSession().getProfile().getId()));
-            FontHelper.INSTANCE.drawWithShadow(matrices, Text.translatable("jex.title.welcome",(isDonator ? "\247r" : (AddonHelper.INSTANCE.isLinkedToAccount(Wrapper.INSTANCE.getMinecraft().getSession().getUuid().replace("-", "")) ? "\247a" : "\247f")) + Wrapper.INSTANCE.getMinecraft().getSession().getUsername()).styled(style -> style.withColor(ChatFormatting.GRAY)), 37, bottom + 2, ColorHelper.INSTANCE.getRainbowColor());
+            FontHelper.INSTANCE.drawWithShadow(matrices, Component.translatable("jex.title.welcome",(isDonator ? "\247r" : (AddonHelper.INSTANCE.isLinkedToAccount(Wrapper.INSTANCE.getMinecraft().getSession().getUuid().replace("-", "")) ? "\247a" : "\247f")) + Wrapper.INSTANCE.getMinecraft().getSession().getUsername()).styled(style -> style.withColor(ChatFormatting.GRAY)), 37, bottom + 2, ColorHelper.INSTANCE.getRainbowColor());
             Render2DHelper.INSTANCE.fillAndBorder(matrices, left, top, right, bottom, ColorHelper.INSTANCE.getClientColor(), 0x40000000, 1);
             super.render(matrices, mouseX, mouseY, delta);
             if (AddonHelper.INSTANCE.isLinkedToAccount(Wrapper.INSTANCE.getMinecraft().getSession().getUuid().replace("-", ""))) {
-                FontHelper.INSTANCE.drawWithShadow(matrices, Text.translatable("jex.name").styled(style -> style.withColor(ChatFormatting.GRAY)), 37, bottom + 12, 0xff696969);
+                FontHelper.INSTANCE.drawWithShadow(matrices, Component.translatable("jex.name").styled(style -> style.withColor(ChatFormatting.GRAY)), 37, bottom + 12, 0xff696969);
                 try {
                     if (CapeHelper.INSTANCE.hasCape(Wrapper.INSTANCE.getMinecraft().getSession().getUuid().replace("-", ""))) {
                         Render2DHelper.INSTANCE.draw3DCape(matrices, 2, bottom+ 35, CapeHelper.INSTANCE.getCape(Wrapper.INSTANCE.getMinecraft().getSession().getUuid().replace("-", "")), capeYaw, 0);
@@ -266,8 +266,8 @@ public class JexTitleScreen extends Screen {
                 if (CapeHelper.INSTANCE.hasCape("self")) {
                     Render2DHelper.INSTANCE.draw3DCape(matrices, 2, bottom+ 35, CapeHelper.INSTANCE.getCape("self"), capeYaw, 0);
                 }
-                FontHelper.INSTANCE.drawWithShadow(matrices, Text.translatable("jex.title.not_linked").styled(style -> style.withColor(ChatFormatting.GRAY)), 37, bottom + 12, -1);
-                FontHelper.INSTANCE.drawWithShadow(matrices, Text.translatable("jex.title.join_discord").styled(style -> style.withColor(ChatFormatting.GRAY)), 37, bottom + 22, -1);
+                FontHelper.INSTANCE.drawWithShadow(matrices, Component.translatable("jex.title.not_linked").styled(style -> style.withColor(ChatFormatting.GRAY)), 37, bottom + 12, -1);
+                FontHelper.INSTANCE.drawWithShadow(matrices, Component.translatable("jex.title.join_discord").styled(style -> style.withColor(ChatFormatting.GRAY)), 37, bottom + 22, -1);
             }
         }
     }

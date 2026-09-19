@@ -16,7 +16,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import org.lwjgl.glfw.GLFW;
 
@@ -28,19 +28,19 @@ public class JexEditKeybindScreen extends Screen {
     private ButtonWidget saveButton;
     private int key;
     protected JexEditKeybindScreen(Keybind keybind, Screen parent) {
-        super(Text.translatable("jex.keybinds"));
+        super(Component.translatable("jex.keybinds"));
         this.keybind = keybind;
         this.parent = parent;
     }
 
     @Override
     protected void init() {
-        addSelectableChild(commandField = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 125, height / 2 - 30, 250, 20, Text.literal("")));
-        addDrawableChild(setKeyButton = new ButtonWidget(width / 2 - 125, height / 2 + 5, 250, 20, Text.literal(keybind == null ? "Key: %sNone".formatted(ChatFormatting.AQUA) : "Key: %s%s".formatted(ChatFormatting.AQUA, KeyboardHelper.INSTANCE.getKeyName(keybind.key()))), button -> {
+        addSelectableChild(commandField = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 125, height / 2 - 30, 250, 20, Component.literal("")));
+        addDrawableChild(setKeyButton = new ButtonWidget(width / 2 - 125, height / 2 + 5, 250, 20, Component.literal(keybind == null ? "Key: %sNone".formatted(ChatFormatting.AQUA) : "Key: %s%s".formatted(ChatFormatting.AQUA, KeyboardHelper.INSTANCE.getKeyName(keybind.key()))), button -> {
             EventManager.register(this);
-            setKeyButton.setMessage(Text.translatable("jex.button.presskey"));
+            setKeyButton.setMessage(Component.translatable("jex.button.presskey"));
         }));
-        addDrawableChild(saveButton = new ButtonWidget(width / 2 - 125, height - 50, 250, 20, Text.translatable("jex.button.save"), button -> {
+        addDrawableChild(saveButton = new ButtonWidget(width / 2 - 125, height - 50, 250, 20, Component.translatable("jex.button.save"), button -> {
             if (keybind != null)
                 Keybind.getKeybinds().remove(keybind);
             boolean isJexCommand = commandField.getText().startsWith(CommandManager.INSTANCE.getPrefix());
@@ -48,7 +48,7 @@ public class JexEditKeybindScreen extends Screen {
             Wrapper.INSTANCE.getMinecraft().setScreen(parent);
             ConfigManager.INSTANCE.get(KeybindFile.class).write();
         }));
-        addDrawableChild(new ButtonWidget(width / 2 - 125, height - 25, 250, 20, Text.translatable("jex.button.cancel"), button -> {
+        addDrawableChild(new ButtonWidget(width / 2 - 125, height - 25, 250, 20, Component.translatable("jex.button.cancel"), button -> {
                 Wrapper.INSTANCE.getMinecraft().setScreen(parent);
         }));
         if (keybind != null) {
@@ -69,8 +69,8 @@ public class JexEditKeybindScreen extends Screen {
     public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
         commandField.render(matrices, mouseX, mouseY, delta);
-        FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.keybinds.command_title"), width / 2.f, height / 2.f - 45, -1);
-        FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.keybinds.key_title"), width / 2.f, height / 2.f - 5, -1);
+        FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.keybinds.command_title"), width / 2.f, height / 2.f - 45, -1);
+        FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.keybinds.key_title"), width / 2.f, height / 2.f - 5, -1);
         super.render(matrices, mouseX, mouseY, delta);
     }
 
@@ -84,10 +84,10 @@ public class JexEditKeybindScreen extends Screen {
         int keyCode = event.getKey();
         if (keyCode != GLFW.GLFW_KEY_ENTER && keyCode != GLFW.GLFW_KEY_ESCAPE) {
             this.key = keyCode;
-            setKeyButton.setMessage(Text.translatable("jex.keybinds.key", ChatFormatting.AQUA, KeyboardHelper.INSTANCE.getKeyName(keyCode)));
+            setKeyButton.setMessage(Component.translatable("jex.keybinds.key", ChatFormatting.AQUA, KeyboardHelper.INSTANCE.getKeyName(keyCode)));
         } else {
             this.key = 0;
-            setKeyButton.setMessage(Text.translatable("jex.keybinds.key.none", ChatFormatting.AQUA));
+            setKeyButton.setMessage(Component.translatable("jex.keybinds.key.none", ChatFormatting.AQUA));
         }
         while (EventManager.isRegistered(this))
             EventManager.unregister(this);

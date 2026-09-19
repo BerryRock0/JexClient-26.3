@@ -10,7 +10,7 @@ import me.dustin.jex.helper.render.font.FontHelper;
 import net.fabricmc.loader.impl.launch.FabricLauncherBase;
 import net.minecraft.client.texture.NativeImage;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import net.minecraft.util.Identifier;
 import java.io.IOException;
@@ -41,7 +41,7 @@ public class JexPluginButton extends Button {
             trimmed = trimmed + "...";
         FontHelper.INSTANCE.draw(matrixStack, trimmed, getX() + 37, getY() + 14.5f, -1);
 
-        preTrim = Text.translatable("jex.plugins.authors", ChatFormatting.GRAY + getAuthors()).getString();
+        preTrim = Component.translatable("jex.plugins.authors", ChatFormatting.GRAY + getAuthors()).getString();
         trimmed = Wrapper.INSTANCE.getTextRenderer().trimToWidth(preTrim, (int)getWidth() - 67);
         if (!trimmed.equalsIgnoreCase(preTrim))
             trimmed = trimmed + "...";

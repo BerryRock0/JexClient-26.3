@@ -9,13 +9,13 @@ import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import java.io.File;
 
 public class ImportFromTXTScreen extends Screen {
     protected ImportFromTXTScreen() {
-        super(Text.translatable("jex.account.import.txt"));
+        super(Component.translatable("jex.account.import.txt"));
     }
 
     private FileBrowser fileBrowser;
@@ -26,15 +26,15 @@ public class ImportFromTXTScreen extends Screen {
     @Override
     protected void init() {
         fileBrowser = new FileBrowser(ModFileHelper.INSTANCE.getJexDirectory().getPath(), width / 2.f - 150, height / 2.f - 150, 300, 300, null, "txt");
-        importButton = new ButtonWidget(width / 2 - 150, height / 2 + 152, 300, 20, Text.translatable("jex.account.import"), button -> {
+        importButton = new ButtonWidget(width / 2 - 150, height / 2 + 152, 300, 20, Component.translatable("jex.account.import"), button -> {
             File file = fileBrowser.getSelectedFiles().get(0);
             ConfigManager.INSTANCE.get(AltFile.class).importFromTXT(file);
-            message = ChatFormatting.GREEN + Text.translatable("jex.account.import.txt.success", file.getName()).getString();
+            message = ChatFormatting.GREEN + Component.translatable("jex.account.import.txt.success", file.getName()).getString();
         });
-        cancelButton = new ButtonWidget(width / 2 - 150, height / 2 + 174, 300, 20, Text.translatable("jex.button.cancel"), button -> {
+        cancelButton = new ButtonWidget(width / 2 - 150, height / 2 + 174, 300, 20, Component.translatable("jex.button.cancel"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new AccountManagerScreen());
         });
-        message = ChatFormatting.AQUA + Text.translatable("jex.account.import.supports").getString();
+        message = ChatFormatting.AQUA + Component.translatable("jex.account.import.supports").getString();
         this.addDrawableChild(importButton);
         this.addDrawableChild(cancelButton);
         super.init();

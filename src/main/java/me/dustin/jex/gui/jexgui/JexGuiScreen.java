@@ -27,7 +27,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ public class JexGuiScreen extends Screen {
     private final boolean noCategories;
     private final PostProcessOutline postProcessOutline;
     public JexGuiScreen(Screen parentScreen, boolean noCategories) {
-        super(Text.translatable("jex.gui"));
+        super(Component.translatable("jex.gui"));
         this.parentScreen = parentScreen;
         this.noCategories = noCategories;
         this.postProcessOutline = new PostProcessOutline();
@@ -50,24 +50,24 @@ public class JexGuiScreen extends Screen {
 
     @Override
     protected void init() {
-        String searchStr = Text.translatable("jex.gui.search").getString() + " ";
-        this.searchBar = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), (int) (getX() + 2 + FontHelper.INSTANCE.getStringWidth(searchStr)), getY() + 28, (int) (getGuiWidth() - 4 - FontHelper.INSTANCE.getStringWidth(searchStr)), 25, Text.literal(""));
+        String searchStr = Component.translatable("jex.gui.search").getString() + " ";
+        this.searchBar = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), (int) (getX() + 2 + FontHelper.INSTANCE.getStringWidth(searchStr)), getY() + 28, (int) (getGuiWidth() - 4 - FontHelper.INSTANCE.getStringWidth(searchStr)), 25, Component.literal(""));
         searchBar.active = true;
         searchBar.setTextFieldFocused(true);
         populateCategories();
 
-        this.addDrawableChild(new ButtonWidget(2, height - 44, 100, 20, Text.translatable("jex.button.load"), button -> {
+        this.addDrawableChild(new ButtonWidget(2, height - 44, 100, 20, Component.translatable("jex.button.load"), button -> {
             ConfigManager.INSTANCE.get(FeatureFile.class).read();
         }));
-        this.addDrawableChild(new ButtonWidget(2, height - 66, 100, 20, Text.translatable("jex.button.save"), button -> {
+        this.addDrawableChild(new ButtonWidget(2, height - 66, 100, 20, Component.translatable("jex.button.save"), button -> {
             ConfigManager.INSTANCE.get(FeatureFile.class).saveButton();
         }));
-        this.addDrawableChild(new ButtonWidget(2, height - 88, 100, 20, Text.translatable(JexClient.INSTANCE.isAutoSaveEnabled() ? "jex.gui.autosave.on" : "jex.gui.autosave.off"), button -> {
+        this.addDrawableChild(new ButtonWidget(2, height - 88, 100, 20, Component.translatable(JexClient.INSTANCE.isAutoSaveEnabled() ? "jex.gui.autosave.on" : "jex.gui.autosave.off"), button -> {
             JexClient.INSTANCE.setAutoSave(!JexClient.INSTANCE.isAutoSaveEnabled());
-            button.setMessage(Text.translatable(JexClient.INSTANCE.isAutoSaveEnabled() ? "jex.gui.autosave.on" : "jex.gui.autosave.off"));
+            button.setMessage(Component.translatable(JexClient.INSTANCE.isAutoSaveEnabled() ? "jex.gui.autosave.on" : "jex.gui.autosave.off"));
             ConfigManager.INSTANCE.get(ClientSettingsFile.class).write();
         }));
-        this.addDrawableChild(new ButtonWidget(2, height - 110, 100, 20, Text.translatable("jex.keybinds"), button -> {
+        this.addDrawableChild(new ButtonWidget(2, height - 110, 100, 20, Component.translatable("jex.keybinds"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new JexKeybindListScreen(Wrapper.INSTANCE.getLocalPlayer() == null ? this : null));
         }));
         super.init();
@@ -87,7 +87,7 @@ Stencil.INSTANCE.dispose();
         drawClientText(matrices);
 
         Render2DHelper.INSTANCE.fill(matrices, getX(), getY() + 25, getRight(), getY() + 26, ColorHelper.INSTANCE.getClientColor());
-        FontHelper.INSTANCE.drawWithShadow(matrices, Text.translatable("jex.gui.search"), getX() + 2, getY() + 28, ColorHelper.INSTANCE.getClientColor());
+        FontHelper.INSTANCE.drawWithShadow(matrices, Component.translatable("jex.gui.search"), getX() + 2, getY() + 28, ColorHelper.INSTANCE.getClientColor());
         Render2DHelper.INSTANCE.fill(matrices, getX(), getY() + 38, getRight(), getY() + 39, ColorHelper.INSTANCE.getClientColor());
         searchBar.active = true;
         searchBar.setTextFieldFocused(true);
@@ -276,7 +276,7 @@ Stencil.INSTANCE.dispose();
     public void drawClientText(PoseStack matrices) {
         matrices.push();
         matrices.scale(2, 2, 1);
-        FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.name"), (width / 2.f) / 2.f, (getY() + 5) / 2.f, ColorHelper.INSTANCE.getClientColor());
+        FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.name"), (width / 2.f) / 2.f, (getY() + 5) / 2.f, ColorHelper.INSTANCE.getClientColor());
         matrices.scale(0.5f, 0.5f, 1);
         matrices.push();
     }

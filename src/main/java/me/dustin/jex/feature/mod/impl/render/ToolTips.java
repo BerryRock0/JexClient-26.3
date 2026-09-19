@@ -26,7 +26,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.StringHelper;
@@ -189,7 +189,7 @@ public class ToolTips extends Feature {
     private final EventListener<EventGetToolTipFromItem> eventGetToolTipFromItemEventListener = new EventListener<>(event -> {
         ItemStack stack = event.getItemStack();
         if (InventoryHelper.INSTANCE.isShulker(stack) && shulkerToolTipProperty.value()) {
-            event.getTextList().add(Text.of("Hold " + KeyboardHelper.INSTANCE.getKeyName(inspectKeyProperty.value()) + " to inspect"));
+            event.getTextList().add(Component.literal("Hold " + KeyboardHelper.INSTANCE.getKeyName(inspectKeyProperty.value()) + " to inspect"));
             return;
         }
         if (repairCostProperty.value()) {
@@ -197,7 +197,7 @@ public class ToolTips extends Feature {
             if (nbtCompound != null) {
                 NbtElement repairCost = nbtCompound.get("RepairCost");
                 if (repairCost != null) {
-                    event.getTextList().add(Text.of(ChatFormatting.GREEN  + "Repair Cost" + ChatFormatting.WHITE + ": " + ChatFormatting.GRAY + repairCost.asString()));
+                    event.getTextList().add(Component.literal(ChatFormatting.GREEN  + "Repair Cost" + ChatFormatting.WHITE + ": " + ChatFormatting.GRAY + repairCost.asString()));
                 }
             }
         }
@@ -207,19 +207,19 @@ public class ToolTips extends Feature {
                 NbtCompound blockEntityTag = nbtCompound.getCompound("BlockEntityTag");
                 NbtList beesList = blockEntityTag.getList("Bees", 10);
                 if (beesList != null) {
-                    event.getTextList().add(Text.of("Bees: " + Render2DHelper.INSTANCE.getPercentFormatting(((beesList.size() / 3.f) * 100)) + beesList.size()));
-                    event.getTextList().add(Text.of("---------------"));
+                    event.getTextList().add(Component.literal("Bees: " + Render2DHelper.INSTANCE.getPercentFormatting(((beesList.size() / 3.f) * 100)) + beesList.size()));
+                    event.getTextList().add(Component.literal("---------------"));
                     for (int i = 0; i < beesList.size(); i++) {
                         NbtCompound beeData = beesList.getCompound(i).getCompound("EntityData");
                         int health = beeData.getInt("Health");
                         String customName = beeData.getString("CustomName");
                         if (customName == null || customName.isEmpty())
                             customName = "Bee";
-                        event.getTextList().add(Text.of(ChatFormatting.AQUA + customName + " " + Render2DHelper.INSTANCE.getPercentFormatting((health / 10.f) * 100) + health + ChatFormatting.WHITE + "/" + ChatFormatting.GREEN + "10"));
+                        event.getTextList().add(Component.literal(ChatFormatting.AQUA + customName + " " + Render2DHelper.INSTANCE.getPercentFormatting((health / 10.f) * 100) + health + ChatFormatting.WHITE + "/" + ChatFormatting.GREEN + "10"));
                     }
-                    event.getTextList().add(Text.of("---------------"));
+                    event.getTextList().add(Component.literal("---------------"));
                 } else {
-                    event.getTextList().add(Text.of("Bees: " + ChatFormatting.DARK_RED + "0"));
+                    event.getTextList().add(Component.literal("Bees: " + ChatFormatting.DARK_RED + "0"));
                 }
                 NbtCompound blockStateTag = nbtCompound.getCompound("BlockStateTag");
                 if (blockStateTag != null) {
@@ -229,13 +229,13 @@ public class ToolTips extends Feature {
                         honeyLevelInt = Integer.parseInt(honeyLevel);
                     } catch (Exception e) {
                     }
-                    event.getTextList().add(Text.of("Honey Level: " + Render2DHelper.INSTANCE.getPercentFormatting((honeyLevelInt / 5.f) * 100) + honeyLevel));
+                    event.getTextList().add(Component.literal("Honey Level: " + Render2DHelper.INSTANCE.getPercentFormatting((honeyLevelInt / 5.f) * 100) + honeyLevel));
                 } else {
-                    event.getTextList().add(Text.of("Honey Level: " + ChatFormatting.DARK_RED + "0"));
+                    event.getTextList().add(Component.literal("Honey Level: " + ChatFormatting.DARK_RED + "0"));
                 }
             } else {
-                event.getTextList().add(Text.of("Bees: " + ChatFormatting.DARK_RED + "0"));
-                event.getTextList().add(Text.of("Honey Level: " + ChatFormatting.DARK_RED + "0"));
+                event.getTextList().add(Component.literal("Bees: " + ChatFormatting.DARK_RED + "0"));
+                event.getTextList().add(Component.literal("Honey Level: " + ChatFormatting.DARK_RED + "0"));
             }
         }
         if (stewToolTipProperty.value() && stack.getItem() == Items.SUSPICIOUS_STEW) {
@@ -247,7 +247,7 @@ public class ToolTips extends Feature {
                     if (effectElement instanceof NbtCompound effectCompound) {
                         int id = effectCompound.getInt("EffectId");
                         int durationTicks = effectCompound.getInt("EffectDuration");
-                        event.getTextList().add(Text.of(ChatFormatting.AQUA + StatusEffect.byRawId(id).getName().getString() + " " + ChatFormatting.GRAY + StringHelper.formatTicks(durationTicks)));
+                        event.getTextList().add(Component.literal(ChatFormatting.AQUA + StatusEffect.byRawId(id).getName().getString() + " " + ChatFormatting.GRAY + StringHelper.formatTicks(durationTicks)));
                     }
                 }
             }
@@ -255,11 +255,11 @@ public class ToolTips extends Feature {
         if (nbtToolTipProperty.value() && !InventoryHelper.INSTANCE.isShulker(stack) && stack.getNbt() != null) {
             if (KeyboardHelper.INSTANCE.isPressed(nbtKeyProperty.value())) {
                 PrettyPrintTextFormatter.RGBColorText formatted = formatter.apply(stack.getNbt());
-                event.getTextList().add(Text.of(ChatFormatting.GRAY + "-------------------"));
-                event.getTextList().add(Text.of("NBT:"));
+                event.getTextList().add(Component.literal(ChatFormatting.GRAY + "-------------------"));
+                event.getTextList().add(Component.literal("NBT:"));
                 event.getTextList().addAll(formatted.entriesAsText());
             } else {
-                event.getTextList().add(Text.of("Hold " + KeyboardHelper.INSTANCE.getKeyName(nbtKeyProperty.value()) + " to see NBT"));
+                event.getTextList().add(Component.literal("Hold " + KeyboardHelper.INSTANCE.getKeyName(nbtKeyProperty.value()) + " to see NBT"));
             }
         }
     });

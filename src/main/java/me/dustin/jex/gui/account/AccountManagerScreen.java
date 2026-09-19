@@ -22,7 +22,7 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.util.ProfileKeys;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -49,7 +49,7 @@ public class AccountManagerScreen extends Screen {
     private String lastSearch = "";
 
     public AccountManagerScreen() {
-        super(Text.translatable("jex.account"));
+        super(Component.translatable("jex.account"));
     }
 
     @Override
@@ -62,19 +62,19 @@ public class AccountManagerScreen extends Screen {
         loadAccountButtons("");
 
 
-        loginButton = new ButtonWidget((int) (midX + 3), (height / 2) - 78, 150, 20, Text.translatable("jex.account.login"), button -> {
+        loginButton = new ButtonWidget((int) (midX + 3), (height / 2) - 78, 150, 20, Component.translatable("jex.account.login"), button -> {
             if (getSelected() == null)
                 return;
-            this.outputString = Text.translatable("jex.account.logging_in").getString();
+            this.outputString = Component.translatable("jex.account.logging_in").getString();
             login(getSelected());
         });
-        editButton = new ButtonWidget((int) (midX + 3), (height / 2) - 56, 150, 20, Text.translatable("jex.button.edit"), button -> {
+        editButton = new ButtonWidget((int) (midX + 3), (height / 2) - 56, 150, 20, Component.translatable("jex.button.edit"), button -> {
             if (getSelected().getAccount() instanceof MinecraftAccount.MojangAccount mojangAccount) {
                 Wrapper.INSTANCE.getMinecraft().setScreen(new AddAccountScreen(mojangAccount, this));
             }
         });
 
-        removeButton = new ButtonWidget((int) (midX + 3), (height / 2) - 34, 150, 20, Text.translatable("jex.button.remove"), button -> {
+        removeButton = new ButtonWidget((int) (midX + 3), (height / 2) - 34, 150, 20, Component.translatable("jex.button.remove"), button -> {
             if (getSelected() == null)
                 return;
             MinecraftAccountManager.INSTANCE.getAccounts().remove(getSelected().getAccount());
@@ -82,42 +82,42 @@ public class AccountManagerScreen extends Screen {
             loadAccountButtons(searchTextField.getText());
             ConfigManager.INSTANCE.get(AltFile.class).write();
         });
-        randomButton = new ButtonWidget((int) (midX + 3), (height / 2) - 12, 150, 20, Text.translatable("jex.account.random"), button -> {
+        randomButton = new ButtonWidget((int) (midX + 3), (height / 2) - 12, 150, 20, Component.translatable("jex.account.random"), button -> {
             Random rand = new Random();
             login(accountButtons.get(rand.nextInt(accountButtons.size())));
         });
-        ButtonWidget addAccountButton = new ButtonWidget((int) (midX - 151), height - 50, 150, 20, Text.translatable("jex.account.direct"), button -> {
+        ButtonWidget addAccountButton = new ButtonWidget((int) (midX - 151), height - 50, 150, 20, Component.translatable("jex.account.direct"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new DirectLoginScreen(this));
         });
-        ButtonWidget directLoginButton = new ButtonWidget((int) (midX + 1), height - 50, 150, 20, Text.translatable("jex.account.add"), button -> {
+        ButtonWidget directLoginButton = new ButtonWidget((int) (midX + 1), height - 50, 150, 20, Component.translatable("jex.account.add"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new AddAccountScreen(null, this));
         });
-        cancelButton = new ButtonWidget((int) (midX - 151), height - 28, 302, 20, Text.translatable("jex.button.cancel"), button -> {
+        cancelButton = new ButtonWidget((int) (midX - 151), height - 28, 302, 20, Component.translatable("jex.button.cancel"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new MultiplayerScreen(new TitleScreen()));
         });
-        importButton = new ButtonWidget(2, 2, 50, 15, Text.translatable("jex.account.import"), button -> {
+        importButton = new ButtonWidget(2, 2, 50, 15, Component.translatable("jex.account.import"), button -> {
             File file = new File(ModFileHelper.INSTANCE.getJexDirectory() + File.separator + "config","Accounts-Unencrypted.yml");
             if (file.exists()) {
                 MinecraftAccountManager.INSTANCE.getAccounts().clear();
                 ConfigManager.INSTANCE.get(AltFile.class).importFile();
                 ConfigManager.INSTANCE.get(AltFile.class).write();
                 loadAccountButtons("");
-                outputString = Text.translatable("jex.account.import.success").getString();
+                outputString = Component.translatable("jex.account.import.success").getString();
             } else
-                outputString = Text.translatable("jex.account.import.fail").getString();
+                outputString = Component.translatable("jex.account.import.fail").getString();
         });
-        exportButton = new ButtonWidget(width - 52, 2, 50, 15, Text.translatable("jex.account.export"), button -> {
+        exportButton = new ButtonWidget(width - 52, 2, 50, 15, Component.translatable("jex.account.export"), button -> {
             ConfigManager.INSTANCE.get(AltFile.class).exportFile();
-            outputString = Text.translatable("jex.account.export.success").getString();
+            outputString = Component.translatable("jex.account.export.success").getString();
         });
-        importFromTXTButton = new ButtonWidget(width / 2 - 50, height / 2 + 104, 100, 15, Text.translatable("jex.account.import.txt"), button -> {
+        importFromTXTButton = new ButtonWidget(width / 2 - 50, height / 2 + 104, 100, 15, Component.translatable("jex.account.import.txt"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new ImportFromTXTScreen());
         });
-        searchTextField = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), (int) midX - 150, (height / 2) - 124, 250, 20, Text.of(""));
+        searchTextField = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), (int) midX - 150, (height / 2) - 124, 250, 20, Component.literal(""));
         searchTextField.setVisible(true);
         searchTextField.setEditable(true);
         searchTextField.setFocusUnlocked(true);
-        ButtonWidget searchButton = new ButtonWidget((int) midX + 102, (height / 2) - 124, 50, 20, Text.translatable("jex.button.search"), button -> {
+        ButtonWidget searchButton = new ButtonWidget((int) midX + 102, (height / 2) - 124, 50, 20, Component.translatable("jex.button.search"), button -> {
             loadAccountButtons(searchTextField.getText());
         });
         this.addDrawableChild(loginButton);
@@ -133,7 +133,7 @@ public class AccountManagerScreen extends Screen {
         this.addDrawableChild(exportButton);
         this.addDrawableChild(importButton);
         this.addDrawableChild(importFromTXTButton);
-        this.outputString = Text.translatable("jex.account.logged_in", Wrapper.INSTANCE.getMinecraft().getSession().getUsername()).getString();
+        this.outputString = Component.translatable("jex.account.logged_in", Wrapper.INSTANCE.getMinecraft().getSession().getUsername()).getString();
 
         if (!accountButtons.isEmpty()) {
             float contentHeight = (accountButtons.get(accountButtons.size() - 1).getY() + (accountButtons.get(accountButtons.size() - 1).getHeight())) - accountButtons.get(0).getY();
@@ -179,7 +179,7 @@ public class AccountManagerScreen extends Screen {
 
         searchTextField.render(matrixStack, mouseX, mouseY, partialTicks);
 
-        FontHelper.INSTANCE.drawWithShadow(matrixStack, Text.translatable("jex.account.staus"), (width / 2.f) + 4, (height / 2.f) - 98, -1);
+        FontHelper.INSTANCE.drawWithShadow(matrixStack, Component.translatable("jex.account.staus"), (width / 2.f) + 4, (height / 2.f) - 98, -1);
         FontHelper.INSTANCE.drawWithShadow(matrixStack, outputString, (width / 2.f) + 4, (height / 2.f) - 88, ColorHelper.INSTANCE.getClientColor());
 
         Render2DHelper.INSTANCE.fill(matrixStack, 0, 0, width, 20, 0x70000000);
@@ -297,14 +297,14 @@ public class AccountManagerScreen extends Screen {
 
     public void login(AccountButton button) {
         if (button.getAccount() instanceof MinecraftAccount.MojangAccount mojangAccount) {
-            outputString = Text.translatable("jex.account.logging_in").getString();
+            outputString = Component.translatable("jex.account.logging_in").getString();
             new MojangLoginHelper(mojangAccount, session -> {
                 if (session == null) {
-                    outputString = Text.translatable("jex.account.login_failed").getString();
+                    outputString = Component.translatable("jex.account.login_failed").getString();
                 } else {
                     Wrapper.INSTANCE.getIMinecraft().setSession(session);
                     button.getAccount().setUsername(Wrapper.INSTANCE.getMinecraft().getSession().getUsername());
-                    outputString = Text.translatable("jex.account.logged_in", Wrapper.INSTANCE.getMinecraft().getSession().getUsername()).getString();
+                    outputString = Component.translatable("jex.account.logged_in", Wrapper.INSTANCE.getMinecraft().getSession().getUsername()).getString();
                     mojangAccount.loginCount++;
                     mojangAccount.lastUsed = System.currentTimeMillis();
                 }
@@ -315,7 +315,7 @@ public class AccountManagerScreen extends Screen {
                 if (session != null) {
                     Wrapper.INSTANCE.getIMinecraft().setSession(session);
                     button.getAccount().setUsername(Wrapper.INSTANCE.getMinecraft().getSession().getUsername());
-                    outputString = Text.translatable("jex.account.logged_in", Wrapper.INSTANCE.getMinecraft().getSession().getUsername()).getString();
+                    outputString = Component.translatable("jex.account.logged_in", Wrapper.INSTANCE.getMinecraft().getSession().getUsername()).getString();
                     microsoftAccount.loginCount++;
                     microsoftAccount.lastUsed = System.currentTimeMillis();
                 }

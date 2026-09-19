@@ -8,7 +8,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 
 public class JexLoginRegisterScreen extends Screen {
     private boolean login;
@@ -25,7 +25,7 @@ public class JexLoginRegisterScreen extends Screen {
     public static String message = "";
     private Screen parent;
     public JexLoginRegisterScreen(boolean login, Screen parent) {
-        super(login ? Text.translatable("jex.site.login") : Text.translatable("jex.site.register"));
+        super(login ? Component.translatable("jex.site.login") : Component.translatable("jex.site.register"));
         this.login = login;
         this.parent = parent;
         message = "";
@@ -34,18 +34,18 @@ public class JexLoginRegisterScreen extends Screen {
     @Override
     protected void init() {
         if (this.login) {
-            this.addSelectableChild(this.usernameWidget = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 100, height / 2 - 65, 200, 20, Text.translatable("jex.site.username")));
-            this.addSelectableChild(this.passwordWidget = new GuiPasswordField(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 100, height / 2 - 25, 200, 20, Text.translatable("jex.site.password")));
-            this.addDrawableChild(this.doneButton = new ButtonWidget(width / 2 - 100, height / 2 + 5, 200, 20, Text.translatable("jex.site.login"), attempt));
-            this.addDrawableChild(this.cancelButton = new ButtonWidget(width / 2 - 100, height / 2 + 35, 200, 20, Text.translatable("jex.button.cancel"), button -> Wrapper.INSTANCE.getMinecraft().setScreen(parent)));
-            this.addDrawableChild(this.registerButton = new ButtonWidget(width / 2 - 100, height / 2 + 95, 200, 20, Text.translatable("jex.site.register"), button -> Wrapper.INSTANCE.getMinecraft().setScreen(new JexLoginRegisterScreen(false, parent))));
+            this.addSelectableChild(this.usernameWidget = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 100, height / 2 - 65, 200, 20, Component.translatable("jex.site.username")));
+            this.addSelectableChild(this.passwordWidget = new GuiPasswordField(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 100, height / 2 - 25, 200, 20, Component.translatable("jex.site.password")));
+            this.addDrawableChild(this.doneButton = new ButtonWidget(width / 2 - 100, height / 2 + 5, 200, 20, Component.translatable("jex.site.login"), attempt));
+            this.addDrawableChild(this.cancelButton = new ButtonWidget(width / 2 - 100, height / 2 + 35, 200, 20, Component.translatable("jex.button.cancel"), button -> Wrapper.INSTANCE.getMinecraft().setScreen(parent)));
+            this.addDrawableChild(this.registerButton = new ButtonWidget(width / 2 - 100, height / 2 + 95, 200, 20, Component.translatable("jex.site.register"), button -> Wrapper.INSTANCE.getMinecraft().setScreen(new JexLoginRegisterScreen(false, parent))));
         } else {
-            this.addSelectableChild(this.usernameWidget = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 100, height / 2 - 100, 200, 20, Text.translatable("jex.site.username")));
-            this.addSelectableChild(this.emailWidget = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 100, height / 2 - 60, 200, 20, Text.translatable("jex.site.email")));
-            this.addSelectableChild(this.passwordWidget = new GuiPasswordField(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 100, height / 2 - 20, 200, 20, Text.translatable("jex.site.password")));
-            this.addSelectableChild(this.passwordConfirmWidget = new GuiPasswordField(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 100, height / 2 + 20, 200, 20, Text.translatable("jex.site.password_confirm")));
-            this.addDrawableChild(this.doneButton = new ButtonWidget(width / 2 - 100, height / 2 + 50, 200, 20, Text.translatable("jex.site.register"), attempt));
-            this.addDrawableChild(this.cancelButton = new ButtonWidget(width / 2 - 100, height / 2 + 80, 200, 20, Text.translatable("jex.button.cancel"), button -> Wrapper.INSTANCE.getMinecraft().setScreen(parent)));
+            this.addSelectableChild(this.usernameWidget = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 100, height / 2 - 100, 200, 20, Component.translatable("jex.site.username")));
+            this.addSelectableChild(this.emailWidget = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 100, height / 2 - 60, 200, 20, Component.translatable("jex.site.email")));
+            this.addSelectableChild(this.passwordWidget = new GuiPasswordField(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 100, height / 2 - 20, 200, 20, Component.translatable("jex.site.password")));
+            this.addSelectableChild(this.passwordConfirmWidget = new GuiPasswordField(Wrapper.INSTANCE.getTextRenderer(), width / 2 - 100, height / 2 + 20, 200, 20, Component.translatable("jex.site.password_confirm")));
+            this.addDrawableChild(this.doneButton = new ButtonWidget(width / 2 - 100, height / 2 + 50, 200, 20, Component.translatable("jex.site.register"), attempt));
+            this.addDrawableChild(this.cancelButton = new ButtonWidget(width / 2 - 100, height / 2 + 80, 200, 20, Component.translatable("jex.button.cancel"), button -> Wrapper.INSTANCE.getMinecraft().setScreen(parent)));
         }
         super.init();
     }
@@ -55,23 +55,23 @@ public class JexLoginRegisterScreen extends Screen {
         renderBackground(matrices);
         FontHelper.INSTANCE.drawCenteredString(matrices, message, width / 2.f, 2, 0xffff0000);
         if (this.usernameWidget != null) {
-            FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.site.username"), width / 2.f, this.usernameWidget.y - 11, -1);
+            FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.site.username"), width / 2.f, this.usernameWidget.y - 11, -1);
             this.usernameWidget.render(matrices, mouseX, mouseY, delta);
         }
         if (this.emailWidget != null) {
-            FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.site.email"), width / 2.f, this.emailWidget.y - 11, -1);
+            FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.site.email"), width / 2.f, this.emailWidget.y - 11, -1);
             this.emailWidget.render(matrices, mouseX, mouseY, delta);
         }
         if (this.passwordWidget != null) {
-            FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.site.password"), width / 2.f, this.passwordWidget.y - 11, -1);
+            FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.site.password"), width / 2.f, this.passwordWidget.y - 11, -1);
             this.passwordWidget.render(matrices, mouseX, mouseY, delta);
         }
         if (this.passwordConfirmWidget != null) {
-            FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.site.password_confirm"), width / 2.f, this.passwordConfirmWidget.y - 11, -1);
+            FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.site.password_confirm"), width / 2.f, this.passwordConfirmWidget.y - 11, -1);
             this.passwordConfirmWidget.render(matrices, mouseX, mouseY, delta);
         }
         if (this.registerButton != null) {
-            FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.site.no_account_question"), width / 2.f, this.registerButton.y - 11, -1);
+            FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.site.no_account_question"), width / 2.f, this.registerButton.y - 11, -1);
             this.registerButton.render(matrices, mouseX, mouseY, delta);
         }
         super.render(matrices, mouseX, mouseY, delta);

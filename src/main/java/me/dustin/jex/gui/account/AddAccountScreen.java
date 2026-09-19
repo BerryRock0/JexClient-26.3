@@ -11,7 +11,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import me.dustin.jex.helper.render.Render2DHelper;
 import net.minecraft.ChatFormatting;
 
@@ -27,7 +27,7 @@ public class AddAccountScreen extends Screen {
 	private boolean isMicrosoft;
 
 	public AddAccountScreen(MinecraftAccount.MojangAccount editingAccount, Screen parent) {
-		super(Text.translatable("jex.account.add"));
+		super(Component.translatable("jex.account.add"));
 		this.editingAccount = editingAccount;
 		this.parent = parent;
 	}
@@ -43,9 +43,9 @@ public class AddAccountScreen extends Screen {
 	@Override
 	public void init() {
 		Wrapper.INSTANCE.getMinecraft().keyboard.setRepeatEvents(true);
-		username = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), (Render2DHelper.INSTANCE.getScaledWidth() / 2) - 100, 12, 200, 20, Text.translatable("jex.account.username"));
-		email = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), (Render2DHelper.INSTANCE.getScaledWidth() / 2) - 100, 47, 200, 20, Text.translatable("jex.account.email"));
-		password = new GuiPasswordField(Wrapper.INSTANCE.getTextRenderer(), (Render2DHelper.INSTANCE.getScaledWidth() / 2) - 100, 82, 200, 20, Text.translatable("jex.account.password"));
+		username = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), (Render2DHelper.INSTANCE.getScaledWidth() / 2) - 100, 12, 200, 20, Component.translatable("jex.account.username"));
+		email = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), (Render2DHelper.INSTANCE.getScaledWidth() / 2) - 100, 47, 200, 20, Component.translatable("jex.account.email"));
+		password = new GuiPasswordField(Wrapper.INSTANCE.getTextRenderer(), (Render2DHelper.INSTANCE.getScaledWidth() / 2) - 100, 82, 200, 20, Component.translatable("jex.account.password"));
 
 		username.setTextFieldFocused(true);
 		username.setMaxLength(16);
@@ -64,11 +64,11 @@ public class AddAccountScreen extends Screen {
 		this.addSelectableChild(username);
 		this.addSelectableChild(email);
 		this.addSelectableChild(password);
-		this.addDrawableChild(new ButtonWidget((Render2DHelper.INSTANCE.getScaledWidth() / 2) - 60, Render2DHelper.INSTANCE.getScaledHeight() - 54, 120, 20, Text.translatable("jex.button.cancel"), button -> {
+		this.addDrawableChild(new ButtonWidget((Render2DHelper.INSTANCE.getScaledWidth() / 2) - 60, Render2DHelper.INSTANCE.getScaledHeight() - 54, 120, 20, Component.translatable("jex.button.cancel"), button -> {
 			Wrapper.INSTANCE.getMinecraft().setScreen(parent);
 		}));
 
-		this.addDrawableChild(new ButtonWidget((Render2DHelper.INSTANCE.getScaledWidth() / 2) - 60, Render2DHelper.INSTANCE.getScaledHeight() - 75, 120, 20, editingAccount == null ? Text.translatable("jex.button.add") : Text.translatable("jex.button.save"), button -> {
+		this.addDrawableChild(new ButtonWidget((Render2DHelper.INSTANCE.getScaledWidth() / 2) - 60, Render2DHelper.INSTANCE.getScaledHeight() - 75, 120, 20, editingAccount == null ? Component.translatable("jex.button.add") : Component.translatable("jex.button.save"), button -> {
 			if (isMicrosoft) {
 				MinecraftAccount.MicrosoftAccount microsoftAccount = new MinecraftAccount.MicrosoftAccount(username.getText(), email.getText(), password.getText(), "", "", UUID.randomUUID().toString());
 				MinecraftAccountManager.INSTANCE.getAccounts().add(microsoftAccount);
@@ -91,9 +91,9 @@ public class AddAccountScreen extends Screen {
 		}));
 
 		if (editingAccount == null)
-			this.addDrawableChild(new ButtonWidget((Render2DHelper.INSTANCE.getScaledWidth() / 2) - 60, Render2DHelper.INSTANCE.getScaledHeight() - 105, 120, 20, Text.translatable("jex.account.mojang").styled(style -> style.withColor(ChatFormatting.GOLD)), button -> {
+			this.addDrawableChild(new ButtonWidget((Render2DHelper.INSTANCE.getScaledWidth() / 2) - 60, Render2DHelper.INSTANCE.getScaledHeight() - 105, 120, 20, Component.translatable("jex.account.mojang").styled(style -> style.withColor(ChatFormatting.GOLD)), button -> {
 				isMicrosoft = !isMicrosoft;
-				button.setMessage(isMicrosoft ? Text.translatable("jex.account.microsoft").styled(style -> style.withColor(ChatFormatting.GREEN)) : Text.translatable("jex.account.mojang").styled(style -> style.withColor(ChatFormatting.GOLD)));
+				button.setMessage(isMicrosoft ? Component.translatable("jex.account.microsoft").styled(style -> style.withColor(ChatFormatting.GREEN)) : Component.translatable("jex.account.mojang").styled(style -> style.withColor(ChatFormatting.GOLD)));
 			}));
 		super.init();
 	}
@@ -110,9 +110,9 @@ public class AddAccountScreen extends Screen {
 		username.render(matrixStack, mouseX, mouseY, partialTicks);
 		email.render(matrixStack, mouseX, mouseY, partialTicks);
 		password.renderButton(matrixStack, mouseX, mouseY, partialTicks);
-		FontHelper.INSTANCE.drawWithShadow(matrixStack, Text.translatable("jex.account.username.title"), username.x, username.y - 10, 0xff696969);
-		FontHelper.INSTANCE.drawWithShadow(matrixStack, Text.translatable("jex.account.email"), email.x, email.y - 10, 0xff696969);
-		FontHelper.INSTANCE.drawWithShadow(matrixStack, Text.translatable("jex.account.password"), email.x, password.y - 10, 0xff696969);
+		FontHelper.INSTANCE.drawWithShadow(matrixStack, Component.translatable("jex.account.username.title"), username.x, username.y - 10, 0xff696969);
+		FontHelper.INSTANCE.drawWithShadow(matrixStack, Component.translatable("jex.account.email"), email.x, email.y - 10, 0xff696969);
+		FontHelper.INSTANCE.drawWithShadow(matrixStack, Component.translatable("jex.account.password"), email.x, password.y - 10, 0xff696969);
 		super.render(matrixStack, mouseX, mouseY, partialTicks);
 	}
 

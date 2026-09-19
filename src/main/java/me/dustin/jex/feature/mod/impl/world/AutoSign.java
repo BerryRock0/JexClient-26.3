@@ -14,13 +14,13 @@ import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.client.gui.screen.ingame.SignEditScreen;
 import net.minecraft.network.packet.c2s.play.UpdateSignC2SPacket;
 import net.minecraft.network.packet.s2c.play.SignEditorOpenS2CPacket;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.core.BlockPos;
 import me.dustin.jex.feature.mod.core.Feature;
 
 public class AutoSign extends Feature {
 
-    public Text[] signText = {Text.of("     "), Text.of(""), Text.of(""), Text.of("")};
+    public Text[] signText = {Component.literal("     "), Component.literal(""), Component.literal(""), Component.literal("")};
 
     public AutoSign() {
         super(Category.WORLD, "Automatically write to signs.");
@@ -50,7 +50,7 @@ public class AutoSign extends Feature {
             signBlockEntity.setEditable(true);
             signBlockEntity.setEditor(Wrapper.INSTANCE.getLocalPlayer().getUuid());
             for (int i = 0; i < 4; i++) {
-                signBlockEntity.setTextOnRow(i, Text.of(signText[i].getString().replaceAll("(?i)\u00a7|&([0-9A-FK-OR])", "\u00a7\u00a7$1$1")));
+                signBlockEntity.setTextOnRow(i, Component.literal(signText[i].getString().replaceAll("(?i)\u00a7|&([0-9A-FK-OR])", "\u00a7\u00a7$1$1")));
             }
             if (Wrapper.INSTANCE.getLocalPlayer() != null && Wrapper.INSTANCE.getWorld() != null)
                 NetworkHelper.INSTANCE.sendPacket(new UpdateSignC2SPacket(signBlockEntity.getPos(), signBlockEntity.getTextOnRow(0, false).getString(), signBlockEntity.getTextOnRow(1, false).getString(), signBlockEntity.getTextOnRow(2, false).getString(), signBlockEntity.getTextOnRow(3, false).getString()));

@@ -9,7 +9,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import org.lwjgl.glfw.GLFW;
 
@@ -26,13 +26,13 @@ public class MCLeaksScreen extends Screen {
     private Screen settingScreen;
 
     public MCLeaksScreen(Screen parent, boolean sessionRestored) {
-        super(Text.translatable("jex.mcleaks"));
+        super(Component.translatable("jex.mcleaks"));
         this.parent = parent;
         this.sessionRestored = sessionRestored;
     }
 
     public MCLeaksScreen(Screen parent, boolean sessionRestored, String message) {
-        super(Text.translatable("jex.mcleaks"));
+        super(Component.translatable("jex.mcleaks"));
         this.parent = parent;
         this.sessionRestored = sessionRestored;
         this.message = message;
@@ -40,36 +40,36 @@ public class MCLeaksScreen extends Screen {
 
     @Override
     protected void init() {
-        restoreButton = new ButtonWidget(this.width / 2 - 150, this.height / 4 + 96 + 18, 128, 20, this.sessionRestored ? Text.translatable("jex.mcleaks.session.restored") : Text.translatable("jex.mcleaks.session.restore"), button -> {
+        restoreButton = new ButtonWidget(this.width / 2 - 150, this.height / 4 + 96 + 18, 128, 20, this.sessionRestored ? Component.translatable("jex.mcleaks.session.restored") : Component.translatable("jex.mcleaks.session.restore"), button -> {
             MCLeaksHelper.INSTANCE.restoreSession();
             Wrapper.INSTANCE.getMinecraft().setScreen(new MCLeaksScreen(this.parent, true));
             EventManager.unregister(MCLeaksHelper.INSTANCE);
         });
-        useTokenButton = new ButtonWidget(this.width / 2 - 18, this.height / 4 + 96 + 18, 168, 20, Text.translatable("jex.mcleaks.redeem"), button -> {
+        useTokenButton = new ButtonWidget(this.width / 2 - 18, this.height / 4 + 96 + 18, 168, 20, Component.translatable("jex.mcleaks.redeem"), button -> {
             if (this.tokenField.getText().length() != 16) {
-                Wrapper.INSTANCE.getMinecraft().setScreen(new MCLeaksScreen(this.parent, false, ChatFormatting.RED + Text.translatable("jex.mcleaks.bad_length").getString()));
+                Wrapper.INSTANCE.getMinecraft().setScreen(new MCLeaksScreen(this.parent, false, ChatFormatting.RED + Component.translatable("jex.mcleaks.bad_length").getString()));
                 return;
             }
             button.active = false;
-            button.setMessage(Text.translatable("jex.mcleaks.wait"));
+            button.setMessage(Component.translatable("jex.mcleaks.wait"));
             new Thread(() -> {
                 MCLeaksHelper.MCLeaksAccount account = MCLeaksHelper.INSTANCE.getAccount(tokenField.getText());
                 if (account != null) {
                     EventManager.register(MCLeaksHelper.INSTANCE);
                     MCLeaksHelper.INSTANCE.setActiveAccount(account);
-                    settingScreen = new MCLeaksScreen(this.parent, false, ChatFormatting.GREEN + Text.translatable("jex.mcleaks.redeem.success").getString());
+                    settingScreen = new MCLeaksScreen(this.parent, false, ChatFormatting.GREEN + Component.translatable("jex.mcleaks.redeem.success").getString());
                 } else {
-                    settingScreen = new MCLeaksScreen(this.parent, false, ChatFormatting.RED + Text.translatable("jex.mcleaks.redeem.fail").getString());
+                    settingScreen = new MCLeaksScreen(this.parent, false, ChatFormatting.RED + Component.translatable("jex.mcleaks.redeem.fail").getString());
                 }
             }).start();
         });
-        ButtonWidget getTokenButton = new ButtonWidget(this.width / 2 - 150, this.height / 4 + 120 + 18, 158, 20, Text.translatable("jex.mcleaks.get_token"), button -> {
+        ButtonWidget getTokenButton = new ButtonWidget(this.width / 2 - 150, this.height / 4 + 120 + 18, 158, 20, Component.translatable("jex.mcleaks.get_token"), button -> {
             WebHelper.INSTANCE.openLink("https://mcleaks.net/");
         });
-        ButtonWidget cancelButton = new ButtonWidget(this.width / 2 + 12, this.height / 4 + 120 + 18, 138, 20, Text.translatable("jex.button.cancel"), button -> {
+        ButtonWidget cancelButton = new ButtonWidget(this.width / 2 + 12, this.height / 4 + 120 + 18, 138, 20, Component.translatable("jex.button.cancel"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(parent);
         });
-        tokenField = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), this.width / 2 - 100, 128, 200, 20, Text.of(""));
+        tokenField = new TextFieldWidget(Wrapper.INSTANCE.getTextRenderer(), this.width / 2 - 100, 128, 200, 20, Component.literal(""));
         this.addDrawableChild(restoreButton);
         this.addDrawableChild(useTokenButton);
         this.addDrawableChild(getTokenButton);
@@ -95,16 +95,16 @@ public class MCLeaksScreen extends Screen {
         tokenField.render(matrices, mouseX, mouseY, delta);
 
         FontHelper.INSTANCE.drawCenteredString(matrices, ChatFormatting.WHITE + "- " + ChatFormatting.AQUA + "MCLeaks" + ChatFormatting.WHITE + "." + ChatFormatting.AQUA + "net " + ChatFormatting.WHITE + "-", this.width / 2.f, 17, 16777215);
-        FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.mcleaks.description"), this.width / 2.f, 32, 16777215);
+        FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.mcleaks.description"), this.width / 2.f, 32, 16777215);
 
-        String status = ChatFormatting.GOLD + Text.translatable("jex.mcleaks.token.not_active", ChatFormatting.YELLOW + Wrapper.INSTANCE.getMinecraft().getSession().getUsername() + ChatFormatting.GOLD).getString();
+        String status = ChatFormatting.GOLD + Component.translatable("jex.mcleaks.token.not_active", ChatFormatting.YELLOW + Wrapper.INSTANCE.getMinecraft().getSession().getUsername() + ChatFormatting.GOLD).getString();
         if (MCLeaksHelper.INSTANCE.activeAccount != null) {
-            status = ChatFormatting.GREEN + Text.translatable("jex.mcleaks.token.active", ChatFormatting.AQUA + MCLeaksHelper.INSTANCE.activeAccount.mcname + ChatFormatting.GREEN).getString();
+            status = ChatFormatting.GREEN + Component.translatable("jex.mcleaks.token.active", ChatFormatting.AQUA + MCLeaksHelper.INSTANCE.activeAccount.mcname + ChatFormatting.GREEN).getString();
         }
-        FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.mcleaks.status"), this.width / 2.f, 68, 16777215);
+        FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.mcleaks.status"), this.width / 2.f, 68, 16777215);
         FontHelper.INSTANCE.drawCenteredString(matrices, status, this.width / 2.f, 78, 16777215);
 
-        FontHelper.INSTANCE.drawWithShadow(matrices, Text.translatable("jex.mcleaks.token"), this.width / 2.f - 100, 115, 10526880);
+        FontHelper.INSTANCE.drawWithShadow(matrices, Component.translatable("jex.mcleaks.token"), this.width / 2.f - 100, 115, 10526880);
 
         if (message != null) {
             FontHelper.INSTANCE.drawCenteredString(matrices, this.message, this.width / 2.f, 158, 16777215);

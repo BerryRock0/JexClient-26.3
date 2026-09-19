@@ -16,7 +16,7 @@ import me.dustin.jex.helper.render.Stencil;
 import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.client.gui.screen.Screen;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class JexFeatureListScreen extends Screen {
     private final Screen parentScreen;
     private final Category category;
     public JexFeatureListScreen(Screen parentScreen, Category category) {
-        super(Text.translatable("jex.gui"));
+        super(Component.translatable("jex.gui"));
         this.parentScreen = parentScreen;
         this.category = category;
     }
@@ -162,7 +162,7 @@ public class JexFeatureListScreen extends Screen {
     public void drawClientText(PoseStack matrices) {
         matrices.push();
         matrices.scale(2, 2, 1);
-        FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.name"), (width / 2.f) / 2.f, (JexGuiScreen.getY() + 5) / 2.f, category.color());
+        FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.name"), (width / 2.f) / 2.f, (JexGuiScreen.getY() + 5) / 2.f, category.color());
         matrices.scale(0.5f, 0.5f, 1);
         matrices.push();
     }

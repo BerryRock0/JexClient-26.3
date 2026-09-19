@@ -14,7 +14,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import java.util.ArrayList;
 
 public class ChangelogScreen extends Screen {
@@ -24,7 +24,7 @@ public class ChangelogScreen extends Screen {
     private boolean movingScrollbar;
 
     public ChangelogScreen() {
-        super(Text.translatable("jex.changelog"));
+        super(Component.translatable("jex.changelog"));
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ChangelogScreen extends Screen {
             height += changelog.getContentHeight() + 5;
         }
         scrollbar = new Scrollbar(Render2DHelper.INSTANCE.getScaledWidth() - 15, 10, 9, 0, Render2DHelper.INSTANCE.getScaledHeight() - 45, height - 15, 0xff696969);
-        this.addDrawableChild(new ButtonWidget(width / 2 - 40, this.height - 22, 80, 20, Text.of("Back"), button -> {
+        this.addDrawableChild(new ButtonWidget(width / 2 - 40, this.height - 22, 80, 20, Component.literal("Back"), button -> {
             Wrapper.INSTANCE.getMinecraft().setScreen(new TitleScreen());
         }));
         super.init();
@@ -44,7 +44,7 @@ public class ChangelogScreen extends Screen {
     @Override
     public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
-        FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.changelog"), width / 2.f, 1, ColorHelper.INSTANCE.getClientColor());
+        FontHelper.INSTANCE.drawCenteredString(matrices, Component.translatable("jex.changelog"), width / 2.f, 1, ColorHelper.INSTANCE.getClientColor());
         float changelogX = 20;
         float changelogWidth = Render2DHelper.INSTANCE.getScaledWidth() - (changelogX * 2);
         Scissor.INSTANCE.cut(0, 10, width, height - 45);

@@ -6,7 +6,7 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import net.minecraft.nbt.*;
 import net.minecraft.nbt.visitor.NbtElementVisitor;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import net.minecraft.util.Util;
 import java.util.*;
@@ -279,11 +279,11 @@ public class PrettyPrintTextFormatter implements NbtElementVisitor {
             for (RGBEntry entry : this.getEntries()) {
                 line.append(byColor(entry.color())).append(entry.value.replace("\247", "\\247"));
                 if (entry.value().endsWith("\n")) {
-                    textList.add(Text.of(line.toString().replace("\n", "")));
+                    textList.add(Component.literal(line.toString().replace("\n", "")));
                     line = new StringBuilder();
                 }
             }
-            textList.add(Text.of(this.getEntries().get(this.getEntries().size() - 1).value()));
+            textList.add(Component.literal(this.getEntries().get(this.getEntries().size() - 1).value()));
             return textList;
         }
 
