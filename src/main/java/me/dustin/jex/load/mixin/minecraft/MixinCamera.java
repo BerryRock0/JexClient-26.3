@@ -3,7 +3,7 @@ package me.dustin.jex.load.mixin.minecraft;
 import me.dustin.jex.event.render.EventClipCamera;
 import net.minecraft.client.render.Camera;
 import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

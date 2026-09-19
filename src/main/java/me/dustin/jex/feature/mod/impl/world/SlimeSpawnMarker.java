@@ -16,7 +16,7 @@ import me.dustin.jex.helper.render.Render3DHelper;
 import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 import java.awt.*;
 import java.io.BufferedWriter;
 import java.io.File;

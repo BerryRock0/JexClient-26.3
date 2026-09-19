@@ -39,7 +39,7 @@ import net.minecraft.util.hit.HitResult;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.core.Direction;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.shape.VoxelShapes;
 import org.lwjgl.glfw.GLFW;
 

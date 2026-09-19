@@ -43,7 +43,7 @@ import net.minecraft.item.TridentItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 import me.dustin.jex.helper.render.Render2DHelper;
 import java.awt.*;
 import java.util.ArrayList;

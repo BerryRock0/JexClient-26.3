@@ -6,7 +6,7 @@ import me.dustin.events.core.annotate.EventPointer;
 import me.dustin.jex.event.render.EventRender3D;
 import me.dustin.jex.helper.misc.Wrapper;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 import java.util.HashMap;
 
 public enum EntityPositionHelper {

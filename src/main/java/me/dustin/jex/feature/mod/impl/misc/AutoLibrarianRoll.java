@@ -41,7 +41,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.core.Direction;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.village.TradeOfferList;
 import net.minecraft.village.VillagerProfession;
 import java.util.ArrayList;

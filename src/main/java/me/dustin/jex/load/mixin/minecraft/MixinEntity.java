@@ -11,7 +11,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.entity.MovementType;
 import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;

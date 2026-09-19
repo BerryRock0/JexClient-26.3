@@ -26,7 +26,7 @@ import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.network.packet.c2s.play.KeepAliveC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 import java.util.UUID;
 
 public class Freecam extends Feature {

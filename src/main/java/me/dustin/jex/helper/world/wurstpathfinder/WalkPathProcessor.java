@@ -23,7 +23,7 @@ import net.minecraft.block.VineBlock;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 
 public class WalkPathProcessor extends PathProcessor
 {

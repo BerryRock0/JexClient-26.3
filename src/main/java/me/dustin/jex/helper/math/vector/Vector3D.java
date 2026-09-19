@@ -2,7 +2,7 @@ package me.dustin.jex.helper.math.vector;
 
 import me.dustin.jex.helper.math.Matrix4x4;
 import net.minecraft.util.math.Matrix4f;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 
 public class Vector3D {
     

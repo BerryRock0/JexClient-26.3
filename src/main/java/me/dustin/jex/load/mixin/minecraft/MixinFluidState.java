@@ -3,7 +3,7 @@ package me.dustin.jex.load.mixin.minecraft;
 import me.dustin.jex.event.world.EventWaterVelocity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.BlockView;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

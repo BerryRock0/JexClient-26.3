@@ -19,7 +19,7 @@ import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 
 public class BonemealAura extends Feature {
     public static BonemealAura INSTANCE;

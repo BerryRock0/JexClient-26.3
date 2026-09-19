@@ -24,7 +24,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.util.math.Matrix4f;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 
 public class TwoDeeESP extends FeatureExtension {
     public TwoDeeESP() {

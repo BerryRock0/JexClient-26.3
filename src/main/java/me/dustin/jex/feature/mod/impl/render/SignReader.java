@@ -17,7 +17,7 @@ import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 import java.util.HashMap;
 
 public class SignReader extends Feature {

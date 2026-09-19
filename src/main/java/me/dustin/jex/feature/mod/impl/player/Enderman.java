@@ -16,7 +16,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 import me.dustin.jex.feature.mod.core.Feature;
 
 public class Enderman extends Feature {

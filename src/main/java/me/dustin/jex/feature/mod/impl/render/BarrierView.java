@@ -24,7 +24,7 @@ import net.minecraft.client.render.VertexFormats;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Matrix4f;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 
 public class BarrierView extends Feature {
 

@@ -24,7 +24,7 @@ import net.minecraft.entity.mob.WardenEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Matrix4f;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 
 import java.awt.*;
 import java.util.ArrayList;

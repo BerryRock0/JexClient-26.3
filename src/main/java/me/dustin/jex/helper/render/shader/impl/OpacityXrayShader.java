@@ -4,7 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import me.dustin.jex.helper.render.shader.ShaderProgram;
 import me.dustin.jex.helper.render.shader.ShaderUniform;
 import net.fabricmc.loader.impl.FabricLoaderImpl;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.math.Vector4f;
 
 public class OpacityXrayShader extends ShaderProgram {
