@@ -43,7 +43,7 @@ import net.minecraft.item.SnowballItem;
 import net.minecraft.item.ThrowablePotionItem;
 import net.minecraft.item.TridentItem;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.hit.EntityHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.AABB;
