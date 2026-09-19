@@ -72,11 +72,6 @@ public abstract class MixinClientPlayer extends AbstractClientPlayer implements 
     @Shadow protected abstract void startRidingJump();
     @Shadow protected abstract ArgumentSignatureDataMap signArguments(MessageMetadata signer, ParseResults<CommandSource> parseResults, @Nullable Text preview, LastSeenMessageList lastSeenMessages);
 
-    public MixinClientPlayerEntity(ClientWorld world, GameProfile profile, PlayerPublicKey playerPublicKey)
-    {
-        super(world, profile, playerPublicKey);
-    }
-
     @Override
     public boolean isTouchingWater() {
         EventIsPlayerTouchingWater eventIsPlayerTouchingWater = new EventIsPlayerTouchingWater(super.isTouchingWater()).run();
