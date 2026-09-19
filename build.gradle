@@ -46,11 +46,3 @@ java {
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 }
-
-jar {
-	from("LICENSE") {}
-}
-
-remapJar {
-	archiveName("JexClient.jar")
-}
