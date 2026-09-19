@@ -17,7 +17,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.block.CropBlock;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.HoeItem;
+import net.minecraft.item.*;
 import net.minecraft.world.item.ItemStack;
 
 public class AutoTool extends Feature {

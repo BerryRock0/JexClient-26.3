@@ -21,7 +21,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.JumpingMount;
 import net.minecraft.entity.MovementType;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.ElytraItem;
+import net.minecraft.item.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.network.encryption.PlayerPublicKey;

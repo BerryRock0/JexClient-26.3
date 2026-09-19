@@ -16,7 +16,7 @@ import me.dustin.jex.helper.player.InventoryHelper;
 import me.dustin.jex.helper.player.PlayerHelper;
 import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.item.BlockItem;
+import net.minecraft.item.*;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.util.ActionResult;
 import net.minecraft.world.InteractionHand;

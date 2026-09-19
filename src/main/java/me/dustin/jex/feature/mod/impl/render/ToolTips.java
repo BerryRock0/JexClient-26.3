@@ -20,7 +20,7 @@ import me.dustin.jex.helper.render.Render2DHelper;
 import net.minecraft.client.gui.DrawableHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.item.BlockItem;
+import net.minecraft.item.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.nbt.NbtCompound;

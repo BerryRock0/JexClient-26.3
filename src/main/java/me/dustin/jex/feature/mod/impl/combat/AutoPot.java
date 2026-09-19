@@ -10,7 +10,7 @@ import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.player.InventoryHelper;
 import me.dustin.jex.helper.player.PlayerHelper;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.item.SplashPotionItem;
+import net.minecraft.item.*;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.world.InteractionHand;
 import me.dustin.events.core.annotate.EventPointer;

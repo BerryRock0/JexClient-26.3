@@ -22,7 +22,7 @@ import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoulSandBlock;
 import net.minecraft.block.StainedGlassBlock;
-import net.minecraft.item.BlockItem;
+import net.minecraft.item.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.phys.BlockHitResult;

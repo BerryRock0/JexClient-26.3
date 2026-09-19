@@ -14,7 +14,7 @@ import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.block.FluidBlock;
-import net.minecraft.item.BlockItem;
+import net.minecraft.item.*;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.util.hit.HitResult;

@@ -18,7 +18,7 @@ import me.dustin.jex.helper.render.Render3DHelper;
 import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.world.level.block.Blocks;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.item.BlockItem;
+import net.minecraft.item.*;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
