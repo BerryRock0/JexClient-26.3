@@ -5,7 +5,7 @@ import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.player.PlayerHelper;
 import me.dustin.jex.helper.render.font.FontHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import org.apache.commons.lang3.text.WordUtils;
 
 public class BiomeElement extends HudElement {
@@ -18,7 +18,7 @@ public class BiomeElement extends HudElement {
         if (!isVisible())
             return;
         super.render(matrixStack);
-        String biome = Wrapper.INSTANCE.getWorld().getRegistryManager().get(Registry.BIOME_KEY).getId(Wrapper.INSTANCE.getWorld().getBiome(Wrapper.INSTANCE.getLocalPlayer().getBlockPos()).value()).getPath().replace("_", " ");
+        String biome = Wrapper.INSTANCE.getWorld().getRegistryManager().get(BuiltInRegistries.BIOME_KEY).getId(Wrapper.INSTANCE.getWorld().getBiome(Wrapper.INSTANCE.getLocalPlayer().getBlockPos()).value()).getPath().replace("_", " ");
         biome = WordUtils.capitalizeFully(biome);
         String str = String.format("Biome\247f: \2477%s", biome);
         float x = isLeftSide() ? getX() + 2.5f : getX() + getWidth() - 0.5f - FontHelper.INSTANCE.getStringWidth(str);

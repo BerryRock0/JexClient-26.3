@@ -50,7 +50,7 @@ import net.minecraft.network.packet.s2c.play.UpdateSelectedSlotS2CPacket;
 import net.minecraft.network.packet.s2c.play.WorldTimeUpdateS2CPacket;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.Difficulty;
@@ -80,7 +80,7 @@ public class BotClientPlayNetworkHandler extends ClientPlayNetworkHandler {
         ArrayList<RegistryKey<World>> list = Lists.newArrayList(packet.dimensionIds());
         Collections.shuffle(list);
         RegistryKey<World> registryKey = packet.dimensionId();
-        RegistryEntry<DimensionType> registryEntry = this.getRegistryManager().get(Registry.DIMENSION_TYPE_KEY).entryOf(packet.dimensionType());
+        RegistryEntry<DimensionType> registryEntry = this.getRegistryManager().get(BuiltInRegistries.DIMENSION_TYPE_KEY).entryOf(packet.dimensionType());
         int chunkLoadDistance = packet.viewDistance();
         int simulationDistance = packet.simulationDistance();
         boolean bl = packet.debugWorld();

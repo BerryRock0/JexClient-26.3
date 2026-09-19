@@ -20,7 +20,7 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import org.lwjgl.glfw.GLFW;
 import java.util.ArrayList;
 import java.util.Random;
@@ -277,7 +277,7 @@ public class SearchSelectScreen extends Screen {
         float buttonWidth = 198;
         float buttonHeight = 20;
 
-        for (Block block : Registry.BLOCK) {
+        for (Block block : BuiltInRegistries.BLOCK) {
             if (block == Blocks.AIR)
                 continue;
             if (Search.getBlocks().keySet().contains(block)) {
@@ -314,10 +314,10 @@ public class SearchSelectScreen extends Screen {
         float buttonWidth = 198;
         float buttonHeight = 20;
 
-        for (Block block : Registry.BLOCK) {
+        for (Block block : BuiltInRegistries.BLOCK) {
             if (block == Blocks.AIR)
                 continue;
-            String blockName = Registry.BLOCK.getId(block).toString();
+            String blockName = BuiltInRegistries.BLOCK.getId(block).toString();
             if (blockName.contains(":"))
                 blockName = blockName.split(":")[1];
             if (!blockName.replace("_", " ").toLowerCase().contains(searchField.getText().toLowerCase()))

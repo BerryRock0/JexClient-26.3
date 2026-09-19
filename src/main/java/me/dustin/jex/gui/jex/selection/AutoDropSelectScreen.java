@@ -20,7 +20,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import org.lwjgl.glfw.GLFW;
 import java.util.ArrayList;
 
@@ -277,7 +277,7 @@ public class AutoDropSelectScreen extends Screen {
         float buttonWidth = 198;
         float buttonHeight = 20;
 
-        for (Item item : Registry.ITEM) {
+        for (Item item : BuiltInRegistries.ITEM) {
             if (item == Items.AIR)
                 continue;
             if (AutoDrop.INSTANCE.getItems().contains(item)) {
@@ -314,10 +314,10 @@ public class AutoDropSelectScreen extends Screen {
         float buttonWidth = 198;
         float buttonHeight = 20;
 
-        for (Item item : Registry.ITEM) {
+        for (Item item : BuiltInRegistries.ITEM) {
             if (item == Items.AIR)
                 continue;
-            String itemName = Registry.ITEM.getId(item).toString();
+            String itemName = BuiltInRegistries.ITEM.getId(item).toString();
             if (itemName.contains(":"))
                 itemName = itemName.split(":")[1];
             if (!itemName.replace("_", " ").toLowerCase().contains(searchField.getText().toLowerCase()))

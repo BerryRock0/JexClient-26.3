@@ -5,7 +5,7 @@ import me.dustin.jex.file.core.ConfigFile;
 import me.dustin.jex.helper.file.YamlHelper;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -18,8 +18,8 @@ public class AutoDropFile extends ConfigFile {
         Map<String, Object> yamlMap = new HashMap<>();
         AutoDrop.INSTANCE.getItems().forEach(item -> {
             Map<String, Object> blockData = new HashMap<>();
-            blockData.put("mod", Registry.ITEM.getId(item).getNamespace());
-            String itemName = Registry.ITEM.getId(item).toString();
+            blockData.put("mod", BuiltInRegistries.ITEM.getId(item).getNamespace());
+            String itemName = BuiltInRegistries.ITEM.getId(item).toString();
             if (itemName.contains(":"))
                 itemName = itemName.split(":")[1];
             yamlMap.put(itemName, blockData);
@@ -36,7 +36,7 @@ public class AutoDropFile extends ConfigFile {
         parsedyaml.forEach((s, o) -> {
             Map<String, Object> blockData = (Map<String, Object>)o;
             String mod = (String)blockData.get("mod");
-            Optional<Item> item = Registry.ITEM.getOrEmpty(new Identifier(mod, s));
+            Optional<Item> item = BuiltInRegistries.ITEM.getOrEmpty(new Identifier(mod, s));
             item.ifPresent(value -> AutoDrop.INSTANCE.getItems().add(value));
         });
     }

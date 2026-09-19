@@ -18,7 +18,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import java.util.Random;
 
 public class CreativeDrop extends Feature {
@@ -66,7 +66,7 @@ public class CreativeDrop extends Feature {
                     if (this.nameProperty.value())
                         itemStack.setCustomName(Component.literal(name));
                     if (enchantProperty.value())
-                        Registry.ENCHANTMENT.forEach(enchantment -> {
+                        BuiltInRegistries.ENCHANTMENT.forEach(enchantment -> {
                             itemStack.addEnchantment(enchantment, 127);
                         });
                     NetworkHelper.INSTANCE.sendPacket(new CreativeInventoryActionC2SPacket(36, itemStack));

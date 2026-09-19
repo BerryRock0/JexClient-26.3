@@ -56,7 +56,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.network.NetworkSide;
 import net.minecraft.network.NetworkState;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.glfw.GLFW;
@@ -229,7 +229,7 @@ public enum JexClient {
         //for the entity id lists made for ChatBot
         int i = 0;
         ArrayList<String> l = new ArrayList<>();
-        for (EntityType<?> entityType : Registry.ENTITY_TYPE) {
+        for (EntityType<?> entityType : BuiltInRegistries.ENTITY_TYPE) {
             l.add(i + "=" + entityType.getTranslationKey());
             i++;
         }
