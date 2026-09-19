@@ -8,7 +8,7 @@ import me.dustin.jex.event.render.EventNametagShouldRender;
 import me.dustin.jex.helper.misc.Wrapper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.entity.MovementType;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;

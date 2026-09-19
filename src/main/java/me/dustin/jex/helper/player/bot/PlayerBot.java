@@ -30,7 +30,7 @@ import net.minecraft.client.network.OtherClientPlayerEntity;
 import net.minecraft.client.network.ServerAddress;
 import net.minecraft.client.util.Session;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.entity.MovementType;
 import net.minecraft.entity.decoration.ItemFrameEntity;

@@ -3,7 +3,7 @@ package me.dustin.jex.event.render;
 import me.dustin.events.core.Event;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 
 public class EventWorldRenderEntity extends Event {
     private final Entity entity;

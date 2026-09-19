@@ -2,7 +2,7 @@ package me.dustin.jex.load.mixin.minecraft;
 
 import me.dustin.jex.event.world.EventSpawnEntity;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

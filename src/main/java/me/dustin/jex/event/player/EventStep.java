@@ -1,7 +1,7 @@
 package me.dustin.jex.event.player;
 
 import me.dustin.events.core.Event;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 
 public class EventStep extends Event {
     private final Entity entity;

@@ -3,7 +3,7 @@ package me.dustin.jex.helper.math;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Random;
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec2f;
