@@ -17,7 +17,7 @@ import net.minecraft.client.texture.NativeImageBackedTexture;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Matrix4f;
+import org.joml.Matrix4f;
 import org.apache.commons.codec.binary.Base64;
 
 import javax.imageio.ImageIO;

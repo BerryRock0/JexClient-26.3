@@ -22,7 +22,7 @@ import net.minecraft.client.texture.NativeImage;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Matrix4f;
+import org.joml.Matrix4f;
 import org.joml.Quaterniond;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.Heightmap;

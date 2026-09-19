@@ -18,7 +18,7 @@ import net.minecraft.client.gl.Framebuffer;
 import net.minecraft.client.gl.SimpleFramebuffer;
 import net.minecraft.client.render.*;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.util.math.Matrix4f;
+import org.joml.Matrix4f;
 
 public class ShaderESP extends FeatureExtension {
 

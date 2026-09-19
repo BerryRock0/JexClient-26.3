@@ -9,7 +9,7 @@ import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.Shader;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.util.math.Matrix4f;
+import org.joml.Matrix4f;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;

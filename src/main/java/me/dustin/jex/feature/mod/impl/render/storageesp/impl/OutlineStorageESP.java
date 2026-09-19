@@ -27,7 +27,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.util.math.Matrix4f;
+import org.joml.Matrix4f;
 import net.minecraft.world.phys.Vec3;
 
 import java.awt.*;

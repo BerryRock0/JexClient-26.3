@@ -1,7 +1,7 @@
 package me.dustin.jex.helper.math.vector;
 
 import me.dustin.jex.helper.math.Matrix4x4;
-import net.minecraft.util.math.Matrix4f;
+import org.joml.Matrix4f;
 import net.minecraft.util.math.Vector4f;
 
 public class Vector4D {
