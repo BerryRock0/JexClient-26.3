@@ -149,7 +149,6 @@ public enum CommandManager {
 
     private boolean executeCommand(String message)
     {
-        
         if (message.isEmpty() || !message.startsWith(getPrefix()))
             return false;
         
@@ -162,14 +161,6 @@ public enum CommandManager {
         catch (Exception e) {}
 
         return true;
-    }
-
-    private Text getErrorMessage(CommandSyntaxException e)
-    {
-        Text message = Texts.toText(e.getRawMessage());
-        String context = e.getContext();
-
-        return context != null ? Text.translatable("command.context.parse_error", message, context) : message;
     }
     
     public ArrayList<Command> getCommands()
