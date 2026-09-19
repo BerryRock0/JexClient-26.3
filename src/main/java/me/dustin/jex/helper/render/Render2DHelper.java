@@ -38,7 +38,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Matrix4f;
-import net.minecraft.util.math.Quaternion;
+import org.joml.Quaterniond;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.math.Vec3f;
@@ -211,8 +211,8 @@ public enum Render2DHelper {
         PoseStack matrixStack2 = new MatrixStack();
         matrixStack2.translate(0.0, 0.0, 1000.0);
         matrixStack2.scale(scale, scale, scale);
-        Quaternion quaternion = Vec3f.POSITIVE_Z.getDegreesQuaternion(0);
-        Quaternion quaternion2 = Vec3f.POSITIVE_Y.getDegreesQuaternion(yaw);
+        Quaterniond quaternion = Vec3f.POSITIVE_Z.getDegreesQuaternion(0);
+        Quaterniond quaternion2 = Vec3f.POSITIVE_Y.getDegreesQuaternion(yaw);
         quaternion.hamiltonProduct(quaternion2);
         matrixStack2.multiply(quaternion);
         DiffuseLighting.method_34742();
@@ -264,59 +264,59 @@ public enum Render2DHelper {
         bindTexture(skin);
         RenderSystem.enableBlend();
         matrixStack.translate(x - 4, y - 4, 0);
-        matrixStack.multiply(new Quaternion(new Vec3f(0, 1, 0), yaw, true));
-        matrixStack.multiply(new Quaternion(new Vec3f(1, 0, 0), pitch, true));
+        matrixStack.multiply(new Quaterniond(new Vec3f(0, 1, 0), yaw, true));
+        matrixStack.multiply(new Quaterniond(new Vec3f(1, 0, 0), pitch, true));
 
         //face
         renderTexture(matrixStack, -8, -8, -8, 32, 32, 8, 8, 8, 8, 64, 64);
         renderTexture(matrixStack, -8, -8, -8, 32, 32, 40, 8, 8, 8, 64, 64);
 
         //top of head
-        matrixStack.multiply(new Quaternion(new Vec3f(-1, 0, 0), 90, true));
+        matrixStack.multiply(new Quaterniond(new Vec3f(-1, 0, 0), 90, true));
         renderTexture(matrixStack, -8, -24, -8, 32, 32, 8, 0, 8, 8, 64, 64);
         renderTexture(matrixStack, -8, -24, -8, 32, 32, 40, 0, 8, 8, 64, 64);
-        matrixStack.multiply(new Quaternion(new Vec3f(1, 0, 0), 90, true));
+        matrixStack.multiply(new Quaterniond(new Vec3f(1, 0, 0), 90, true));
 
         //back of head
-        matrixStack.multiply(new Quaternion(new Vec3f(0, 1, 0), 180, true));
+        matrixStack.multiply(new Quaterniond(new Vec3f(0, 1, 0), 180, true));
         renderTexture(matrixStack, -24, -8, -24, 32, 32, 24, 8, 8, 8, 64, 64);
         renderTexture(matrixStack, -24, -8, -24, 32, 32, 48, 8, 8, 8, 64, 64);
-        matrixStack.multiply(new Quaternion(new Vec3f(0, -1, 0), 180, true));
+        matrixStack.multiply(new Quaterniond(new Vec3f(0, -1, 0), 180, true));
 
         //bottom of head
-        matrixStack.multiply(new Quaternion(new Vec3f(1, 0, 0), 90, true));
-        matrixStack.multiply(new Quaternion(new Vec3f(0, 0, 1), 180, true));
+        matrixStack.multiply(new Quaterniond(new Vec3f(1, 0, 0), 90, true));
+        matrixStack.multiply(new Quaterniond(new Vec3f(0, 0, 1), 180, true));
         renderTexture(matrixStack, -24, -24, -24, 32, 32, 16, 0, 8, 8, 64, 64);
         renderTexture(matrixStack, -24, -24, -24, 32, 32, 48, 0, 8, 8, 64, 64);
-        matrixStack.multiply(new Quaternion(new Vec3f(0, 0, -1), 180, true));
-        matrixStack.multiply(new Quaternion(new Vec3f(-1, 0, 0), 90, true));
+        matrixStack.multiply(new Quaterniond(new Vec3f(0, 0, -1), 180, true));
+        matrixStack.multiply(new Quaterniond(new Vec3f(-1, 0, 0), 90, true));
 
         //right side head
-        matrixStack.multiply(new Quaternion(new Vec3f(0, 1, 0), 90, true));
+        matrixStack.multiply(new Quaterniond(new Vec3f(0, 1, 0), 90, true));
         renderTexture(matrixStack, -24, -8, -8, 32, 32, 0, 8, 8, 8, 64, 64);
         renderTexture(matrixStack, -24, -8, -8, 32, 32, 32, 8, 8, 8, 64, 64);
-        matrixStack.multiply(new Quaternion(new Vec3f(0, -1, 0), 90, true));
+        matrixStack.multiply(new Quaterniond(new Vec3f(0, -1, 0), 90, true));
 
         //left side head
-        matrixStack.multiply(new Quaternion(new Vec3f(0, 1, 0), 270, true));
+        matrixStack.multiply(new Quaterniond(new Vec3f(0, 1, 0), 270, true));
         renderTexture(matrixStack, -8, -8, -24, 32, 32, 16, 8, 8, 8, 64, 64);
         renderTexture(matrixStack, -8, -8, -24, 32, 32, 48, 8, 8, 8, 64, 64);
-        matrixStack.multiply(new Quaternion(new Vec3f(0, -1, 0), 270, true));
+        matrixStack.multiply(new Quaterniond(new Vec3f(0, -1, 0), 270, true));
     }
 
     public void draw3DCape(PoseStack poseStack, float x, float y, Identifier identifier, float yaw, float pitch) {
         poseStack.push();
         poseStack.translate(x + 16, y + 30, 64);
-        poseStack.multiply(new Quaternion(new Vec3f(0, 1, 0), yaw, true));
-        poseStack.multiply(new Quaternion(new Vec3f(1, 0, 0), pitch, true));
+        poseStack.multiply(new Quaterniond(new Vec3f(0, 1, 0), yaw, true));
+        poseStack.multiply(new Quaterniond(new Vec3f(1, 0, 0), pitch, true));
         //
         bindTexture(identifier);
         //front of cape
         DrawableHelper.drawTexture(poseStack, -16, -30, 2.5f, 4, 32, 60, 198, 124);
         //back of cape
-        poseStack.multiply(new Quaternion(new Vec3f(0.0F, 1.0F, 0.0F), 180, true));
+        poseStack.multiply(new Quaterniond(new Vec3f(0.0F, 1.0F, 0.0F), 180, true));
         DrawableHelper.drawTexture(poseStack, -16, -30, 34.5f, 4, 32, 60, 198, 124);
-        poseStack.multiply(new Quaternion(new Vec3f(0.0F, 1.0F, 0.0F), -180, true));
+        poseStack.multiply(new Quaterniond(new Vec3f(0.0F, 1.0F, 0.0F), -180, true));
         //
         poseStack.pop();
     }

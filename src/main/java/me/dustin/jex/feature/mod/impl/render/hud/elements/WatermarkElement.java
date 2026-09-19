@@ -7,7 +7,7 @@ import me.dustin.jex.helper.render.Render2DHelper;
 import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.client.gui.screen.ChatScreen;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.util.math.Quaternion;
+import org.joml.Quaterniond;
 import net.minecraft.util.math.Vec3f;
 
 public class WatermarkElement extends HudElement {
@@ -37,13 +37,13 @@ public class WatermarkElement extends HudElement {
             case STATIC:
                 break;
             case SPIN_ONLY:
-                matrixStack.multiply(new Quaternion(new Vec3f(0.0F, 0.0F, 1.0F), rot, true));
+                matrixStack.multiply(new Quaterniond(new Vec3f(0.0F, 0.0F, 1.0F), rot, true));
                 break;
             case FLIP_ONLY:
-                matrixStack.multiply(new Quaternion(new Vec3f(0.0F, 1F, 0F), rot, true));
+                matrixStack.multiply(new Quaterniond(new Vec3f(0.0F, 1F, 0F), rot, true));
                 break;
             case SPINFLIP:
-                matrixStack.multiply(new Quaternion(new Vec3f(0.0F, 0.5f, 1F), rot, true));
+                matrixStack.multiply(new Quaterniond(new Vec3f(0.0F, 0.5f, 1F), rot, true));
                 break;
         }
 
@@ -62,13 +62,13 @@ public class WatermarkElement extends HudElement {
             case STATIC:
                 break;
             case SPIN_ONLY:
-                matrixStack.multiply(new Quaternion(new Vec3f(0.0F, 0.0F, -1.0F), rot, true));
+                matrixStack.multiply(new Quaterniond(new Vec3f(0.0F, 0.0F, -1.0F), rot, true));
                 break;
             case FLIP_ONLY:
-                matrixStack.multiply(new Quaternion(new Vec3f(0.0F, -1F, 0F), rot, true));
+                matrixStack.multiply(new Quaterniond(new Vec3f(0.0F, -1F, 0F), rot, true));
                 break;
             case SPINFLIP:
-                matrixStack.multiply(new Quaternion(new Vec3f(0.0F, -0.5f, -1F), rot, true));
+                matrixStack.multiply(new Quaterniond(new Vec3f(0.0F, -0.5f, -1F), rot, true));
                 break;
         }
         matrixStack.pop();

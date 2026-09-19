@@ -8,7 +8,7 @@ import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.math.Quaternion;
+import org.joml.Quaterniond;
 import net.minecraft.util.math.Vec3f;
 
 public class JexPenisFeatureRenderer extends FeatureRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>> {
@@ -22,7 +22,7 @@ public class JexPenisFeatureRenderer extends FeatureRenderer<PlayerEntity, Playe
         if (playerEntity.isInvisible() || !PenisHelper.INSTANCE.hasPenis(uuid))
             return;
         matrices.push();
-        matrices.multiply(new Quaternion(new Vec3f(1, 0, 0), 90, true));
+        matrices.multiply(new Quaterniond(new Vec3f(1, 0, 0), 90, true));
         boolean sneak = playerEntity.isInSneakingPose();
         matrices.translate(0, sneak ? 0.14 : -0.12, -0.8);
         PenisHelper.INSTANCE.getPenis().pitch = this.getContextModel().leftArm.pitch / 4;

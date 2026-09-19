@@ -10,7 +10,7 @@ import me.dustin.jex.helper.misc.StopWatch;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.render.Render2DHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.util.math.Quaternion;
+import org.joml.Quaterniond;
 import net.minecraft.util.math.Vec3f;
 import me.dustin.jex.feature.mod.core.Feature;
 
@@ -82,7 +82,7 @@ public class Crosshair extends Feature {
 		if (spinProperty.value()) {
 			matrixStack.push();
 			matrixStack.translate(Render2DHelper.INSTANCE.getScaledWidth() / 2.f, Render2DHelper.INSTANCE.getScaledHeight() / 2.f, 0);
-			matrixStack.multiply(new Quaternion(new Vec3f(0F, 0F, 1F), spinAmount, true));
+			matrixStack.multiply(new Quaterniond(new Vec3f(0F, 0F, 1F), spinAmount, true));
 			matrixStack.translate(-(Render2DHelper.INSTANCE.getScaledWidth() / 2.f), -(Render2DHelper.INSTANCE.getScaledHeight() / 2.f), 0);
 		}
 		Render2DHelper.INSTANCE.fillAndBorder(matrixStack, x - gapProperty.value() - sizeProperty.value() - thicknessProperty.value(), y - thicknessProperty.value(), x - gapProperty.value() - thicknessProperty.value(), y + thicknessProperty.value(), 0xff000000, colorProperty.value().getRGB(), outlineProperty.value());

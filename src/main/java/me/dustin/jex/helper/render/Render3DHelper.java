@@ -195,7 +195,7 @@ public enum Render3DHelper {
         float yaw = EntityHelper.INSTANCE.getYaw(entity);
         setup3DRender(true);
         matrixstack.translate(x, y, z);
-        matrixstack.multiply(new Quaternion(new Vec3f(0, -1, 0), yaw, true));
+        matrixstack.multiply(new Quaterniond(new Vec3f(0, -1, 0), yaw, true));
         matrixstack.translate(-x, -y, -z);
 
         AABB bb = new Box(x - entity.getWidth() + 0.25, y, z - entity.getWidth() + 0.25, x + entity.getWidth() - 0.25, y + entity.getHeight() + 0.1, z + entity.getWidth() - 0.25);
@@ -209,7 +209,7 @@ public enum Render3DHelper {
 
         end3DRender();
         matrixstack.translate(x, y, z);
-        matrixstack.multiply(new Quaternion(new Vec3f(0, 1, 0), yaw, true));
+        matrixstack.multiply(new Quaterniond(new Vec3f(0, 1, 0), yaw, true));
         matrixstack.translate(-x, -y, -z);
     }
 
@@ -244,20 +244,20 @@ public enum Render3DHelper {
 
     public void directionTranslate(PoseStack poseStack, Direction direction) {
         switch (direction) {
-            case UP -> poseStack.multiply(new Quaternion(new Vec3f(1, 0, 0), 180, true));
+            case UP -> poseStack.multiply(new Quaterniond(new Vec3f(1, 0, 0), 180, true));
             case NORTH -> {
-                poseStack.multiply(new Quaternion(new Vec3f(1, 0, 0), 90, true));
+                poseStack.multiply(new Quaterniond(new Vec3f(1, 0, 0), 90, true));
             }
             case SOUTH -> {
-                poseStack.multiply(new Quaternion(new Vec3f(1, 0, 0), -90, true));
+                poseStack.multiply(new Quaterniond(new Vec3f(1, 0, 0), -90, true));
             }
             case WEST -> {
-                poseStack.multiply(new Quaternion(new Vec3f(0, 1, 0), 90, true));
-                poseStack.multiply(new Quaternion(new Vec3f(1, 0, 0), 90, true));
+                poseStack.multiply(new Quaterniond(new Vec3f(0, 1, 0), 90, true));
+                poseStack.multiply(new Quaterniond(new Vec3f(1, 0, 0), 90, true));
             }
             case EAST -> {
-                poseStack.multiply(new Quaternion(new Vec3f(0, 1, 0), 90, true));
-                poseStack.multiply(new Quaternion(new Vec3f(1, 0, 0), -90, true));
+                poseStack.multiply(new Quaterniond(new Vec3f(0, 1, 0), 90, true));
+                poseStack.multiply(new Quaterniond(new Vec3f(1, 0, 0), -90, true));
             }
         }
     }

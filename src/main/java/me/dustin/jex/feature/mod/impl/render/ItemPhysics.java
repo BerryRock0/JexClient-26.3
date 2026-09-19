@@ -14,7 +14,7 @@ import net.minecraft.client.render.model.json.ModelTransformation;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Quaternion;
+import org.joml.Quaterniond;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.math.Vec3f;
 
@@ -68,9 +68,9 @@ public class ItemPhysics extends Feature {//fancier version that's not just flat
         if (itemEntity.isOnGround())
             matrixStack.translate(0, bakedModel.hasDepth() ? -0.04 : -0.151f, 0);
 
-        matrixStack.multiply(new Quaternion(new Vec3f(negValues.get(itemEntity).x == 1 ? -1 : 1, 0, 0), pitch, true));
-        matrixStack.multiply(new Quaternion(new Vec3f(0, 0, negValues.get(itemEntity).z == 1 ? -1 : 1), roll, true));
-        matrixStack.multiply(new Quaternion(new Vec3f(0, negValues.get(itemEntity).y == 1 ? -1 : 1, 0), yaw, true));
+        matrixStack.multiply(new Quaterniond(new Vec3f(negValues.get(itemEntity).x == 1 ? -1 : 1, 0, 0), pitch, true));
+        matrixStack.multiply(new Quaterniond(new Vec3f(0, 0, negValues.get(itemEntity).z == 1 ? -1 : 1), roll, true));
+        matrixStack.multiply(new Quaterniond(new Vec3f(0, negValues.get(itemEntity).y == 1 ? -1 : 1, 0), yaw, true));
 
         matrixStack.translate(0, -(itemEntity.getHeight() / 1.5f), 0);
 

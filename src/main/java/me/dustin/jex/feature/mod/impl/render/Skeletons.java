@@ -26,7 +26,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Matrix4f;
-import net.minecraft.util.math.Quaternion;
+import org.joml.Quaterniond;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.math.Vec3f;
 import java.awt.*;
@@ -79,8 +79,8 @@ public class Skeletons extends Feature {//it looks cool as fuck but seriously fu
                 matrixStack.translate(footPos.x, footPos.y, footPos.z);
                 if (swimming) matrixStack.translate(0, 0.35f, 0);
 
-                matrixStack.multiply(new Quaternion(new Vec3f(0, -1, 0), playerEntity.bodyYaw + 180, true));
-                if (swimming || flying) matrixStack.multiply(new Quaternion(new Vec3f(-1, 0, 0), 90 + m, true));
+                matrixStack.multiply(new Quaterniond(new Vec3f(0, -1, 0), playerEntity.bodyYaw + 180, true));
+                if (swimming || flying) matrixStack.multiply(new Quaterniond(new Vec3f(-1, 0, 0), 90 + m, true));
 
                 if (swimming) matrixStack.translate(0, -0.95f, 0);
 
@@ -139,10 +139,10 @@ public class Skeletons extends Feature {//it looks cool as fuck but seriously fu
                 BufferHelper.INSTANCE.drawWithShader(bufferBuilder, ShaderHelper.INSTANCE.getPosColorShader());
 
                 if (swimming) matrixStack.translate(0, 0.95f, 0);
-                if (swimming || flying) matrixStack.multiply(new Quaternion(new Vec3f(1, 0, 0), 90 + m, true));
+                if (swimming || flying) matrixStack.multiply(new Quaterniond(new Vec3f(1, 0, 0), 90 + m, true));
                 if (swimming) matrixStack.translate(0, -0.35f, 0);
 
-                matrixStack.multiply(new Quaternion(new Vec3f(0, 1, 0), playerEntity.bodyYaw + 180, true));
+                matrixStack.multiply(new Quaterniond(new Vec3f(0, 1, 0), playerEntity.bodyYaw + 180, true));
                 matrixStack.translate(-footPos.x, -footPos.y, -footPos.z);
             }
         });

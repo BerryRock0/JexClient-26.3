@@ -27,7 +27,7 @@ import net.minecraft.client.render.VertexFormats;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.util.math.Matrix4f;
-import net.minecraft.util.math.Quaternion;
+import org.joml.Quaterniond;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.math.Vec3f;
 import java.awt.*;
@@ -66,7 +66,7 @@ public class OutlineBox extends FeatureExtension {
 					float yaw = EntityHelper.INSTANCE.getYaw(entity);
 
 					eventRender3D.getPoseStack().translate(vec.x, vec.y, vec.z);
-					eventRender3D.getPoseStack().multiply(new Quaternion(new Vec3f(0, -1, 0), yaw, true));
+					eventRender3D.getPoseStack().multiply(new Quaterniond(new Vec3f(0, -1, 0), yaw, true));
 					eventRender3D.getPoseStack().translate(-vec.x, -vec.y, -vec.z);
 
 					Matrix4f matrix4f = eventRender3D.getPoseStack().peek().getPositionMatrix();
@@ -108,7 +108,7 @@ public class OutlineBox extends FeatureExtension {
 					bufferBuilder.vertex(matrix4f, minX, maxY, minZ).color(color1.getRed(), color1.getGreen(), color1.getBlue(), color1.getAlpha()).next();
 
 					eventRender3D.getPoseStack().translate(vec.x, vec.y, vec.z);
-					eventRender3D.getPoseStack().multiply(new Quaternion(new Vec3f(0, 1, 0), yaw, true));
+					eventRender3D.getPoseStack().multiply(new Quaterniond(new Vec3f(0, 1, 0), yaw, true));
 					eventRender3D.getPoseStack().translate(-vec.x, -vec.y, -vec.z);
 				}
 			});
