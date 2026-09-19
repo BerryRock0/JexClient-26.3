@@ -43,7 +43,8 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientPlayerEntity.class)
-public abstract class MixinClientPlayer extends AbstractClientPlayer implements IClientPlayer {
+public abstract class MixinClientPlayer extends AbstractClientPlayer implements IClientPlayer
+{
 
     private EventPlayerPackets preEvent;
 
@@ -51,47 +52,28 @@ public abstract class MixinClientPlayer extends AbstractClientPlayer implements 
     public Input input;
 
     @Shadow protected abstract void autoJump(float dx, float dz);
-
     @Shadow public int ticksSinceSprintingChanged;
-
     @Shadow protected int ticksLeftToDoubleTapSprint;
-
     @Shadow protected abstract void updateNausea();
-
     @Shadow protected abstract boolean isWalking();
-
     @Shadow private boolean inSneakingPose;
-
     @Shadow public abstract boolean shouldSlowDown();
-
     @Shadow @Final protected MinecraftClient client;
-
     @Shadow private int ticksToNextAutojump;
-
     @Shadow protected abstract void pushOutOfBlocks(double x, double z);
-
     @Shadow @Final public ClientPlayNetworkHandler networkHandler;
-
     @Shadow private boolean falling;
-
     @Shadow private int underwaterVisibilityTicks;
-
     @Shadow protected abstract boolean isCamera();
-
     @Shadow public abstract boolean hasJumpingMount();
-
     @Shadow private float mountJumpStrength;
-
     @Shadow private int field_3938;
-
     @Shadow public abstract float getMountJumpStrength();
-
     @Shadow protected abstract void startRidingJump();
-
-
     @Shadow protected abstract ArgumentSignatureDataMap signArguments(MessageMetadata signer, ParseResults<CommandSource> parseResults, @Nullable Text preview, LastSeenMessageList lastSeenMessages);
 
-    public abstract MixinClientPlayerEntity(ClientWorld world, GameProfile profile, PlayerPublicKey playerPublicKey) {
+    public MixinClientPlayerEntity(ClientWorld world, GameProfile profile, PlayerPublicKey playerPublicKey)
+    {
         super(world, profile, playerPublicKey);
     }
 
