@@ -1,7 +1,7 @@
 package me.dustin.jex.load.mixin.minecraft;
 
 import me.dustin.jex.event.world.EventBlockCollisionShape;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.EntityShapeContext;
 import net.minecraft.block.PowderSnowBlock;

@@ -15,7 +15,7 @@ import me.dustin.jex.helper.player.InventoryHelper;
 import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.block.AbstractButtonBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.block.CarpetBlock;
 import net.minecraft.block.GlassBlock;
 import net.minecraft.block.PressurePlateBlock;

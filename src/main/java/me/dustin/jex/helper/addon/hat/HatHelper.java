@@ -8,7 +8,7 @@ import me.dustin.events.core.annotate.EventPointer;
 import me.dustin.jex.event.render.EventInitPlayerModel;
 import me.dustin.jex.event.render.EventPlayerEntityTexturedModelData;
 import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.model.ModelPartBuilder;

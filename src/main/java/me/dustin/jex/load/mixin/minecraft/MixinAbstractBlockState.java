@@ -3,7 +3,7 @@ package me.dustin.jex.load.mixin.minecraft;
 import me.dustin.jex.event.render.EventBlockBrightness;
 import me.dustin.jex.event.render.EventIsBlockOpaque;
 import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

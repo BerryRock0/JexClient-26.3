@@ -14,7 +14,7 @@ import me.dustin.jex.helper.player.InventoryHelper;
 import me.dustin.jex.feature.mod.core.Feature;
 import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.block.CropBlock;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.HoeItem;

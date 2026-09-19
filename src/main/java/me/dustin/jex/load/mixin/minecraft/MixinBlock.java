@@ -2,7 +2,7 @@ package me.dustin.jex.load.mixin.minecraft;
 
 import me.dustin.jex.event.render.EventShouldDrawSide;
 import me.dustin.jex.helper.world.WorldHelper;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

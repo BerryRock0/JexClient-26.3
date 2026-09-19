@@ -9,8 +9,8 @@ import me.dustin.jex.feature.mod.core.Category;
 import me.dustin.jex.feature.property.Property;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.world.WorldHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import me.dustin.jex.feature.mod.core.Feature;
 
 public class NoSlow extends Feature {

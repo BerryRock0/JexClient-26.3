@@ -1,7 +1,7 @@
 package bedrockminer.utils;
 
 import java.util.ArrayList;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.block.PistonBlock;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.core.BlockPos;

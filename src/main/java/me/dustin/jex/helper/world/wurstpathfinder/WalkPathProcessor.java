@@ -17,7 +17,7 @@ import me.dustin.jex.feature.mod.impl.player.Jesus;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.player.PlayerHelper;
 import me.dustin.jex.helper.world.WorldHelper;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.block.LadderBlock;
 import net.minecraft.block.VineBlock;
 import net.minecraft.world.InteractionHand;

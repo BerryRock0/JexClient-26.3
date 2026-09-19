@@ -1,7 +1,7 @@
 package me.dustin.jex.event.world;
 
 import me.dustin.events.core.Event;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 

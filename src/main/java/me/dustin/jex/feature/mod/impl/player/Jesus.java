@@ -20,7 +20,7 @@ import me.dustin.jex.helper.baritone.BaritoneHelper;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.player.PlayerHelper;
 import me.dustin.jex.helper.world.WorldHelper;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.entity.EntityPose;

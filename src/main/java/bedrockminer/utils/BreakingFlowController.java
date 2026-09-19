@@ -1,7 +1,7 @@
 package bedrockminer.utils;
 
 import me.dustin.jex.helper.misc.Wrapper;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.world.entity.player.Player;
