@@ -3,7 +3,7 @@ package me.dustin.jex.helper.baritone;
 import me.dustin.jex.feature.mod.impl.combat.killaura.KillAura;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 
 public enum BaritoneHelper {
     INSTANCE;

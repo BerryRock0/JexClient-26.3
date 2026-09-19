@@ -18,9 +18,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.world.item.Items;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Direction;
+import net.minecraft.core.Direction;
 import net.minecraft.util.math.Vec3d;
 import me.dustin.jex.feature.mod.core.Feature;
 

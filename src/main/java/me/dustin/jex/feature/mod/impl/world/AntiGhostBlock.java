@@ -6,7 +6,7 @@ import me.dustin.jex.event.world.EventBreakBlock;
 import me.dustin.jex.feature.mod.core.Category;
 import me.dustin.jex.helper.network.NetworkHelper;
 import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
-import net.minecraft.util.math.Direction;
+import net.minecraft.core.Direction;
 import me.dustin.jex.feature.mod.core.Feature;
 
 public class AntiGhostBlock extends Feature {

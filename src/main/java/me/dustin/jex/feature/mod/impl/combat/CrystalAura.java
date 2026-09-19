@@ -25,7 +25,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Direction;
+import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
 import me.dustin.jex.feature.mod.core.Feature;
 import java.awt.*;

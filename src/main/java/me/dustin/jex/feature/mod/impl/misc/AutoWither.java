@@ -14,8 +14,8 @@ import me.dustin.jex.helper.player.PlayerHelper;
 import net.minecraft.world.item.Items;
 import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 
 public class AutoWither extends Feature {
 

@@ -13,7 +13,7 @@ import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.item.Items;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 import me.dustin.jex.feature.mod.core.Feature;
 
 public class BucketCatch extends Feature {

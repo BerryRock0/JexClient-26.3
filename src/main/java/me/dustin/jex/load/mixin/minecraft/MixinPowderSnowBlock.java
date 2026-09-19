@@ -8,7 +8,7 @@ import net.minecraft.block.PowderSnowBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.entity.FallingBlockEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;

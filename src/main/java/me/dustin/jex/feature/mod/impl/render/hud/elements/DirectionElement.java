@@ -5,7 +5,7 @@ import me.dustin.jex.helper.math.TPSHelper;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.math.Direction;
+import net.minecraft.core.Direction;
 import org.apache.commons.lang3.StringUtils;
 
 public class DirectionElement extends HudElement {

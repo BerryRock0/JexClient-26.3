@@ -1,7 +1,7 @@
 package me.dustin.jex.load.impl;
 
 import net.minecraft.client.network.ClientPlayNetworkHandler;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 
 public interface IClientPlayerInteractionManager {
 

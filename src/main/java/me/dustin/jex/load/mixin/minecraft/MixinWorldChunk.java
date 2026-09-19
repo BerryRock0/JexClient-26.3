@@ -2,7 +2,7 @@ package me.dustin.jex.load.mixin.minecraft;
 
 import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.chunk.WorldChunk;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

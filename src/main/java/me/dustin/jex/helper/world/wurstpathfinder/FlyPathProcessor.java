@@ -12,7 +12,7 @@ import me.dustin.jex.feature.mod.impl.movement.fly.Fly;
 import me.dustin.jex.feature.mod.impl.movement.speed.Speed;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.player.PlayerHelper;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;

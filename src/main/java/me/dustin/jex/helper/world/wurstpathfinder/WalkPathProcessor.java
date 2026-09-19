@@ -21,8 +21,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.LadderBlock;
 import net.minecraft.block.VineBlock;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.util.math.Vec3d;
 
 public class WalkPathProcessor extends PathProcessor

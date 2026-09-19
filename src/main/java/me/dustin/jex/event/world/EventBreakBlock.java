@@ -2,7 +2,7 @@ package me.dustin.jex.event.world;
 
 import me.dustin.events.core.Event;
 import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 
 public class EventBreakBlock extends Event {
     private final BlockState blockState;

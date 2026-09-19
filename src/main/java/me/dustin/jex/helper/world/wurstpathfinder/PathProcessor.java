@@ -12,7 +12,7 @@ import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.player.PlayerHelper;
 import me.dustin.jex.load.impl.IKeyBinding;
 import net.minecraft.client.option.KeyBinding;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import java.util.ArrayList;
 

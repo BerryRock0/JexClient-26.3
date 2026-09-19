@@ -17,7 +17,7 @@ import me.dustin.jex.helper.world.wurstpathfinder.PathFinder;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 public class AntiAFK extends Feature {

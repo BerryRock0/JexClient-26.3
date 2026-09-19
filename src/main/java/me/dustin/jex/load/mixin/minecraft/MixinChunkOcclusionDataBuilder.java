@@ -2,7 +2,7 @@ package me.dustin.jex.load.mixin.minecraft;
 
 import me.dustin.jex.event.render.EventMarkChunkClosed;
 import net.minecraft.client.render.chunk.ChunkOcclusionDataBuilder;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

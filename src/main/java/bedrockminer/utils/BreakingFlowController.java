@@ -5,7 +5,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
 import java.util.ArrayList;
 //import java.util.List;
 
