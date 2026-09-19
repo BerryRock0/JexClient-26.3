@@ -105,17 +105,17 @@ public class Waypoints extends Feature {
 				float x = waypoint.getX();
 				float y = waypoint.getY();
 				float z = waypoint.getZ();
-				float distance = ClientMathHelper.INSTANCE.getDistance2D(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3d(x, y, z));
-				Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(new Vec3d(x, waypoint.getY(), z));
+				float distance = ClientMathHelper.INSTANCE.getDistance2D(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3(x, y, z));
+				Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(new Vec3(x, waypoint.getY(), z));
 				if (distance < 270) {
 					Box box = new Box(renderPos.x - 0.2f, renderPos.y, renderPos.z - 0.2f, renderPos.x + 0.2f, (256 - waypoint.y), renderPos.z + 0.2f);
 					Render3DHelper.INSTANCE.drawBox(((EventRender3D) event).getPoseStack(), box, waypoint.getColor());
 				} else {
-					float yaw = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3d(x, y, z)).getYaw();
+					float yaw = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3(x, y, z)).getYaw();
 					x = (float) Wrapper.INSTANCE.getLocalPlayer().getX() + 250 * (float) Math.cos(Math.toRadians(yaw + 90));
 					z = (float) Wrapper.INSTANCE.getLocalPlayer().getZ() + 250 * (float) Math.sin(Math.toRadians(yaw + 90));
 				}
-				Vec3d screenPos = Render2DHelper.INSTANCE.to2D(new Vec3d(x, waypoint.getY() + Wrapper.INSTANCE.getLocalPlayer().getEyeHeight(EntityPose.STANDING), z), event.getPoseStack());
+				Vec3 screenPos = Render2DHelper.INSTANCE.to2D(new Vec3(x, waypoint.getY() + Wrapper.INSTANCE.getLocalPlayer().getEyeHeight(EntityPose.STANDING), z), event.getPoseStack());
 				waypointPositions.put(waypoint, screenPos);
 			}
 		}
@@ -132,23 +132,23 @@ public class Waypoints extends Feature {
 			float x = waypoint.getX();
 			float y = waypoint.getY();
 			float z = waypoint.getZ();
-			float distance = ClientMathHelper.INSTANCE.getDistance2D(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3d(x, y, z));
+			float distance = ClientMathHelper.INSTANCE.getDistance2D(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3(x, y, z));
 			if (distance > 270) {
-				float yaw = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3d(x, y, z)).getYaw();
+				float yaw = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3(x, y, z)).getYaw();
 				x = (float) Wrapper.INSTANCE.getLocalPlayer().getX() + 250 * (float) Math.cos(Math.toRadians(yaw + 90));
 				z = (float) Wrapper.INSTANCE.getLocalPlayer().getZ() + 250 * (float) Math.sin(Math.toRadians(yaw + 90));
 			}
-			Vec3d pos = new Vec3d(x, y, z);
+			Vec3 pos = new Vec3(x, y, z);
 			Entity cameraEntity = Wrapper.INSTANCE.getMinecraft().getCameraEntity();
 			assert cameraEntity != null;
-			Vec3d entityPos = Render3DHelper.INSTANCE.getRenderPosition(new Vec3d(pos.getX() + 0.5f, pos.getY(), pos.getZ() + 0.5f));
+			Vec3 entityPos = Render3DHelper.INSTANCE.getRenderPosition(new Vec3(pos.getX() + 0.5f, pos.getY(), pos.getZ() + 0.5f));
 
 			Color color1 = ColorHelper.INSTANCE.getColor(waypoint.getColor());
 
 			Render3DHelper.INSTANCE.setup3DRender(true);
 			RenderSystem.lineWidth(1.2f);
 
-			Vec3d eyes = new Vec3d(0, 0, 1).rotateX(-(float) Math.toRadians(PlayerHelper.INSTANCE.getPitch())).rotateY(-(float) Math.toRadians(PlayerHelper.INSTANCE.getYaw()));
+			Vec3 eyes = new Vec3(0, 0, 1).rotateX(-(float) Math.toRadians(PlayerHelper.INSTANCE.getPitch())).rotateY(-(float) Math.toRadians(PlayerHelper.INSTANCE.getYaw()));
 
 			BufferBuilder bufferBuilder = BufferHelper.INSTANCE.begin(VertexFormat.DrawMode.LINES, VertexFormats.POSITION_COLOR);
 			bufferBuilder.vertex(eyes.x, eyes.y, eyes.z).color(color1.getRed(), color1.getGreen(), color1.getBlue(), color1.getAlpha()).next();
@@ -163,11 +163,11 @@ public class Waypoints extends Feature {
 		waypointPositions.keySet().forEach(waypoint -> {
 			if (waypoint.hidden || !waypoint.drawNametag)
 				return;
-			Vec3d renderPos = waypointPositions.get(waypoint);
+			Vec3 renderPos = waypointPositions.get(waypoint);
 			if (shouldRender(renderPos)) {
 				String name = waypoint.getName();
 				if (this.distanceProperty.value()) {
-					name = String.format("%s [%.1f]", waypoint.getName(), ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3d(waypoint.getX(), waypoint.getY(), waypoint.getZ())));
+					name = String.format("%s [%.1f]", waypoint.getName(), ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3(waypoint.getX(), waypoint.getY(), waypoint.getZ())));
 				}
 				float x = (float) renderPos.x;
 				float y = (float) renderPos.y;
@@ -181,7 +181,7 @@ public class Waypoints extends Feature {
 		});
 	});
 
-	public boolean shouldRender(Vec3d pos) {
+	public boolean shouldRender(Vec3 pos) {
 		return pos != null && (pos.getZ() > -1 && pos.getZ() < 1);
 	}
 

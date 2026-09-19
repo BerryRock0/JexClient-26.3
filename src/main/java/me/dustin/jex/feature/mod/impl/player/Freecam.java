@@ -48,7 +48,7 @@ public class Freecam extends Feature {
             .inc(0.1f)
             .build();
 
-    private Vec3d savedCoords = Vec3d.ZERO;
+    private Vec3 savedCoords = Vec3d.ZERO;
     private RotationVector lookVec = new RotationVector(0, 0);
     public static Player playerEntity;
 
@@ -127,7 +127,7 @@ public class Freecam extends Feature {
     public void onEnable() {
         if (Wrapper.INSTANCE.getLocalPlayer() != null) {
             Wrapper.INSTANCE.getWorldRenderer().reload();
-            savedCoords = new Vec3d(Wrapper.INSTANCE.getLocalPlayer().getX(), Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ());
+            savedCoords = new Vec3(Wrapper.INSTANCE.getLocalPlayer().getX(), Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ());
             lookVec = new RotationVector(Wrapper.INSTANCE.getLocalPlayer());
 
             Player = new FakePlayerEntity(Wrapper.INSTANCE.getWorld(), new GameProfile(UUID.randomUUID(), Wrapper.INSTANCE.getMinecraft().getSession().getUsername()));

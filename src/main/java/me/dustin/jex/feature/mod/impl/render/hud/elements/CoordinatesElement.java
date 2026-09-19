@@ -20,7 +20,7 @@ public class CoordinatesElement extends HudElement{
         super.render(matrixStack);
         float longest = 0;
 
-        Vec3d pos = Wrapper.INSTANCE.getLocalPlayer().getPos();
+        Vec3 pos = Wrapper.INSTANCE.getLocalPlayer().getPos();
         String coordString = String.format("XYZ\247f: \2477%.2f\247f/\2477%.2f\247f/\2477%.2f", pos.getX(), pos.getY(), pos.getZ());
         float strLength = FontHelper.INSTANCE.getStringWidth(coordString);
         float strX = isLeftSide() ? getX() + 3 : getX() + getWidth() - strLength;

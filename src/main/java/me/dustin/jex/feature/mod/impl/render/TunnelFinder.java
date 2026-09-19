@@ -81,11 +81,11 @@ public class TunnelFinder extends Feature {
     @EventPointer
     private final EventListener<EventRender3D> eventRender3DEventListener = new EventListener<>(event -> {
         for (BlockPos pos : positions) {
-            if (ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3d(pos.getX(), pos.getY(), pos.getZ())) > 256) {
+            if (ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3(pos.getX(), pos.getY(), pos.getZ())) > 256) {
                 positions.remove(pos);
                 continue;
             }
-            Vec3d entityPos = Render3DHelper.INSTANCE.getRenderPosition(new Vec3d(pos.getX(), pos.getY(), pos.getZ()));
+            Vec3 entityPos = Render3DHelper.INSTANCE.getRenderPosition(new Vec3(pos.getX(), pos.getY(), pos.getZ()));
             Box box = new Box(entityPos.x, entityPos.y, entityPos.z, entityPos.x + 1, entityPos.y + 2, entityPos.z + 1);
             Render3DHelper.INSTANCE.drawBoxOutline(event.getPoseStack(), box, colorProperty.value().getRGB());
         }

@@ -170,7 +170,7 @@ public enum WorldHelper {
         return blocks;
     }
 
-    public Vec3d sideOfBlock(BlockPos pos, Direction direction) {
+    public Vec3 sideOfBlock(BlockPos pos, Direction direction) {
         switch (direction) {
             case NORTH -> Vec3d.ofCenter(pos).add(0, 0, -0.5);
             case SOUTH -> Vec3d.ofCenter(pos).add(0, 0, 0.5);
@@ -419,7 +419,7 @@ public enum WorldHelper {
         return !(block instanceof CandleBlock);
     }
 
-    public ArrayList<BlockPos> cubeSphere(Vec3d pos, double r, int lats, int longs) {
+    public ArrayList<BlockPos> cubeSphere(Vec3 pos, double r, int lats, int longs) {
         ArrayList<BlockPos> positions = new ArrayList<>();
         int i, j;
         for (i = 0; i <= lats; i++)
@@ -443,7 +443,7 @@ public enum WorldHelper {
     }
 
     public float calcExplosionDamage(float power, Player playerEntity, BlockPos explosionPos) {
-        Vec3d vec3d = ClientMathHelper.INSTANCE.getVec(explosionPos);
+        Vec3 Vec3 = ClientMathHelper.INSTANCE.getVec(explosionPos);
         float j = power * 2.0F;
         double h = Math.sqrt(playerEntity.squaredDistanceTo(vec3d)) / (double) j;
         double v = 1 - h * getExposure(vec3d, playerEntity);
@@ -451,7 +451,7 @@ public enum WorldHelper {
         return (float) ((int) ((v * v + v) / 2.0D * 7.0D * (double) j + 1.0D));
     }
 
-    public static float getExposure(Vec3d source, Entity entity) {
+    public static float getExposure(Vec3 source, Entity entity) {
         Box box = entity.getBoundingBox();
         double d = 1.0D / ((box.maxX - box.minX) * 2.0D + 1.0D);
         double e = 1.0D / ((box.maxY - box.minY) * 2.0D + 1.0D);
@@ -468,7 +468,7 @@ public enum WorldHelper {
                         double n = MathHelper.lerp(k, box.minX, box.maxX);
                         double o = MathHelper.lerp(l, box.minY, box.maxY);
                         double p = MathHelper.lerp(m, box.minZ, box.maxZ);
-                        Vec3d vec3d = new Vec3d(n + g, o, p + h);
+                        Vec3 Vec3 = new Vec3(n + g, o, p + h);
                         if (Wrapper.INSTANCE.getWorld().raycast(new RaycastContext(vec3d, source, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getType() == HitResult.Type.MISS) {
                             ++i;
                         }

@@ -23,7 +23,7 @@ public class BoxESP extends FeatureExtension {
         Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
             if (ESP.INSTANCE.isValid(entity)) {
                 try {
-                    Vec3d vec = Render3DHelper.INSTANCE.getEntityRenderPosition(entity, event.getPartialTicks());
+                    Vec3 vec = Render3DHelper.INSTANCE.getEntityRenderPosition(entity, event.getPartialTicks());
                     Render3DHelper.INSTANCE.drawEntityBox(event.getPoseStack(), entity, vec.getX(), vec.getY(), vec.getZ(), ESP.INSTANCE.getColor(entity));
                 } catch (Exception e) {
                     e.printStackTrace();

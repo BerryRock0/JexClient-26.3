@@ -58,7 +58,7 @@ public class BarrierView extends Feature {
 		}
 		ArrayList<Render3DHelper.BoxStorage> list = new ArrayList<>();
 		renderPositions.forEach(blockPos -> {
-			Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockPos);
+			Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockPos);
 			Box box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
 			list.add(new Render3DHelper.BoxStorage(box, colorProperty.value().getRGB()));
 		});

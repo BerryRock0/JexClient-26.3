@@ -54,7 +54,7 @@ public class SignReader extends Feature {
                 BlockHitResult blockHitResult = (BlockHitResult)result;
                 if (Wrapper.INSTANCE.getWorld().getBlockEntity(blockHitResult.getBlockPos()) instanceof SignBlockEntity signBlockEntity) {
                     if (signBlockEntity != null) {
-                        Vec3d pos = new Vec3d(signBlockEntity.getPos().getX(), signBlockEntity.getPos().getY(), signBlockEntity.getPos().getZ());
+                        Vec3 pos = new Vec3(signBlockEntity.getPos().getX(), signBlockEntity.getPos().getY(), signBlockEntity.getPos().getZ());
                         positions.put(signBlockEntity, Render2DHelper.INSTANCE.to2D(pos.add(0.5f, 1.5, 0.5f), event.getPoseStack()));
                     }
                 }
@@ -62,7 +62,7 @@ public class SignReader extends Feature {
         } else {
             for (BlockEntity blockEntity : WorldHelper.INSTANCE.getBlockEntities()) {
                 if (blockEntity instanceof SignBlockEntity signBlockEntity) {
-                    Vec3d pos = new Vec3d(signBlockEntity.getPos().getX(), signBlockEntity.getPos().getY(), signBlockEntity.getPos().getZ());
+                    Vec3 pos = new Vec3(signBlockEntity.getPos().getX(), signBlockEntity.getPos().getY(), signBlockEntity.getPos().getZ());
                     positions.put(signBlockEntity, Render2DHelper.INSTANCE.to2D(pos.add(0.5f, 1.5, 0.5f), event.getPoseStack()));
                 }
             }

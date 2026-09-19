@@ -110,10 +110,10 @@ public abstract class MixinClientPlayer extends AbstractClientPlayer implements 
     }
 
     @Inject(method = "move", at = @At("HEAD"), cancellable = true)
-    public void move(MovementType type, Vec3d movement, CallbackInfo ci) {
+    public void move(MovementType type, Vec3 movement, CallbackInfo ci) {
         if (type == MovementType.SELF) {
             EventMove eventMove = new EventMove(movement.x, movement.y, movement.z).run();
-            movement = new Vec3d(eventMove.getX(), eventMove.getY(), eventMove.getZ());
+            movement = new Vec3(eventMove.getX(), eventMove.getY(), eventMove.getZ());
             double d = this.getX();
             double e = this.getZ();
             super.move(type, movement);

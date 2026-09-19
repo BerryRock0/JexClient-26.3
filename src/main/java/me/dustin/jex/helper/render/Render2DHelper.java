@@ -611,7 +611,7 @@ public enum Render2DHelper {
         return distance <= radius;
     }
 
-    public boolean isOnScreen(Vec3d pos) {
+    public boolean isOnScreen(Vec3 pos) {
         if (pos.getZ() > -1 && pos.getZ() < 1) {
             return true;
         }
@@ -690,13 +690,13 @@ public enum Render2DHelper {
         return Formatting.GREEN;
     }
 
-    public Vec3d to2D(Vec3d worldPos, MatrixStack poseStack) {
-        Vec3d bound = Render3DHelper.INSTANCE.getRenderPosition(worldPos, poseStack);
-        Vec3d twoD = to2D(bound.x, bound.y, bound.z);
-        return new Vec3d(twoD.x, twoD.y, twoD.z);
+    public Vec3 to2D(Vec3 worldPos, MatrixStack poseStack) {
+        Vec3 bound = Render3DHelper.INSTANCE.getRenderPosition(worldPos, poseStack);
+        Vec3 twoD = to2D(bound.x, bound.y, bound.z);
+        return new Vec3(twoD.x, twoD.y, twoD.z);
     }
 
-    private Vec3d to2D(double x, double y, double z) {
+    private Vec3 to2D(double x, double y, double z) {
         int displayHeight = Wrapper.INSTANCE.getWindow().getHeight();
         Vector3D screenCoords = new Vector3D();
         int[] viewport = new int[4];
@@ -705,29 +705,29 @@ public enum Render2DHelper {
         Matrix4x4 matrix4x4Model = Matrix4x4.copyFromColumnMajor(RenderSystem.getModelViewMatrix());//but I do the math myself now :( (heck math)
         matrix4x4Proj.mul(matrix4x4Model).project((float) x, (float) y, (float) z, viewport, screenCoords);
 
-        return new Vec3d(screenCoords.x / Render2DHelper.INSTANCE.getScaleFactor(), (displayHeight - screenCoords.y) / Render2DHelper.INSTANCE.getScaleFactor(), screenCoords.z);
+        return new Vec3(screenCoords.x / Render2DHelper.INSTANCE.getScaleFactor(), (displayHeight - screenCoords.y) / Render2DHelper.INSTANCE.getScaleFactor(), screenCoords.z);
     }
 
-    public Vec3d getHeadPos(Entity entity, float partialTicks, MatrixStack poseStack) {
-        Vec3d bound = Render3DHelper.INSTANCE.getEntityRenderPosition(entity, partialTicks).add(0, entity.getHeight() + 0.2, 0);
+    public Vec3 getHeadPos(Entity entity, float partialTicks, MatrixStack poseStack) {
+        Vec3 bound = Render3DHelper.INSTANCE.getEntityRenderPosition(entity, partialTicks).add(0, entity.getHeight() + 0.2, 0);
         Vector4f vector4f = new Vector4f((float)bound.x, (float)bound.y, (float)bound.z, 1.f);
         vector4f.transform(poseStack.peek().getPositionMatrix());
-        Vec3d twoD = to2D(vector4f.getX(), vector4f.getY(), vector4f.getZ());
-        return new Vec3d(twoD.x, twoD.y, twoD.z);
+        Vec3 twoD = to2D(vector4f.getX(), vector4f.getY(), vector4f.getZ());
+        return new Vec3(twoD.x, twoD.y, twoD.z);
     }
 
-    public Vec3d getFootPos(Entity entity, float partialTicks, MatrixStack poseStack) {
-        Vec3d bound = Render3DHelper.INSTANCE.getEntityRenderPosition(entity, partialTicks, poseStack);
-        Vec3d twoD = to2D(bound.x, bound.y, bound.z);
-        return new Vec3d(twoD.x, twoD.y, twoD.z);
+    public Vec3 getFootPos(Entity entity, float partialTicks, MatrixStack poseStack) {
+        Vec3 bound = Render3DHelper.INSTANCE.getEntityRenderPosition(entity, partialTicks, poseStack);
+        Vec3 twoD = to2D(bound.x, bound.y, bound.z);
+        return new Vec3(twoD.x, twoD.y, twoD.z);
     }
 
-    public Vec3d getPos(Entity entity, float yOffset, float partialTicks, MatrixStack poseStack) {
-        Vec3d bound = Render3DHelper.INSTANCE.getEntityRenderPosition(entity, partialTicks).add(0, yOffset, 0);
+    public Vec3 getPos(Entity entity, float yOffset, float partialTicks, MatrixStack poseStack) {
+        Vec3 bound = Render3DHelper.INSTANCE.getEntityRenderPosition(entity, partialTicks).add(0, yOffset, 0);
         Vector4f vector4f = new Vector4f((float)bound.x, (float)bound.y, (float)bound.z, 1.f);
         vector4f.transform(poseStack.peek().getPositionMatrix());
-        Vec3d twoD = to2D(vector4f.getX(), vector4f.getY(), vector4f.getZ());
-        return new Vec3d(twoD.x, twoD.y, twoD.z);
+        Vec3 twoD = to2D(vector4f.getX(), vector4f.getY(), vector4f.getZ());
+        return new Vec3(twoD.x, twoD.y, twoD.z);
     }
 
     public void bindTexture(Identifier identifier) {

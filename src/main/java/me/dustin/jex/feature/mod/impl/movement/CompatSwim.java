@@ -33,7 +33,7 @@ public class CompatSwim extends Feature {
     @EventPointer
     private final EventListener<EventPlayerPackets> eventPlayerPacketsEventListener = new EventListener<>(event -> {
         if (WorldHelper.INSTANCE.isInLiquid(Wrapper.INSTANCE.getLocalPlayer()) && !Feature.get(Jesus.class).getState()) {
-            Vec3d orig = Wrapper.INSTANCE.getLocalPlayer().getVelocity();
+            Vec3 orig = Wrapper.INSTANCE.getLocalPlayer().getVelocity();
             if (Wrapper.INSTANCE.getOptions().jumpKey.isPressed()) {
                 double y = ClientMathHelper.INSTANCE.cap((float) orig.getY(), 0, Wrapper.INSTANCE.getLocalPlayer().horizontalCollision ? 0.07f : 0.011f);
                 Wrapper.INSTANCE.getLocalPlayer().setVelocity(orig.getX(), y, orig.getZ());

@@ -62,7 +62,7 @@ public class ShaderUniform {
         }
     }
 
-    public final void setVec(Vec3d value) {
+    public final void setVec(Vec3 value) {
         glUniform3f(location, (float) value.getX(), (float) value.getY(), (float) value.getZ());
     }
 

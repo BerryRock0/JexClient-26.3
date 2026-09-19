@@ -133,7 +133,7 @@ public class BotClientPlayNetworkHandler extends ClientPlayNetworkHandler {
             if (packet.shouldDismount()) {
                 ((PlayerEntity)playerEntity).dismountVehicle();
             }
-            Vec3d vec3d = playerEntity.getVelocity();
+            Vec3 Vec3 = playerEntity.getVelocity();
             boolean bl = packet.getFlags().contains((Object)PlayerPositionLookS2CPacket.Flag.X);
             boolean bl2 = packet.getFlags().contains((Object)PlayerPositionLookS2CPacket.Flag.Y);
             boolean bl3 = packet.getFlags().contains((Object)PlayerPositionLookS2CPacket.Flag.Z);
@@ -176,7 +176,7 @@ public class BotClientPlayNetworkHandler extends ClientPlayNetworkHandler {
             }
             playerEntity.updatePositionAndAngles(e, g, i, j, k);
             getConnection().send(new PlayerMoveC2SPacket.Full(playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), playerEntity.getYaw(), playerEntity.getPitch(), false));
-            playerBot.setRotation(new Vec3d(packet.getYaw(), packet.getPitch(), 0));
+            playerBot.setRotation(new Vec3(packet.getYaw(), packet.getPitch(), 0));
             playerBot.getPlayer().setPos(packet.getX(), packet.getY(), packet.getZ());
         }
     }

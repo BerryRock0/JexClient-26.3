@@ -59,7 +59,7 @@ public class AirPlace extends Feature {
 		HitResult hitResult = Wrapper.INSTANCE.getLocalPlayer().raycast(reachProperty.value(), Wrapper.INSTANCE.getMinecraft().getTickDelta(), false);
 		if (hitResult instanceof BlockHitResult blockHitResult) {
 			if (canReplaceBlock(WorldHelper.INSTANCE.getBlock(blockHitResult.getBlockPos()))) {
-				Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockHitResult.getBlockPos());
+				Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockHitResult.getBlockPos());
 				Box box = new Box(renderPos.getX(), renderPos.getY(), renderPos.getZ(), renderPos.getX() + 1, renderPos.getY() + 1, renderPos.getZ() + 1);
 				Render3DHelper.INSTANCE.drawBoxOutline(event.getPoseStack(), box, Feature.getState(BlockOverlay.class) ? ColorHelper.INSTANCE.getClientColor() : 0xff000000);
 			}

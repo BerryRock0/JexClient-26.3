@@ -21,72 +21,72 @@ import net.minecraft.util.shape.VoxelShapes;
 public enum Render3DHelper {
     INSTANCE;
 
-    public Vec3d getEntityRenderPosition(Entity entity, double partial, MatrixStack poseStack) {
+    public Vec3 getEntityRenderPosition(Entity entity, double partial, MatrixStack poseStack) {
         Matrix4f matrix = poseStack.peek().getPositionMatrix();
         double x = entity.prevX + ((entity.getX() - entity.prevX) * partial) - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().x;
         double y = entity.prevY + ((entity.getY() - entity.prevY) * partial) - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().y;
         double z = entity.prevZ + ((entity.getZ() - entity.prevZ) * partial) - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().z;
         Vector4f vector4f = new Vector4f((float)x, (float)y, (float)z, 1.f);
         vector4f.transform(matrix);
-        return new Vec3d(vector4f.getX(), vector4f.getY(), vector4f.getZ());
+        return new Vec3(vector4f.getX(), vector4f.getY(), vector4f.getZ());
     }
 
-    public Vec3d getRenderPosition(double x, double y, double z, MatrixStack poseStack) {
+    public Vec3 getRenderPosition(double x, double y, double z, MatrixStack poseStack) {
         Matrix4f matrix = poseStack.peek().getPositionMatrix();
         double minX = x - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().x;
         double minY = y - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().y;
         double minZ = z - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().z;
         Vector4f vector4f = new Vector4f((float)minX, (float)minY, (float)minZ, 1.f);
         vector4f.transform(matrix);
-        return new Vec3d(vector4f.getX(), vector4f.getY(), vector4f.getZ());
+        return new Vec3(vector4f.getX(), vector4f.getY(), vector4f.getZ());
     }
 
-    public Vec3d getRenderPosition(Vec3d vec3d, MatrixStack poseStack) {
+    public Vec3 getRenderPosition(Vec3 vec3d, MatrixStack poseStack) {
         Matrix4f matrix = poseStack.peek().getPositionMatrix();
         double minX = vec3d.getX() - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().x;
         double minY = vec3d.getY() - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().y;
         double minZ = vec3d.getZ() - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().z;
         Vector4f vector4f = new Vector4f((float)minX, (float)minY, (float)minZ, 1.f);
         vector4f.transform(matrix);
-        return new Vec3d(vector4f.getX(), vector4f.getY(), vector4f.getZ());
+        return new Vec3(vector4f.getX(), vector4f.getY(), vector4f.getZ());
     }
 
-    public Vec3d getRenderPosition(BlockPos blockPos, MatrixStack poseStack) {
+    public Vec3 getRenderPosition(BlockPos blockPos, MatrixStack poseStack) {
         Matrix4f matrix = poseStack.peek().getPositionMatrix();
         double minX = blockPos.getX() - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().x;
         double minY = blockPos.getY() - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().y;
         double minZ = blockPos.getZ() - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().z;
         Vector4f vector4f = new Vector4f((float)minX, (float)minY, (float)minZ, 1.f);
         vector4f.transform(matrix);
-        return new Vec3d(vector4f.getX(), vector4f.getY(), vector4f.getZ());
+        return new Vec3(vector4f.getX(), vector4f.getY(), vector4f.getZ());
     }
 
-    public Vec3d getEntityRenderPosition(Entity entity, double partial) {
+    public Vec3 getEntityRenderPosition(Entity entity, double partial) {
         double x = entity.prevX + ((entity.getX() - entity.prevX) * partial) - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().x;
         double y = entity.prevY + ((entity.getY() - entity.prevY) * partial) - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().y;
         double z = entity.prevZ + ((entity.getZ() - entity.prevZ) * partial) - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().z;
-        return new Vec3d(x, y, z);
+        return new Vec3(x, y, z);
     }
 
-    public Vec3d getRenderPosition(double x, double y, double z) {
+    public Vec3 getRenderPosition(double x, double y, double z) {
         double minX = x - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().x;
         double minY = y - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().y;
         double minZ = z - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().z;
-        return new Vec3d(minX, minY, minZ);
+        return new Vec3(minX, minY, minZ);
     }
 
-    public Vec3d getRenderPosition(Vec3d vec3d) {
+    public Vec3 getRenderPosition(Vec3 vec3d) {
         double minX = vec3d.getX() - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().x;
         double minY = vec3d.getY() - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().y;
         double minZ = vec3d.getZ() - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().z;
-        return new Vec3d(minX, minY, minZ);
+        return new Vec3(minX, minY, minZ);
     }
 
-    public Vec3d getRenderPosition(BlockPos blockPos) {
+    public Vec3 getRenderPosition(BlockPos blockPos) {
         double minX = blockPos.getX() - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().x;
         double minY = blockPos.getY() - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().y;
         double minZ = blockPos.getZ() - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().z;
-        return new Vec3d(minX, minY, minZ);
+        return new Vec3(minX, minY, minZ);
     }
 
     public void fixCameraRots(MatrixStack matrixStack) {
@@ -129,7 +129,7 @@ public enum Render3DHelper {
         Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().render(entity, d - camera.getPos().getX(), e - camera.getPos().getY(), f - camera.getPos().getZ(), g, tickDelta, matrixStack, vertexConsumerProvider, 0xF000F0);
     }
 
-    public void drawSphere(MatrixStack poseStack, float radius, int gradation, int color, boolean testDepth, Vec3d pos) {
+    public void drawSphere(MatrixStack poseStack, float radius, int gradation, int color, boolean testDepth, Vec3 pos) {
         Matrix4f matrix4f = poseStack.peek().getPositionMatrix();
         Color color1 = ColorHelper.INSTANCE.getColor(color);
         final float PI = 3.141592f;
@@ -143,7 +143,7 @@ public enum Render3DHelper {
                 x = (float) (pos.getX() +  (radius * Math.cos(beta) * Math.sin(alpha)));
                 y = (float) (pos.getY() +  (radius * Math.sin(beta) * Math.sin(alpha)));
                 z = (float) (pos.getZ() +  (radius * Math.cos(alpha)));
-                Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(x, y, z);
+                Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(x, y, z);
                 bufferBuilder.vertex(matrix4f, (float)renderPos.x, (float)renderPos.y, (float)renderPos.z).color(color1.getRed(), color1.getGreen(), color1.getBlue(), color1.getAlpha()).next();
                 x = (float) (pos.getX() +  (radius * Math.cos(beta) * Math.sin(alpha + PI / gradation)));
                 y = (float) (pos.getY() +  (radius * Math.sin(beta) * Math.sin(alpha + PI / gradation)));
@@ -187,7 +187,7 @@ public enum Render3DHelper {
     }
 
     public void drawEntityBox(MatrixStack matrixstack, Entity entity, float partialTicks, int color) {
-        Vec3d renderPos = getEntityRenderPosition(entity, partialTicks);
+        Vec3 renderPos = getEntityRenderPosition(entity, partialTicks);
         drawEntityBox(matrixstack, entity, renderPos.x, renderPos.y, renderPos.z, color);
     }
 

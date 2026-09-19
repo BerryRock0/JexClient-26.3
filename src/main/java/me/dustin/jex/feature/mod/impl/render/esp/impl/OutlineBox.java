@@ -59,7 +59,7 @@ public class OutlineBox extends FeatureExtension {
 			BufferBuilder bufferBuilder = BufferHelper.INSTANCE.begin(VertexFormat.DrawMode.QUADS/* QUADS */, VertexFormats.POSITION_COLOR);
 			Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
 				if (ESP.INSTANCE.isValid(entity)) {
-					Vec3d vec = Render3DHelper.INSTANCE.getEntityRenderPosition(entity, eventRender3D.getPartialTicks());
+					Vec3 vec = Render3DHelper.INSTANCE.getEntityRenderPosition(entity, eventRender3D.getPartialTicks());
 					Box bb = new Box(vec.x - entity.getWidth() + 0.25, vec.y, vec.z - entity.getWidth() + 0.25, vec.x + entity.getWidth() - 0.25, vec.y + entity.getHeight() + 0.1, vec.z + entity.getWidth() - 0.25);
 					if (entity instanceof ItemEntity)
 						bb = new Box(vec.x - 0.15, vec.y + 0.1f, vec.z - 0.15, vec.x + 0.15, vec.y + 0.5, vec.z + 0.15);

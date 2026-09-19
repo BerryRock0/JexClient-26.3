@@ -73,7 +73,7 @@ public class WalkPathProcessor extends PathProcessor
 
 		lockControls();
 		Wrapper.INSTANCE.getPlayer().getAbilities().flying = false;
-		float yaw = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getPlayer(), new Vec3d(nextPos.getX() + 0.5f, nextPos.getY(), nextPos.getZ() + 0.5f)).getYaw();
+		float yaw = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getPlayer(), new Vec3(nextPos.getX() + 0.5f, nextPos.getY(), nextPos.getZ() + 0.5f)).getYaw();
 
 		if (WorldHelper.INSTANCE.getBlockState(nextPos).getMaterial().blocksMovement()) {
 			Wrapper.INSTANCE.getClientPlayerInteractionManager().updateBlockBreakingProgress(nextPos, Direction.UP);
@@ -101,7 +101,7 @@ public class WalkPathProcessor extends PathProcessor
 				Wrapper.INSTANCE.getPlayer().setSneaking(false);
 		}
 
-		Vec3d vecInPos = new Vec3d(nextPos.getX() + 0.5, nextPos.getY() + 0.1, nextPos.getZ() + 0.5);
+		Vec3 vecInPos = new Vec3(nextPos.getX() + 0.5, nextPos.getY() + 0.1, nextPos.getZ() + 0.5);
 		// horizontal movement
 		if(pos.getX() != nextPos.getX() || pos.getZ() != nextPos.getZ())
 		{
@@ -128,7 +128,7 @@ public class WalkPathProcessor extends PathProcessor
 			if(index > 0 && path.get(index - 1).isJumping() || pos.getY() < nextPos.getY()) {
 				if (!Feature.getState(Step.class)) {
 					double d = (double)(0.42f * getJumpVelocityMultiplier()) + Wrapper.INSTANCE.getPlayer().getJumpBoostVelocityModifier();
-					Vec3d vec3d = Wrapper.INSTANCE.getPlayer().getVelocity();
+					Vec3 Vec3 = Wrapper.INSTANCE.getPlayer().getVelocity();
 					if (Wrapper.INSTANCE.getPlayer().isOnGround())
 						Wrapper.INSTANCE.getPlayer().setVelocity(vec3d.x, d, vec3d.z);
 				}
@@ -151,7 +151,7 @@ public class WalkPathProcessor extends PathProcessor
 					// jump up
 					if (!Feature.getState(Step.class)) {
 						double d = (double)(0.42f * getJumpVelocityMultiplier()) + Wrapper.INSTANCE.getPlayer().getJumpBoostVelocityModifier();
-						Vec3d vec3d = Wrapper.INSTANCE.getPlayer().getVelocity();
+						Vec3 Vec3 = Wrapper.INSTANCE.getPlayer().getVelocity();
 						if (Wrapper.INSTANCE.getPlayer().isOnGround())
 							Wrapper.INSTANCE.getPlayer().setVelocity(vec3d.x, d, vec3d.z);
 					}
@@ -216,7 +216,7 @@ public class WalkPathProcessor extends PathProcessor
 		};
 	}
 
-	public float getYaw(Vec3d pos)
+	public float getYaw(Vec3 pos)
 	{
 		double xD = Wrapper.INSTANCE.getPlayer().getX() - pos.getX();
 		double zD = Wrapper.INSTANCE.getPlayer().getZ() - pos.getZ();

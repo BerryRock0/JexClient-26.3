@@ -143,7 +143,7 @@ public class AutoTrap extends Feature {
         }
         if (blockPos == null)
             return;
-        Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockPos);
+        Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockPos);
         Box bb = new Box(renderPos.getX(), renderPos.getY(), renderPos.getZ(), renderPos.getX() + 1, renderPos.getY() + 1, renderPos.getZ() + 1);
         Render3DHelper.INSTANCE.drawBox(((EventRender3D) event).getPoseStack(), bb, placeColorProperty.value().getRGB());
     });

@@ -30,7 +30,7 @@ public class SpeedElement extends HudElement {
     }
 
     private String generateSpeedText() {
-        Vec3d move = new Vec3d(Wrapper.INSTANCE.getLocalPlayer().getX() - Wrapper.INSTANCE.getLocalPlayer().prevX, 0, Wrapper.INSTANCE.getLocalPlayer().getZ() - Wrapper.INSTANCE.getLocalPlayer().prevZ).multiply(20);
+        Vec3 move = new Vec3(Wrapper.INSTANCE.getLocalPlayer().getX() - Wrapper.INSTANCE.getLocalPlayer().prevX, 0, Wrapper.INSTANCE.getLocalPlayer().getZ() - Wrapper.INSTANCE.getLocalPlayer().prevZ).multiply(20);
         switch (getHud().distanceModeProperty.value()) {
             case BLOCKS:
                 break;
@@ -65,7 +65,7 @@ public class SpeedElement extends HudElement {
         return String.format("%.2f %s/%s", (float) (Math.abs(length2D(move)) * time), WordUtils.capitalize(getHud().distanceModeProperty.value().name().toLowerCase().replace("_", " ")), WordUtils.capitalize(getHud().timeModeProperty.value().name().toLowerCase().replace("_", " ")));
     }
 
-    public double length2D(Vec3d vec3d) {
+    public double length2D(Vec3 vec3d) {
         return MathHelper.sqrt((float)(vec3d.x * vec3d.x + vec3d.z * vec3d.z));
     }
 }

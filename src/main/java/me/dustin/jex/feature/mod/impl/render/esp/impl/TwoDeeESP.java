@@ -50,8 +50,8 @@ public class TwoDeeESP extends FeatureExtension {
             Render2DHelper.INSTANCE.setup2DRender(true);
             BufferBuilder bufferBuilder = BufferHelper.INSTANCE.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
             headPos.keySet().forEach(entity -> {
-                Vec3d top = headPos.get(entity);
-                Vec3d bottom = footPos.get(entity);
+                Vec3 top = headPos.get(entity);
+                Vec3 bottom = footPos.get(entity);
                 if (Render2DHelper.INSTANCE.isOnScreen(top) && Render2DHelper.INSTANCE.isOnScreen(bottom)) {
                     float x = (float) top.x;
                     float y = (float) top.y;
@@ -79,8 +79,8 @@ public class TwoDeeESP extends FeatureExtension {
             BufferHelper.INSTANCE.drawWithShader(bufferBuilder, ShaderHelper.INSTANCE.getPosColorShader());
             BufferHelper.INSTANCE.begin(VertexFormat.DrawMode.DEBUG_LINES, VertexFormats.POSITION_COLOR);
             headPos.keySet().forEach(entity -> {
-                Vec3d top = headPos.get(entity);
-                Vec3d bottom = footPos.get(entity);
+                Vec3 top = headPos.get(entity);
+                Vec3 bottom = footPos.get(entity);
                 if (Render2DHelper.INSTANCE.isOnScreen(top) && Render2DHelper.INSTANCE.isOnScreen(bottom)) {
                     float x = (float) top.x;
                     float y = (float) top.y;

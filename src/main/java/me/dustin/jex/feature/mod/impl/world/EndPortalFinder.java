@@ -16,9 +16,9 @@ import me.dustin.jex.feature.mod.core.Feature;
 public class EndPortalFinder extends Feature {
 
 	private double[] portalPos = null;
-	private Vec3d firstPos;
+	private Vec3 firstPos;
 	private float firstYaw = -999;
-	private Vec3d secondPos;
+	private Vec3 secondPos;
 	private float secondYaw = -999;
 	private int pearl = 0;
 	private EyeOfEnderEntity trackedEye;

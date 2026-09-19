@@ -71,7 +71,7 @@ public class TestPathFinder {
     public void render(MatrixStack matrixStack) {
         ArrayList<Render3DHelper.BoxStorage> boxes = new ArrayList<>();
         path.forEach(pathNode -> {
-            Vec3d renderVec = Render3DHelper.INSTANCE.getRenderPosition(pathNode.getX(), pathNode.getY(), pathNode.getZ());
+            Vec3 renderVec = Render3DHelper.INSTANCE.getRenderPosition(pathNode.getX(), pathNode.getY(), pathNode.getZ());
             Box box = new Box(0, 0, 0, 1, 1, 1).offset(renderVec);
             boxes.add(new Render3DHelper.BoxStorage(box, path.indexOf(pathNode) == path.size() - 1 && isDone() ? 0xff00ff00 : 0xffff0000));
         });

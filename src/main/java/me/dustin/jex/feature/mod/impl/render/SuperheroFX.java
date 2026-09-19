@@ -74,7 +74,7 @@ public class SuperheroFX extends Feature{
                 double x = livingEntity.getX() - sideOffset + (random.nextDouble() * (sideOffset * 2));
                 double y = livingEntity.getY() + (double) (livingEntity.getHeight() / 2) - heightOffset + (random.nextFloat() * (heightOffset * 2));
                 double z = livingEntity.getZ() - sideOffset + (random.nextDouble() * (sideOffset * 2));
-                Vec3d vec3d = new Vec3d(x, y, z);
+                Vec3 Vec3 = new Vec3(x, y, z);
                 KapowParticle kapowParticle = new KapowParticle(vec3d, type);
                 kapowParticle.setTwoDPosition(Render2DHelper.INSTANCE.to2D(kapowParticle.getPosition(), event.getPoseStack()));
                 particles.add(kapowParticle);
@@ -98,13 +98,13 @@ public class SuperheroFX extends Feature{
 
     public class KapowParticle {
         private final Identifier identifier;
-        private Vec3d position;
-        private Vec3d twoDPosition;
+        private Vec3 position;
+        private Vec3 twoDPosition;
         private FXType fxType;
         private int age = 200;
         private final StopWatch stopWatch;
 
-        public KapowParticle(Vec3d position, FXType fxType) {
+        public KapowParticle(Vec3 position, FXType fxType) {
             this.position = position;
             this.fxType = fxType;
             this.identifier = new Identifier("jex", "comic/" + fxType.name().toLowerCase() + ".png");
@@ -116,8 +116,8 @@ public class SuperheroFX extends Feature{
             if (stopWatch.hasPassed(maxAgeProperty.value()))
                 this.age = 0;
             if (visibleOnlyProperty.value()) {
-                Vec3d vec3d = new Vec3d(Wrapper.INSTANCE.getLocalPlayer().getX(), Wrapper.INSTANCE.getLocalPlayer().getEyeY(), Wrapper.INSTANCE.getLocalPlayer().getZ());
-                Vec3d vec3d2 = new Vec3d(position.getX(), position.getY(), position.getZ());
+                Vec3 Vec3 = new Vec3(Wrapper.INSTANCE.getLocalPlayer().getX(), Wrapper.INSTANCE.getLocalPlayer().getEyeY(), Wrapper.INSTANCE.getLocalPlayer().getZ());
+                Vec3 vec3d2 = new Vec3(position.getX(), position.getY(), position.getZ());
                 if (vec3d2.distanceTo(vec3d) > 128.0D || Wrapper.INSTANCE.getWorld().raycast(new RaycastContext(vec3d, vec3d2, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, Wrapper.INSTANCE.getLocalPlayer())).getType() != HitResult.Type.MISS)
                     return;
             }
@@ -127,11 +127,11 @@ public class SuperheroFX extends Feature{
             }
         }
 
-        public Vec3d getPosition() {
+        public Vec3 getPosition() {
             return position;
         }
 
-        public void setPosition(Vec3d position) {
+        public void setPosition(Vec3 position) {
             this.position = position;
         }
 
@@ -151,11 +151,11 @@ public class SuperheroFX extends Feature{
             return age;
         }
 
-        public Vec3d getTwoDPosition() {
+        public Vec3 getTwoDPosition() {
             return twoDPosition;
         }
 
-        public void setTwoDPosition(Vec3d twoDPosition) {
+        public void setTwoDPosition(Vec3 twoDPosition) {
             this.twoDPosition = twoDPosition;
         }
     }

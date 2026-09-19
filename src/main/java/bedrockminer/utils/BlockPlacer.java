@@ -20,7 +20,7 @@ public class BlockPlacer {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
 
         InventoryManager.switchToItem(item);
-        BlockHitResult hitResult = new BlockHitResult(new Vec3d(pos.getX(), pos.getY(), pos.getZ()), Direction.UP, pos, false);
+        BlockHitResult hitResult = new BlockHitResult(new Vec3(pos.getX(), pos.getY(), pos.getZ()), Direction.UP, pos, false);
 //        minecraftClient.interactionManager.interactBlock(minecraftClient.player, minecraftClient.world, Hand.MAIN_HAND, hitResult);
         placeBlockWithoutInteractingBlock(minecraftClient, hitResult);
     }
@@ -52,7 +52,7 @@ public class BlockPlacer {
                 break;
         }
 
-        Vec3d vec3d = new Vec3d(x, pos.getY(), pos.getZ());
+        Vec3 Vec3 = new Vec3(x, pos.getY(), pos.getZ());
 
         InventoryManager.switchToItem(Blocks.PISTON);
         BlockHitResult hitResult = new BlockHitResult(vec3d, Direction.UP, pos, false);

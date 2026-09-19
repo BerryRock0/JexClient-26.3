@@ -113,7 +113,7 @@ public class CrystalAura extends Feature {
 		if (event.getMode() == EventPlayerPackets.Mode.PRE) {
 			this.setSuffix(modeProperty.value());
 			if (placePos != null) {
-				RotationVector rotation = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3d(placePos.getX(), placePos.getY(), placePos.getZ()).add(new Vec3d(0.5, 0.5, 0.5)));
+				RotationVector rotation = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3(placePos.getX(), placePos.getY(), placePos.getZ()).add(new Vec3(0.5, 0.5, 0.5)));
 				event.setRotation(rotation);
 			}
 
@@ -125,7 +125,7 @@ public class CrystalAura extends Feature {
 							if (placingPos != null) {
 								EndCrystalEntity crystal = new EndCrystalEntity(Wrapper.INSTANCE.getWorld(), placingPos.getX(), placingPos.getY(), placingPos.getZ());
 								if (entityPlayer.distanceTo(crystal) <= 6 && Wrapper.INSTANCE.getLocalPlayer().distanceTo(crystal) <= 6 && !FriendHelper.INSTANCE.isFriend(entityPlayer.getName().getString()) && entityPlayer.getHealth() > 0 && shouldAttack(crystal)) {
-									RotationVector rotation = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3d(getOpenBlockPos(entityPlayer).down().getX(), getOpenBlockPos(entityPlayer).down().getY(), getOpenBlockPos(entityPlayer).down().getZ()).add(new Vec3d(0.5, 0.5, 0.5)));
+									RotationVector rotation = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3(getOpenBlockPos(entityPlayer).down().getX(), getOpenBlockPos(entityPlayer).down().getY(), getOpenBlockPos(entityPlayer).down().getZ()).add(new Vec3(0.5, 0.5, 0.5)));
 									event.setRotation(rotation);
 									placePos = placingPos.down();
 									stopWatch.reset();
@@ -147,7 +147,7 @@ public class CrystalAura extends Feature {
 			});
 		} else {
 			if (placePos != null) {
-				BlockHitResult blockHitResult = new BlockHitResult(new Vec3d(placePos.getX(), placePos.getY(), placePos.getZ()), Direction.UP, placePos, false);
+				BlockHitResult blockHitResult = new BlockHitResult(new Vec3(placePos.getX(), placePos.getY(), placePos.getZ()), Direction.UP, placePos, false);
 				Wrapper.INSTANCE.getClientPlayerInteractionManager().interactBlock(Wrapper.INSTANCE.getLocalPlayer(), offhand ? Hand.OFF_HAND : Hand.MAIN_HAND, blockHitResult);
 				Wrapper.INSTANCE.getLocalPlayer().swingHand(offhand ? Hand.OFF_HAND : Hand.MAIN_HAND);
 				placePos = null;
@@ -163,7 +163,7 @@ public class CrystalAura extends Feature {
 					BlockPos placingPos = getOpenBlockPos(entityPlayer);
 					if (placingPos != null && !FriendHelper.INSTANCE.isFriend(entityPlayer.getDisplayName().getString())) {
 						EndCrystalEntity crystal = new EndCrystalEntity(Wrapper.INSTANCE.getWorld(), placingPos.getX(), placingPos.getY(), placingPos.getZ());
-						Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(placingPos.getX(), placingPos.getY(), placingPos.getZ());
+						Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(placingPos.getX(), placingPos.getY(), placingPos.getZ());
 						Box box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
 						Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), box, shouldAttack(crystal) ? placingColorProperty.value().getRGB() : thinkingColorProperty.value().getRGB());
 					}

@@ -67,7 +67,7 @@ public class HoleESP extends Feature {
             stopWatch.reset();
         }
         for (BlockPos blockPos : holes) {
-            Vec3d vec3d = Render3DHelper.INSTANCE.getRenderPosition(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+            Vec3 Vec3 = Render3DHelper.INSTANCE.getRenderPosition(blockPos.getX(), blockPos.getY(), blockPos.getZ());
             int color = WorldHelper.INSTANCE.getBlock(blockPos.down()) == Blocks.BEDROCK ? bedrockColorProperty.value().getRGB() : obsidianColorProperty.value().getRGB();
             if (fadeBoxProperty.value()) {
                 Box box = new Box(vec3d.x, vec3d.y, vec3d.z, vec3d.x + 1, vec3d.y + 1.5f, vec3d.z + 1);

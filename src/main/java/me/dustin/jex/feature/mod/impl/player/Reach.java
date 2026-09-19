@@ -28,7 +28,7 @@ public class Reach extends Feature {
             .inc(0.05f)
             .build();
 
-    private Vec3d storedPos;
+    private Vec3 storedPos;
 
     public Reach() {
         super(Category.PLAYER, "Stretch Armstrong, but nerfed.");

@@ -16,8 +16,8 @@ public class AlwaysBoostElytraFly extends FeatureExtension {
     public void pass(Event event) {
         if (event instanceof EventMove eventMove) {
             if (Wrapper.INSTANCE.getLocalPlayer().isFallFlying()) {
-                Vec3d vec3d_1 = Wrapper.INSTANCE.getLocalPlayer().getRotationVector();
-                Vec3d vec3d_2 = Wrapper.INSTANCE.getLocalPlayer().getVelocity();
+                Vec3 vec3d_1 = Wrapper.INSTANCE.getLocalPlayer().getRotationVector();
+                Vec3 vec3d_2 = Wrapper.INSTANCE.getLocalPlayer().getVelocity();
                 Wrapper.INSTANCE.getLocalPlayer().setVelocity(vec3d_2.add(vec3d_1.x * 0.1D + (vec3d_1.x * 1.5D - vec3d_2.x) * 0.5D, vec3d_1.y * 0.1D + (vec3d_1.y * 1.5D - vec3d_2.y) * 0.5D, vec3d_1.z * 0.1D + (vec3d_1.z * 1.5D - vec3d_2.z) * 0.5D));
             }
         }

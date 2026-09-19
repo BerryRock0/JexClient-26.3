@@ -59,7 +59,7 @@ public class FarmAura extends Feature {
             breakStopWatch.reset();
             BlockPos crop = getCrop();
             if (crop != null) {
-                RotationVector rot = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3d(crop.getX(), crop.getY(), crop.getZ()));
+                RotationVector rot = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3(crop.getX(), crop.getY(), crop.getZ()));
                 rot.normalize();
                 event.setRotation(rot);
                 Direction facing = Direction.fromRotation(-rot.getYaw());
@@ -95,11 +95,11 @@ public class FarmAura extends Feature {
                 for (int z = -4; z < 4; z++) {
                     BlockPos blockPos = Wrapper.INSTANCE.getLocalPlayer().getBlockPos().add(x, y, z);
                     if (WorldHelper.INSTANCE.isCrop(blockPos, checkAgeProperty.value())) {
-                        Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockPos);
+                        Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockPos);
                         Box box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
                         Render3DHelper.INSTANCE.drawBoxOutline(event.getPoseStack(), box, 0xffff0000);
                     } else if (WorldHelper.INSTANCE.getBlock(blockPos.down()) == Blocks.FARMLAND && WorldHelper.INSTANCE.getBlock(blockPos) == Blocks.AIR) {
-                        Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockPos.down());
+                        Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockPos.down());
                         Box box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
                         Render3DHelper.INSTANCE.drawBoxOutline(event.getPoseStack(), box, 0xff00ff00);
                     }

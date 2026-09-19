@@ -78,7 +78,7 @@ public class AutoBreak extends Feature {
 	@EventPointer
 	private final EventListener<EventRender3D> eventRender3DEventListener = new EventListener<>(event -> {
 		if (pos != null && showPositionProperty.value()) {
-			Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(pos.getX(), pos.getY(), pos.getZ());
+			Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(pos.getX(), pos.getY(), pos.getZ());
 			Block block = WorldHelper.INSTANCE.getBlock(pos);
 
 			int color = emptyColorProperty.value().getRGB();
@@ -97,7 +97,7 @@ public class AutoBreak extends Feature {
 		if (pos != null) {
 			Block block = WorldHelper.INSTANCE.getBlock(pos);
 			if (block != Blocks.AIR && getDistance(pos, Wrapper.INSTANCE.getLocalPlayer().getX(), Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ()) <= mineDistanceProperty.value()) {
-				RotationVector rot = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3d(pos.getX(), pos.getY(), pos.getZ()));
+				RotationVector rot = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3(pos.getX(), pos.getY(), pos.getZ()));
 				((EventPlayerPackets) event).setRotation(rot);
 				rot.normalize();
 				Direction facing = Direction.fromRotation(-rot.getYaw());

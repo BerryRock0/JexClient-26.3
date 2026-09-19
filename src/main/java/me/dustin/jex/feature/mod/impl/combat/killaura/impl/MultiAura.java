@@ -82,7 +82,7 @@ public class MultiAura extends FeatureExtension {
                 double x = Wrapper.INSTANCE.getLocalPlayer().prevX + ((Wrapper.INSTANCE.getLocalPlayer().getX() - Wrapper.INSTANCE.getLocalPlayer().prevX) * ((EventRender3D) event1).getPartialTicks());
                 double y = Wrapper.INSTANCE.getLocalPlayer().prevY + ((Wrapper.INSTANCE.getLocalPlayer().getY() - Wrapper.INSTANCE.getLocalPlayer().prevY) * ((EventRender3D) event1).getPartialTicks());
                 double z = Wrapper.INSTANCE.getLocalPlayer().prevZ + ((Wrapper.INSTANCE.getLocalPlayer().getZ() - Wrapper.INSTANCE.getLocalPlayer().prevZ) * ((EventRender3D) event1).getPartialTicks());
-                Render3DHelper.INSTANCE.drawSphere(((EventRender3D) event1).getPoseStack(), KillAura.INSTANCE.reachProperty.value(), 25, KillAura.INSTANCE.reachCircleColorProperty.value().getRGB(), true, new Vec3d(x, y, z).subtract(0, Wrapper.INSTANCE.getLocalPlayer().getEyeHeight(Wrapper.INSTANCE.getLocalPlayer().getPose()), 0));
+                Render3DHelper.INSTANCE.drawSphere(((EventRender3D) event1).getPoseStack(), KillAura.INSTANCE.reachProperty.value(), 25, KillAura.INSTANCE.reachCircleColorProperty.value().getRGB(), true, new Vec3(x, y, z).subtract(0, Wrapper.INSTANCE.getLocalPlayer().getEyeHeight(Wrapper.INSTANCE.getLocalPlayer().getPose()), 0));
                 Render3DHelper.INSTANCE.end3DRender();
                 matrixStack.pop();
             }

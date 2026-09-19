@@ -85,7 +85,7 @@ public class SlimeSpawnMarker extends Feature {
             return;
         chunkPositions.forEach(chunkPos -> {
             if (Wrapper.INSTANCE.getWorld().getChunkManager().isChunkLoaded(chunkPos.x, chunkPos.z)) {
-                Vec3d renderVec = Render3DHelper.INSTANCE.getRenderPosition(chunkPos.x * 16, -64, chunkPos.z * 16);
+                Vec3 renderVec = Render3DHelper.INSTANCE.getRenderPosition(chunkPos.x * 16, -64, chunkPos.z * 16);
                 Box box = new Box(renderVec.getX(), renderVec.getY(), renderVec.getZ(), renderVec.getX() + 16, renderVec.getY() + 64 + 40, renderVec.getZ() + 16);
                 Render3DHelper.INSTANCE.drawBox(((EventRender3D) event).getPoseStack(), box, chunkColorProperty.value().getRGB());
             }

@@ -50,7 +50,7 @@ public class TargetHudElement extends HudElement{
         super.render(matrixStack);
         if (target != null) {
             if (targetHud.markTargetProperty.value()) {
-                Vec3d headPos = EntityPositionHelper.INSTANCE.getHeadPos(target);
+                Vec3 headPos = EntityPositionHelper.INSTANCE.getHeadPos(target);
                 if (Render2DHelper.INSTANCE.isOnScreen(headPos)) {
                     Color color = targetHud.markColorProperty.value();
                     BufferBuilder bufferBuilder = BufferHelper.INSTANCE.begin(VertexFormat.DrawMode.DEBUG_LINES, VertexFormats.POSITION_COLOR);

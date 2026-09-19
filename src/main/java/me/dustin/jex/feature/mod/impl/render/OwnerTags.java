@@ -50,7 +50,7 @@ public class OwnerTags extends Feature {
     private final EventListener<EventRender2D> eventRender2DEventListener = new EventListener<>(event -> {
         Nametag nametagModule = Feature.get(Nametag.class);
         positions.keySet().forEach(livingEntity -> {
-            Vec3d pos = positions.get(livingEntity);
+            Vec3 pos = positions.get(livingEntity);
             if (isOnScreen(pos)) {
                 float x = (float) pos.x;
                 float y = (float) pos.y;
@@ -73,7 +73,7 @@ public class OwnerTags extends Feature {
         });
     });
 
-    public boolean isOnScreen(Vec3d pos) {
+    public boolean isOnScreen(Vec3 pos) {
         return pos != null && (pos.z > -1 && pos.z < 1);
     }
 }

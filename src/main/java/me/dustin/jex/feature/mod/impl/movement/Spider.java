@@ -27,7 +27,7 @@ public class Spider extends Feature {
 	@EventPointer
 	private final EventListener<EventPlayerPackets> eventPlayerPacketsEventListener = new EventListener<>(event -> {
 		if (Wrapper.INSTANCE.getLocalPlayer().horizontalCollision) {
-			Vec3d orig = Wrapper.INSTANCE.getLocalPlayer().getVelocity();
+			Vec3 orig = Wrapper.INSTANCE.getLocalPlayer().getVelocity();
 			if (modeProperty.value() == Mode.VANILLA) {
 				Wrapper.INSTANCE.getLocalPlayer().setVelocity(orig.getX(), 0.3, orig.getZ());
 			} else {

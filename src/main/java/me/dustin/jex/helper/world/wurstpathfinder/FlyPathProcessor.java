@@ -34,7 +34,7 @@ public class FlyPathProcessor extends PathProcessor
 		Fly fly = Feature.get(Fly.class);
 		// get positions
 		BlockPos pos = new BlockPos(Wrapper.INSTANCE.getPlayer().getPos());
-		Vec3d posVec = Wrapper.INSTANCE.getPlayer().getPos();
+		Vec3 posVec = Wrapper.INSTANCE.getPlayer().getPos();
 		BlockPos nextPos = path.get(index);
 		int posIndex = path.indexOf(pos);
 		Box nextBox = new Box(nextPos.getX() + 0.3, nextPos.getY(), nextPos.getZ() + 0.3, nextPos.getX() + 0.7, nextPos.getY() + 0.2, nextPos.getZ() + 0.7);
@@ -57,7 +57,7 @@ public class FlyPathProcessor extends PathProcessor
 			
 			// stop when changing directions
 			if(creativeFlying) {
-				Vec3d v = Wrapper.INSTANCE.getPlayer().getVelocity();
+				Vec3 v = Wrapper.INSTANCE.getPlayer().getVelocity();
 				Wrapper.INSTANCE.getPlayer().setVelocity(v.x / Math.max(Math.abs(v.x) * 50, 1), v.y / Math.max(Math.abs(v.y) * 50, 1), v.z / Math.max(Math.abs(v.z) * 50, 1));
 			}
 			
@@ -81,7 +81,7 @@ public class FlyPathProcessor extends PathProcessor
 		
 		if(creativeFlying)
 		{
-			Vec3d v = Wrapper.INSTANCE.getPlayer().getVelocity();
+			Vec3 v = Wrapper.INSTANCE.getPlayer().getVelocity();
 			
 			if(!x)
 				Wrapper.INSTANCE.getPlayer().setVelocity(v.x / Math.max(Math.abs(v.x) * 50, 1), v.y, v.z);
@@ -91,12 +91,12 @@ public class FlyPathProcessor extends PathProcessor
 				Wrapper.INSTANCE.getPlayer().setVelocity(v.x, v.y, v.z / Math.max(Math.abs(v.z) * 50, 1));
 		}
 		
-		Vec3d vecInPos = new Vec3d(nextPos.getX() + 0.5, nextPos.getY() + 0.1, nextPos.getZ() + 0.5);
+		Vec3 vecInPos = new Vec3(nextPos.getX() + 0.5, nextPos.getY() + 0.1, nextPos.getZ() + 0.5);
 		
 		// horizontal movement
 		if(horizontal)
 		{
-			float yaw = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getPlayer(), new Vec3d(nextPos.getX() + 0.5f, nextPos.getY(), nextPos.getZ() + 0.5f)).getYaw();
+			float yaw = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getPlayer(), new Vec3(nextPos.getX() + 0.5f, nextPos.getY(), nextPos.getZ() + 0.5f)).getYaw();
 			PlayerHelper.INSTANCE.setVelocityX(Wrapper.INSTANCE.getPlayer(), 0);
 			PlayerHelper.INSTANCE.setVelocityZ(Wrapper.INSTANCE.getPlayer(), 0);
 			double newx = -Math.sin(yaw * 3.1415927F / 180.0F) * moveSpeed();
@@ -145,7 +145,7 @@ public class FlyPathProcessor extends PathProcessor
 				PlayerHelper.INSTANCE.setVelocityY(Wrapper.INSTANCE.getPlayer(), -fly.speedProperty.value());
 			
 			if(Wrapper.INSTANCE.getPlayer().verticalCollision) {
-				float yaw = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getPlayer(), new Vec3d(nextPos.getX() + 0.5f, nextPos.getY(), nextPos.getZ() + 0.5f)).getYaw();
+				float yaw = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getPlayer(), new Vec3(nextPos.getX() + 0.5f, nextPos.getY(), nextPos.getZ() + 0.5f)).getYaw();
 				double newx = -Math.sin(yaw * 3.1415927F / 180.0F) * moveSpeed();
 				double newz = Math.cos(yaw * 3.1415927F / 180.0F) * moveSpeed();
 				if(Wrapper.INSTANCE.getPlayer().isTouchingWater()){

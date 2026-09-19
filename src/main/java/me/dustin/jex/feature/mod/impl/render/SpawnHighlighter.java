@@ -104,11 +104,11 @@ public class SpawnHighlighter extends Feature {
 		posList.forEach(blockPos -> {
 			int color = this.colorProperty.value().getRGB();
 			if (Feature.getState(SpawnSphere.class)) {
-				Vec3d pos = Feature.get(SpawnSphere.class).pos;
+				Vec3 pos = Feature.get(SpawnSphere.class).pos;
 				if (ClientMathHelper.INSTANCE.getDistance(pos, Vec3d.of(blockPos)) <= 128)
 					color = spawnSphereColorProperty.value().getRGB();
 			}
-			Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(new Vec3d(blockPos.getX(), blockPos.getY(), blockPos.getZ()));
+			Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(new Vec3(blockPos.getX(), blockPos.getY(), blockPos.getZ()));
 			Box box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 0.05f, renderPos.z + 1);
 			boxes.add(new Render3DHelper.BoxStorage(box, color));
 		});

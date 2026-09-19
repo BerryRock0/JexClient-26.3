@@ -121,32 +121,32 @@ public enum PlayerHelper {
     }
 
     public void setVelocityX(double x) {
-        Vec3d velo = Wrapper.INSTANCE.getLocalPlayer().getVelocity();
+        Vec3 velo = Wrapper.INSTANCE.getLocalPlayer().getVelocity();
         Wrapper.INSTANCE.getLocalPlayer().setVelocity(x, velo.y, velo.z);
     }
 
     public void setVelocityY(double y) {
-        Vec3d velo = Wrapper.INSTANCE.getLocalPlayer().getVelocity();
+        Vec3 velo = Wrapper.INSTANCE.getLocalPlayer().getVelocity();
         Wrapper.INSTANCE.getLocalPlayer().setVelocity(velo.x, y, velo.z);
     }
 
     public void setVelocityZ(double z) {
-        Vec3d velo = Wrapper.INSTANCE.getLocalPlayer().getVelocity();
+        Vec3 velo = Wrapper.INSTANCE.getLocalPlayer().getVelocity();
         Wrapper.INSTANCE.getLocalPlayer().setVelocity(velo.x, velo.y, z);
     }
 
     public void setVelocityX(Entity entity, double x) {
-        Vec3d velo = entity.getVelocity();
+        Vec3 velo = entity.getVelocity();
         entity.setVelocity(x, velo.y, velo.z);
     }
 
     public void setVelocityY(Entity entity, double y) {
-        Vec3d velo = entity.getVelocity();
+        Vec3 velo = entity.getVelocity();
         entity.setVelocity(velo.x, y, velo.z);
     }
 
     public void setVelocityZ(Entity entity, double z) {
-        Vec3d velo = entity.getVelocity();
+        Vec3 velo = entity.getVelocity();
         entity.setVelocity(velo.x, velo.y, z);
     }
 
@@ -182,11 +182,11 @@ public enum PlayerHelper {
         }
         if (placePos == null) {
             if (illegallPlace) {
-                Wrapper.INSTANCE.getClientPlayerInteractionManager().interactBlock(Wrapper.INSTANCE.getLocalPlayer(), hand, new BlockHitResult(new Vec3d(blockPos.getX(), blockPos.getY(), blockPos.getZ()), Direction.UP, blockPos, false));
+                Wrapper.INSTANCE.getClientPlayerInteractionManager().interactBlock(Wrapper.INSTANCE.getLocalPlayer(), hand, new BlockHitResult(new Vec3(blockPos.getX(), blockPos.getY(), blockPos.getZ()), Direction.UP, blockPos, false));
                 swing(hand);
             }
         } else {
-            Vec3d placeVec = WorldHelper.INSTANCE.sideOfBlock(placePos, placeDir);
+            Vec3 placeVec = WorldHelper.INSTANCE.sideOfBlock(placePos, placeDir);
             BlockHitResult blockHitResult = new BlockHitResult(placeVec, placeDir, placePos, false);
             Wrapper.INSTANCE.getClientPlayerInteractionManager().interactBlock(Wrapper.INSTANCE.getLocalPlayer(), hand, blockHitResult);
             swing(hand);
@@ -219,7 +219,7 @@ public enum PlayerHelper {
         return placePos != null;
     }
 
-    public Vec3d getPlacingLookPos(BlockPos blockPos) {
+    public Vec3 getPlacingLookPos(BlockPos blockPos) {
         BlockPos north = blockPos.north();
         BlockPos east = blockPos.east();
         BlockPos south = blockPos.south();
@@ -277,7 +277,7 @@ public enum PlayerHelper {
         return new RotationVector(var12, var13);
     }
 
-    public RotationVector rotateToVec(Entity entityIn, Vec3d vec3d) {
+    public RotationVector rotateToVec(Entity entityIn, Vec3 vec3d) {
         double xDif = vec3d.x - entityIn.getX();
         double zDif = vec3d.z - entityIn.getZ();
         double yDif = vec3d.y - (entityIn.getBoundingBox().minY + entityIn.getBoundingBox().maxY) / 2.0D;
@@ -288,7 +288,7 @@ public enum PlayerHelper {
         return new RotationVector(yaw, pitch);
     }
 
-    public RotationVector rotateFromVec(Vec3d vec3d, Entity entityIn) {
+    public RotationVector rotateFromVec(Vec3 vec3d, Entity entityIn) {
         double xDif = entityIn.getX() - vec3d.x;
         double zDif = entityIn.getZ() - vec3d.z;
         double yDif = (entityIn.getBoundingBox().minY + entityIn.getBoundingBox().maxY) / 2.0D - vec3d.y;
@@ -317,9 +317,9 @@ public enum PlayerHelper {
         Entity entity = Wrapper.INSTANCE.getMinecraft().getCameraEntity();
         if (entity != null) {
             if (Wrapper.INSTANCE.getMinecraft().world != null) {
-                Vec3d vec3d = entity.getCameraPosVec(tickDelta);
-                Vec3d vec3d2 = getRotationVector(rots.getPitch(), rots.getYaw());
-                Vec3d vec3d3 = vec3d.add(vec3d2.x * reach, vec3d2.y * reach, vec3d2.z * reach);
+                Vec3 Vec3 = entity.getCameraPosVec(tickDelta);
+                Vec3 vec3d2 = getRotationVector(rots.getPitch(), rots.getYaw());
+                Vec3 vec3d3 = vec3d.add(vec3d2.x * reach, vec3d2.y * reach, vec3d2.z * reach);
 
                 Box box = entity.getBoundingBox().stretch(vec3d2.multiply(reach)).expand(1.0D, 1.0D, 1.0D);
                 EntityHitResult entityHitResult = ProjectileUtil.raycast(entity, vec3d, vec3d3, box, (entityx) -> !entityx.isSpectator() && entityx.canHit(), reach);
@@ -334,14 +334,14 @@ public enum PlayerHelper {
         return null;
     }
 
-    public Vec3d getRotationVector(float pitch, float yaw) {
+    public Vec3 getRotationVector(float pitch, float yaw) {
         float f = pitch * 0.017453292F;
         float g = -yaw * 0.017453292F;
         float h = MathHelper.cos(g);
         float i = MathHelper.sin(g);
         float j = MathHelper.cos(f);
         float k = MathHelper.sin(f);
-        return new Vec3d((double) (i * j), (double) (-k), (double) (h * j));
+        return new Vec3((double) (i * j), (double) (-k), (double) (h * j));
     }
 
     public int getDistanceFromMouse(Entity entity) {
@@ -355,7 +355,7 @@ public enum PlayerHelper {
         return (int) distanceFromMouse;
     }
 
-    public int getDistanceFromMouse(Vec3d vec3d) {
+    public int getDistanceFromMouse(Vec3 vec3d) {
         RotationVector neededRotations = rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), vec3d);
         RotationVector currentRotations = new RotationVector(getYaw(), getPitch());
         neededRotations.normalize();
@@ -484,12 +484,12 @@ public enum PlayerHelper {
         return fracX < 0.3 || fracX > 0.7 || fracZ < 0.3 || fracZ > 0.7;
     }
 
-    public Vec3d getPlayerVec() {
-        return new Vec3d(Wrapper.INSTANCE.getLocalPlayer().getX(), Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ());
+    public Vec3 getPlayerVec() {
+        return new Vec3(Wrapper.INSTANCE.getLocalPlayer().getX(), Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ());
     }
 
     public void rightClickBlock(BlockPos blockPos, Hand hand, boolean insideBlock) {
-        BlockHitResult blockHitResult = new BlockHitResult(new Vec3d(blockPos.getX(), blockPos.getY(), blockPos.getZ()), Direction.DOWN, blockPos, insideBlock);
+        BlockHitResult blockHitResult = new BlockHitResult(new Vec3(blockPos.getX(), blockPos.getY(), blockPos.getZ()), Direction.DOWN, blockPos, insideBlock);
         Wrapper.INSTANCE.getClientPlayerInteractionManager().interactBlock(Wrapper.INSTANCE.getLocalPlayer(), hand, blockHitResult);
     }
 

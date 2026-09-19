@@ -55,14 +55,14 @@ public class BoxStorageESP extends FeatureExtension {
                             return;
                     }
 
-                    Vec3d renderPos = Render3DHelper.INSTANCE.getEntityRenderPosition(entity, eventRender3D.getPartialTicks());
+                    Vec3 renderPos = Render3DHelper.INSTANCE.getEntityRenderPosition(entity, eventRender3D.getPartialTicks());
                     Box box = WorldHelper.SINGLE_BOX.offset(renderPos).offset(-0.5, 0, -0.5);
                     list.add(new CustomBoxStorage(box, storageESP.getColor(entity), distance));
                 }
             });
             WorldHelper.INSTANCE.getBlockEntities().forEach(blockEntity -> {
                 if (storageESP.isValid(blockEntity)) {
-                	Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockEntity.getPos());
+                	Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockEntity.getPos());
                     float distance = ClientMathHelper.INSTANCE.getDistance(Vec3d.ofCenter(blockEntity.getPos()), Wrapper.INSTANCE.getLocalPlayer().getPos());
                     if (blockEntity instanceof ChestBlockEntity chestBlockEntity) {
                         if (chestPositions.contains(blockEntity.getPos()))

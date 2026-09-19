@@ -37,7 +37,7 @@ public class OpacityXrayShader extends ShaderProgram {
         this.sampler2.setInt(FabricLoaderImpl.INSTANCE.isModLoaded("sodium") ? 3 : 1);
         this.projection.setMatrix(RenderSystem.getProjectionMatrix());
         this.modelView.setMatrix(RenderSystem.getModelViewMatrix());
-        this.chunkOffset.setVec(new Vec3d(0, 0, 0));
+        this.chunkOffset.setVec(new Vec3(0, 0, 0));
         this.colorModulator.setVec(new Vector4f(colorModulator[0], colorModulator[1], colorModulator[2], colorModulator[3]));
         this.fogStart.setFloat(RenderSystem.getShaderFogStart());
         this.fogEnd.setFloat(RenderSystem.getShaderFogEnd());

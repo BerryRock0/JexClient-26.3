@@ -57,8 +57,8 @@ public class ItemPhysics extends Feature {//fancier version that's not just flat
 
         if (!prevItemRotations.containsKey(itemEntity))
             return;
-        Vec3d prev = prevItemRotations.get(itemEntity);
-        Vec3d current = itemRotations.get(itemEntity);
+        Vec3 prev = prevItemRotations.get(itemEntity);
+        Vec3 current = itemRotations.get(itemEntity);
         matrixStack.translate(0, itemEntity.getHeight() / 1.5f, 0);
         BakedModel bakedModel = Wrapper.INSTANCE.getMinecraft().getItemRenderer().getModel(itemEntity.getStack(), itemEntity.world, null, itemEntity.getId());
         float roll = (float)MathHelper.lerp(Wrapper.INSTANCE.getMinecraft().getTickDelta(), prev.z, current.z);
@@ -90,16 +90,16 @@ public class ItemPhysics extends Feature {//fancier version that's not just flat
                         float roll = r.nextFloat() * 360;
                         float yaw = r.nextFloat() * 360;
                         float pitch = r.nextFloat() * 360;
-                        itemRotations.put(itemEntity, new Vec3d(pitch, yaw, roll));
-                        prevItemRotations.put(itemEntity, new Vec3d(pitch, yaw, roll));
-                        negValues.put(itemEntity, new Vec3d(booleanToBinary(r.nextBoolean()), booleanToBinary(r.nextBoolean()), booleanToBinary(r.nextBoolean())));
+                        itemRotations.put(itemEntity, new Vec3(pitch, yaw, roll));
+                        prevItemRotations.put(itemEntity, new Vec3(pitch, yaw, roll));
+                        negValues.put(itemEntity, new Vec3(booleanToBinary(r.nextBoolean()), booleanToBinary(r.nextBoolean()), booleanToBinary(r.nextBoolean())));
                     }
                     prevItemRotations.replace(itemEntity, itemRotations.get(itemEntity));
-                    Vec3d vec = itemRotations.get(itemEntity);
+                    Vec3 vec = itemRotations.get(itemEntity);
                     if (!itemEntity.isOnGround()) {
-                        vec = new Vec3d(vec.x + pitchSpeedProperty.value(), vec.y + yawSpeedProperty.value(), vec.z + rollSpeedProperty.value());
+                        vec = new Vec3(vec.x + pitchSpeedProperty.value(), vec.y + yawSpeedProperty.value(), vec.z + rollSpeedProperty.value());
                     } else
-                        vec = new Vec3d(90, 0, vec.z);
+                        vec = new Vec3(90, 0, vec.z);
                     itemRotations.replace(itemEntity, vec);
                 }
             });

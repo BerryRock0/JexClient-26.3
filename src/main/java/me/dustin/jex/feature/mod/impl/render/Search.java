@@ -122,7 +122,7 @@ public class Search extends Feature {
             assert cameraEntity != null;
             if (limitRangeProperty.value() && ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), ClientMathHelper.INSTANCE.getVec(pos)) > rangeProperty.value())
                 continue;
-            Vec3d entityPos = Render3DHelper.INSTANCE.getRenderPosition(new Vec3d(pos.getX() + 0.5f, pos.getY(), pos.getZ() + 0.5f));
+            Vec3 entityPos = Render3DHelper.INSTANCE.getRenderPosition(new Vec3(pos.getX() + 0.5f, pos.getY(), pos.getZ() + 0.5f));
             Box box = new Box(entityPos.x - 0.5f, entityPos.y, entityPos.z - 0.5f, entityPos.x + 1 - 0.5f, entityPos.y + 1, entityPos.z + 1 - 0.5f);
             Render3DHelper.BoxStorage boxStorage = new Render3DHelper.BoxStorage(box, blocks.get(block));
             boxList.add(boxStorage);
@@ -142,13 +142,13 @@ public class Search extends Feature {
             }
             Entity cameraEntity = Wrapper.INSTANCE.getMinecraft().getCameraEntity();
             assert cameraEntity != null;
-            Vec3d entityPos = Render3DHelper.INSTANCE.getRenderPosition(new Vec3d(pos.getX() + 0.5f, pos.getY(), pos.getZ() + 0.5f));
+            Vec3 entityPos = Render3DHelper.INSTANCE.getRenderPosition(new Vec3(pos.getX() + 0.5f, pos.getY(), pos.getZ() + 0.5f));
 
             Color color1 = ColorHelper.INSTANCE.getColor(blocks.get(block));
 
             Render3DHelper.INSTANCE.setup3DRender(true);
 
-            Vec3d eyes = new Vec3d(0, 0, 1).rotateX(-(float) Math.toRadians(PlayerHelper.INSTANCE.getPitch())).rotateY(-(float) Math.toRadians(PlayerHelper.INSTANCE.getYaw()));
+            Vec3 eyes = new Vec3(0, 0, 1).rotateX(-(float) Math.toRadians(PlayerHelper.INSTANCE.getPitch())).rotateY(-(float) Math.toRadians(PlayerHelper.INSTANCE.getYaw()));
 
             BufferBuilder bufferBuilder = BufferHelper.INSTANCE.begin(VertexFormat.DrawMode.DEBUG_LINES, VertexFormats.POSITION_COLOR);
             bufferBuilder.vertex(eyes.x, eyes.y, eyes.z).color(color1.getRed(), color1.getGreen(), color1.getBlue(), color1.getAlpha()).next();

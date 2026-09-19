@@ -87,7 +87,7 @@ public class AutoFish extends Feature {
                 Wrapper.INSTANCE.getLocalPlayer().fishHook = getClosest();
             if (Wrapper.INSTANCE.getLocalPlayer() == null || Wrapper.INSTANCE.getLocalPlayer().fishHook == null)
                 return;
-            Vec3d vec3d = new Vec3d(soundPacket.getX(), soundPacket.getY(), soundPacket.getZ());
+            Vec3 Vec3 = new Vec3(soundPacket.getX(), soundPacket.getY(), soundPacket.getZ());
             if (distanceTo(Wrapper.INSTANCE.getLocalPlayer().fishHook, vec3d) < 3 || !distanceCheckProperty.value()) {
                 reel();
                 hasReeled = true;
@@ -146,7 +146,7 @@ public class AutoFish extends Feature {
             return;
             FishingBobberEntity hook = getHook();
         if (hook != null && Wrapper.INSTANCE.getLocalPlayer().getMainHandStack() != null && Wrapper.INSTANCE.getLocalPlayer().getMainHandStack().getItem() == Items.FISHING_ROD) {
-            Vec3d renderPos = Render3DHelper.INSTANCE.getEntityRenderPosition(hook, event.getPartialTicks());
+            Vec3 renderPos = Render3DHelper.INSTANCE.getEntityRenderPosition(hook, event.getPartialTicks());
             Box box = new Box(renderPos.x - 0.2f, renderPos.y - 0.2f, renderPos.z - 0.2f, renderPos.x + 0.2f, renderPos.y + 0.2f, renderPos.z + 0.2f);
             Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), box, isOpenOrWaterAround(hook.getBlockPos()) ? 0xff0000ff : 0xffff0000);
         }
@@ -163,7 +163,7 @@ public class AutoFish extends Feature {
         }
     }
 
-    public float distanceTo(Entity entity, Vec3d vec3d) {
+    public float distanceTo(Entity entity, Vec3 vec3d) {
         float float_1 = (float) (entity.getX() - vec3d.x);
         float float_2 = (float) (entity.getY() - vec3d.y);
         float float_3 = (float) (entity.getZ() - vec3d.z);

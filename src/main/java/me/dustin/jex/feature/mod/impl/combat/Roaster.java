@@ -91,7 +91,7 @@ public class Roaster extends Feature {
                         if (footBlock == Blocks.AIR) {
                             blockPos = livingEntity.getBlockPos().down();
                             if (rotateProperty.value()) {
-                                RotationVector rotations = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3d(blockPos.getX(), blockPos.getY(), blockPos.getZ()));
+                                RotationVector rotations = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3(blockPos.getX(), blockPos.getY(), blockPos.getZ()));
                                 event.setRotation(rotations);
                             }
                         }
@@ -100,7 +100,7 @@ public class Roaster extends Feature {
             });
         } else {
             if (blockPos != null) {
-                Vec3d pos = new Vec3d(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+                Vec3 pos = new Vec3(blockPos.getX(), blockPos.getY(), blockPos.getZ());
                 BlockHitResult hitResult = new BlockHitResult(pos, Direction.UP, blockPos, false);
                 Wrapper.INSTANCE.getClientPlayerInteractionManager().interactBlock(Wrapper.INSTANCE.getLocalPlayer(), hand, hitResult);
                 if (swingProperty.value())

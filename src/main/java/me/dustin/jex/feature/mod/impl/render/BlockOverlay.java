@@ -54,7 +54,7 @@ public class BlockOverlay extends Feature {
     private final EventListener<EventRender3D> eventRender3DEventListener = new EventListener<>(event -> {
         if (clickedBlock == null || WorldHelper.INSTANCE.getBlock(clickedBlock.getBlockPos()) instanceof AirBlock)
             return;
-        Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(clickedBlock.getBlockPos());
+        Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(clickedBlock.getBlockPos());
         if (progressOverlayProperty.value() && Wrapper.INSTANCE.getIClientPlayerInteractionManager().getBlockBreakProgress() > 0 && Wrapper.INSTANCE.getClientPlayerInteractionManager().isBreakingBlock()) {
             float breakProgress = Wrapper.INSTANCE.getIClientPlayerInteractionManager().getBlockBreakProgress() / 2;
             Box box = new Box(renderPos.x + 0.5 - breakProgress, renderPos.y + 0.5 - breakProgress, renderPos.z + 0.5 - breakProgress, renderPos.x + 0.5 + breakProgress, renderPos.y + 0.5 + breakProgress, renderPos.z + 0.5 + breakProgress);

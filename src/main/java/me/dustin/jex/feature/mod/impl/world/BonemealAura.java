@@ -63,7 +63,7 @@ public class BonemealAura extends Feature {
     private final EventListener<EventRender3D> eventRender3DEventListener = new EventListener<>(event -> {
         BlockPos crop = getCrop();
         if (crop != null && InventoryHelper.INSTANCE.getFromHotbar(Items.BONE_MEAL) != -1) {
-            Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(crop);
+            Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(crop);
             Box box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
             Render3DHelper.INSTANCE.drawBoxOutline(event.getPoseStack(), box, 0xffffff00);
         }

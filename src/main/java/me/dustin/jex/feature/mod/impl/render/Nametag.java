@@ -187,7 +187,7 @@ public class Nametag extends Feature {
                             offset = entity.getHeight() + 0.4f;
                     }
                 }
-                Vec3d vec = Render2DHelper.INSTANCE.getPos(entity, offset, event.getPartialTicks(), event.getPoseStack());
+                Vec3 vec = Render2DHelper.INSTANCE.getPos(entity, offset, event.getPartialTicks(), event.getPoseStack());
                 if (entity instanceof ItemEntity itemEntity) {
                     Wrapper.INSTANCE.getWorld().getEntities().forEach(entity1 -> {
                         if (entity1 instanceof ItemEntity itemEntity1 && entity.distanceTo(entity1) <= groupRangeProperty.value() && entity.getBlockY() == entity1.getBlockY()) {
@@ -210,7 +210,7 @@ public class Nametag extends Feature {
         BufferBuilder bufferBuilder = BufferHelper.INSTANCE.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
         Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
             if (!exceptions.contains(entity) && isValid(entity)) {
-                Vec3d vec = positions.get(entity);
+                Vec3 vec = positions.get(entity);
                 if (isOnScreen(vec)) {
                     float x = (float) vec.x;
                     float y = (float) vec.y - (showPlayerFaceProperty.value() && entity instanceof Player ? 18 : 0);
@@ -251,7 +251,7 @@ public class Nametag extends Feature {
         //draw all text since we can't also do that while rendering the boxes
         Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
             if (!exceptions.contains(entity) && isValid(entity)) {
-                Vec3d vec = positions.get(entity);
+                Vec3 vec = positions.get(entity);
                 if (isOnScreen(vec)) {
                     float x = (float) vec.x;
                     float y = (float) vec.y - (showPlayerFaceProperty.value() && entity instanceof Player ? 18 : 0);
@@ -260,7 +260,7 @@ public class Nametag extends Feature {
                     if (entity instanceof ItemEntity itemEntity) {
                         int stackCount = itemEntity.getStack().getCount();
                         for (Entity entity1 : exceptions) {
-                            Vec3d vec3d = positions.get(entity1);
+                            Vec3 Vec3 = positions.get(entity1);
                             if (vec3d.equals(vec) && entity1 instanceof ItemEntity itemEntity1) {
                                 if (itemEntity1.getStack().getItem() == itemEntity.getStack().getItem()) {
                                     stackCount += itemEntity1.getStack().getCount();
@@ -282,7 +282,7 @@ public class Nametag extends Feature {
         });
     }
 
-    public void drawInventoryItems(MatrixStack matrixStack, Vec3d vec, LivingEntity livingEntity) {
+    public void drawInventoryItems(MatrixStack matrixStack, Vec3 vec, LivingEntity livingEntity) {
         float x = (float) vec.x;
         float y = (float) vec.y - (showPlayerFaceProperty.value() && livingEntity instanceof Player ? 18 : 0);
         int itemWidth = 16;
@@ -318,7 +318,7 @@ public class Nametag extends Feature {
         }
     }
 
-    public void drawInventoryBackgrounds(MatrixStack matrixStack, Vec3d vec, LivingEntity livingEntity) {
+    public void drawInventoryBackgrounds(MatrixStack matrixStack, Vec3 vec, LivingEntity livingEntity) {
         float x = (float) vec.x;
         float y = (float) vec.y - (showPlayerFaceProperty.value() && livingEntity instanceof Player ? 18 : 0);
         int itemWidth = 16;
@@ -358,7 +358,7 @@ public class Nametag extends Feature {
     public void drawPlayerFaces(MatrixStack matrixStack) {
         Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
             if (isValid(entity)) {
-                Vec3d vec = positions.get(entity);
+                Vec3 vec = positions.get(entity);
                 if (isOnScreen(vec)) {
                     float x = (float) vec.x - 8;
                     float y = (float) vec.y - 16;
@@ -553,7 +553,7 @@ public class Nametag extends Feature {
         return hasArmor;
     }
 
-    private boolean isOnScreen(Vec3d pos) {
+    private boolean isOnScreen(Vec3 pos) {
         return pos != null && (pos.z > -1 && pos.z < 1);
     }
 

@@ -62,7 +62,7 @@ public class Jesus extends Feature {
             if (WorldHelper.INSTANCE.isInLiquid(Wrapper.INSTANCE.getPlayer())) {
                 Block insideBlock = WorldHelper.INSTANCE.getBlockBelowEntity(Wrapper.INSTANCE.getPlayer(), 0);
                 Block belowBlock = WorldHelper.INSTANCE.getBlockBelowEntity(Wrapper.INSTANCE.getPlayer(), 0.5f);
-                Vec3d orig = Wrapper.INSTANCE.getPlayer().getVelocity();
+                Vec3 orig = Wrapper.INSTANCE.getPlayer().getVelocity();
                 if (insideBlock instanceof FluidBlock && belowBlock instanceof FluidBlock && !Wrapper.INSTANCE.getPlayer().horizontalCollision) {
                     FluidState fluidState = WorldHelper.INSTANCE.getFluidState(Wrapper.INSTANCE.getPlayer().getBlockPos());
                     double swimHeight = Wrapper.INSTANCE.getLocalPlayer().getSwimHeight();
@@ -82,15 +82,15 @@ public class Jesus extends Feature {
             return;
         }
         if (modeProperty.value() == Mode.SOLID && (WorldHelper.INSTANCE.isInLiquid(Wrapper.INSTANCE.getPlayer())) && !Wrapper.INSTANCE.getPlayer().isSneaking()) {
-            Vec3d orig = Wrapper.INSTANCE.getPlayer().getVelocity();
+            Vec3 orig = Wrapper.INSTANCE.getPlayer().getVelocity();
             Wrapper.INSTANCE.getPlayer().setVelocity(orig.getX(), 0.11, orig.getZ());
         }
         if ((Wrapper.INSTANCE.getPlayer().hasVehicle() && WorldHelper.INSTANCE.isInLiquid(Wrapper.INSTANCE.getPlayer().getVehicle()))) {
-            Vec3d orig = Wrapper.INSTANCE.getPlayer().getVehicle().getVelocity();
+            Vec3 orig = Wrapper.INSTANCE.getPlayer().getVehicle().getVelocity();
             Wrapper.INSTANCE.getPlayer().getVehicle().setVelocity(orig.getX(), 0.3, orig.getZ());
         }
         if (WorldHelper.INSTANCE.isInLiquid(Wrapper.INSTANCE.getPlayer()) && !Wrapper.INSTANCE.getPlayer().isOnGround() && !Wrapper.INSTANCE.getPlayer().isSneaking()) {
-            Vec3d orig = Wrapper.INSTANCE.getPlayer().getVelocity();
+            Vec3 orig = Wrapper.INSTANCE.getPlayer().getVelocity();
             Wrapper.INSTANCE.getPlayer().setVelocity(orig.getX(), 0.1, orig.getZ());
         }
         if (WorldHelper.INSTANCE.isOnLiquid(Wrapper.INSTANCE.getPlayer())) {
@@ -98,13 +98,13 @@ public class Jesus extends Feature {
                 if (Wrapper.INSTANCE.getOptions().jumpKey.isPressed() && allowJumpProperty.value() && modeProperty.value() == Mode.DOLPHIN) {
                     if (ticks != 4) {
                         Wrapper.INSTANCE.getPlayer().jump();
-                        Vec3d orig = Wrapper.INSTANCE.getPlayer().getVelocity();
+                        Vec3 orig = Wrapper.INSTANCE.getPlayer().getVelocity();
                         Wrapper.INSTANCE.getPlayer().setVelocity(orig.getX() * 0.5f, orig.getY(), orig.getZ() * 0.5f);
                     } else {
                         KeyBinding.setKeyPressed(Wrapper.INSTANCE.getOptions().jumpKey.getDefaultKey(), false);
                     }
                 } else if (modeProperty.value() == Mode.DOLPHIN && WorldHelper.INSTANCE.isInLiquid(Wrapper.INSTANCE.getPlayer()) && !Wrapper.INSTANCE.getPlayer().isSneaking()) {
-                    Vec3d orig = Wrapper.INSTANCE.getPlayer().getVelocity();
+                    Vec3 orig = Wrapper.INSTANCE.getPlayer().getVelocity();
                     Wrapper.INSTANCE.getPlayer().setVelocity(orig.getX(), 0.1, orig.getZ());
                 }
             }

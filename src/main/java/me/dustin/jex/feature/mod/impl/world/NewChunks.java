@@ -85,7 +85,7 @@ public class NewChunks extends Feature {
         newChunks.forEach(chunk -> {
             if (!Wrapper.INSTANCE.getWorld().getChunkManager().isChunkLoaded(chunk.getPos().x, chunk.getPos().z))
                 return;
-            Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(chunk.getPos().getStartX(), chunk.getBottomY(), chunk.getPos().getStartZ());
+            Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(chunk.getPos().getStartX(), chunk.getBottomY(), chunk.getPos().getStartZ());
             Box bb = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 16, renderPos.y + 0.1f, renderPos.z + 16);
             Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), bb, newChunkColorProperty.value().getRGB());
         });

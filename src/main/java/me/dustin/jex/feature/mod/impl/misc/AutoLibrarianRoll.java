@@ -73,7 +73,7 @@ public class AutoLibrarianRoll extends Feature {
     private boolean checkedTrades;
     private boolean tradeFound;
 
-    private Vec3d villagerPos = Vec3d.ZERO;
+    private Vec3 villagerPos = Vec3d.ZERO;
 
     // Map of Enchantments to their accepted Levels
     public static Map<Enchantment, ArrayList<Integer>> enchantments = new HashMap<>();
@@ -198,7 +198,7 @@ public class AutoLibrarianRoll extends Feature {
     @EventPointer
     private final EventListener<EventRender3D> eventRender3DEventListener = new EventListener<>(event -> {
         if (lecternPos != null) {
-            Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(lecternPos);
+            Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(lecternPos);
             Box box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
             Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), box, 0xff00ff00);
         }

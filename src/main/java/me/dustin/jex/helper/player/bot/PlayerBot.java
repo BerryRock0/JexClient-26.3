@@ -302,34 +302,34 @@ public class PlayerBot {
     }
 
     public HitResult raycast(double maxDistance, float tickDelta, boolean includeFluids) {
-        Vec3d vec3d = getCameraPosVec();
-        Vec3d vec3d2 = getRotationVector(player.getPitch(), player.getYaw());
-        Vec3d vec3d3 = vec3d.add(vec3d2.x * maxDistance, vec3d2.y * maxDistance, vec3d2.z * maxDistance);
+        Vec3 Vec3 = getCameraPosVec();
+        Vec3 vec3d2 = getRotationVector(player.getPitch(), player.getYaw());
+        Vec3 vec3d3 = vec3d.add(vec3d2.x * maxDistance, vec3d2.y * maxDistance, vec3d2.z * maxDistance);
         return world.raycast(new RaycastContext(vec3d, vec3d3, RaycastContext.ShapeType.OUTLINE, includeFluids ? RaycastContext.FluidHandling.ANY : RaycastContext.FluidHandling.NONE, player));
     }
 
-    protected final Vec3d getRotationVector(float pitch, float yaw) {
+    protected final Vec3 getRotationVector(float pitch, float yaw) {
         float f = pitch * ((float)Math.PI / 180);
         float g = -yaw * ((float)Math.PI / 180);
         float h = MathHelper.cos(g);
         float i = MathHelper.sin(g);
         float j = MathHelper.cos(f);
         float k = MathHelper.sin(f);
-        return new Vec3d(i * j, -k, h * j);
+        return new Vec3(i * j, -k, h * j);
     }
 
-    public final Vec3d getCameraPosVec() {
+    public final Vec3 getCameraPosVec() {
         if (player == null)
             return Vec3d.ZERO;
-        return new Vec3d(player.getX(), player.getY() + player.getStandingEyeHeight(), player.getZ());
+        return new Vec3(player.getX(), player.getY() + player.getStandingEyeHeight(), player.getZ());
     }
 
     public Entity getCrosshairEntity(float reach) {
         if (player != null) {
             if (world != null) {
-                Vec3d vec3d = getCameraPosVec();
-                Vec3d vec3d2 = getRotationVector(player.getPitch(), player.getYaw());
-                Vec3d vec3d3 = vec3d.add(vec3d2.x * reach, vec3d2.y * reach, vec3d2.z * reach);
+                Vec3 Vec3 = getCameraPosVec();
+                Vec3 vec3d2 = getRotationVector(player.getPitch(), player.getYaw());
+                Vec3 vec3d3 = vec3d.add(vec3d2.x * reach, vec3d2.y * reach, vec3d2.z * reach);
 
                 Box box = player.getBoundingBox().stretch(vec3d2.multiply(reach)).expand(1.0D, 1.0D, 1.0D);
                 EntityHitResult entityHitResult = raycast(player, vec3d, vec3d3, box, (entityx) -> !entityx.isSpectator() && entityx.canHit(), reach);
@@ -344,19 +344,19 @@ public class PlayerBot {
         return null;
     }
 
-    public EntityHitResult raycast(Entity entity, Vec3d min, Vec3d max, Box box, Predicate<Entity> predicate, double d) {
+    public EntityHitResult raycast(Entity entity, Vec3 min, Vec3 max, Box box, Predicate<Entity> predicate, double d) {
         double e = d;
         Entity entity2 = null;
-        Vec3d vec3d = null;
+        Vec3 Vec3 = null;
         for (Entity entity3 : world.getOtherEntities(entity, box, predicate)) {
-            Vec3d vec3d2;
+            Vec3 vec3d2;
             double f;
             Box box2 = entity3.getBoundingBox().expand(entity3.getTargetingMargin());
             Optional<Vec3d> optional = box2.raycast(min, max);
             if (box2.contains(min)) {
                 if (!(e >= 0.0)) continue;
                 entity2 = entity3;
-                vec3d = optional.orElse(min);
+                Vec3 = optional.orElse(min);
                 e = 0.0;
                 continue;
             }
@@ -364,11 +364,11 @@ public class PlayerBot {
             if (entity3.getRootVehicle() == entity.getRootVehicle()) {
                 if (e != 0.0) continue;
                 entity2 = entity3;
-                vec3d = vec3d2;
+                Vec3 = vec3d2;
                 continue;
             }
             entity2 = entity3;
-            vec3d = vec3d2;
+            Vec3 = vec3d2;
             e = f;
         }
         if (entity2 == null) {
@@ -377,7 +377,7 @@ public class PlayerBot {
         return new EntityHitResult(entity2, vec3d);
     }
 
-    public void setRotation(Vec3d vec) {
+    public void setRotation(Vec3 vec) {
         if (player != null) {
             this.player.prevYaw = this.player.getYaw();
             this.player.prevPitch = this.player.getPitch();

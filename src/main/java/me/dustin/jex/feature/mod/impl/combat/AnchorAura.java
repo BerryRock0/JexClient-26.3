@@ -116,7 +116,7 @@ public class AnchorAura extends Feature {
             if (attackStopWatch.hasPassed(attackDelayProperty.value())) {
                 BlockPos chargedAnchor = getChargedAnchor(Wrapper.INSTANCE.getLocalPlayer());
                 if (chargedAnchor != null && shouldExplode(chargedAnchor)) {
-                    Wrapper.INSTANCE.getClientPlayerInteractionManager().interactBlock(Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(new Vec3d(chargedAnchor.getX(), chargedAnchor.getY(), chargedAnchor.getZ()), Direction.UP, chargedAnchor, false));
+                    Wrapper.INSTANCE.getClientPlayerInteractionManager().interactBlock(Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(new Vec3(chargedAnchor.getX(), chargedAnchor.getY(), chargedAnchor.getZ()), Direction.UP, chargedAnchor, false));
                     Wrapper.INSTANCE.getLocalPlayer().swingHand(Hand.MAIN_HAND);
                     attackStopWatch.reset();
                     return;
@@ -127,7 +127,7 @@ public class AnchorAura extends Feature {
                     if (glowstone != -1) {
                         int savedSlot = InventoryHelper.INSTANCE.getInventory().selectedSlot;
                         InventoryHelper.INSTANCE.setSlot(glowstone, true, true);
-                        Wrapper.INSTANCE.getClientPlayerInteractionManager().interactBlock(Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(new Vec3d(anchor.getX(), anchor.getY(), anchor.getZ()), Direction.UP, anchor, false));
+                        Wrapper.INSTANCE.getClientPlayerInteractionManager().interactBlock(Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(new Vec3(anchor.getX(), anchor.getY(), anchor.getZ()), Direction.UP, anchor, false));
                         Wrapper.INSTANCE.getLocalPlayer().swingHand(Hand.MAIN_HAND);
                         InventoryHelper.INSTANCE.setSlot(savedSlot, true, true);
                         attackStopWatch.reset();
@@ -141,8 +141,8 @@ public class AnchorAura extends Feature {
                         if (entity instanceof Player entityPlayer && entity != Wrapper.INSTANCE.getLocalPlayer() && !FriendHelper.INSTANCE.isFriend(entity.getDisplayName().getString())) {
                             BlockPos placingPos = getOpenBlockPos(entityPlayer);
                             if (placingPos != null) {
-                                if (ClientMathHelper.INSTANCE.getDistance(entityPlayer.getPos(), new Vec3d(placingPos.getX(), placingPos.getY(), placingPos.getZ())) <= 6 && !FriendHelper.INSTANCE.isFriend(entityPlayer.getName().getString()) && entityPlayer.getHealth() > 0 && shouldExplode(placingPos)) {
-                                    RotationVector rotation = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3d(getOpenBlockPos(entityPlayer).down().getX(), getOpenBlockPos(entityPlayer).down().getY(), getOpenBlockPos(entityPlayer).down().getZ()).add(new Vec3d(0.5, 0.5, 0.5)));
+                                if (ClientMathHelper.INSTANCE.getDistance(entityPlayer.getPos(), new Vec3(placingPos.getX(), placingPos.getY(), placingPos.getZ())) <= 6 && !FriendHelper.INSTANCE.isFriend(entityPlayer.getName().getString()) && entityPlayer.getHealth() > 0 && shouldExplode(placingPos)) {
+                                    RotationVector rotation = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3(getOpenBlockPos(entityPlayer).down().getX(), getOpenBlockPos(entityPlayer).down().getY(), getOpenBlockPos(entityPlayer).down().getZ()).add(new Vec3(0.5, 0.5, 0.5)));
                                     event.setRotation(rotation);
                                     placePos = placingPos;
                                     placeStopWatch.reset();
@@ -169,7 +169,7 @@ public class AnchorAura extends Feature {
                 if (entity instanceof Player entityPlayer && entity != Wrapper.INSTANCE.getLocalPlayer()) {
                     BlockPos placingPos = getOpenBlockPos(entityPlayer);
                     if (placingPos != null && !FriendHelper.INSTANCE.isFriend(entityPlayer.getDisplayName().getString())) {
-                        Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(placingPos.getX(), placingPos.getY(), placingPos.getZ());
+                        Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(placingPos.getX(), placingPos.getY(), placingPos.getZ());
                         Box box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
                         Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), box, shouldExplode(placingPos) ? placingColorProperty.value().getRGB() : thinkingColorProperty.value().getRGB());
                     }
@@ -218,8 +218,8 @@ public class AnchorAura extends Feature {
                     if (isAnchor(pos) && isChargedAnchor(pos)) {
                         if (onlyShowPlacementsProperty.value() && !shouldExplode(pos))
                             continue;
-                        double playerdist = ClientMathHelper.INSTANCE.getDistance(entityPlayer.getPos(), new Vec3d(pos.getX(), pos.getY(), pos.getZ()));
-                        double distToMe = ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3d(pos.getX(), pos.getY(), pos.getZ()));
+                        double playerdist = ClientMathHelper.INSTANCE.getDistance(entityPlayer.getPos(), new Vec3(pos.getX(), pos.getY(), pos.getZ()));
+                        double distToMe = ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3(pos.getX(), pos.getY(), pos.getZ()));
                         if (playerdist < distance && distToMe < explodeDistanceProperty.value()) {
                             closest = pos;
                             distance = playerdist;
@@ -242,8 +242,8 @@ public class AnchorAura extends Feature {
                     if (isAnchor(pos) && !isChargedAnchor(pos)) {
                         if (onlyShowPlacementsProperty.value() && !shouldExplode(pos))
                             continue;
-                        double playerdist = ClientMathHelper.INSTANCE.getDistance(entityPlayer.getPos(), new Vec3d(pos.getX(), pos.getY(), pos.getZ()));
-                        double distToMe = ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3d(pos.getX(), pos.getY(), pos.getZ()));
+                        double playerdist = ClientMathHelper.INSTANCE.getDistance(entityPlayer.getPos(), new Vec3(pos.getX(), pos.getY(), pos.getZ()));
+                        double distToMe = ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3(pos.getX(), pos.getY(), pos.getZ()));
                         if (playerdist < distance && distToMe < explodeDistanceProperty.value()) {
                             closest = pos;
                             distance = playerdist;
@@ -281,11 +281,11 @@ public class AnchorAura extends Feature {
         }
 
         if (attackModeProperty.value() == AttackMode.ANY)
-            return ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3d(blockPos.getX(), blockPos.getY(), blockPos.getZ())) >= minDistance && ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3d(blockPos.getX(), blockPos.getY(), blockPos.getZ())) <= range;
+            return ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3(blockPos.getX(), blockPos.getY(), blockPos.getZ())) >= minDistance && ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3(blockPos.getX(), blockPos.getY(), blockPos.getZ())) <= range;
         else {
             for (Entity entity : Wrapper.INSTANCE.getWorld().getEntities())
                 if (entity instanceof LivingEntity && isTarget((LivingEntity) entity, blockPos)) {
-                    return ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3d(blockPos.getX(), blockPos.getY(), blockPos.getZ())) >= minDistance && ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3d(blockPos.getX(), blockPos.getY(), blockPos.getZ())) <= range;
+                    return ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3(blockPos.getX(), blockPos.getY(), blockPos.getZ())) >= minDistance && ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3(blockPos.getX(), blockPos.getY(), blockPos.getZ())) <= range;
                 }
         }
         return false;
@@ -293,7 +293,7 @@ public class AnchorAura extends Feature {
 
     public boolean isTarget(LivingEntity livingEntity, BlockPos blockPos) {
         if (livingEntity instanceof Player && livingEntity != Wrapper.INSTANCE.getLocalPlayer()) {
-            return !FriendHelper.INSTANCE.isFriend(livingEntity.getName().getString()) && ClientMathHelper.INSTANCE.getDistance(livingEntity.getPos(), new Vec3d(blockPos.getX(), blockPos.getY(), blockPos.getZ())) <= 6 && livingEntity.getHealth() > 0;
+            return !FriendHelper.INSTANCE.isFriend(livingEntity.getName().getString()) && ClientMathHelper.INSTANCE.getDistance(livingEntity.getPos(), new Vec3(blockPos.getX(), blockPos.getY(), blockPos.getZ())) <= 6 && livingEntity.getHealth() > 0;
         }
         return false;
     }

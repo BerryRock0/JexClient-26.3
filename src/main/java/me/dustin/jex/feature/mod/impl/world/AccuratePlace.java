@@ -67,7 +67,7 @@ public class AccuratePlace extends Feature {
             PlayerHelper.INSTANCE.setRotation(saved);
 
             BlockHitResult blockHitResult = playerInteractBlockC2SPacket.getBlockHitResult();
-            Vec3d newVec = blockHitResult.getPos().add(blockHitResult.getSide().getOffsetX(), blockHitResult.getSide().getOffsetY(), blockHitResult.getSide().getOffsetZ()).add(facing.getOffsetX(), facing.getOffsetY(), facing.getOffsetZ());
+            Vec3 newVec = blockHitResult.getPos().add(blockHitResult.getSide().getOffsetX(), blockHitResult.getSide().getOffsetY(), blockHitResult.getSide().getOffsetZ()).add(facing.getOffsetX(), facing.getOffsetY(), facing.getOffsetZ());
             BlockPos newPos = blockHitResult.getBlockPos().offset(blockHitResult.getSide());
             BlockHitResult newHitResult = new BlockHitResult(newVec, facing, newPos, blockHitResult.isInsideBlock());
             PlayerInteractBlockC2SPacket newPacket = new PlayerInteractBlockC2SPacket(playerInteractBlockC2SPacket.getHand(), newHitResult, playerInteractBlockC2SPacket.getSequence());
@@ -83,8 +83,8 @@ public class AccuratePlace extends Feature {
         if (hitResult instanceof BlockHitResult blockHitResult && WorldHelper.INSTANCE.getBlock(blockHitResult.getBlockPos()) != Blocks.AIR) {
             matrixStack.push();
             Render3DHelper.INSTANCE.setup3DRender(true);
-            Vec3d centerOf = Vec3d.ofCenter(blockHitResult.getBlockPos().offset(blockHitResult.getSide()));
-            Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(centerOf);
+            Vec3 centerOf = Vec3d.ofCenter(blockHitResult.getBlockPos().offset(blockHitResult.getSide()));
+            Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(centerOf);
             matrixStack.translate(renderPos.x, renderPos.y, renderPos.z);
             Render3DHelper.INSTANCE.directionTranslate(matrixStack, facing);
             Box box = new Box(-0.5f, -0.5f, -0.5f, 0.5f, -0.45f, 0.5f);

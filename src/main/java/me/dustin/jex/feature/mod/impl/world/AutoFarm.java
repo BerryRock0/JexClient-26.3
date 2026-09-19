@@ -175,23 +175,23 @@ public class AutoFarm extends Feature {
     private final EventListener<EventRender3D> eventRender3DEventListener = new EventListener<>(event -> {
 
         if (farmArea != null && renderAreaBoxProperty.value()) {
-            Vec3d miningAreaVec1 = Render3DHelper.INSTANCE.getRenderPosition(new BlockPos(farmArea.getAreaBB().minX, farmArea.getAreaBB().minY, farmArea.getAreaBB().minZ));
-            Vec3d miningAreaVec2 = Render3DHelper.INSTANCE.getRenderPosition(new BlockPos(farmArea.getAreaBB().maxX, farmArea.getAreaBB().maxY, farmArea.getAreaBB().maxZ));
+            Vec3 miningAreaVec1 = Render3DHelper.INSTANCE.getRenderPosition(new BlockPos(farmArea.getAreaBB().minX, farmArea.getAreaBB().minY, farmArea.getAreaBB().minZ));
+            Vec3 miningAreaVec2 = Render3DHelper.INSTANCE.getRenderPosition(new BlockPos(farmArea.getAreaBB().maxX, farmArea.getAreaBB().maxY, farmArea.getAreaBB().maxZ));
             Box miningAreaBox = new Box(miningAreaVec1.x, miningAreaVec1.y, miningAreaVec1.z, miningAreaVec2.x + 1, miningAreaVec2.y + 1, miningAreaVec2.z + 1);
             Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), miningAreaBox, 0xffffff00);
         } else if (tempPos1 != null) {//draws yellow box on first set pos
-            Vec3d tempVec = Render3DHelper.INSTANCE.getRenderPosition(tempPos1);
+            Vec3 tempVec = Render3DHelper.INSTANCE.getRenderPosition(tempPos1);
             Box closestBox = new Box(tempVec.x, tempVec.y, tempVec.z, tempVec.x + 1, tempVec.y + 1, tempVec.z + 1);
             Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), closestBox, 0xffffff00);
         }
         if (tempPos2 != null) {//draws yellow box on first set pos
-            Vec3d tempVec = Render3DHelper.INSTANCE.getRenderPosition(tempPos2);
+            Vec3 tempVec = Render3DHelper.INSTANCE.getRenderPosition(tempPos2);
             Box closestBox = new Box(tempVec.x, tempVec.y, tempVec.z, tempVec.x + 1, tempVec.y + 1, tempVec.z + 1);
             Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), closestBox, 0xffffff00);
         }
         //draws yellow box on crosshair block
         if (farmArea == null && Wrapper.INSTANCE.getMinecraft().crosshairTarget instanceof BlockHitResult blockHitResult) {
-            Vec3d hitVec = Render3DHelper.INSTANCE.getRenderPosition(blockHitResult.getBlockPos());
+            Vec3 hitVec = Render3DHelper.INSTANCE.getRenderPosition(blockHitResult.getBlockPos());
             Box hoverBox = new Box(hitVec.x, hitVec.y, hitVec.z, hitVec.x + 1, hitVec.y + 1, hitVec.z + 1);
             Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), hoverBox, 0xff00ff00);
         }

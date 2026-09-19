@@ -17,18 +17,18 @@ public enum EntityPositionHelper {
     @EventPointer
     private final EventListener<EventRender3D> eventRender3DEventListener = new EventListener<>(event -> {
         Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
-            Vec3d head = Render2DHelper.INSTANCE.getHeadPos(entity, event.getPartialTicks(), event.getPoseStack());
-            Vec3d foot = Render2DHelper.INSTANCE.getFootPos(entity, event.getPartialTicks(), event.getPoseStack());
+            Vec3 head = Render2DHelper.INSTANCE.getHeadPos(entity, event.getPartialTicks(), event.getPoseStack());
+            Vec3 foot = Render2DHelper.INSTANCE.getFootPos(entity, event.getPartialTicks(), event.getPoseStack());
             headPositions.put(entity, head);
             footPositions.put(entity, foot);
         });
     });
 
-    public Vec3d getHeadPos(Entity entity) {
+    public Vec3 getHeadPos(Entity entity) {
         return headPositions.get(entity);
     }
 
-    public Vec3d getFootPos(Entity entity) {
+    public Vec3 getFootPos(Entity entity) {
         return footPositions.get(entity);
     }
 }

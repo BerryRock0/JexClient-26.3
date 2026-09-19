@@ -86,8 +86,8 @@ public class Trajectories extends Feature {
 
                     Color color = hitEntity == null ? missColorProperty.value() : hitColorProperty.value();
 
-                    Vec3d vec = positions.get(i);
-                    Vec3d vec1 = positions.get(i + 1);
+                    Vec3 vec = positions.get(i);
+                    Vec3 vec1 = positions.get(i + 1);
                     double x = vec.x - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().x;
                     double y = vec.y - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().y;
                     double z = vec.z - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().z;
@@ -103,9 +103,9 @@ public class Trajectories extends Feature {
                     BufferHelper.INSTANCE.drawWithShader(bufferBuilder, ShaderHelper.INSTANCE.getPosColorShader());
                     Render3DHelper.INSTANCE.end3DRender();
                 } else {
-                    Vec3d vec = Render3DHelper.INSTANCE.getRenderPosition(positions.get(i).x, positions.get(i).y, positions.get(i).z);
+                    Vec3 vec = Render3DHelper.INSTANCE.getRenderPosition(positions.get(i).x, positions.get(i).y, positions.get(i).z);
                     if (hitEntity != null) {
-                        Vec3d vec2 = Render3DHelper.INSTANCE.getEntityRenderPosition(hitEntity, event.getPartialTicks());
+                        Vec3 vec2 = Render3DHelper.INSTANCE.getEntityRenderPosition(hitEntity, event.getPartialTicks());
                         Render3DHelper.INSTANCE.drawEntityBox(event.getPoseStack(), hitEntity, vec2.x, vec2.y, vec2.z, hitColorProperty.value().getRGB());
                     } else {
                         Box bb1 = new Box(vec.x - 0.2f, vec.y - 0.2f, vec.z - 0.2f, vec.x + 0.2f, vec.y + 0.2f, vec.z + 0.2f);
@@ -146,9 +146,9 @@ public class Trajectories extends Feature {
                     ArrowItem arrowItem = (ArrowItem) itemStack.getItem();
                     PersistentProjectileEntity persistentProjectileEntity = arrowItem.createArrow(Wrapper.INSTANCE.getWorld(), itemStack, Wrapper.INSTANCE.getLocalPlayer());
 
-                    Vec3d vec3d = Wrapper.INSTANCE.getLocalPlayer().getOppositeRotationVector(1.0F);
+                    Vec3 Vec3 = Wrapper.INSTANCE.getLocalPlayer().getOppositeRotationVector(1.0F);
                     Quaternion quaternion = new Quaternion(new Vec3f(vec3d), 0, true);
-                    Vec3d vec3d2 = Wrapper.INSTANCE.getLocalPlayer().getRotationVec(1.0F);
+                    Vec3 vec3d2 = Wrapper.INSTANCE.getLocalPlayer().getRotationVec(1.0F);
                     Vec3f vector3f = new Vec3f(vec3d2);
                     vector3f.rotate(quaternion);
                     ((ProjectileEntity) persistentProjectileEntity).setVelocity(vector3f.getX(), vector3f.getY(), vector3f.getZ(), getSpeed(mainStack), 0);
@@ -248,7 +248,7 @@ public class Trajectories extends Feature {
         return null;
     }
 
-    protected EntityHitResult getEntityCollision(PersistentProjectileEntity persistentProjectileEntity, Vec3d currentPosition, Vec3d nextPosition) {
+    protected EntityHitResult getEntityCollision(PersistentProjectileEntity persistentProjectileEntity, Vec3 currentPosition, Vec3 nextPosition) {
         IPersistentProjectileEntity iPersistentProjectileEntity = (IPersistentProjectileEntity) persistentProjectileEntity;
         return ProjectileUtil.getEntityCollision(persistentProjectileEntity.world, persistentProjectileEntity, currentPosition, nextPosition, persistentProjectileEntity.getBoundingBox().stretch(persistentProjectileEntity.getVelocity()).expand(1.0D), iPersistentProjectileEntity::callCanHit);
     }
