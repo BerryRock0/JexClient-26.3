@@ -32,7 +32,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.math.Vec3f;
 import java.awt.*;
 
-public class OutlineAABB extends FeatureExtension {
+public class OutlineBox extends FeatureExtension {
 
 	public OutlineBox() {
 		super(ESP.Mode.BOX_OUTLINE, ESP.class);
