@@ -15,7 +15,7 @@ import me.dustin.jex.helper.player.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.network.packet.c2s.play.CreativeInventoryActionC2SPacket;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.registry.Registry;

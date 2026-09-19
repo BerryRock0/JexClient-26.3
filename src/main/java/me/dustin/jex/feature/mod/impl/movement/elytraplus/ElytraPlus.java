@@ -17,7 +17,7 @@ import me.dustin.jex.helper.network.NetworkHelper;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
+import net.minecraft.network.protocol.game.*;
 import org.lwjgl.glfw.GLFW;
 
 public class ElytraPlus extends Feature {

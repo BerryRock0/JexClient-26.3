@@ -12,7 +12,7 @@ import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.network.NetworkHelper;
 import me.dustin.jex.helper.player.InventoryHelper;
 import net.minecraft.world.item.Items;
-import net.minecraft.network.packet.c2s.play.HandSwingC2SPacket;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.world.InteractionHand;
 import org.lwjgl.glfw.GLFW;
 

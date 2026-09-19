@@ -7,7 +7,7 @@ import me.dustin.jex.event.packet.EventPacketSent;
 import me.dustin.jex.feature.mod.core.Category;
 import me.dustin.jex.helper.misc.Wrapper;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
-import net.minecraft.network.packet.c2s.play.CloseHandledScreenC2SPacket;
+import net.minecraft.network.protocol.game.*;
 import me.dustin.jex.feature.mod.core.Feature;
 
 public class InventoryPlus extends Feature {

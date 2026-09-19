@@ -5,7 +5,7 @@ import me.dustin.events.core.annotate.EventPointer;
 import me.dustin.jex.event.world.EventBreakBlock;
 import me.dustin.jex.feature.mod.core.Category;
 import me.dustin.jex.helper.network.NetworkHelper;
-import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.core.Direction;
 import me.dustin.jex.feature.mod.core.Feature;
 

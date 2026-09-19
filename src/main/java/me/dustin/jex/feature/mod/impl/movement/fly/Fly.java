@@ -24,7 +24,7 @@ import me.dustin.jex.helper.entity.EntityHelper;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.player.PlayerHelper;
 import net.minecraft.entity.EntityPose;
-import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
+import net.minecraft.network.protocol.game.*;
 import org.lwjgl.glfw.GLFW;
 
 public class Fly extends Feature {

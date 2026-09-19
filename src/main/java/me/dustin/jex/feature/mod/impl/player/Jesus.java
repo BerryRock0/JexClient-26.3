@@ -26,7 +26,7 @@ import net.minecraft.client.option.KeyBinding;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.WaterFluid;
-import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;

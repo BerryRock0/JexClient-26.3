@@ -21,7 +21,7 @@ import net.minecraft.block.AirBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.client.network.PlayerListEntry;
-import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.AABB;

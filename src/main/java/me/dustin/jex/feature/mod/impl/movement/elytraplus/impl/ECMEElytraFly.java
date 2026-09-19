@@ -7,8 +7,8 @@ import me.dustin.jex.feature.mod.core.Feature;
 import me.dustin.jex.feature.mod.impl.movement.elytraplus.ElytraPlus;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.network.NetworkHelper;
-import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
-import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
+import net.minecraft.network.protocol.game.*;
+import net.minecraft.network.protocol.game.*;
 
 public class ECMEElytraFly extends FeatureExtension {
     private ElytraPlus elytraPlus;

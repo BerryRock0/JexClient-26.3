@@ -11,7 +11,7 @@ import me.dustin.jex.feature.mod.core.Feature;
 import me.dustin.jex.helper.render.Render2DHelper;
 import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.client.gui.screen.ingame.SignEditScreen;
-import net.minecraft.network.packet.c2s.play.UpdateSignC2SPacket;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.ChatFormatting;
 
 public class ColoredSigns extends Feature {

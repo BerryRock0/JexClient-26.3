@@ -18,7 +18,7 @@ import me.dustin.jex.helper.render.Render3DHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.phys.Vec3;
 import me.dustin.jex.feature.mod.core.Feature;

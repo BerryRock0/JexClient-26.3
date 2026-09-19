@@ -14,7 +14,7 @@ import me.dustin.jex.helper.network.NetworkHelper;
 import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
+import net.minecraft.network.protocol.game.*;
 
 public class SpeedMine extends Feature {
 

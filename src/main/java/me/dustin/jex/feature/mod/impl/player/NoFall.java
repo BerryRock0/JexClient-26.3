@@ -12,7 +12,7 @@ import me.dustin.jex.feature.mod.impl.movement.fly.Fly;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.network.NetworkHelper;
 import me.dustin.jex.helper.player.PlayerHelper;
-import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
+import net.minecraft.network.protocol.game.*;
 
 public class NoFall extends Feature {
 
