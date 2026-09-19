@@ -32,8 +32,6 @@ import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.network.protocol.game.*;
-import net.minecraft.network.protocol.game.*;
-import net.minecraft.network.protocol.game.*;
 import net.minecraft.screen.MerchantScreenHandler;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.network.chat.Component;

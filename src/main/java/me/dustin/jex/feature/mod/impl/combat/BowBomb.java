@@ -9,7 +9,6 @@ import me.dustin.jex.helper.misc.Wrapper;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.world.item.Items;
 import net.minecraft.network.protocol.game.*;
-import net.minecraft.network.protocol.game.*;
 import me.dustin.events.core.annotate.EventPointer;
 
 public class BowBomb extends Feature {

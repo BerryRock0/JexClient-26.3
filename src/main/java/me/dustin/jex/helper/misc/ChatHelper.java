@@ -8,7 +8,6 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.network.encryption.Signer;
 import net.minecraft.network.message.*;
 import net.minecraft.network.protocol.game.*;
-import net.minecraft.network.protocol.game.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import net.minecraft.util.StringHelper;

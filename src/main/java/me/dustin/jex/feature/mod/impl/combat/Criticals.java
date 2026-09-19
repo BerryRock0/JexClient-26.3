@@ -10,7 +10,6 @@ import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.network.NetworkHelper;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.network.protocol.game.*;
-import net.minecraft.network.protocol.game.*;
 
 public class Criticals extends Feature {
 

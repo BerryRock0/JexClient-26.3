@@ -20,7 +20,6 @@ import net.minecraft.world.level.block.Blocks;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.item.BlockItem;
 import net.minecraft.network.protocol.game.*;
-import net.minecraft.network.protocol.game.*;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.core.BlockPos;

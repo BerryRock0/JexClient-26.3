@@ -23,8 +23,6 @@ import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.MovementType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.network.protocol.game.*;
-import net.minecraft.network.protocol.game.*;
-import net.minecraft.network.protocol.game.*;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.phys.Vec3;
 import java.util.UUID;
