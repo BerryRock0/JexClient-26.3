@@ -7,7 +7,6 @@ import net.minecraft.world.phys.Vec3;
 
 public interface PosArgument {
    Vec3 toAbsolutePos(FabricClientCommandSource source);
-
    Vec2 toAbsoluteRotation(FabricClientCommandSource source);
 
    default BlockPos toAbsoluteBlockPos(FabricClientCommandSource source)
@@ -15,9 +14,5 @@ public interface PosArgument {
       return new BlockPos(this.toAbsolutePos(source));
    }
 
-   boolean isXRelative();
-
-   boolean isYRelative();
-
-   boolean isZRelative();
+   boolean isXRelative(),isYRelative(),isZRelative();
 }
