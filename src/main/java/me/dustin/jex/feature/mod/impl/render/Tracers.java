@@ -18,7 +18,7 @@ import me.dustin.jex.feature.mod.impl.render.esp.ESP;
 import me.dustin.jex.helper.render.shader.ShaderHelper;
 import net.minecraft.client.render.*;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Vec3d;
 

@@ -2,7 +2,7 @@ package me.dustin.jex.helper.math.vector;
 
 import me.dustin.jex.helper.entity.EntityHelper;
 import me.dustin.jex.helper.misc.Wrapper;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
 
 public class RotationVector {

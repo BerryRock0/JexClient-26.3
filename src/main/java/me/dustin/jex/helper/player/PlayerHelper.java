@@ -18,7 +18,7 @@ import me.dustin.jex.helper.network.MCAPIHelper;
 import me.dustin.jex.helper.network.NetworkHelper;
 import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.projectile.ProjectileUtil;

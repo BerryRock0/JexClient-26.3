@@ -13,7 +13,7 @@ import me.dustin.jex.helper.network.MCAPIHelper;
 import me.dustin.jex.helper.player.PlayerHelper;
 import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.util.math.Vec3d;
 import me.dustin.jex.helper.render.Render2DHelper;
 import me.dustin.jex.feature.mod.core.Feature;

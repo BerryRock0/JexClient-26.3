@@ -3,7 +3,7 @@ package me.dustin.jex.event.render;
 import me.dustin.events.core.Event;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 
 public class EventRenderNametags extends Event {
 
