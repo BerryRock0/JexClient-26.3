@@ -11,10 +11,10 @@ import net.minecraft.client.renderer.MultiBufferSource;
 public class EventDrawScreen extends Event {
 
 	private final Screen screen;
-	private final MatrixStack poseStack;
+	private final PoseStack poseStack;
 	private final Mode mode;
 
-	public EventDrawScreen(Screen screen, MatrixStack poseStack, Mode mode) {
+	public EventDrawScreen(Screen screen, PoseStack poseStack, Mode mode) {
 		this.screen = screen;
 		this.poseStack = poseStack;
 		this.mode = mode;
