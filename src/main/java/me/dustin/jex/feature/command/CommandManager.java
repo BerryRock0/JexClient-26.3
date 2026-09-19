@@ -29,8 +29,6 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import net.minecraft.client.gui.screens.ChatScreen;
-import net.minecraft.text.Text;
-import net.minecraft.text.Texts;
 
 public enum CommandManager {
     INSTANCE;
