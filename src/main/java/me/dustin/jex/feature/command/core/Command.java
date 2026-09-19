@@ -9,7 +9,7 @@ import me.dustin.jex.feature.command.CommandManager;
 import me.dustin.jex.feature.command.core.annotate.Cmd;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.multiplayer.ClientSuggestionProvider;
-import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.commands.CommandBuildContext;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,7 +41,7 @@ public abstract class Command implements Command<FabricClientCommandSource> {
         return alias;
     }
 
-    public abstract void registerCommand(CommandDispatcher<FabricClientCommandSource> dispatcher, CommandRegistryAccess commandRegistryAccess);
+    public abstract void registerCommand(CommandDispatcher<FabricClientCommandSource> dispatcher, CommandBuildContext commandRegistryAccess);
 
     public LiteralArgumentBuilder<FabricClientCommandSource> literal(String s) {
         return LiteralArgumentBuilder.literal(s);
