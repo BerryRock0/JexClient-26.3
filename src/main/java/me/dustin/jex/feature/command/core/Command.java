@@ -6,8 +6,8 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import me.dustin.jex.feature.command.CommandManager;
 import me.dustin.jex.feature.command.core.annotate.Cmd;
-import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
+import net.minecraft.client.multiplayer.ClientSuggestionProvider;
 import net.minecraft.command.CommandRegistryAccess;
 
 import java.util.Arrays;
@@ -43,10 +43,10 @@ public abstract class Command implements com.mojang.brigadier.Command<FabricClie
     public abstract void registerCommand(CommandDispatcher<FabricClientCommandSource> dispatcher, CommandRegistryAccess commandRegistryAccess);
 
     public LiteralArgumentBuilder<FabricClientCommandSource> literal(String s) {
-        return ClientCommandManager.literal(s);
+        return LiteralArgumentBuilder.literal(s);
     }
 
     public <T> RequiredArgumentBuilder<FabricClientCommandSource, T> argument(String s, ArgumentType<T> type) {
-        return ClientCommandManager.argument(s, type);
+        return RequiredArgumentBuilder.argument(s, type);
     }
 }
