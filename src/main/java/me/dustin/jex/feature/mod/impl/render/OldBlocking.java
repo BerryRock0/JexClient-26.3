@@ -10,7 +10,7 @@ import me.dustin.jex.feature.property.Property;
 import me.dustin.jex.helper.entity.EntityHelper;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraft.item.ShieldItem;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolItem;

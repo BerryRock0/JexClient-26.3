@@ -3,7 +3,7 @@ package me.dustin.jex.file.impl;
 import me.dustin.jex.feature.mod.impl.player.AutoDrop;
 import me.dustin.jex.file.core.ConfigFile;
 import me.dustin.jex.helper.file.YamlHelper;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.core.registries.BuiltInRegistries;
 import java.util.HashMap;

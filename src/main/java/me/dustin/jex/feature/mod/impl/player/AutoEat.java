@@ -17,7 +17,7 @@ import me.dustin.jex.helper.player.InventoryHelper;
 import me.dustin.jex.helper.player.PlayerHelper;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.FoodComponents;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.world.InteractionHand;

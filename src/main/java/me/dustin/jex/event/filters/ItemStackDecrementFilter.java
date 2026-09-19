@@ -1,7 +1,7 @@
 package me.dustin.jex.event.filters;
 
 import me.dustin.jex.event.misc.EventItemStackDecrement;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 
 import java.util.function.Predicate;
 
