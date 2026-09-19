@@ -36,7 +36,7 @@ public class ColorArgumentType implements ArgumentType<ChatFormatting> {
       return context.getArgument(name, Formatting.class);
    }
 
-   public Formatting parse(StringReader stringReader) throws CommandSyntaxException {
+   public ChatFormatting parse(StringReader stringReader) throws CommandSyntaxException {
       String string = stringReader.readUnquotedString();
       ChatFormatting formatting = Formatting.byName(string);
       if (formatting != null && !formatting.isModifier()) {
