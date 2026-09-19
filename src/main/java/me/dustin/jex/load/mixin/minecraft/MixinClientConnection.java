@@ -14,7 +14,7 @@ import me.dustin.jex.helper.network.ProxyHelper;
 import me.dustin.jex.helper.player.bot.BotClientConnection;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.network.NetworkSide;
-import net.minecraft.network.Packet;
+import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.PacketCallbacks;
 import net.minecraft.util.Lazy;
 import org.jetbrains.annotations.Nullable;

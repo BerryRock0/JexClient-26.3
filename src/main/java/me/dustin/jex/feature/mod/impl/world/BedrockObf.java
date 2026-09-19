@@ -10,7 +10,7 @@ import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.network.Packet;
+import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.packet.s2c.play.BlockUpdateS2CPacket;
 import net.minecraft.network.packet.s2c.play.ChunkDataS2CPacket;
 import net.minecraft.network.packet.s2c.play.ChunkDeltaUpdateS2CPacket;

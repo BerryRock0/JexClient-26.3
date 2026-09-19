@@ -10,7 +10,7 @@ import me.dustin.jex.feature.mod.core.Category;
 import me.dustin.jex.feature.property.Property;
 import me.dustin.jex.helper.misc.StopWatch;
 import me.dustin.jex.helper.misc.Wrapper;
-import net.minecraft.network.Packet;
+import net.minecraft.network.protocol.Packet;
 import me.dustin.jex.feature.mod.core.Feature;
 import java.util.ArrayList;
 
