@@ -1,6 +1,6 @@
 package me.dustin.jex.helper.player;
 
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 
 import java.util.ArrayList;
 

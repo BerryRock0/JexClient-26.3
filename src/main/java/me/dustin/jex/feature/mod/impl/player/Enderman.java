@@ -14,7 +14,7 @@ import me.dustin.jex.helper.player.PlayerHelper;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.mob.EndermanEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Vec3d;
 import me.dustin.jex.feature.mod.core.Feature;

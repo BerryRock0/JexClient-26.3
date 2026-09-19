@@ -18,7 +18,7 @@ import me.dustin.jex.helper.entity.EntityHelper;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.network.WebHelper;
 import net.minecraft.client.network.PlayerListEntry;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.network.packet.s2c.play.PlayerSpawnS2CPacket;
 
 import java.util.ArrayList;

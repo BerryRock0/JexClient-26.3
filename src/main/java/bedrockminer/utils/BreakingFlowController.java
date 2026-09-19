@@ -4,7 +4,7 @@ import me.dustin.jex.helper.misc.Wrapper;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.math.BlockPos;
 import java.util.ArrayList;
 //import java.util.List;

@@ -12,7 +12,7 @@ import me.dustin.jex.file.impl.TrailsFile;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.player.FriendHelper;
 import me.dustin.jex.helper.player.PlayerHelper;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.ParticleTypes;

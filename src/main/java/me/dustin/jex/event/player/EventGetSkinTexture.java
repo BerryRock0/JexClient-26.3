@@ -1,7 +1,7 @@
 package me.dustin.jex.event.player;
 
 import me.dustin.events.core.Event;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.Identifier;
 
 public class EventGetSkinTexture extends Event {

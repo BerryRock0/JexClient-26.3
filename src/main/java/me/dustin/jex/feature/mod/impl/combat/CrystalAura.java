@@ -19,7 +19,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.entity.decoration.EndCrystalEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.Items;
 import net.minecraft.util.Hand;
 import net.minecraft.world.phys.BlockHitResult;
