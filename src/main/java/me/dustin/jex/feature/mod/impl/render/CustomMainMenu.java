@@ -10,7 +10,7 @@ import me.dustin.jex.feature.mod.core.Category;
 import me.dustin.jex.feature.property.Property;
 import me.dustin.jex.gui.minecraft.JexTitleScreen;
 import me.dustin.jex.helper.misc.Wrapper;
-import net.minecraft.client.gui.screen.TitleScreen;
+import net.minecraft.client.gui.screens.TitleScreen;
 import me.dustin.jex.feature.mod.core.Feature;
 
 public class CustomMainMenu extends Feature {

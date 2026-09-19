@@ -10,7 +10,7 @@ import me.dustin.jex.helper.network.login.thealtening.TheAlteningHelper;
 import me.dustin.jex.load.impl.IMinecraft;
 import net.fabricmc.loader.impl.FabricLoaderImpl;
 import net.minecraft.client.gui.screen.DisconnectedScreen;
-import net.minecraft.client.gui.screen.TitleScreen;
+import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.realms.gui.screen.RealmsMainScreen;
 import net.minecraft.client.util.ProfileKeys;
