@@ -15,7 +15,7 @@ import me.dustin.jex.helper.render.Scissor;
 import me.dustin.jex.helper.render.Stencil;
 import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
@@ -40,7 +40,7 @@ public class JexPropertyListScreen extends Screen {
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+    public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
         Render2DHelper.INSTANCE.renderRoundedQuad(matrices, JexGuiScreen.getX(), JexGuiScreen.getY(), JexGuiScreen.getRight(), JexGuiScreen.getBottom(), 0x70000000, 5, 15);
 
@@ -209,7 +209,7 @@ public class JexPropertyListScreen extends Screen {
         }
     }
 
-    public void drawClientText(MatrixStack matrices) {
+    public void drawClientText(PoseStack matrices) {
         matrices.push();
         matrices.scale(2, 2, 1);
         FontHelper.INSTANCE.drawCenteredString(matrices, Text.translatable("jex.name"), (width / 2.f) / 2.f, (JexGuiScreen.getY() + 5) / 2.f, feature.getCategory().color());

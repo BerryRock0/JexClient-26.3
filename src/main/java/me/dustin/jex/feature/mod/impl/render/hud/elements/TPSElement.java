@@ -4,7 +4,7 @@ import me.dustin.jex.helper.math.ColorHelper;
 import me.dustin.jex.helper.math.TPSHelper;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.render.font.FontHelper;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 public class TPSElement extends HudElement {
     public TPSElement(float x, float y, float minWidth, float minHeight) {
@@ -12,7 +12,7 @@ public class TPSElement extends HudElement {
     }
 
     @Override
-    public void render(MatrixStack matrixStack) {
+    public void render(PoseStack matrixStack) {
         if (!isVisible())
             return;
         super.render(matrixStack);

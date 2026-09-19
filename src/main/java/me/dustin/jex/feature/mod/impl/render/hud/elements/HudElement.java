@@ -10,7 +10,7 @@ import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.render.Render2DHelper;
 import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.client.gui.screen.ChatScreen;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.util.math.MathHelper;
 import java.util.ArrayList;
 
@@ -37,7 +37,7 @@ public class HudElement {
         this.lastHeight = minHeight;
     }
 
-    public void render(MatrixStack matrixStack) {
+    public void render(PoseStack matrixStack) {
         if (!isVisible())
             return;
         handleElement();

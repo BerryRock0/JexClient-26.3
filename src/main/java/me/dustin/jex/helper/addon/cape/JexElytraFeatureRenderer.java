@@ -10,7 +10,7 @@ import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.*;
 import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -27,7 +27,7 @@ public class JexElytraFeatureRenderer extends FeatureRenderer<PlayerEntity, Play
     private final ElytraEntityModel<PlayerEntity> elytra;
 
     @Override
-    public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, Player playerEntity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+    public void render(PoseStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, Player playerEntity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         String uuid = playerEntity.getUuidAsString().replace("-", "");
         if (playerEntity.isInvisible() || !playerEntity.isPartVisible(PlayerModelPart.CAPE) || !CapeHelper.INSTANCE.hasCape(uuid)) {
             return;

@@ -10,7 +10,7 @@ import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
 import me.dustin.jex.helper.render.Render2DHelper;
 import net.minecraft.util.Formatting;
@@ -105,7 +105,7 @@ public class AddAccountScreen extends Screen {
 	}
 
 	@Override
-	public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+	public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
 		renderBackground(matrixStack);
 		username.render(matrixStack, mouseX, mouseY, partialTicks);
 		email.render(matrixStack, mouseX, mouseY, partialTicks);

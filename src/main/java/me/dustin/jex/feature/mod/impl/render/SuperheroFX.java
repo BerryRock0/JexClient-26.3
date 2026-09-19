@@ -12,7 +12,7 @@ import me.dustin.jex.helper.misc.StopWatch;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.render.Render2DHelper;
 import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.HitResult;
@@ -112,7 +112,7 @@ public class SuperheroFX extends Feature{
             stopWatch.reset();
         }
 
-        public void render(MatrixStack matrixStack) {
+        public void render(PoseStack matrixStack) {
             if (stopWatch.hasPassed(maxAgeProperty.value()))
                 this.age = 0;
             if (visibleOnlyProperty.value()) {

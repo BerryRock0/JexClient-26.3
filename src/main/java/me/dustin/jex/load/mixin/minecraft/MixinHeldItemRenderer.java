@@ -7,7 +7,7 @@ import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.item.HeldItemRenderer;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.util.math.MathHelper;
@@ -35,7 +35,7 @@ public class MixinHeldItemRenderer {
     @Shadow @Final private MinecraftClient client;
 
     @Inject(method = "renderFirstPersonItem", at = @At("HEAD"), cancellable = true)
-    public void renderFirstPersonItem(AbstractClientPlayer player, float tickDelta, float pitch, Hand hand, float swingProgress, ItemStack item, float equipProgress, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
+    public void renderFirstPersonItem(AbstractClientPlayer player, float tickDelta, float pitch, Hand hand, float swingProgress, ItemStack item, float equipProgress, PoseStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
         EventRenderHeldItem eventRenderHeldItem = new EventRenderHeldItem(item, hand, tickDelta, matrices).run();
         if (eventRenderHeldItem.isCancelled())
             ci.cancel();

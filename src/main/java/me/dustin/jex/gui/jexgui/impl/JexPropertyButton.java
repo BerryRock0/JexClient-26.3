@@ -5,7 +5,7 @@ import me.dustin.jex.gui.jexgui.impl.properties.*;
 import me.dustin.jex.helper.math.ColorHelper;
 import me.dustin.jex.helper.render.Button;
 import me.dustin.jex.helper.render.font.FontHelper;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class JexPropertyButton extends Button {
     }
 
     @Override
-    public void render(MatrixStack matrixStack) {
+    public void render(PoseStack matrixStack) {
         if (hasChild())
             FontHelper.INSTANCE.drawWithShadow(matrixStack, isOpen() ? "-" : "+", getX() + getWidth() - 15, getY() + 4, !isOpen() ? -1 : getColor());
         getChildren().forEach(button -> button.render(matrixStack));

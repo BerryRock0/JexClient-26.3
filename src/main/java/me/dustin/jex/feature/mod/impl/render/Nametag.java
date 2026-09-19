@@ -28,7 +28,7 @@ import net.minecraft.client.render.BufferRenderer;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.render.VertexFormats;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ItemEntity;
@@ -201,7 +201,7 @@ public class Nametag extends Feature {
         });
     });
 
-    public void drawNametags(MatrixStack matrixStack) {
+    public void drawNametags(PoseStack matrixStack) {
         ArrayList<Entity> exceptions = new ArrayList<>();
         //draw all backgrounds then render all at once
         RenderSystem.enableBlend();
@@ -282,7 +282,7 @@ public class Nametag extends Feature {
         });
     }
 
-    public void drawInventoryItems(MatrixStack matrixStack, Vec3 vec, LivingEntity livingEntity) {
+    public void drawInventoryItems(PoseStack matrixStack, Vec3 vec, LivingEntity livingEntity) {
         float x = (float) vec.x;
         float y = (float) vec.y - (showPlayerFaceProperty.value() && livingEntity instanceof Player ? 18 : 0);
         int itemWidth = 16;
@@ -318,7 +318,7 @@ public class Nametag extends Feature {
         }
     }
 
-    public void drawInventoryBackgrounds(MatrixStack matrixStack, Vec3 vec, LivingEntity livingEntity) {
+    public void drawInventoryBackgrounds(PoseStack matrixStack, Vec3 vec, LivingEntity livingEntity) {
         float x = (float) vec.x;
         float y = (float) vec.y - (showPlayerFaceProperty.value() && livingEntity instanceof Player ? 18 : 0);
         int itemWidth = 16;
@@ -355,7 +355,7 @@ public class Nametag extends Feature {
         }
     }
 
-    public void drawPlayerFaces(MatrixStack matrixStack) {
+    public void drawPlayerFaces(PoseStack matrixStack) {
         Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
             if (isValid(entity)) {
                 Vec3 vec = positions.get(entity);

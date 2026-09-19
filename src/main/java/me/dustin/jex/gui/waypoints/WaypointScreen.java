@@ -12,7 +12,7 @@ import me.dustin.jex.helper.misc.MouseHelper;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
 import me.dustin.jex.helper.render.Render2DHelper;
 import me.dustin.jex.helper.render.Scissor;
@@ -105,7 +105,7 @@ public class WaypointScreen extends Screen {
     }
 
     @Override
-    public void render(MatrixStack matrixStack, int int_1, int int_2, float float_1) {
+    public void render(PoseStack matrixStack, int int_1, int int_2, float float_1) {
         renderBackground(matrixStack);
         Render2DHelper.INSTANCE.fillAndBorder(matrixStack, getMidX() - buttonWidth - 6, getMidY() - 105, getMidX() + buttonWidth + 6, getMidY() + 130, ColorHelper.INSTANCE.getClientColor(), 0x60000000, 1);
 

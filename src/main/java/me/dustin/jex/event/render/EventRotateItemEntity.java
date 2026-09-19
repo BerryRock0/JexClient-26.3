@@ -1,16 +1,16 @@
 package me.dustin.jex.event.render;
 
 import me.dustin.events.core.Event;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.entity.ItemEntity;
 
 public class EventRotateItemEntity extends Event {
 
     private final ItemEntity itemEntity;
-    private final MatrixStack poseStack;
+    private final PoseStack poseStack;
     private final float g;
 
-    public EventRotateItemEntity(ItemEntity itemEntity, MatrixStack poseStack, float g) {
+    public EventRotateItemEntity(ItemEntity itemEntity, PoseStack poseStack, float g) {
         this.itemEntity = itemEntity;
         this.poseStack = poseStack;
         this.g = g;
@@ -20,7 +20,7 @@ public class EventRotateItemEntity extends Event {
         return itemEntity;
     }
 
-    public MatrixStack getPoseStack() {
+    public PoseStack getPoseStack() {
         return poseStack;
     }
 

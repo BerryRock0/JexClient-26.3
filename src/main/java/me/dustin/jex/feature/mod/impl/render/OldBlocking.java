@@ -9,7 +9,7 @@ import me.dustin.jex.feature.mod.core.Category;
 import me.dustin.jex.feature.property.Property;
 import me.dustin.jex.helper.entity.EntityHelper;
 import net.minecraft.client.render.model.json.ModelTransformation;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.item.Item;
 import net.minecraft.item.ShieldItem;
 import net.minecraft.item.SwordItem;
@@ -33,7 +33,7 @@ public class OldBlocking extends Feature {
     @EventPointer
     private final EventListener<EventRenderItem> eventRenderItemEventListener = new EventListener<>(event -> {
         if (event.getType().isFirstPerson()) {
-            MatrixStack matrixStack = event.getPoseStack();
+            PoseStack matrixStack = event.getPoseStack();
             boolean offHand = event.isLeftHanded() ? event.getType() == ModelTransformation.Mode.FIRST_PERSON_RIGHT_HAND : event.getType() == ModelTransformation.Mode.FIRST_PERSON_LEFT_HAND;
 
             if (EntityHelper.INSTANCE.isAuraBlocking())

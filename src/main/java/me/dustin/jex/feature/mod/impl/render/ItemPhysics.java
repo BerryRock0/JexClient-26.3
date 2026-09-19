@@ -11,7 +11,7 @@ import me.dustin.jex.feature.property.Property;
 import me.dustin.jex.helper.misc.Wrapper;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.json.ModelTransformation;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Quaternion;
@@ -51,7 +51,7 @@ public class ItemPhysics extends Feature {//fancier version that's not just flat
     @EventPointer
     private final EventListener<EventRotateItemEntity> eventRotateItemEntityEventListener = new EventListener<>(event -> {
         ItemEntity itemEntity = event.getItemEntity();
-        MatrixStack matrixStack = event.getPoseStack();
+        PoseStack matrixStack = event.getPoseStack();
         float g = event.getG();
         float n = itemEntity.getRotation(g);
 

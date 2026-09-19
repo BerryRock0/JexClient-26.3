@@ -7,7 +7,7 @@ import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
 
 public class JexLoginRegisterScreen extends Screen {
@@ -51,7 +51,7 @@ public class JexLoginRegisterScreen extends Screen {
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+    public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
         FontHelper.INSTANCE.drawCenteredString(matrices, message, width / 2.f, 2, 0xffff0000);
         if (this.usernameWidget != null) {

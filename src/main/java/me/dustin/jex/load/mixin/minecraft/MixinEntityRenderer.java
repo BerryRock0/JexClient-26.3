@@ -5,7 +5,7 @@ import me.dustin.jex.event.render.EventRenderNametags;
 import net.minecraft.client.render.Frustum;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.text.Text;
@@ -26,7 +26,7 @@ public class MixinEntityRenderer {
     }
 
     @Inject(method = "renderLabelIfPresent", at = @At("HEAD"), cancellable = true)
-    public void renderLabel(Entity entity, Text text, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
+    public void renderLabel(Entity entity, Text text, PoseStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
         if (entity instanceof LivingEntity) {
             EventRenderNametags eventRenderNametags = new EventRenderNametags((LivingEntity) entity, matrices, vertexConsumers).run();
             if (eventRenderNametags.isCancelled())

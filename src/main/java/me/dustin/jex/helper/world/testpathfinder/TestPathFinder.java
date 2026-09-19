@@ -6,7 +6,7 @@ import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.render.Render3DHelper;
 import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -68,7 +68,7 @@ public class TestPathFinder {
         }
     }
 
-    public void render(MatrixStack matrixStack) {
+    public void render(PoseStack matrixStack) {
         ArrayList<Render3DHelper.BoxStorage> boxes = new ArrayList<>();
         path.forEach(pathNode -> {
             Vec3 renderVec = Render3DHelper.INSTANCE.getRenderPosition(pathNode.getX(), pathNode.getY(), pathNode.getZ());

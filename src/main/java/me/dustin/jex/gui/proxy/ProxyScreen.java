@@ -10,7 +10,7 @@ import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.network.ServerAddress;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
 
 public class ProxyScreen extends Screen {
@@ -64,7 +64,7 @@ public class ProxyScreen extends Screen {
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+    public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
         connectButton.active = ServerAddress.isValid(proxyField.getText()) && proxyField.getText().contains(":");
         disconnectButton.active = ProxyHelper.INSTANCE.isConnectedToProxy();

@@ -1,17 +1,17 @@
 package me.dustin.jex.event.render;
 
 import me.dustin.events.core.Event;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 public class EventRenderBackground extends Event {
 
-    private final MatrixStack poseStack;
+    private final PoseStack poseStack;
 
-    public EventRenderBackground(MatrixStack poseStack) {
+    public EventRenderBackground(PoseStack poseStack) {
         this.poseStack = poseStack;
     }
 
-    public MatrixStack getPoseStack() {
+    public PoseStack getPoseStack() {
         return poseStack;
     }
 }

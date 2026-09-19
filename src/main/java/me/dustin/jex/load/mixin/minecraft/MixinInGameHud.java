@@ -5,7 +5,7 @@ import me.dustin.jex.event.render.EventRenderCrosshair;
 import me.dustin.jex.event.render.EventRenderEffects;
 import me.dustin.jex.event.render.EventRenderOverlay;
 import net.minecraft.client.gui.hud.InGameHud;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Final;
@@ -23,7 +23,7 @@ public class MixinInGameHud {
     @Shadow @Final private static Identifier POWDER_SNOW_OUTLINE;
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/KeyBinding;isPressed()Z"))
-    public void draw(MatrixStack matrixStack, float float_1, CallbackInfo ci) {
+    public void draw(PoseStack matrixStack, float float_1, CallbackInfo ci) {
         try {
             new EventRender2D(matrixStack).run();
         }catch (Exception e) {
@@ -32,14 +32,14 @@ public class MixinInGameHud {
     }
 
     @Inject(method = "renderCrosshair", at = @At("HEAD"), cancellable = true)
-    public void renderCrosshair(MatrixStack matrixStack, CallbackInfo ci) {
+    public void renderCrosshair(PoseStack matrixStack, CallbackInfo ci) {
         EventRenderCrosshair eventRenderCrosshair = new EventRenderCrosshair(matrixStack).run();
         if (eventRenderCrosshair.isCancelled())
             ci.cancel();
     }
 
     @Inject(method = "renderStatusEffectOverlay", at = @At("HEAD"), cancellable = true)
-    public void renderStatusEffectOverlay(MatrixStack matrixStack, CallbackInfo ci) {
+    public void renderStatusEffectOverlay(PoseStack matrixStack, CallbackInfo ci) {
         EventRenderEffects eventRenderEffects = new EventRenderEffects().run();
         if (eventRenderEffects.isCancelled())
             ci.cancel();

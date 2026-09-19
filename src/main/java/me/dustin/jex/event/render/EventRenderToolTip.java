@@ -1,18 +1,18 @@
 package me.dustin.jex.event.render;
 
 import me.dustin.events.core.Event;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.item.ItemStack;
 
 public class EventRenderToolTip extends Event {
 
     private ItemStack itemStack;
-    private final MatrixStack poseStack;
+    private final PoseStack poseStack;
     private final Mode mode;
     private int x, y;
     private ToolTipData other;
 
-    public EventRenderToolTip(MatrixStack poseStack, Mode mode, int x, int y, ItemStack itemStack) {
+    public EventRenderToolTip(PoseStack poseStack, Mode mode, int x, int y, ItemStack itemStack) {
         this.itemStack = itemStack;
         this.poseStack = poseStack;
         this.mode = mode;
@@ -28,7 +28,7 @@ public class EventRenderToolTip extends Event {
         return mode;
     }
 
-    public MatrixStack getPoseStack() {
+    public PoseStack getPoseStack() {
         return poseStack;
     }
 

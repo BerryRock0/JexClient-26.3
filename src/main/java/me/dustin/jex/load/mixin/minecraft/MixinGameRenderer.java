@@ -8,7 +8,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.Shader;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.util.math.Matrix4f;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
@@ -24,7 +24,7 @@ public abstract class MixinGameRenderer {
 
     @Shadow protected abstract double getFov(Camera camera, float tickDelta, boolean changingFov);
 
-    @Shadow protected abstract void bobView(MatrixStack matrices, float f);
+    @Shadow protected abstract void bobView(PoseStack matrices, float f);
 
     @Shadow @Final private Camera camera;
 
@@ -32,7 +32,7 @@ public abstract class MixinGameRenderer {
 
     @Shadow public abstract void loadProjectionMatrix(Matrix4f projectionMatrix);
 
-    @Shadow protected abstract void bobViewWhenHurt(MatrixStack matrices, float tickDelta);
+    @Shadow protected abstract void bobViewWhenHurt(PoseStack matrices, float tickDelta);
 
     @Shadow @Final private MinecraftClient client;
 
@@ -43,11 +43,11 @@ public abstract class MixinGameRenderer {
     @Shadow @Nullable private static Shader renderTypeArmorGlintShader;
 
     @Inject(method = "renderWorld(FJLnet/minecraft/client/util/math/MatrixStack;)V", at = @At(value = "INVOKE", target = "com/mojang/blaze3d/systems/RenderSystem.clear(IZ)V"))
-    private void onRenderWorld(float partialTicks, long finishTimeNano, MatrixStack matrixStack1, CallbackInfo ci) {
+    private void onRenderWorld(float partialTicks, long finishTimeNano, PoseStack matrixStack1, CallbackInfo ci) {
         if (Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera == null || Wrapper.INSTANCE.getLocalPlayer() == null)
             return;
         RenderSystem.clearColor(1, 1, 1, 1);
-        MatrixStack matrixStack = new MatrixStack();
+        PoseStack matrixStack = new MatrixStack();
         double d = this.getFov(camera, partialTicks, true);
         matrixStack.peek().getPositionMatrix().multiply(this.getBasicProjectionMatrix(d));
         loadProjectionMatrix(matrixStack.peek().getPositionMatrix());
@@ -66,21 +66,21 @@ public abstract class MixinGameRenderer {
     }
 
     @Inject(method = "renderHand", at = @At("HEAD"), cancellable = true)
-    public void renderHand(MatrixStack matrices, Camera camera, float tickDelta, CallbackInfo ci) {
+    public void renderHand(PoseStack matrices, Camera camera, float tickDelta, CallbackInfo ci) {
         EventRenderHand eventRenderHand = new EventRenderHand().run();
         if (eventRenderHand.isCancelled())
             ci.cancel();
     }
 
     @Inject(method = "bobView", at = @At("HEAD"), cancellable = true)
-    public void bobView1(MatrixStack matrixStack, float f, CallbackInfo ci) {
+    public void bobView1(PoseStack matrixStack, float f, CallbackInfo ci) {
         EventBobView eventBobView = new EventBobView().run();
         if (eventBobView.isCancelled())
             ci.cancel();
     }
 
     @Inject(method = "bobViewWhenHurt", at = @At(value = "HEAD"), cancellable = true)
-    public void bobViewWhenHurt1(MatrixStack matrixStack, float float_1, CallbackInfo ci) {
+    public void bobViewWhenHurt1(PoseStack matrixStack, float float_1, CallbackInfo ci) {
         if (((EventHurtCam) new EventHurtCam().run()).isCancelled()) ci.cancel();
     }
 

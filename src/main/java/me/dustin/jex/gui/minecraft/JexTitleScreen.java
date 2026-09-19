@@ -47,7 +47,7 @@ import net.minecraft.client.realms.gui.screen.RealmsMainScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.NativeImageBackedTexture;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
@@ -177,7 +177,7 @@ public class JexTitleScreen extends Screen {
 
     float capeYaw = 0;
 
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+    public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
         if (this.backgroundFadeStart == 0L && this.doBackgroundFade) {
             this.backgroundFadeStart = Util.getMeasuringTimeMs();
         }

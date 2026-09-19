@@ -14,7 +14,7 @@ import me.dustin.jex.helper.baritone.BaritoneHelper;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.player.PlayerHelper;
 import me.dustin.jex.helper.render.Render3DHelper;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.InteractionHand;
@@ -68,7 +68,7 @@ public class SingleAura extends FeatureExtension {
                 Render3DHelper.INSTANCE.drawEntityBox(((EventRender3D) event1).getPoseStack(), target, ((EventRender3D) event1).getPartialTicks(), KillAura.INSTANCE.targetColorProperty.value().getRGB());
             }
             if (KillAura.INSTANCE.reachCircleProperty.value()) {
-                MatrixStack matrixStack = ((EventRender3D) event1).getPoseStack();
+                PoseStack matrixStack = ((EventRender3D) event1).getPoseStack();
                 matrixStack.push();
                 Render3DHelper.INSTANCE.setup3DRender(false);
                 RenderSystem.lineWidth(1);

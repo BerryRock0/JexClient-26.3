@@ -8,7 +8,7 @@ import me.dustin.jex.helper.render.FileBrowser;
 import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import java.io.File;
@@ -41,7 +41,7 @@ public class ImportFromTXTScreen extends Screen {
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+    public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
         fileBrowser.render(matrices);
         FontHelper.INSTANCE.drawCenteredString(matrices, message, width / 2.f, height / 2.f - 175, -1);

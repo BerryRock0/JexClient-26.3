@@ -17,7 +17,7 @@ import me.dustin.jex.helper.player.PlayerHelper;
 import me.dustin.jex.helper.render.Render3DHelper;
 import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.item.BlockItem;
 import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
@@ -78,7 +78,7 @@ public class AccuratePlace extends Feature {
     @EventPointer
     private final EventListener<EventRender3D> eventRender3DEventListener = new EventListener<>(event -> {
        //do rendering
-        MatrixStack matrixStack = event.getPoseStack();
+        PoseStack matrixStack = event.getPoseStack();
         HitResult hitResult = Wrapper.INSTANCE.getMinecraft().crosshairTarget;
         if (hitResult instanceof BlockHitResult blockHitResult && WorldHelper.INSTANCE.getBlock(blockHitResult.getBlockPos()) != Blocks.AIR) {
             matrixStack.push();

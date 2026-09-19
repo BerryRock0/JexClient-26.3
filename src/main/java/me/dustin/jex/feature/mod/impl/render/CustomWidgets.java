@@ -18,7 +18,7 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.CyclingButtonWidget;
 import net.minecraft.client.gui.widget.SliderWidget;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.util.math.MathHelper;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,7 +56,7 @@ public class CustomWidgets extends Feature {
         int inactiveTextColor = 0xff333333;
 
         ClickableWidget widget = event.getAbstractWidget();
-        MatrixStack matrixStack = event.getPoseStack();
+        PoseStack matrixStack = event.getPoseStack();
         if (!hoverChecks.containsKey(widget)) {
             hoverChecks.put(widget, 0);
             offsets.put(widget, 0.f);

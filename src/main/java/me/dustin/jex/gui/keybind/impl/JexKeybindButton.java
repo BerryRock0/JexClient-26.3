@@ -8,7 +8,7 @@ import me.dustin.jex.helper.render.Button;
 import me.dustin.jex.helper.render.ButtonListener;
 import me.dustin.jex.helper.render.Render2DHelper;
 import me.dustin.jex.helper.render.font.FontHelper;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
@@ -21,7 +21,7 @@ public class JexKeybindButton extends Button {
     }
 
     @Override
-    public void render(MatrixStack matrixStack) {
+    public void render(PoseStack matrixStack) {
         super.render(matrixStack);
         if (isSelected())
             Render2DHelper.INSTANCE.outlineAndFill(matrixStack, getX(), getY(), getX() + getWidth(), getY() + getHeight(), ColorHelper.INSTANCE.getClientColor(), 0x00ffffff);

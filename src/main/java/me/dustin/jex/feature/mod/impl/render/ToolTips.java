@@ -18,7 +18,7 @@ import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.player.InventoryHelper;
 import me.dustin.jex.helper.render.Render2DHelper;
 import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
@@ -130,7 +130,7 @@ public class ToolTips extends Feature {
                     inspectStack = null;
                 }
 
-                MatrixStack matrixStack = event.getPoseStack();
+                PoseStack matrixStack = event.getPoseStack();
                 matrixStack.push();
 
                 RenderSystem.disableDepthTest();

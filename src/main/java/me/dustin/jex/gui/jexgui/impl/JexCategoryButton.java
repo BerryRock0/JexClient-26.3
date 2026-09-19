@@ -3,7 +3,7 @@ package me.dustin.jex.gui.jexgui.impl;
 import me.dustin.jex.feature.mod.core.Category;
 import me.dustin.jex.helper.render.Button;
 import me.dustin.jex.helper.render.ButtonListener;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 public class JexCategoryButton extends Button {
     private final Category category;
@@ -14,7 +14,7 @@ public class JexCategoryButton extends Button {
     }
 
     @Override
-    public void render(MatrixStack matrixStack) {
+    public void render(PoseStack matrixStack) {
         setTextColor(isHovered() ? category.color() : 0xff676767);
         super.render(matrixStack);
     }

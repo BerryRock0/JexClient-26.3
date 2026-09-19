@@ -16,7 +16,7 @@ import me.dustin.jex.helper.render.font.FontHelper;
 import me.dustin.jex.helper.render.shader.ShaderHelper;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.entity.boss.WitherEntity;
 import net.minecraft.entity.mob.SpiderEntity;
@@ -37,7 +37,7 @@ public class TargetHudElement extends HudElement{
     }
 
     @Override
-    public void render(MatrixStack matrixStack) {
+    public void render(PoseStack matrixStack) {
         if (targetHud == null)
             targetHud = Feature.get(TargetHud.class);
         if (target != null) {

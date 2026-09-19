@@ -2,18 +2,18 @@ package me.dustin.jex.event.render;
 
 import me.dustin.events.core.Event;
 import net.minecraft.client.render.model.json.ModelTransformation;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.item.ItemStack;
 
 public class EventRenderItem extends Event {
 
-    private final MatrixStack poseStack;
+    private final PoseStack poseStack;
     private final ItemStack itemStack;
     private final ModelTransformation.Mode type;
     private final RenderTime renderTime;
     private final boolean leftHanded;
 
-    public EventRenderItem(MatrixStack poseStack, ItemStack itemStack, ModelTransformation.Mode type, RenderTime renderTime, boolean leftHanded)
+    public EventRenderItem(PoseStack poseStack, ItemStack itemStack, ModelTransformation.Mode type, RenderTime renderTime, boolean leftHanded)
     {
         this.poseStack = poseStack;
         this.itemStack = itemStack;
@@ -34,7 +34,7 @@ public class EventRenderItem extends Event {
         return renderTime;
     }
 
-    public MatrixStack getPoseStack() {
+    public PoseStack getPoseStack() {
         return poseStack;
     }
 

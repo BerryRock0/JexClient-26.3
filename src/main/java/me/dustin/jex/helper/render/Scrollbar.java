@@ -1,6 +1,6 @@
 package me.dustin.jex.helper.render;
 
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.util.math.MathHelper;
 
 public class Scrollbar {
@@ -21,7 +21,7 @@ public class Scrollbar {
         this.color = color;
     }
 
-    public void render(MatrixStack matrixStack) {
+    public void render(PoseStack matrixStack) {
         updateHeight();
         if (contentHeight > viewportHeight) {
             Render2DHelper.INSTANCE.fill(matrixStack, x, viewportY, x + width, viewportY + viewportHeight, 0xff353535);

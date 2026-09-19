@@ -27,7 +27,7 @@ import net.minecraft.block.SoulSandBlock;
 import net.minecraft.block.TripwireBlock;
 import net.minecraft.block.VineBlock;
 import net.minecraft.block.WallBlock;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.AABB;
@@ -543,7 +543,7 @@ public class PathFinder
 		return path;
 	}
 
-	public void renderPath(MatrixStack matrixStack, boolean debugMode, boolean depthTest) {
+	public void renderPath(PoseStack matrixStack, boolean debugMode, boolean depthTest) {
 		ArrayList<Render3DHelper.BoxStorage> boxes = new ArrayList<>();
 		if (debugMode) {
 			for (PathPos pathPos : queue.toArray()) {

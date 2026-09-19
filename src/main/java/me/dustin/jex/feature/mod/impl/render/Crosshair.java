@@ -9,7 +9,7 @@ import me.dustin.jex.feature.property.Property;
 import me.dustin.jex.helper.misc.StopWatch;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.render.Render2DHelper;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.util.math.Quaternion;
 import net.minecraft.util.math.Vec3f;
 import me.dustin.jex.feature.mod.core.Feature;
@@ -78,7 +78,7 @@ public class Crosshair extends Feature {
 	private final EventListener<EventRender2D> eventRender2DEventListener = new EventListener<>(event -> {
 		float x = Render2DHelper.INSTANCE.getScaledWidth() / 2.f;
 		float y = Render2DHelper.INSTANCE.getScaledHeight() / 2.f;
-		MatrixStack matrixStack = ((EventRender2D) event).getPoseStack();
+		PoseStack matrixStack = ((EventRender2D) event).getPoseStack();
 		if (spinProperty.value()) {
 			matrixStack.push();
 			matrixStack.translate(Render2DHelper.INSTANCE.getScaledWidth() / 2.f, Render2DHelper.INSTANCE.getScaledHeight() / 2.f, 0);

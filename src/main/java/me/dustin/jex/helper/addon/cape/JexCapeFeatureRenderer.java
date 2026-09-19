@@ -11,7 +11,7 @@ import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -26,7 +26,7 @@ public class JexCapeFeatureRenderer extends FeatureRenderer<PlayerEntity, Player
     }
 
     @Override
-    public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, Player playerEntity, float limbAngle, float g, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+    public void render(PoseStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, Player playerEntity, float limbAngle, float g, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         String uuid = playerEntity.getUuidAsString().replace("-", "");
         if (!((AbstractClientPlayerEntity)playerEntity).canRenderCapeTexture() || playerEntity.isInvisible() || !playerEntity.isPartVisible(PlayerModelPart.CAPE) || !CapeHelper.INSTANCE.hasCape(uuid)) {
             return;
@@ -38,7 +38,7 @@ public class JexCapeFeatureRenderer extends FeatureRenderer<PlayerEntity, Player
         AddonHelper.AddonResponse addonResponse = AddonHelper.INSTANCE.getResponse(uuid);
         render(matrixStack, vertexConsumerProvider, light, playerEntity, tickDelta, CapeHelper.INSTANCE.getCape(uuid), addonResponse.enchantedcape());
     }
-    public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, Player playerEntity, float tickDelta, Identifier texture, boolean enchanted) {
+    public void render(PoseStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, Player playerEntity, float tickDelta, Identifier texture, boolean enchanted) {
         matrixStack.push();
         matrixStack.translate(0.0, 0.0, 0.125);
         double d = MathHelper.lerp(tickDelta, playerEntity.prevCapeX, playerEntity.capeX) - MathHelper.lerp(tickDelta, playerEntity.prevX, playerEntity.getX());

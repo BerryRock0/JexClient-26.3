@@ -12,7 +12,7 @@ import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.apache.commons.lang3.StringUtils;
@@ -93,7 +93,7 @@ public class JexPersonalizationScreen extends Screen {
     float yaw = 0;
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+    public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
         float midX = width / 2.f;
         setCapeButton.active = !fileBrowser.getSelectedFiles().isEmpty() && !fileBrowser.getSelectedFiles().get(0).isDirectory();
         renderBackground(matrices);

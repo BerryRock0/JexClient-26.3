@@ -20,7 +20,7 @@ import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.render.VertexFormats;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.util.math.Matrix4f;
@@ -110,7 +110,7 @@ public class TwoDeeESP extends FeatureExtension {
         }
     }
 
-    public void drawBox(MatrixStack matrixStack, float x, float y, float x2, float y2, Entity entity) {
+    public void drawBox(PoseStack matrixStack, float x, float y, float x2, float y2, Entity entity) {
         int color = ESP.INSTANCE.getColor(entity) & 0x50ffffff;
         Matrix4f matrix = matrixStack.peek().getPositionMatrix();
         BufferBuilder bufferBuilder = Tessellator.getInstance().getBuffer();
@@ -124,7 +124,7 @@ public class TwoDeeESP extends FeatureExtension {
         bufferBuilder.vertex(matrix, (float)x, (float)y, 0.0F).color(g, h, k, f).next();
     }
     
-    public void outlineBox(MatrixStack matrixStack, float x, float y, float x2, float y2, Entity entity) {
+    public void outlineBox(PoseStack matrixStack, float x, float y, float x2, float y2, Entity entity) {
         int color = 0xff000000;
         Matrix4f matrix = matrixStack.peek().getPositionMatrix();
         BufferBuilder bufferBuilder = Tessellator.getInstance().getBuffer();

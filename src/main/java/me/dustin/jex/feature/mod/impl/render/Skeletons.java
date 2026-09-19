@@ -22,7 +22,7 @@ import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Matrix4f;
@@ -44,7 +44,7 @@ public class Skeletons extends Feature {//it looks cool as fuck but seriously fu
 
     @EventPointer
     private final EventListener<EventRender3D> eventRender3DEventListener = new EventListener<>(event -> {
-        MatrixStack matrixStack = event.getPoseStack();
+        PoseStack matrixStack = event.getPoseStack();
         float g = event.getPartialTicks();
         Render3DHelper.INSTANCE.setup3DRender(true);
         Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
@@ -149,7 +149,7 @@ public class Skeletons extends Feature {//it looks cool as fuck but seriously fu
         Render3DHelper.INSTANCE.end3DRender();
     });
 
-    private void rotate(MatrixStack matrix, ModelPart modelPart) {
+    private void rotate(PoseStack matrix, ModelPart modelPart) {
         if (modelPart.roll != 0.0F) {
             matrix.multiply(Vec3f.POSITIVE_Z.getRadialQuaternion(modelPart.roll));
         }

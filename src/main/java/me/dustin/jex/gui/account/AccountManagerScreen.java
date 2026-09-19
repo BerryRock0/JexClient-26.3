@@ -21,7 +21,7 @@ import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.util.ProfileKeys;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
 import java.io.File;
 import java.text.DateFormat;
@@ -161,7 +161,7 @@ public class AccountManagerScreen extends Screen {
     }
 
     @Override
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+    public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         loginButton.active = getSelected() != null;
         editButton.active = getSelected() != null && getSelected().getAccount() instanceof MinecraftAccount.MojangAccount;
         removeButton.active = getSelected() != null;

@@ -6,7 +6,7 @@ import me.dustin.jex.event.render.EventRenderItem;
 import me.dustin.jex.feature.mod.core.Category;
 import me.dustin.jex.feature.mod.core.Feature;
 import me.dustin.jex.feature.property.Property;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 public class ItemScale extends Feature {
 
@@ -99,7 +99,7 @@ public class ItemScale extends Feature {
     @EventPointer
     private final EventListener<EventRenderItem> eventRenderItemEventListener = new EventListener<>(event -> {
         if (event.getType().isFirstPerson()) {
-            MatrixStack matrixStack = event.getPoseStack();
+            PoseStack matrixStack = event.getPoseStack();
             switch (event.getRenderTime()) {
                 case PRE -> {
                     matrixStack.push();

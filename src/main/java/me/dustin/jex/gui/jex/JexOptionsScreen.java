@@ -24,7 +24,7 @@ import me.dustin.jex.helper.update.UpdateManager;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.text.Text;
 
@@ -133,7 +133,7 @@ public class JexOptionsScreen extends Screen {
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+    public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
         prefixField.render(matrices, mouseX, mouseY, delta);
         setPrefixButton.active = !prefixField.getText().isEmpty();

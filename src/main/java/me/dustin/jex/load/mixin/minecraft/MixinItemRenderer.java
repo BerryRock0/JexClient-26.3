@@ -15,7 +15,7 @@ import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.texture.TextureManager;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.World;
@@ -37,18 +37,18 @@ public abstract class MixinItemRenderer implements IItemRenderer {
 	private TextureManager textureManager;
 
 	@Shadow
-	public abstract void renderItem(ItemStack stack, ModelTransformation.Mode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model);
+	public abstract void renderItem(ItemStack stack, ModelTransformation.Mode renderMode, boolean leftHanded, PoseStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model);
 
 	@Shadow public abstract BakedModel getModel(ItemStack stack, @Nullable World world, @Nullable LivingEntity entity, int seed);
 
 	@Inject(method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformation$Mode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V", at = @At("HEAD"), cancellable = true)
-	public void preRenderItem(ItemStack stack, ModelTransformation.Mode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model, CallbackInfo ci) {
+	public void preRenderItem(ItemStack stack, ModelTransformation.Mode renderMode, boolean leftHanded, PoseStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model, CallbackInfo ci) {
 		if (((EventRenderItem) new EventRenderItem(matrices, stack, renderMode, EventRenderItem.RenderTime.PRE, leftHanded).run()).isCancelled())
 			ci.cancel();
 	}
 
 	@Inject(method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformation$Mode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V", at = @At("RETURN"), cancellable = true)
-	public void postRenderItem(ItemStack stack, ModelTransformation.Mode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model, CallbackInfo ci) {
+	public void postRenderItem(ItemStack stack, ModelTransformation.Mode renderMode, boolean leftHanded, PoseStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model, CallbackInfo ci) {
 		if (((EventRenderItem) new EventRenderItem(matrices, stack, renderMode, EventRenderItem.RenderTime.POST, leftHanded).run()).isCancelled())
 			ci.cancel();
 	}
@@ -70,14 +70,14 @@ public abstract class MixinItemRenderer implements IItemRenderer {
 		RenderSystem.enableBlend();
 		RenderSystem.blendFunc(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		MatrixStack matrixStack = RenderSystem.getModelViewStack();
+		PoseStack matrixStack = RenderSystem.getModelViewStack();
 		matrixStack.push();
 		matrixStack.translate((double) x, (double) y, (double) (100.0F + this.zOffset));
 		matrixStack.translate(8.0D, 8.0D, 0.0D);
 		matrixStack.scale(1.0F, -1.0F, 1.0F);
 		matrixStack.scale(16.0F, 16.0F, 16.0F);
 		RenderSystem.applyModelViewMatrix();
-		MatrixStack matrixStack2 = new MatrixStack();
+		PoseStack matrixStack2 = new MatrixStack();
 		VertexConsumerProvider.Immediate immediate = MinecraftClient.getInstance().getBufferBuilders().getEntityVertexConsumers();
 		boolean bl = !model.isSideLit();
 		if (bl) {

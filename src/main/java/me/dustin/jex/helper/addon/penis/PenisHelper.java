@@ -14,7 +14,7 @@ import net.minecraft.client.model.ModelPartBuilder;
 import net.minecraft.client.model.ModelTransform;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.texture.NativeImage;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.util.Identifier;
 import org.apache.commons.codec.binary.Base64;
 
@@ -164,7 +164,7 @@ public enum PenisHelper {
         return penises.get(uuid);
     }
 
-    public void renderPenis(MatrixStack matrices, VertexConsumer vertices, int light, int overlay) {
+    public void renderPenis(PoseStack matrices, VertexConsumer vertices, int light, int overlay) {
         penis.render(matrices, vertices, light, overlay);
     }
 

@@ -2,16 +2,16 @@ package me.dustin.jex.event.render;
 
 import me.dustin.events.core.Event;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.LivingEntity;
 
 public class EventRenderNametags extends Event {
 
     private final LivingEntity entity;
-    private final MatrixStack poseStack;
+    private final PoseStack poseStack;
     private final VertexConsumerProvider multiBufferSource;
 
-    public EventRenderNametags(LivingEntity entity, MatrixStack poseStack, VertexConsumerProvider multiBufferSource) {
+    public EventRenderNametags(LivingEntity entity, PoseStack poseStack, VertexConsumerProvider multiBufferSource) {
         this.entity = entity;
         this.poseStack = poseStack;
         this.multiBufferSource = multiBufferSource;
@@ -21,7 +21,7 @@ public class EventRenderNametags extends Event {
         return entity;
     }
 
-    public MatrixStack getPoseStack() {
+    public PoseStack getPoseStack() {
         return poseStack;
     }
 

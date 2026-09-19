@@ -10,7 +10,7 @@ import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.model.ModelPartBuilder;
 import net.minecraft.client.model.ModelTransform;
 import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.Identifier;
 
@@ -148,7 +148,7 @@ public enum PeglegHelper {
         return STICK;
     }
 
-    public void renderPegleg(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, PeglegType peglegType) {
+    public void renderPegleg(PoseStack matrices, VertexConsumer vertices, int light, int overlay, PeglegType peglegType) {
         switch (peglegType) {
             case STICK -> stick_pegleg.render(matrices, vertices, light, overlay);
             case LIGHTNING_ROD -> lightning_rod_pegleg.render(matrices, vertices, light, overlay);

@@ -15,7 +15,7 @@ import net.minecraft.client.model.ModelPartBuilder;
 import net.minecraft.client.model.ModelPartData;
 import net.minecraft.client.model.ModelTransform;
 import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -167,7 +167,7 @@ public enum HatHelper {
         }
     }
 
-    public void renderHat(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, HatHelper.HatType hatType) {
+    public void renderHat(PoseStack matrices, VertexConsumer vertices, int light, int overlay, HatHelper.HatType hatType) {
         switch (hatType) {
             case TOP_HAT -> top_hat.render(matrices, vertices, light, overlay);
             case HALO -> halo.render(matrices, vertices, light, overlay);

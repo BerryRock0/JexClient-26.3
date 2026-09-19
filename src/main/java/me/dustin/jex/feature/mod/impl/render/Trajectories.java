@@ -23,7 +23,7 @@ import net.minecraft.client.render.BufferRenderer;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.render.VertexFormats;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
@@ -79,7 +79,7 @@ public class Trajectories extends Feature {
     @EventPointer
     private final EventListener<EventRender3D> eventRender3DEventListener = new EventListener<>(event -> {
         if (!positions.isEmpty()) {
-            MatrixStack matrixStack = event.getPoseStack();
+            PoseStack matrixStack = event.getPoseStack();
             Matrix4f matrix4f = matrixStack.peek().getPositionMatrix();
             for (int i = 0; i < positions.size(); i++) {
                 if (i != positions.size() - 1) {

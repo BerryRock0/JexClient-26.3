@@ -15,7 +15,7 @@ import me.dustin.jex.helper.render.font.FontHelper;
 import me.dustin.jex.helper.render.shader.ShaderHelper;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Matrix4f;
@@ -33,7 +33,7 @@ public class JexColorPropertyButton extends JexPropertyButton {
     }
 
     @Override
-    public void render(MatrixStack matrixStack) {
+    public void render(PoseStack matrixStack) {
         Render2DHelper.INSTANCE.fill(matrixStack, getX(), getY(), getX() + getWidth(), getY() + getHeight(), getBackgroundColor());
         if (isHovered())
             Render2DHelper.INSTANCE.fill(matrixStack, this.getX(), this.getY(), this.getX() + this.getWidth(), this.getY() + this.getHeight(), 0x25ffffff);float[] hsb = toHSB();
@@ -105,7 +105,7 @@ public class JexColorPropertyButton extends JexPropertyButton {
         return Color.RGBtoHSB(getColorProperty().value().getRed(), getColorProperty().value().getGreen(), getColorProperty().value().getBlue(), null);
     }
 
-    protected void drawGradientRect(MatrixStack matrixStack, float left, float top, float right, float bottom, int startColor) {
+    protected void drawGradientRect(PoseStack matrixStack, float left, float top, float right, float bottom, int startColor) {
         Matrix4f matrix = matrixStack.peek().getPositionMatrix();
         float f = (float) (startColor >> 24 & 255) / 255.0F;
         float g = (float) (startColor >> 16 & 255) / 255.0F;

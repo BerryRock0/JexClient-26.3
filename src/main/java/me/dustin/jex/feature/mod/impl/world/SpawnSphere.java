@@ -16,7 +16,7 @@ import net.minecraft.client.render.BufferRenderer;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.render.VertexFormats;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -55,7 +55,7 @@ public class SpawnSphere extends Feature {
 
     @EventPointer
     private final EventListener<EventRender3D> eventRender3DEventListener = new EventListener<>(event -> {
-        MatrixStack matrixStack = event.getPoseStack();
+        PoseStack matrixStack = event.getPoseStack();
         ArrayList<Render3DHelper.BoxStorage> boxes = new ArrayList<>();
         innerSphere.forEach(blockPos -> {
             Vec3 vec3d = Render3DHelper.INSTANCE.getRenderPosition(blockPos);

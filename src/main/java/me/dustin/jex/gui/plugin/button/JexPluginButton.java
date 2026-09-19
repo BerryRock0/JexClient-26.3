@@ -9,7 +9,7 @@ import me.dustin.jex.helper.render.Render2DHelper;
 import me.dustin.jex.helper.render.font.FontHelper;
 import net.fabricmc.loader.impl.launch.FabricLauncherBase;
 import net.minecraft.client.texture.NativeImage;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -31,7 +31,7 @@ public class JexPluginButton extends Button {
     }
 
     @Override
-    public void render(MatrixStack matrixStack) {
+    public void render(PoseStack matrixStack) {
         String drawName = "%s v%s".formatted(jexPlugin.getInfo().getName(), jexPlugin.getInfo().getVersion());
         Render2DHelper.INSTANCE.fillAndBorder(matrixStack, getX(), getY(), getX() + getWidth(), getY() + getHeight(), isSelected ? ColorHelper.INSTANCE.getClientColor() : 0xaa000000, 0x40000000, 1);
         FontHelper.INSTANCE.draw(matrixStack, drawName, getX() + 37, getY() + 3.5f, -1);

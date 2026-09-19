@@ -3,7 +3,7 @@ package me.dustin.jex.feature.mod.impl.render.hud.elements;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.render.Render2DHelper;
 import net.minecraft.client.network.PlayerListEntry;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 public class PlayerFaceElement extends HudElement {
     public PlayerFaceElement(float x, float y, float minWidth, float minHeight) {
@@ -11,7 +11,7 @@ public class PlayerFaceElement extends HudElement {
     }
 
     @Override
-    public void render(MatrixStack matrixStack) {
+    public void render(PoseStack matrixStack) {
         if (!isVisible())
             return;
         super.render(matrixStack);

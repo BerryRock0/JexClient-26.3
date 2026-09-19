@@ -14,7 +14,7 @@ import me.dustin.jex.helper.render.Render2DHelper;
 import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.SignBlockEntity;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -71,7 +71,7 @@ public class SignReader extends Feature {
 
     @EventPointer
     private final EventListener<EventRender2D> eventRender2DEventListener = new EventListener<>(event -> {
-        MatrixStack matrixStack = ((EventRender2D) event).getPoseStack();
+        PoseStack matrixStack = ((EventRender2D) event).getPoseStack();
         matrixStack.push();
         matrixStack.scale(scaleProperty.value(), scaleProperty.value(),1);
         positions.forEach((signBlockEntity, vec3d) -> {

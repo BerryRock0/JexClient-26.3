@@ -19,7 +19,7 @@ import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.texture.NativeImage;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.math.Matrix4f;
@@ -36,7 +36,7 @@ public class RadarElement extends HudElement{
     NativeImage radarImage = null;
 
     @Override
-    public void render(MatrixStack matrixStack) {
+    public void render(PoseStack matrixStack) {
         if (!isVisible())
             return;
         super.render(matrixStack);
@@ -116,7 +116,7 @@ public class RadarElement extends HudElement{
         return Radar.INSTANCE.getState();
     }
 
-    private void drawPointer(MatrixStack matrixStack) {
+    private void drawPointer(PoseStack matrixStack) {
         Matrix4f matrix4f = matrixStack.peek().getPositionMatrix();
         Color color1 = ColorHelper.INSTANCE.getColor(ColorHelper.INSTANCE.getClientColor());
 

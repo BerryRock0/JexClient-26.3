@@ -22,7 +22,7 @@ import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.render.VertexFormats;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Matrix4f;
@@ -136,7 +136,7 @@ public class WaypointEditScreen extends Screen {
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+    public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
         Render2DHelper.INSTANCE.fillAndBorder(matrices, width / 2.f - 105, height / 2.f - 112, width / 2.f + 105, height / 2.f + 150, ColorHelper.INSTANCE.getClientColor(), 0x60000000, 1);
         serverName.render(matrices, mouseX, mouseY, delta);
@@ -185,7 +185,7 @@ public class WaypointEditScreen extends Screen {
         }
     }
 
-    private void drawColorPicker(MatrixStack matrixStack) {
+    private void drawColorPicker(PoseStack matrixStack) {
         if (!MouseHelper.INSTANCE.isMouseButtonDown(0) && isSliding) {
             isSliding = false;
         }
@@ -262,7 +262,7 @@ public class WaypointEditScreen extends Screen {
         }
     }
 
-    protected void drawGradientRect(MatrixStack matrixStack, float left, float top, float right, float bottom, int startColor, int endColor) {
+    protected void drawGradientRect(PoseStack matrixStack, float left, float top, float right, float bottom, int startColor, int endColor) {
         Matrix4f matrix = matrixStack.peek().getPositionMatrix();
         float f = (float) (startColor >> 24 & 255) / 255.0F;
         float g = (float) (startColor >> 16 & 255) / 255.0F;

@@ -5,7 +5,7 @@ import me.dustin.jex.helper.render.Render2DHelper;
 import me.dustin.jex.load.impl.IWorldRenderer;
 import net.minecraft.client.gl.Framebuffer;
 import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Matrix4f;
@@ -25,17 +25,17 @@ public abstract class MixinWorldRenderer implements IWorldRenderer {
     @Shadow private @Nullable Framebuffer entityOutlinesFramebuffer;
 
     @Inject(method = "render", at = @At(value = "HEAD"))
-    public void render(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f matrix4f, CallbackInfo ci) {
+    public void render(PoseStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f matrix4f, CallbackInfo ci) {
         new EventWorldRender(matrices, tickDelta, matrix4f, EventWorldRender.Mode.PRE).run();
     }
 
     @Inject(method = "render", at = @At(value = "RETURN"))
-    public void render1(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f matrix4f, CallbackInfo ci) {
+    public void render1(PoseStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f matrix4f, CallbackInfo ci) {
         new EventWorldRender(matrices, tickDelta, matrix4f, EventWorldRender.Mode.POST).run();
     }
 
     @Inject(method = "renderEntity", at = @At("HEAD"), cancellable = true)
-    public void renderEntity(Entity entity, double cameraX, double cameraY, double cameraZ, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, CallbackInfo ci) {
+    public void renderEntity(Entity entity, double cameraX, double cameraY, double cameraZ, float tickDelta, PoseStack matrices, VertexConsumerProvider vertexConsumers, CallbackInfo ci) {
         EventWorldRenderEntity eventWorldRenderEntity = new EventWorldRenderEntity(entity, matrices, vertexConsumers, tickDelta).run();
         if (eventWorldRenderEntity.isCancelled())
             ci.cancel();
@@ -49,7 +49,7 @@ public abstract class MixinWorldRenderer implements IWorldRenderer {
     }
 
     @Inject(method = "drawCuboidShapeOutline", at = @At("HEAD"), cancellable = true)
-    private static void drawShapeOutline1(MatrixStack matrices, VertexConsumer vertexConsumer, VoxelShape shape, double offsetX, double offsetY, double offsetZ, float red, float green, float blue, float alpha, CallbackInfo ci) {
+    private static void drawShapeOutline1(PoseStack matrices, VertexConsumer vertexConsumer, VoxelShape shape, double offsetX, double offsetY, double offsetZ, float red, float green, float blue, float alpha, CallbackInfo ci) {
         EventBlockOutlineColor eventBlockOutlineColor = new EventBlockOutlineColor().run();
         if (eventBlockOutlineColor.isCancelled()) {
             Color color = Render2DHelper.INSTANCE.hex2Rgb(Integer.toHexString(eventBlockOutlineColor.getColor()));

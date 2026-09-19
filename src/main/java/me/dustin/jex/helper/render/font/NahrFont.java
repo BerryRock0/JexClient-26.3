@@ -14,7 +14,7 @@ import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.NativeImageBackedTexture;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Matrix4f;
@@ -162,7 +162,7 @@ public class NahrFont {
         MinecraftClient.getInstance().execute(() -> MinecraftClient.getInstance().getTextureManager().registerTexture(identifier, new NativeImageBackedTexture(nativeImage)));
     }
 
-    public final void drawString(MatrixStack matrixStack, String text, float x, float y, FontType fontType, int color, int color2) {
+    public final void drawString(PoseStack matrixStack, String text, float x, float y, FontType fontType, int color, int color2) {
         text = stripUnsupported(text);
 
         Render2DHelper.INSTANCE.setup2DRender(false);
@@ -194,17 +194,17 @@ public class NahrFont {
         Render2DHelper.INSTANCE.end2DRender();
     }
 
-    public void drawCenteredString(MatrixStack matrixStack, String text, float x, float y, int color) {
+    public void drawCenteredString(PoseStack matrixStack, String text, float x, float y, int color) {
         drawString(matrixStack, text, (x - getStringWidth(text) / 2), y, FontType.SHADOW_THIN, color);
     }
 
-    public final void drawString(MatrixStack matrixStack, String text, float x, float y, FontType fontType, int color) {
+    public final void drawString(PoseStack matrixStack, String text, float x, float y, FontType fontType, int color) {
         matrixStack.scale(0.5f, 0.5f, 1);
         drawString(matrixStack, text, x, y, fontType, color, 0xBB000000);
         matrixStack.scale(2f, 2f, 1);
     }
 
-    private final void drawer(MatrixStack matrixStack, String text, float x, float y, int color) {
+    private final void drawer(PoseStack matrixStack, String text, float x, float y, int color) {
         x *= 2.0F;
         y *= 2.0F;
         Render2DHelper.INSTANCE.setup2DRender(false);
@@ -260,7 +260,7 @@ public class NahrFont {
         return this.theMetrics.getStringBounds(text, this.theGraphics);
     }
 
-    private final void drawChar(MatrixStack matrixStack, char character, float x, float y, int color) throws ArrayIndexOutOfBoundsException {
+    private final void drawChar(PoseStack matrixStack, char character, float x, float y, int color) throws ArrayIndexOutOfBoundsException {
         Rectangle2D bounds = this.theMetrics.getStringBounds(Character.toString(character), this.theGraphics);
         drawTexturedModalRect(matrixStack, x, y, this.xPos[(character - this.startChar)], this.yPos[(character - this.startChar)], (float) bounds.getWidth(), (float) bounds.getHeight() + this.theMetrics.getMaxDescent() + 1.0F, color);
     }
@@ -368,7 +368,7 @@ public class NahrFont {
         return ((par0 >= 'k') && (par0 <= 'o')) || ((par0 >= 'K') && (par0 <= 'O')) || (par0 == 'r') || (par0 == 'R');
     }
 
-    private final void drawTexturedModalRect(MatrixStack matrixStack, float x, float y, float u, float v, float width, float height, int color) {
+    private final void drawTexturedModalRect(PoseStack matrixStack, float x, float y, float u, float v, float width, float height, int color) {
         Matrix4f matrix4f = matrixStack.peek().getPositionMatrix();
         float scale = 0.0039063F;
         Tessellator tessellator = Tessellator.getInstance();

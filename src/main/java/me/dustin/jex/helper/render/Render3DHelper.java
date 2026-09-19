@@ -11,7 +11,7 @@ import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.render.shader.ShaderHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.util.math.*;
@@ -21,7 +21,7 @@ import net.minecraft.util.shape.VoxelShapes;
 public enum Render3DHelper {
     INSTANCE;
 
-    public Vec3 getEntityRenderPosition(Entity entity, double partial, MatrixStack poseStack) {
+    public Vec3 getEntityRenderPosition(Entity entity, double partial, PoseStack poseStack) {
         Matrix4f matrix = poseStack.peek().getPositionMatrix();
         double x = entity.prevX + ((entity.getX() - entity.prevX) * partial) - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().x;
         double y = entity.prevY + ((entity.getY() - entity.prevY) * partial) - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().y;
@@ -31,7 +31,7 @@ public enum Render3DHelper {
         return new Vec3(vector4f.getX(), vector4f.getY(), vector4f.getZ());
     }
 
-    public Vec3 getRenderPosition(double x, double y, double z, MatrixStack poseStack) {
+    public Vec3 getRenderPosition(double x, double y, double z, PoseStack poseStack) {
         Matrix4f matrix = poseStack.peek().getPositionMatrix();
         double minX = x - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().x;
         double minY = y - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().y;
@@ -41,7 +41,7 @@ public enum Render3DHelper {
         return new Vec3(vector4f.getX(), vector4f.getY(), vector4f.getZ());
     }
 
-    public Vec3 getRenderPosition(Vec3 vec3d, MatrixStack poseStack) {
+    public Vec3 getRenderPosition(Vec3 vec3d, PoseStack poseStack) {
         Matrix4f matrix = poseStack.peek().getPositionMatrix();
         double minX = vec3d.getX() - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().x;
         double minY = vec3d.getY() - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().y;
@@ -51,7 +51,7 @@ public enum Render3DHelper {
         return new Vec3(vector4f.getX(), vector4f.getY(), vector4f.getZ());
     }
 
-    public Vec3 getRenderPosition(BlockPos blockPos, MatrixStack poseStack) {
+    public Vec3 getRenderPosition(BlockPos blockPos, PoseStack poseStack) {
         Matrix4f matrix = poseStack.peek().getPositionMatrix();
         double minX = blockPos.getX() - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().x;
         double minY = blockPos.getY() - Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera.getPos().y;
@@ -89,13 +89,13 @@ public enum Render3DHelper {
         return new Vec3(minX, minY, minZ);
     }
 
-    public void fixCameraRots(MatrixStack matrixStack) {
+    public void fixCameraRots(PoseStack matrixStack) {
         Camera camera = Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera;
         matrixStack.multiply(Vec3f.NEGATIVE_Y.getDegreesQuaternion(camera.getYaw() + 180.0F));
         matrixStack.multiply(Vec3f.NEGATIVE_X.getDegreesQuaternion(camera.getPitch()));
     }
 
-    public void applyCameraRots(MatrixStack matrixStack) {
+    public void applyCameraRots(PoseStack matrixStack) {
         Camera camera = Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera;
         matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(camera.getPitch()));
         matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(camera.getYaw() + 180.0F));
@@ -121,7 +121,7 @@ public enum Render3DHelper {
         RenderSystem.depthMask(true);
     }
 
-    public void renderEntity(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, Entity entity, float tickDelta, Camera camera) {
+    public void renderEntity(PoseStack matrixStack, VertexConsumerProvider vertexConsumerProvider, Entity entity, float tickDelta, Camera camera) {
         double d = MathHelper.lerp(tickDelta, entity.lastRenderX, entity.getX());
         double e = MathHelper.lerp(tickDelta, entity.lastRenderY, entity.getY());
         double f = MathHelper.lerp(tickDelta, entity.lastRenderZ, entity.getZ());
@@ -129,7 +129,7 @@ public enum Render3DHelper {
         Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().render(entity, d - camera.getPos().getX(), e - camera.getPos().getY(), f - camera.getPos().getZ(), g, tickDelta, matrixStack, vertexConsumerProvider, 0xF000F0);
     }
 
-    public void drawSphere(MatrixStack poseStack, float radius, int gradation, int color, boolean testDepth, Vec3 pos) {
+    public void drawSphere(PoseStack poseStack, float radius, int gradation, int color, boolean testDepth, Vec3 pos) {
         Matrix4f matrix4f = poseStack.peek().getPositionMatrix();
         Color color1 = ColorHelper.INSTANCE.getColor(color);
         final float PI = 3.141592f;
@@ -157,7 +157,7 @@ public enum Render3DHelper {
         RenderSystem.disableTexture();
     }
 
-    public void drawBoxWithDepthTest(MatrixStack matrixstack, AABB bb, int color) {
+    public void drawBoxWithDepthTest(PoseStack matrixstack, AABB bb, int color) {
         setup3DRender(false);
         drawFilledBox(matrixstack, bb, color & 0x50ffffff);
         RenderSystem.lineWidth(1);
@@ -165,7 +165,7 @@ public enum Render3DHelper {
         end3DRender();
     }
 
-    public void drawBox(MatrixStack matrixstack, AABB bb, int color) {
+    public void drawBox(PoseStack matrixstack, AABB bb, int color) {
         setup3DRender(true);
         drawFilledBox(matrixstack, bb, color & 0x50ffffff);
         RenderSystem.lineWidth(1);
@@ -173,25 +173,25 @@ public enum Render3DHelper {
         end3DRender();
     }
 
-    public void drawBoxOutline(MatrixStack matrixstack, AABB bb, int color) {
+    public void drawBoxOutline(PoseStack matrixstack, AABB bb, int color) {
         setup3DRender(true);
         RenderSystem.lineWidth(1);
         drawOutlineBox(matrixstack, bb, color);
         end3DRender();
     }
 
-    public void drawBoxInside(MatrixStack matrixstack, AABB bb, int color) {
+    public void drawBoxInside(PoseStack matrixstack, AABB bb, int color) {
         setup3DRender(true);
         drawFilledBox(matrixstack, bb, color & 0x50ffffff);
         end3DRender();
     }
 
-    public void drawEntityBox(MatrixStack matrixstack, Entity entity, float partialTicks, int color) {
+    public void drawEntityBox(PoseStack matrixstack, Entity entity, float partialTicks, int color) {
         Vec3 renderPos = getEntityRenderPosition(entity, partialTicks);
         drawEntityBox(matrixstack, entity, renderPos.x, renderPos.y, renderPos.z, color);
     }
 
-    public void drawEntityBox(MatrixStack matrixstack, Entity entity, double x, double y, double z, int color) {
+    public void drawEntityBox(PoseStack matrixstack, Entity entity, double x, double y, double z, int color) {
         float yaw = EntityHelper.INSTANCE.getYaw(entity);
         setup3DRender(true);
         matrixstack.translate(x, y, z);
@@ -217,7 +217,7 @@ public enum Render3DHelper {
         return (then + (now - then) * percent);
     }
 
-    public void drawList(MatrixStack poseStack, ArrayList<BoxStorage> list, boolean disableDepth) {
+    public void drawList(PoseStack poseStack, ArrayList<BoxStorage> list, boolean disableDepth) {
 		setup3DRender(disableDepth);
         BufferBuilder bufferBuilder = BufferHelper.INSTANCE.begin(VertexFormat.DrawMode.DEBUG_LINES, VertexFormats.POSITION_COLOR);
     	list.forEach(blockStorage -> {
@@ -238,11 +238,11 @@ public enum Render3DHelper {
         end3DRender();
     }
     
-    public void drawFilledBox(MatrixStack poseStack, AABB bb, int color) {
+    public void drawFilledBox(PoseStack poseStack, AABB bb, int color) {
     	drawFilledBox(poseStack, bb, color, true);
     }
 
-    public void directionTranslate(MatrixStack poseStack, Direction direction) {
+    public void directionTranslate(PoseStack poseStack, Direction direction) {
         switch (direction) {
             case UP -> poseStack.multiply(new Quaternion(new Vec3f(1, 0, 0), 180, true));
             case NORTH -> {
@@ -262,7 +262,7 @@ public enum Render3DHelper {
         }
     }
 
-    public void drawFilledBox(MatrixStack poseStack, AABB bb, int color, boolean draw) {
+    public void drawFilledBox(PoseStack poseStack, AABB bb, int color, boolean draw) {
         Matrix4f matrix4f = poseStack.peek().getPositionMatrix();
         Color color1 = ColorHelper.INSTANCE.getColor(color);
 
@@ -310,7 +310,7 @@ public enum Render3DHelper {
         }
     }
 
-    public void drawFadeBox(MatrixStack poseStack, AABB bb, int color) {
+    public void drawFadeBox(PoseStack poseStack, AABB bb, int color) {
         Matrix4f matrix4f = poseStack.peek().getPositionMatrix();
         Color color1 = ColorHelper.INSTANCE.getColor(color);
 
@@ -354,7 +354,7 @@ public enum Render3DHelper {
         BufferHelper.INSTANCE.drawWithShader(bufferBuilder, ShaderHelper.INSTANCE.getPosColorShader());
     }
 
-    public void doFadeBoxNoDraw(MatrixStack poseStack, AABB bb, int color) {
+    public void doFadeBoxNoDraw(PoseStack poseStack, AABB bb, int color) {
         Matrix4f matrix4f = poseStack.peek().getPositionMatrix();
         Color color1 = ColorHelper.INSTANCE.getColor(color);
 
@@ -397,11 +397,11 @@ public enum Render3DHelper {
         bufferBuilder.vertex(matrix4f, minX, maxY, minZ).color(color1.getRed(), color1.getGreen(), color1.getBlue(), 0).next();
     }
 
-    public void drawOutlineBox(MatrixStack poseStack, AABB bb, int color) {
+    public void drawOutlineBox(PoseStack poseStack, AABB bb, int color) {
     	drawOutlineBox(poseStack, bb, color, true);
     }
 
-    public void drawOutlineBox(MatrixStack poseStack, AABB bb, int color, boolean draw) {
+    public void drawOutlineBox(PoseStack poseStack, AABB bb, int color, boolean draw) {
         Color color1 = ColorHelper.INSTANCE.getColor(color);
         Matrix4f matrix4f = poseStack.peek().getPositionMatrix();
 

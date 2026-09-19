@@ -8,7 +8,7 @@ import net.minecraft.client.gui.screen.ChatInputSuggestor;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -42,7 +42,7 @@ public class MixinChatScreen implements IChatScreen {
     }
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "net/minecraft/client/gui/screen/ChatInputSuggestor.render(Lnet/minecraft/client/util/math/MatrixStack;II)V"))
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
+    public void render(PoseStack matrices, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         IChatInputSuggestor mc = (IChatInputSuggestor) this.chatInputSuggestor;
         ircMod.renderAboveChat = !mc.isWindowActive();
 

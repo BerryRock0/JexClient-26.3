@@ -7,7 +7,7 @@ import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.load.impl.IChatHud;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.gui.hud.ChatHudLine;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -34,7 +34,7 @@ public class MixinChatHud implements IChatHud {
     }
 
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
-    public void render1(MatrixStack matrices, int tickDelta, CallbackInfo ci) {
+    public void render1(PoseStack matrices, int tickDelta, CallbackInfo ci) {
         EventRenderChatHud eventRenderChatHud = new EventRenderChatHud(getThis(), matrices, tickDelta).run();
         if (eventRenderChatHud.isCancelled())
             ci.cancel();

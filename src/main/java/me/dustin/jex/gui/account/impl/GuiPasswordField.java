@@ -22,7 +22,7 @@ import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormat.DrawMode;
 import net.minecraft.client.render.VertexFormats;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Style;
@@ -385,7 +385,7 @@ public class GuiPasswordField extends ClickableWidget implements Drawable, Eleme
         this.setFocused(focused);
     }
 
-    public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+    public void renderButton(PoseStack matrices, int mouseX, int mouseY, float delta) {
         if (this.isVisible()) {
             int j;
             if (this.drawsBackground()) {

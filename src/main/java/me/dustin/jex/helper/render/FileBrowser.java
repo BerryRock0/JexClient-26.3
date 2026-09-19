@@ -3,7 +3,7 @@ package me.dustin.jex.helper.render;
 import me.dustin.jex.helper.misc.KeyboardHelper;
 import me.dustin.jex.helper.misc.MouseHelper;
 import me.dustin.jex.helper.render.font.FontHelper;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 import java.io.File;
@@ -43,7 +43,7 @@ public class FileBrowser {
         loadFileElements();
     }
 
-    public void render(MatrixStack matrixStack) {
+    public void render(PoseStack matrixStack) {
         Render2DHelper.INSTANCE.fill(matrixStack, x, y, x + width, y + height, 0x90696969);
         Scissor.INSTANCE.cut((int)x, (int)y + 1, (int)width, (int)height - 2);
         fileElements.forEach(fileElement -> fileElement.render(matrixStack));
@@ -321,7 +321,7 @@ public class FileBrowser {
         }
 
         @Override
-        public void render(MatrixStack matrixStack) {
+        public void render(PoseStack matrixStack) {
             Render2DHelper.INSTANCE.fill(matrixStack, getX(), getY(), getX() + getWidth(), getY() + getHeight(), isSelected() ? 0x80999999 : 0x80151515);
             FontHelper.INSTANCE.drawWithShadow(matrixStack, this.getName(), getX() + 20, getY() + (getHeight() / 2) - 4.5f, isEnabled() ? -1 : 0xff454545);
 

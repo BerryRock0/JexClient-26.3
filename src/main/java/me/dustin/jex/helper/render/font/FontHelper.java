@@ -2,7 +2,7 @@ package me.dustin.jex.helper.render.font;
 
 import me.dustin.jex.feature.mod.impl.render.CustomFont;
 import me.dustin.jex.helper.misc.Wrapper;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.text.Text;
 
 public enum FontHelper {
@@ -34,7 +34,7 @@ public enum FontHelper {
         return Wrapper.INSTANCE.getTextRenderer().getWidth(string);
     }
 
-    public void drawWithShadow(MatrixStack matrixStack, String text, float x, float y, int color, boolean customFont) {
+    public void drawWithShadow(PoseStack matrixStack, String text, float x, float y, int color, boolean customFont) {
         if (CustomFont.INSTANCE.getState() || customFont) {
             clientFont.drawString(matrixStack, text, x + CustomFont.INSTANCE.xOffsetProperty.value(), y + CustomFont.INSTANCE.yOffsetProperty.value(), CustomFont.INSTANCE.textShadowsProperty.value() ? NahrFont.FontType.SHADOW_THIN : NahrFont.FontType.NORMAL, color);
         } else {
@@ -43,15 +43,15 @@ public enum FontHelper {
         }
     }
 
-    public void drawWithShadow(MatrixStack matrixStack, String text, float x, float y, int color) {
+    public void drawWithShadow(PoseStack matrixStack, String text, float x, float y, int color) {
         drawWithShadow(matrixStack, text, x, y, color, CustomFont.INSTANCE.getState());
     }
 
-    public void draw(MatrixStack matrixStack, String text, float x, float y, int color) {
+    public void draw(PoseStack matrixStack, String text, float x, float y, int color) {
         draw(matrixStack, text, x, y, color, CustomFont.INSTANCE.getState());
     }
 
-    public void draw(MatrixStack matrixStack, String text, float x, float y, int color, boolean customFont) {
+    public void draw(PoseStack matrixStack, String text, float x, float y, int color, boolean customFont) {
         if (CustomFont.INSTANCE.getState() || customFont) {
             clientFont.drawString(matrixStack, text, x + CustomFont.INSTANCE.xOffsetProperty.value(), y + CustomFont.INSTANCE.yOffsetProperty.value(), NahrFont.FontType.NORMAL, color);
         } else {
@@ -59,7 +59,7 @@ public enum FontHelper {
         }
     }
 
-    public void drawCenteredString(MatrixStack matrixStack, String string, float x, float y, int color, boolean customFont) {
+    public void drawCenteredString(PoseStack matrixStack, String string, float x, float y, int color, boolean customFont) {
         float newX = x - ((getStringWidth(string, CustomFont.INSTANCE.getState() || customFont) + (CustomFont.INSTANCE.getState() || customFont ? CustomFont.INSTANCE.xOffsetProperty.value() : 0)) / 2);
         if (CustomFont.INSTANCE.getState() || customFont) {
             clientFont.drawString(matrixStack, string, newX, y + CustomFont.INSTANCE.yOffsetProperty.value(), CustomFont.INSTANCE.textShadowsProperty.value() ? NahrFont.FontType.SHADOW_THIN : NahrFont.FontType.NORMAL, color);
@@ -69,7 +69,7 @@ public enum FontHelper {
         }
     }
 
-    public void drawCenteredString(MatrixStack matrixStack, String string, float x, float y, int color) {
+    public void drawCenteredString(PoseStack matrixStack, String string, float x, float y, int color) {
         float newX = x - getStringWidth(string) / 2;
         if (CustomFont.INSTANCE.getState()) {
             clientFont.drawString(matrixStack, string, newX, y + CustomFont.INSTANCE.yOffsetProperty.value(), CustomFont.INSTANCE.textShadowsProperty.value() ? NahrFont.FontType.SHADOW_THIN : NahrFont.FontType.NORMAL, color);
@@ -79,16 +79,16 @@ public enum FontHelper {
         }
     }
 
-    public void drawWithShadow(MatrixStack matrixStack, Text text, float x, float y, int color) {
+    public void drawWithShadow(PoseStack matrixStack, Text text, float x, float y, int color) {
         String s = text.getString();
         drawWithShadow(matrixStack, s, x, y, color);
     }
 
-    public void draw(MatrixStack matrixStack, Text text, float x, float y, int color) {
+    public void draw(PoseStack matrixStack, Text text, float x, float y, int color) {
         Wrapper.INSTANCE.getTextRenderer().draw(matrixStack, text, x, y, color);
     }
 
-    public void drawCenteredString(MatrixStack matrixStack, Text string, float x, float y, int color) {
+    public void drawCenteredString(PoseStack matrixStack, Text string, float x, float y, int color) {
         float newX = x - (getStringWidth(string) / 2);
 
         drawWithShadow(matrixStack, string, newX, y, color);
