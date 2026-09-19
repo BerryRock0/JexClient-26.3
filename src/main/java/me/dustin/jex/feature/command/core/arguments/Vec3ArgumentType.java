@@ -19,10 +19,12 @@ import me.dustin.jex.feature.command.core.arguments.impl.DefaultPosArgument;
 import me.dustin.jex.feature.command.core.arguments.impl.LookingPosArgument;
 import me.dustin.jex.feature.command.core.arguments.impl.PosArgument;
 
-import net.minecraft.text.Text;
+
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.command.CommandSource;
-import net.minecraft.server.command.CommandManager;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.CommandSource;
+import net.minecraft.commands.SharedSuggestionProvider;
+import net.minecraft.network.chat.Component;
 
 public class Vec3ArgumentType implements ArgumentType<PosArgument> {
    private static final Collection<String> EXAMPLES = Arrays.asList("0 0 0", "~ ~ ~", "^ ^ ^", "^1 ^ ^-5", "0.1 -0.5 .9", "~0.5 ~1 ~-5");
@@ -43,15 +45,15 @@ public class Vec3ArgumentType implements ArgumentType<PosArgument> {
    }
 
    public static Vec3 getVec3(CommandContext<FabricClientCommandSource> context, String name) {
-      return ((PosArgument)context.getArgument(name, PosArgument.class)).toAbsolutePos((FabricClientCommandSource)context.getSource());
+      return (context.getArgument(name, PosArgument.class)).toAbsolutePos((FabricClientCommandSource)context.getSource());
    }
 
    public static PosArgument getPosArgument(CommandContext<FabricClientCommandSource> commandContext, String string) {
-      return (PosArgument)commandContext.getArgument(string, PosArgument.class);
+      return commandContext.getArgument(string, PosArgument.class);
    }
 
    public PosArgument parse(StringReader stringReader) throws CommandSyntaxException {
-      return (PosArgument)(stringReader.canRead() && stringReader.peek() == '^' ? LookingPosArgument.parse(stringReader) : DefaultPosArgument.parse(stringReader, this.centerIntegers));
+      return (stringReader.canRead() && stringReader.peek() == '^' ? LookingPosArgument.parse(stringReader) : DefaultPosArgument.parse(stringReader, this.centerIntegers));
    }
 
    public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder) {
@@ -63,10 +65,10 @@ public class Vec3ArgumentType implements ArgumentType<PosArgument> {
          if (!string.isEmpty() && string.charAt(0) == '^') {
             collection2 = Collections.singleton(CommandSource.RelativePosition.ZERO_LOCAL);
          } else {
-            collection2 = ((CommandSource)context.getSource()).getPositionSuggestions();
+            collection2 = (context.getSource()).getPositionSuggestions();
          }
 
-         return CommandSource.suggestPositions(string, (Collection)collection2, builder, CommandManager.getCommandValidator(this::parse));
+         return SharedSuggestionProvider.suggestCoordinates(string, collection2, builder, Commands.getCommandValidator(this::parse));
       }
    }
 
