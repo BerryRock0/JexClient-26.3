@@ -241,8 +241,8 @@ public class KillAura extends Feature {
 
     private boolean hasTarget = false;
 
-    public ArrayList<PlayerEntity> touchedGround = new ArrayList<>();
-    public ArrayList<PlayerEntity> swung = new ArrayList<>();
+    public ArrayList<Player> touchedGround = new ArrayList<>();
+    public ArrayList<Player> swung = new ArrayList<>();
 
     public KillAura() {
         super(Category.COMBAT, "Attack entities around you.", GLFW.GLFW_KEY_R);
@@ -339,9 +339,9 @@ public class KillAura extends Feature {
         if (entity instanceof Player && entity != Wrapper.INSTANCE.getLocalPlayer()) {
             if (FriendHelper.INSTANCE.isFriend(entity.getName().getString()))
                 return false;
-            if (EntityHelper.INSTANCE.isOnSameTeam((PlayerEntity) entity, Wrapper.INSTANCE.getLocalPlayer(), checkArmorProperty.value()) && teamCheckProperty.value())
+            if (EntityHelper.INSTANCE.isOnSameTeam((Player) entity, Wrapper.INSTANCE.getLocalPlayer(), checkArmorProperty.value()) && teamCheckProperty.value())
                 return false;
-            if (botCheckProperty.value() && isBot((PlayerEntity) entity))
+            if (botCheckProperty.value() && isBot((Player) entity))
                 return false;
             return playerProperty.value();
         }

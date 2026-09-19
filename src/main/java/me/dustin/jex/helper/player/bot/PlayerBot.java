@@ -282,8 +282,8 @@ public class PlayerBot {
             clientConnection.send(PlayerInteractEntityC2SPacket.attack(crosshair, player.isSneaking()));
             clientConnection.send(new HandSwingC2SPacket(Hand.MAIN_HAND));
         } else if (raycast(Wrapper.INSTANCE.getClientPlayerInteractionManager().getReachDistance(), 1, false) instanceof BlockHitResult blockHitResult && world.getBlockState(blockHitResult.getBlockPos()).getOutlineShape(player.getWorld(), blockHitResult.getBlockPos()) != VoxelShapes.empty()) {
-            clientConnection.send(new PlayerActionC2SPacket(PlayerActionC2SPacket.Action.START_DESTROY_BLOCK, blockHitResult.getBlockPos(), blockHitResult.getSide()));
-            clientConnection.send(new PlayerActionC2SPacket(PlayerActionC2SPacket.Action.STOP_DESTROY_BLOCK, blockHitResult.getBlockPos(), blockHitResult.getSide()));
+            clientConnection.send(new PlayerActionC2SPacket(ServerboundPlayerActionPacket.Action.START_DESTROY_BLOCK, blockHitResult.getBlockPos(), blockHitResult.getSide()));
+            clientConnection.send(new PlayerActionC2SPacket(ServerboundPlayerActionPacket.Action.STOP_DESTROY_BLOCK, blockHitResult.getBlockPos(), blockHitResult.getSide()));
             clientConnection.send(new HandSwingC2SPacket(Hand.MAIN_HAND));
         } else {
             clientConnection.send(new HandSwingC2SPacket(Hand.MAIN_HAND));

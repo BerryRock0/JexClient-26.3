@@ -18,13 +18,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.util.Identifier;
 
-public class JexElytraFeatureRenderer extends FeatureRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>> {
-    public JexElytraFeatureRenderer(FeatureRendererContext<PlayerEntity, PlayerEntityModel<PlayerEntity>> featureRendererContext, EntityModelLoader loader) {
+public class JexElytraFeatureRenderer extends FeatureRenderer<Player, PlayerEntityModel<Player>> {
+    public JexElytraFeatureRenderer(FeatureRendererContext<Player, PlayerEntityModel<Player>> featureRendererContext, EntityModelLoader loader) {
         super(featureRendererContext);
         this.elytra = new ElytraEntityModel(loader.getModelPart(EntityModelLayers.ELYTRA));
     }
     private static final Identifier FILE = new Identifier("textures/entity/elytra.png");
-    private final ElytraEntityModel<PlayerEntity> elytra;
+    private final ElytraEntityModel<Player> elytra;
 
     @Override
     public void render(PoseStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, Player playerEntity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {

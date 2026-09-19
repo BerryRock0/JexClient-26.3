@@ -11,8 +11,8 @@ import net.minecraft.world.entity.player.Player;
 import org.joml.Quaterniond;
 import net.minecraft.world.phys.Vec3;
 
-public class JexPenisFeatureRenderer extends FeatureRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>> {
-    public JexPenisFeatureRenderer(FeatureRendererContext<PlayerEntity, PlayerEntityModel<PlayerEntity>> featureRendererContext) {
+public class JexPenisFeatureRenderer extends FeatureRenderer<Player, PlayerEntityModel<Player>> {
+    public JexPenisFeatureRenderer(FeatureRendererContext<Player, PlayerEntityModel<Player>> featureRendererContext) {
         super(featureRendererContext);
     }
 

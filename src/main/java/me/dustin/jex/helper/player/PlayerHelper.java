@@ -433,11 +433,11 @@ public enum PlayerHelper {
         if (fracX < 0.3) {
             double x = Wrapper.INSTANCE.getLocalPlayer().getX() - fracX + 0.3;
             Wrapper.INSTANCE.getLocalPlayer().setPos(x, Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ());
-            NetworkHelper.INSTANCE.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(x, Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ(), true));
+            NetworkHelper.INSTANCE.sendPacket(new ServerboundMovePlayerPacket.Pos(x, Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ(), true, true));
         } else if (fracX > 0.7) {
             double x = Wrapper.INSTANCE.getLocalPlayer().getX() - fracX + 0.7;
             Wrapper.INSTANCE.getLocalPlayer().setPos(x, Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ());
-            NetworkHelper.INSTANCE.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(x, Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ(), true));
+            NetworkHelper.INSTANCE.sendPacket(new ServerboundMovePlayerPacket.Pos(x, Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ(), true, true));
         }
 
         if (fracZ < 0.3) {
@@ -457,11 +457,11 @@ public enum PlayerHelper {
         if (fracX < 0.5) {
             double x = Wrapper.INSTANCE.getLocalPlayer().getX() - fracX + 0.5;
             Wrapper.INSTANCE.getLocalPlayer().setPos(x, Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ());
-            NetworkHelper.INSTANCE.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(x, Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ(), true));
+            NetworkHelper.INSTANCE.sendPacket(new ServerboundMovePlayerPacket.Pos(x, Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ(), true, true));
         } else if (fracX > 0.5) {
             double x = Wrapper.INSTANCE.getLocalPlayer().getX() - fracX + 0.5;
             Wrapper.INSTANCE.getLocalPlayer().setPos(x, Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ());
-            NetworkHelper.INSTANCE.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(x, Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ(), true));
+            NetworkHelper.INSTANCE.sendPacket(new ServerboundMovePlayerPacket.Pos(x, Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ(), true, true));
         }
 
         if (fracZ < 0.5) {

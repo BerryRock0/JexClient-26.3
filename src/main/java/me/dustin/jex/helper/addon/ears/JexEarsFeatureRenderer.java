@@ -14,8 +14,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.Identifier;
 
-public class JexEarsFeatureRenderer extends FeatureRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>> {
-    public JexEarsFeatureRenderer(FeatureRendererContext<PlayerEntity, PlayerEntityModel<PlayerEntity>> featureRendererContext) {
+public class JexEarsFeatureRenderer extends FeatureRenderer<Player, PlayerEntityModel<Player>> {
+    public JexEarsFeatureRenderer(FeatureRendererContext<Player, PlayerEntityModel<Player>> featureRendererContext) {
         super(featureRendererContext);
     }
 

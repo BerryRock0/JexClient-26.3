@@ -19,8 +19,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.phys.Vec3;
 
-public class JexCapeFeatureRenderer extends FeatureRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>> {
-    public JexCapeFeatureRenderer(FeatureRendererContext<PlayerEntity, PlayerEntityModel<PlayerEntity>> featureRendererContext) {
+public class JexCapeFeatureRenderer extends FeatureRenderer<Player, PlayerEntityModel<Player>> {
+    public JexCapeFeatureRenderer(FeatureRendererContext<Player, PlayerEntityModel<Player>> featureRendererContext) {
         super(featureRendererContext);
     }
 

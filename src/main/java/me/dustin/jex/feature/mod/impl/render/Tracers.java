@@ -104,8 +104,8 @@ public class Tracers extends Feature {
             return false;
         if (e.isSleeping())
             return false;
-        if (e instanceof PlayerEntity)
-            return playersProperty.value() && !EntityHelper.INSTANCE.isNPC((PlayerEntity) e);
+        if (e instanceof Player)
+            return playersProperty.value() && !EntityHelper.INSTANCE.isNPC((Player) e);
         if (EntityHelper.INSTANCE.isPassiveMob(e))
             return passivesProperty.value();
         if (EntityHelper.INSTANCE.isBossMob(e))

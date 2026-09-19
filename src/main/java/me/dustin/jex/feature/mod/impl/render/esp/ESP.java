@@ -191,9 +191,9 @@ public class ESP extends Feature {
             return false;
         if (livingEntity == Wrapper.INSTANCE.getLocalPlayer())
             return false;
-        if (livingEntity instanceof Player && EntityHelper.INSTANCE.isNPC((PlayerEntity) livingEntity))
+        if (livingEntity instanceof Player && EntityHelper.INSTANCE.isNPC((Player) livingEntity))
             return false;
-        if (livingEntity instanceof PlayerEntity)
+        if (livingEntity instanceof Player)
             return playerProperty.value();
         if (EntityHelper.INSTANCE.isNeutralMob(entity))
             return neutralProperty.value();
@@ -211,7 +211,7 @@ public class ESP extends Feature {
             return itemColorProperty.value().getRGB();
         if (FriendHelper.INSTANCE.isFriend(entity.getName().getString()))
             return friendColorProperty.value().getRGB();
-        if (entity instanceof PlayerEntity) {
+        if (entity instanceof Player) {
             if (colorOnDistanceProperty.value()) {
                 return ColorHelper.INSTANCE.redGreenShift(entity.distanceTo(Wrapper.INSTANCE.getLocalPlayer()) / 64);
             }

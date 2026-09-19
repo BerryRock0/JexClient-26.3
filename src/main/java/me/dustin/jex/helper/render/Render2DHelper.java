@@ -199,7 +199,7 @@ public enum Render2DHelper {
         if (context == null) {
             context = new EntityRendererFactory.Context(Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher(), Wrapper.INSTANCE.getMinecraft().getItemRenderer(), Wrapper.INSTANCE.getMinecraft().getBlockRenderManager(), Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().getHeldItemRenderer(), Wrapper.INSTANCE.getMinecraft().getResourceManager(), Wrapper.INSTANCE.getMinecraft().getEntityModelLoader(), Wrapper.INSTANCE.getTextRenderer());
         }
-        PlayerEntityModel<PlayerEntity> playerEntityPlayerEntityModel = new PlayerEntityModel<>(context.getPart(EntityModelLayers.PLAYER), false);
+        PlayerEntityModel<Player> playerEntityPlayerEntityModel = new PlayerEntityModel<>(context.getPart(EntityModelLayers.PLAYER), false);
         playerEntityPlayerEntityModel.getHead().scale(new Vec3(-0.3f, -0.3f, -0.3f));//??? no fucking clue why it's needed
 
         PoseStack matrixStack = RenderSystem.getModelViewStack();

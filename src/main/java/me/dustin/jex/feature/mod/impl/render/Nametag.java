@@ -363,7 +363,7 @@ public class Nametag extends Feature {
                     float x = (float) vec.x - 8;
                     float y = (float) vec.y - 16;
 
-                    if (showPlayerFaceProperty.value() && entity instanceof PlayerEntity) {
+                    if (showPlayerFaceProperty.value() && entity instanceof Player) {
                         PlayerListEntry playerListEntry = Wrapper.INSTANCE.getLocalPlayer().networkHandler.getPlayerListEntry(entity.getUuid());
                         if (playerListEntry != null) {
                             Render2DHelper.INSTANCE.drawFace(matrixStack, x, y, 2, playerListEntry.getSkinTexture());
@@ -516,8 +516,8 @@ public class Nametag extends Feature {
             if (specialMobsOnlyProperty.value() && !isSpecialMob(entity))
                 return false;
             return neutralsProperty.value();
-        } else if (entity instanceof PlayerEntity)
-            if (!EntityHelper.INSTANCE.isNPC((PlayerEntity) entity)) {
+        } else if (entity instanceof Player)
+            if (!EntityHelper.INSTANCE.isNPC((Player) entity)) {
                 if (entity == Wrapper.INSTANCE.getLocalPlayer())
                     return showselfProperty.value() && Wrapper.INSTANCE.getOptions().getPerspective() != Perspective.FIRST_PERSON;
                 return playersProperty.value();

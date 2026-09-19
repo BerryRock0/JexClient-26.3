@@ -154,7 +154,7 @@ public class AutoTrap extends Feature {
         for (Entity entity : Wrapper.INSTANCE.getWorld().getEntities()) {
             if (entity instanceof Player && !FriendHelper.INSTANCE.isFriend(entity.getName().getString()) && entity != Wrapper.INSTANCE.getLocalPlayer()) {
                 if (Wrapper.INSTANCE.getLocalPlayer().distanceTo(entity) < distance && Wrapper.INSTANCE.getLocalPlayer().distanceTo(entity) > 2 && !Wrapper.INSTANCE.getWorld().isOutOfHeightLimit((int)entity.getY())) {
-                    Player = (PlayerEntity)entity;
+                    Player = (Player)entity;
                     distance = Wrapper.INSTANCE.getLocalPlayer().distanceTo(entity);
                 }
             }

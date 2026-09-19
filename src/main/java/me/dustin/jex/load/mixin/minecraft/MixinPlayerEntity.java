@@ -9,19 +9,19 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(PlayerEntity.class)
+@Mixin(Player.class)
 public class MixinPlayer {
 
     @Inject(method = "getAttackCooldownProgressPerTick", at = @At("HEAD"), cancellable = true)
     public void getAttackCooldownProgress(CallbackInfoReturnable<Float> ci) {
         EventCurrentItemAttackStrengthDelay eventCurrentItemAttackStrengthDelay = new EventCurrentItemAttackStrengthDelay().run();
         if (eventCurrentItemAttackStrengthDelay.getValue() != -1)
-            ci.setReturnValue((float) (eventCurrentItemAttackStrengthDelay.getValue() / ((PlayerEntity) (Object) this).getAttributeInstance(EntityAttributes.GENERIC_ATTACK_SPEED).getValue() * 20.0D));
+            ci.setReturnValue((float) (eventCurrentItemAttackStrengthDelay.getValue() / ((Player) (Object) this).getAttributeInstance(EntityAttributes.GENERIC_ATTACK_SPEED).getValue() * 20.0D));
     }
 
     @Inject(method = "clipAtLedge", at = @At("HEAD"), cancellable = true)
     public void clipAtLedge(CallbackInfoReturnable<Boolean> cir) {
         EventWalkOffBlock eventWalkOffBlock = new EventWalkOffBlock().run();
-        cir.setReturnValue(((PlayerEntity) (Object) this).isSneaking() || eventWalkOffBlock.isCancelled());
+        cir.setReturnValue(((Player) (Object) this).isSneaking() || eventWalkOffBlock.isCancelled());
     }
 }
