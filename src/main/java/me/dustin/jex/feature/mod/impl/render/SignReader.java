@@ -15,7 +15,7 @@ import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.phys.Vec3;
 import java.util.HashMap;

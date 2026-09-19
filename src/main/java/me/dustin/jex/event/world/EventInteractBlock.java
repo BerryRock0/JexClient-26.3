@@ -1,7 +1,7 @@
 package me.dustin.jex.event.world;
 
 import me.dustin.events.core.Event;
-import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.core.BlockPos;
 
 public class EventInteractBlock extends Event {
