@@ -1,5 +1,6 @@
 package me.dustin.jex.feature.command.core;
 
+import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.ArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -13,7 +14,7 @@ import net.minecraft.command.CommandRegistryAccess;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class Command implements com.mojang.brigadier.Command<FabricClientCommandSource> {
+public abstract class Command implements Command<FabricClientCommandSource> {
     protected String name, description;
     private List<String> alias, syntax;
 
