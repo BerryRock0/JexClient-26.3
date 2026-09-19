@@ -1,6 +1,6 @@
 plugins {
 	id 'fabric-loom' version '1.17-SNAPSHOT'
-	id "com.github.johnrengelman.shadow" version "9.6.1"
+	id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
