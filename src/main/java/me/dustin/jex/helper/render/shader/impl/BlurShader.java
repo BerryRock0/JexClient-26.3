@@ -7,7 +7,7 @@ import me.dustin.jex.helper.render.shader.ShaderProgram;
 import me.dustin.jex.helper.render.shader.ShaderUniform;
 import net.fabricmc.loader.impl.FabricLoaderImpl;
 import net.minecraft.util.math.Matrix4f;
-import net.minecraft.util.math.Vec2f;
+import net.minecraft.world.phys.Vec2;
 
 public class BlurShader extends ShaderProgram {
     private final ShaderUniform sampler, projection, size, radius, blurDir;

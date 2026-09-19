@@ -1,6 +1,6 @@
 package me.dustin.jex.helper.math.vector;
 
-import net.minecraft.util.math.Vec2f;
+import net.minecraft.world.phys.Vec2;
 
 public class Vector2D {
 

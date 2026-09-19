@@ -3,7 +3,7 @@ package me.dustin.jex.helper.render.shader;
 import me.dustin.jex.helper.math.Matrix4x4;
 import me.dustin.jex.helper.math.vector.Vector2D;
 import net.minecraft.util.math.Matrix4f;
-import net.minecraft.util.math.Vec2f;
+import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.math.Vector4f;
 import org.lwjgl.system.MemoryStack;
