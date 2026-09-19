@@ -12,7 +12,8 @@ import java.util.Collection;
 import java.util.concurrent.CompletableFuture;
 
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
-import net.minecraft.command.CommandSource;
+import net.minecraft.commands.CommandSource;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
