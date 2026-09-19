@@ -1,7 +1,9 @@
 package me.dustin.jex.feature.command;
 
-import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import me.dustin.events.EventManager;
 import me.dustin.events.core.EventListener;
 import me.dustin.events.core.annotate.EventPointer;
@@ -19,15 +21,16 @@ import me.dustin.jex.helper.misc.ClassHelper;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.render.Render2DHelper;
 import me.dustin.jex.load.impl.IChatScreen;
+
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
+
+import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.text.Text;
 import net.minecraft.text.Texts;
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public enum CommandManager {
     INSTANCE;
