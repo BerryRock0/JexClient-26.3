@@ -9,7 +9,10 @@ import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import me.dustin.jex.helper.misc.Wrapper;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
+
 import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
+
 import java.util.Collection;
 import java.util.concurrent.CompletableFuture;
 import java.util.regex.Matcher;
