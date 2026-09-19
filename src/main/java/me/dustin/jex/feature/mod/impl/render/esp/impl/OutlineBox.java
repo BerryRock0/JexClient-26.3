@@ -25,14 +25,14 @@ import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.math.Quaternion;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.math.Vec3f;
 import java.awt.*;
 
-public class OutlineBox extends FeatureExtension {
+public class OutlineAABB extends FeatureExtension {
 
 	public OutlineBox() {
 		super(ESP.Mode.BOX_OUTLINE, ESP.class);
@@ -60,7 +60,7 @@ public class OutlineBox extends FeatureExtension {
 			Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
 				if (ESP.INSTANCE.isValid(entity)) {
 					Vec3 vec = Render3DHelper.INSTANCE.getEntityRenderPosition(entity, eventRender3D.getPartialTicks());
-					Box bb = new Box(vec.x - entity.getWidth() + 0.25, vec.y, vec.z - entity.getWidth() + 0.25, vec.x + entity.getWidth() - 0.25, vec.y + entity.getHeight() + 0.1, vec.z + entity.getWidth() - 0.25);
+					AABB bb = new Box(vec.x - entity.getWidth() + 0.25, vec.y, vec.z - entity.getWidth() + 0.25, vec.x + entity.getWidth() - 0.25, vec.y + entity.getHeight() + 0.1, vec.z + entity.getWidth() - 0.25);
 					if (entity instanceof ItemEntity)
 						bb = new Box(vec.x - 0.15, vec.y + 0.1f, vec.z - 0.15, vec.x + 0.15, vec.y + 0.5, vec.z + 0.15);
 					float yaw = EntityHelper.INSTANCE.getYaw(entity);

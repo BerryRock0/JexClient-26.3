@@ -35,7 +35,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
@@ -85,7 +85,7 @@ public class AntiLiquid extends Feature {
             pos = null;
             list = null;
 
-            Box box = new Box(Wrapper.INSTANCE.getPlayer().getBlockX() - distanceProperty.value(), Wrapper.INSTANCE.getPlayer().getBlockY() - distanceProperty.value(), Wrapper.INSTANCE.getPlayer().getBlockZ() - distanceProperty.value(), Wrapper.INSTANCE.getPlayer().getBlockX() + distanceProperty.value(), Wrapper.INSTANCE.getPlayer().getBlockY() + distanceProperty.value(), Wrapper.INSTANCE.getPlayer().getBlockZ() + distanceProperty.value());
+            AABB box = new Box(Wrapper.INSTANCE.getPlayer().getBlockX() - distanceProperty.value(), Wrapper.INSTANCE.getPlayer().getBlockY() - distanceProperty.value(), Wrapper.INSTANCE.getPlayer().getBlockZ() - distanceProperty.value(), Wrapper.INSTANCE.getPlayer().getBlockX() + distanceProperty.value(), Wrapper.INSTANCE.getPlayer().getBlockY() + distanceProperty.value(), Wrapper.INSTANCE.getPlayer().getBlockZ() + distanceProperty.value());
             list = WorldHelper.INSTANCE.getBlocksInBox(box);
             list.sort(Comparator.comparingDouble(value -> ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos(), Vec3d.ofCenter(value))));
 
@@ -145,7 +145,7 @@ public class AntiLiquid extends Feature {
         for (BlockPos pos : list) {
             if (pos != Wrapper.INSTANCE.getPlayer().getBlockPos() && pos != Wrapper.INSTANCE.getPlayer().getBlockPos().up() && isReplaceable(pos) && ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos().add(0, Wrapper.INSTANCE.getPlayer().getEyeHeight(Wrapper.INSTANCE.getPlayer().getPose()), 0), Vec3d.ofCenter(pos)) <= Wrapper.INSTANCE.getClientPlayerInteractionManager().getReachDistance()) {
                 Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(pos);
-                Box box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
+                AABB box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
                 renderList.add(new Render3DHelper.BoxStorage(box, canPlaceHere(pos) && !foundPlacing ? 0xff00ff00 : 0xffff0000));
                 if (canPlaceHere(pos))
                     foundPlacing = true;
@@ -154,7 +154,7 @@ public class AntiLiquid extends Feature {
         Render3DHelper.INSTANCE.setup3DRender(true);
         BufferBuilder bufferBuilder = BufferHelper.INSTANCE.begin(VertexFormat.DrawMode.DEBUG_LINES, VertexFormats.POSITION_COLOR);
         renderList.forEach(blockStorage -> {
-            Box box = blockStorage.box();
+            AABB box = blockStorage.box();
             int color = blockStorage.color();
             Render3DHelper.INSTANCE.drawOutlineBox(event.getPoseStack(), box, color, false);
         });

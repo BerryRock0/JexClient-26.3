@@ -17,7 +17,7 @@ import me.dustin.jex.helper.render.Render3DHelper;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import java.awt.*;
@@ -131,7 +131,7 @@ public class Surround extends Feature {
 		if (blockPos == null)
 			return;
 		Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockPos);
-		Box bb = new Box(renderPos.getX(), renderPos.getY(), renderPos.getZ(), renderPos.getX() + 1, renderPos.getY() + 1, renderPos.getZ() + 1);
+		AABB bb = new Box(renderPos.getX(), renderPos.getY(), renderPos.getZ(), renderPos.getX() + 1, renderPos.getY() + 1, renderPos.getZ() + 1);
 		Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), bb, placeColorProperty.value().getRGB());
 	});
 

@@ -23,7 +23,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.phys.Vec3;
 import me.dustin.jex.feature.mod.core.Feature;
@@ -147,7 +147,7 @@ public class AutoFish extends Feature {
             FishingBobberEntity hook = getHook();
         if (hook != null && Wrapper.INSTANCE.getLocalPlayer().getMainHandStack() != null && Wrapper.INSTANCE.getLocalPlayer().getMainHandStack().getItem() == Items.FISHING_ROD) {
             Vec3 renderPos = Render3DHelper.INSTANCE.getEntityRenderPosition(hook, event.getPartialTicks());
-            Box box = new Box(renderPos.x - 0.2f, renderPos.y - 0.2f, renderPos.z - 0.2f, renderPos.x + 0.2f, renderPos.y + 0.2f, renderPos.z + 0.2f);
+            AABB box = new Box(renderPos.x - 0.2f, renderPos.y - 0.2f, renderPos.z - 0.2f, renderPos.x + 0.2f, renderPos.y + 0.2f, renderPos.z + 0.2f);
             Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), box, isOpenOrWaterAround(hook.getBlockPos()) ? 0xff0000ff : 0xffff0000);
         }
     });

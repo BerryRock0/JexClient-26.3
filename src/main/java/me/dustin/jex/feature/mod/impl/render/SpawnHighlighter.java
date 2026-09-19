@@ -24,7 +24,7 @@ import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.LightType;
 import me.dustin.jex.feature.mod.core.Feature;
@@ -109,13 +109,13 @@ public class SpawnHighlighter extends Feature {
 					color = spawnSphereColorProperty.value().getRGB();
 			}
 			Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(new Vec3(blockPos.getX(), blockPos.getY(), blockPos.getZ()));
-			Box box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 0.05f, renderPos.z + 1);
+			AABB box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 0.05f, renderPos.z + 1);
 			boxes.add(new Render3DHelper.BoxStorage(box, color));
 		});
 		Render3DHelper.INSTANCE.setup3DRender(disableDepthProperty.value());
 		BufferBuilder bufferBuilder = BufferHelper.INSTANCE.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
 		boxes.forEach(blockStorage -> {
-			Box box = blockStorage.box();
+			AABB box = blockStorage.box();
 			int color = blockStorage.color();
 			Render3DHelper.INSTANCE.drawFilledBox(event.getPoseStack(), box, color & 0x70ffffff, false);
 		});

@@ -30,7 +30,7 @@ import net.minecraft.block.WallBlock;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.shape.VoxelShapes;
@@ -548,14 +548,14 @@ public class PathFinder
 		if (debugMode) {
 			for (PathPos pathPos : queue.toArray()) {
 				Vec3 vec = Render3DHelper.INSTANCE.getRenderPosition(Vec3d.ofCenter(pathPos));
-				Box box = new Box(vec.getX() - 0.05, vec.getY() - 0.05, vec.getZ() - 0.05, vec.getX() + 0.05, vec.getY() + 0.05, vec.getZ() + 0.05);
+				AABB box = new Box(vec.getX() - 0.05, vec.getY() - 0.05, vec.getZ() - 0.05, vec.getX() + 0.05, vec.getY() + 0.05, vec.getZ() + 0.05);
 				if (boxes.size() < 5000)
 					boxes.add(new Render3DHelper.BoxStorage(box, 0xffffff00));
 			}
 
 			for(Map.Entry<PathPos, PathPos> entry : prevPosMap.entrySet()) {
 				Vec3 vec = Render3DHelper.INSTANCE.getRenderPosition(Vec3d.ofCenter(entry.getKey()));
-				Box box = new Box(vec.getX() - 0.05, vec.getY() - 0.05, vec.getZ() - 0.05, vec.getX() + 0.05, vec.getY() + 0.05, vec.getZ() + 0.05);
+				AABB box = new Box(vec.getX() - 0.05, vec.getY() - 0.05, vec.getZ() - 0.05, vec.getX() + 0.05, vec.getY() + 0.05, vec.getZ() + 0.05);
 				if (boxes.size() < 5000)
 					boxes.add(new Render3DHelper.BoxStorage(box, 0xffff00ff));
 			}
@@ -563,7 +563,7 @@ public class PathFinder
 
 		for (PathPos pathPos : path) {
 			Vec3 vec = Render3DHelper.INSTANCE.getRenderPosition(Vec3d.ofCenter(pathPos));
-			Box box = new Box(vec.getX() - 0.05, vec.getY() - 0.05, vec.getZ() - 0.05, vec.getX() + 0.05, vec.getY() + 0.05, vec.getZ() + 0.05);
+			AABB box = new Box(vec.getX() - 0.05, vec.getY() - 0.05, vec.getZ() - 0.05, vec.getX() + 0.05, vec.getY() + 0.05, vec.getZ() + 0.05);
 			if (boxes.size() < 5000)
 				boxes.add(new Render3DHelper.BoxStorage(box, ColorHelper.INSTANCE.getClientColor()));
 		}

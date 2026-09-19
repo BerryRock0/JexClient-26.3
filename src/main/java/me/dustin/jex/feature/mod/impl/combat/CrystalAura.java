@@ -24,7 +24,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
 import me.dustin.jex.feature.mod.core.Feature;
@@ -164,7 +164,7 @@ public class CrystalAura extends Feature {
 					if (placingPos != null && !FriendHelper.INSTANCE.isFriend(entityPlayer.getDisplayName().getString())) {
 						EndCrystalEntity crystal = new EndCrystalEntity(Wrapper.INSTANCE.getWorld(), placingPos.getX(), placingPos.getY(), placingPos.getZ());
 						Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(placingPos.getX(), placingPos.getY(), placingPos.getZ());
-						Box box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
+						AABB box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
 						Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), box, shouldAttack(crystal) ? placingColorProperty.value().getRGB() : thinkingColorProperty.value().getRGB());
 					}
 				}
@@ -206,7 +206,7 @@ public class CrystalAura extends Feature {
 	}
 
 	private boolean isBlocking(BlockPos blockPos, Player EntityPlayer) {
-		Box box = new Box(blockPos.up());
+		AABB box = new Box(blockPos.up());
 		if (EntityPlayer.getBoundingBox().intersects(box))
 			return true;
 		return false;

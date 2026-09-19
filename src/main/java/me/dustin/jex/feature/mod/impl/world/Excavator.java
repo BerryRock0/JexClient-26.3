@@ -37,7 +37,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.shape.VoxelShapes;
@@ -149,23 +149,23 @@ public class Excavator extends Feature {
             MiningArea copy = miningArea != null ? miningArea : new MiningArea(tempPos1, tempPos2);
             Vec3 miningAreaVec1 = Render3DHelper.INSTANCE.getRenderPosition(new BlockPos(copy.getAreaBB().minX, copy.getAreaBB().minY, copy.getAreaBB().minZ));
             Vec3 miningAreaVec2 = Render3DHelper.INSTANCE.getRenderPosition(new BlockPos(copy.getAreaBB().maxX, copy.getAreaBB().maxY, copy.getAreaBB().maxZ));
-            Box miningAreaBox = new Box(miningAreaVec1.x, miningAreaVec1.y, miningAreaVec1.z, miningAreaVec2.x + 1, miningAreaVec2.y + 1, miningAreaVec2.z + 1);
+            AABB miningAreaAABB = new Box(miningAreaVec1.x, miningAreaVec1.y, miningAreaVec1.z, miningAreaVec2.x + 1, miningAreaVec2.y + 1, miningAreaVec2.z + 1);
             Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), miningAreaBox, 0xffffff00);
         }
         if (tempPos1 != null) {//draws yellow box on first set pos
             Vec3 tempVec = Render3DHelper.INSTANCE.getRenderPosition(tempPos1);
-            Box closestBox = new Box(tempVec.x, tempVec.y, tempVec.z, tempVec.x + 1, tempVec.y + 1, tempVec.z + 1);
+            AABB closestAABB = new Box(tempVec.x, tempVec.y, tempVec.z, tempVec.x + 1, tempVec.y + 1, tempVec.z + 1);
             Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), closestBox, 0xffffff00);
         }
         if (tempPos2 != null) {//draws yellow box on first set pos
             Vec3 tempVec = Render3DHelper.INSTANCE.getRenderPosition(tempPos2);
-            Box closestBox = new Box(tempVec.x, tempVec.y, tempVec.z, tempVec.x + 1, tempVec.y + 1, tempVec.z + 1);
+            AABB closestAABB = new Box(tempVec.x, tempVec.y, tempVec.z, tempVec.x + 1, tempVec.y + 1, tempVec.z + 1);
             Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), closestBox, 0xffffff00);
         }
         //draws yellow box on crosshair block
         if (miningArea == null && Wrapper.INSTANCE.getMinecraft().crosshairTarget instanceof BlockHitResult blockHitResult) {
             Vec3 hitVec = Render3DHelper.INSTANCE.getRenderPosition(blockHitResult.getBlockPos());
-            Box hoverBox = new Box(hitVec.x, hitVec.y, hitVec.z, hitVec.x + 1, hitVec.y + 1, hitVec.z + 1);
+            AABB hoverAABB = new Box(hitVec.x, hitVec.y, hitVec.z, hitVec.x + 1, hitVec.y + 1, hitVec.z + 1);
             Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), hoverBox, 0xff00ff00);
         }
     });
@@ -312,7 +312,7 @@ public class Excavator extends Feature {
 
     public static class MiningArea {
         private final Excavator excavator;
-        private final Box areaBB;
+        private final AABB areaBB;
 
         private final ArrayList<BlockPos> blockPosList = new ArrayList<>();
 
@@ -383,7 +383,7 @@ public class Excavator extends Feature {
             return highestY;
         }
 
-        public Box getAreaBB() {
+        public AABB getAreaBB() {
             return areaBB;
         }
 

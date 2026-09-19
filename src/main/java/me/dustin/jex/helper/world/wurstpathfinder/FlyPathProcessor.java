@@ -13,7 +13,7 @@ import me.dustin.jex.feature.mod.impl.movement.speed.Speed;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.player.PlayerHelper;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.math.Vec3i;
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class FlyPathProcessor extends PathProcessor
 		Vec3 posVec = Wrapper.INSTANCE.getPlayer().getPos();
 		BlockPos nextPos = path.get(index);
 		int posIndex = path.indexOf(pos);
-		Box nextBox = new Box(nextPos.getX() + 0.3, nextPos.getY(), nextPos.getZ() + 0.3, nextPos.getX() + 0.7, nextPos.getY() + 0.2, nextPos.getZ() + 0.7);
+		AABB nextAABB = new Box(nextPos.getX() + 0.3, nextPos.getY(), nextPos.getZ() + 0.3, nextPos.getX() + 0.7, nextPos.getY() + 0.2, nextPos.getZ() + 0.7);
 		
 		if(posIndex == -1)
 			ticksOffPath++;

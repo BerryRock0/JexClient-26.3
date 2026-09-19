@@ -157,7 +157,7 @@ public enum Render3DHelper {
         RenderSystem.disableTexture();
     }
 
-    public void drawBoxWithDepthTest(MatrixStack matrixstack, Box bb, int color) {
+    public void drawBoxWithDepthTest(MatrixStack matrixstack, AABB bb, int color) {
         setup3DRender(false);
         drawFilledBox(matrixstack, bb, color & 0x50ffffff);
         RenderSystem.lineWidth(1);
@@ -165,7 +165,7 @@ public enum Render3DHelper {
         end3DRender();
     }
 
-    public void drawBox(MatrixStack matrixstack, Box bb, int color) {
+    public void drawBox(MatrixStack matrixstack, AABB bb, int color) {
         setup3DRender(true);
         drawFilledBox(matrixstack, bb, color & 0x50ffffff);
         RenderSystem.lineWidth(1);
@@ -173,14 +173,14 @@ public enum Render3DHelper {
         end3DRender();
     }
 
-    public void drawBoxOutline(MatrixStack matrixstack, Box bb, int color) {
+    public void drawBoxOutline(MatrixStack matrixstack, AABB bb, int color) {
         setup3DRender(true);
         RenderSystem.lineWidth(1);
         drawOutlineBox(matrixstack, bb, color);
         end3DRender();
     }
 
-    public void drawBoxInside(MatrixStack matrixstack, Box bb, int color) {
+    public void drawBoxInside(MatrixStack matrixstack, AABB bb, int color) {
         setup3DRender(true);
         drawFilledBox(matrixstack, bb, color & 0x50ffffff);
         end3DRender();
@@ -198,7 +198,7 @@ public enum Render3DHelper {
         matrixstack.multiply(new Quaternion(new Vec3f(0, -1, 0), yaw, true));
         matrixstack.translate(-x, -y, -z);
 
-        Box bb = new Box(x - entity.getWidth() + 0.25, y, z - entity.getWidth() + 0.25, x + entity.getWidth() - 0.25, y + entity.getHeight() + 0.1, z + entity.getWidth() - 0.25);
+        AABB bb = new Box(x - entity.getWidth() + 0.25, y, z - entity.getWidth() + 0.25, x + entity.getWidth() - 0.25, y + entity.getHeight() + 0.1, z + entity.getWidth() - 0.25);
         if (entity instanceof ItemEntity)
             bb = new Box(x - 0.15, y + 0.1f, z - 0.15, x + 0.15, y + 0.5, z + 0.15);
 
@@ -221,7 +221,7 @@ public enum Render3DHelper {
 		setup3DRender(disableDepth);
         BufferBuilder bufferBuilder = BufferHelper.INSTANCE.begin(VertexFormat.DrawMode.DEBUG_LINES, VertexFormats.POSITION_COLOR);
     	list.forEach(blockStorage -> {
-            Box box = blockStorage.box();
+            AABB box = blockStorage.box();
             int color = blockStorage.color();
             drawOutlineBox(poseStack, box, color, false);
     	});
@@ -230,7 +230,7 @@ public enum Render3DHelper {
 
         BufferHelper.INSTANCE.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
         list.forEach(blockStorage -> {
-            Box box = blockStorage.box();
+            AABB box = blockStorage.box();
             int color = blockStorage.color();
             drawFilledBox(poseStack, box, color & 0x70ffffff, false);
     	});
@@ -238,7 +238,7 @@ public enum Render3DHelper {
         end3DRender();
     }
     
-    public void drawFilledBox(MatrixStack poseStack, Box bb, int color) {
+    public void drawFilledBox(MatrixStack poseStack, AABB bb, int color) {
     	drawFilledBox(poseStack, bb, color, true);
     }
 
@@ -262,7 +262,7 @@ public enum Render3DHelper {
         }
     }
 
-    public void drawFilledBox(MatrixStack poseStack, Box bb, int color, boolean draw) {
+    public void drawFilledBox(MatrixStack poseStack, AABB bb, int color, boolean draw) {
         Matrix4f matrix4f = poseStack.peek().getPositionMatrix();
         Color color1 = ColorHelper.INSTANCE.getColor(color);
 
@@ -310,7 +310,7 @@ public enum Render3DHelper {
         }
     }
 
-    public void drawFadeBox(MatrixStack poseStack, Box bb, int color) {
+    public void drawFadeBox(MatrixStack poseStack, AABB bb, int color) {
         Matrix4f matrix4f = poseStack.peek().getPositionMatrix();
         Color color1 = ColorHelper.INSTANCE.getColor(color);
 
@@ -354,7 +354,7 @@ public enum Render3DHelper {
         BufferHelper.INSTANCE.drawWithShader(bufferBuilder, ShaderHelper.INSTANCE.getPosColorShader());
     }
 
-    public void doFadeBoxNoDraw(MatrixStack poseStack, Box bb, int color) {
+    public void doFadeBoxNoDraw(MatrixStack poseStack, AABB bb, int color) {
         Matrix4f matrix4f = poseStack.peek().getPositionMatrix();
         Color color1 = ColorHelper.INSTANCE.getColor(color);
 
@@ -397,11 +397,11 @@ public enum Render3DHelper {
         bufferBuilder.vertex(matrix4f, minX, maxY, minZ).color(color1.getRed(), color1.getGreen(), color1.getBlue(), 0).next();
     }
 
-    public void drawOutlineBox(MatrixStack poseStack, Box bb, int color) {
+    public void drawOutlineBox(MatrixStack poseStack, AABB bb, int color) {
     	drawOutlineBox(poseStack, bb, color, true);
     }
 
-    public void drawOutlineBox(MatrixStack poseStack, Box bb, int color, boolean draw) {
+    public void drawOutlineBox(MatrixStack poseStack, AABB bb, int color, boolean draw) {
         Color color1 = ColorHelper.INSTANCE.getColor(color);
         Matrix4f matrix4f = poseStack.peek().getPositionMatrix();
 
@@ -419,5 +419,5 @@ public enum Render3DHelper {
         }
     }
 
-    public record BoxStorage (Box box, int color) {}
+    public record BoxStorage (AABB box, int color) {}
 }

@@ -50,7 +50,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.phys.Vec3;
@@ -62,7 +62,7 @@ import java.util.*;
 public enum WorldHelper {
     INSTANCE;
     private final ConcurrentMap<BlockPos, BlockEntity> blockEntities = Maps.newConcurrentMap();
-    public static final Box SINGLE_BOX = new Box(0, 0, 0, 1, 1, 1);
+    public static final AABB SINGLE_BOX = new Box(0, 0, 0, 1, 1, 1);
 
     public Block getBlock(BlockPos pos) {
         try {
@@ -122,7 +122,7 @@ public enum WorldHelper {
     public Direction chestMergeDirection(ChestBlockEntity chestBlockEntity) {
         BlockState blockState = getBlockState(chestBlockEntity.getPos());
         ChestBlock chestBlock = (ChestBlock) getBlock(chestBlockEntity.getPos());
-        Box chestBox = chestBlock.getOutlineShape(blockState, Wrapper.INSTANCE.getWorld(), chestBlockEntity.getPos(), ShapeContext.absent()).getBoundingBox();
+        AABB chestAABB = chestBlock.getOutlineShape(blockState, Wrapper.INSTANCE.getWorld(), chestBlockEntity.getPos(), ShapeContext.absent()).getBoundingBox();
         if (chestBox.minZ == 0)
             return Direction.NORTH;
         if (chestBox.maxZ == 1)
@@ -158,7 +158,7 @@ public enum WorldHelper {
         return Wrapper.INSTANCE.getWorld().getBlockState(blockPos).getBlock();
     }
 
-    public ArrayList<BlockPos> getBlocksInBox(Box box) {
+    public ArrayList<BlockPos> getBlocksInBox(AABB box) {
         ArrayList<BlockPos> blocks = new ArrayList<>();
         for (int x = (int)box.minX; x <= box.maxX; x++) {
             for (int y = (int)box.minY; y <= box.maxY; y++) {
@@ -235,8 +235,8 @@ public enum WorldHelper {
         if (entity == null) {
             return false;
         }
-        Box boundingBox = entity.getBoundingBox();
-        boundingBox = boundingBox.expand(-0.01D, -0.0D, -0.01D).offset(0.0D, -0.01D, 0.0D);
+        AABB boundingAABB = entity.getBoundingBox();
+        boundingAABB = boundingBox.expand(-0.01D, -0.0D, -0.01D).offset(0.0D, -0.01D, 0.0D);
         boolean onLiquid = false;
         int y = (int) boundingBox.minY;
         for (int x = MathHelper.floor(boundingBox.minX); x < MathHelper.floor(boundingBox.maxX + 1.0D); x++) {
@@ -247,7 +247,7 @@ public enum WorldHelper {
                     if (!isWaterlogged(blockPos))
                         return false;
                     FluidState fluidState = getFluidState(blockPos);
-                    Box blockBB = fluidState.getShape(Wrapper.INSTANCE.getWorld(), blockPos).getBoundingBox().offset(blockPos);
+                    AABB blockBB = fluidState.getShape(Wrapper.INSTANCE.getWorld(), blockPos).getBoundingBox().offset(blockPos);
                     if (boundingBox.minX < blockBB.maxX &&
                             boundingBox.maxX > blockBB.minX &&
                             boundingBox.minY < blockBB.maxY &&
@@ -271,8 +271,8 @@ public enum WorldHelper {
         if (entity == null) {
             return false;
         }
-        Box boundingBox = entity.getBoundingBox();
-        boundingBox = boundingBox.expand(-0.01D, -0.0D, -0.01D).offset(0.0D, -0.01D, 0.0D);
+        AABB boundingAABB = entity.getBoundingBox();
+        boundingAABB = boundingBox.expand(-0.01D, -0.0D, -0.01D).offset(0.0D, -0.01D, 0.0D);
         boolean onLiquid = false;
         int y = (int) boundingBox.minY;
         for (int x = MathHelper.floor(boundingBox.minX); x < MathHelper.floor(boundingBox.maxX + 1.0D); x++) {
@@ -294,8 +294,8 @@ public enum WorldHelper {
         if (entity == null) {
             return false;
         }
-        Box boundingBox = entity.getBoundingBox();
-        boundingBox = boundingBox.expand(-0, -0.081D, -0.081D);
+        AABB boundingAABB = entity.getBoundingBox();
+        boundingAABB = boundingBox.expand(-0, -0.081D, -0.081D);
         int var4 = MathHelper.floor(boundingBox.minX);
         int var5 = MathHelper.floor(boundingBox.maxX + 1.0D);
         int var6 = MathHelper.floor(boundingBox.minY);
@@ -313,7 +313,7 @@ public enum WorldHelper {
                     Block var15 = getBlock(blockPos);
                     if ((var15 instanceof FluidBlock)) {
                         FluidState fluidState = getFluidState(blockPos);
-                        Box blockBB = fluidState.getShape(Wrapper.INSTANCE.getWorld(), blockPos).getBoundingBox().offset(blockPos);
+                        AABB blockBB = fluidState.getShape(Wrapper.INSTANCE.getWorld(), blockPos).getBoundingBox().offset(blockPos);
                         if (boundingBox.minX < blockBB.maxX &&
                                 boundingBox.maxX > blockBB.minX &&
                                 boundingBox.minY < blockBB.maxY &&
@@ -452,7 +452,7 @@ public enum WorldHelper {
     }
 
     public static float getExposure(Vec3 source, Entity entity) {
-        Box box = entity.getBoundingBox();
+        AABB box = entity.getBoundingBox();
         double d = 1.0D / ((box.maxX - box.minX) * 2.0D + 1.0D);
         double e = 1.0D / ((box.maxY - box.minY) * 2.0D + 1.0D);
         double f = 1.0D / ((box.maxZ - box.minZ) * 2.0D + 1.0D);

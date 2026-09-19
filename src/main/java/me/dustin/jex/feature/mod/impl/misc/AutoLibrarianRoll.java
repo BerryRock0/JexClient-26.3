@@ -39,7 +39,7 @@ import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.text.Text;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.village.TradeOfferList;
@@ -199,7 +199,7 @@ public class AutoLibrarianRoll extends Feature {
     private final EventListener<EventRender3D> eventRender3DEventListener = new EventListener<>(event -> {
         if (lecternPos != null) {
             Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(lecternPos);
-            Box box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
+            AABB box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
             Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), box, 0xff00ff00);
         }
         if (villager != null) {

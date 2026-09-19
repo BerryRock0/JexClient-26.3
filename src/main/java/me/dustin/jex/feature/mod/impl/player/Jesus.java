@@ -28,7 +28,7 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.WaterFluid;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.shape.VoxelShapes;
 import org.lwjgl.glfw.GLFW;
@@ -126,7 +126,7 @@ public class Jesus extends Feature {
         if (WorldHelper.INSTANCE.isWaterlogged(event.getBlockPos()) && event.getVoxelShape().isEmpty()) {
             FluidState fluidState = WorldHelper.INSTANCE.getFluidState(event.getBlockPos());
             if (fluidState.getLevel() == 8) {
-                Box waterBox = new Box(0.1f, 0, 0.1f, 0.9f, Wrapper.INSTANCE.getPlayer().hasVehicle() ? 0.92f : 1, 0.9f);
+                AABB waterAABB = new Box(0.1f, 0, 0.1f, 0.9f, Wrapper.INSTANCE.getPlayer().hasVehicle() ? 0.92f : 1, 0.9f);
                 event.setVoxelShape(VoxelShapes.cuboid(waterBox));
             } else
                 event.setVoxelShape(fluidState.getShape(Wrapper.INSTANCE.getWorld(), event.getBlockPos()));

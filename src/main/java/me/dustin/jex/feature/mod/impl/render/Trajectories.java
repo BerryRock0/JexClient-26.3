@@ -46,7 +46,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.math.Quaternion;
 import net.minecraft.world.phys.Vec3;
@@ -108,7 +108,7 @@ public class Trajectories extends Feature {
                         Vec3 vec2 = Render3DHelper.INSTANCE.getEntityRenderPosition(hitEntity, event.getPartialTicks());
                         Render3DHelper.INSTANCE.drawEntityBox(event.getPoseStack(), hitEntity, vec2.x, vec2.y, vec2.z, hitColorProperty.value().getRGB());
                     } else {
-                        Box bb1 = new Box(vec.x - 0.2f, vec.y - 0.2f, vec.z - 0.2f, vec.x + 0.2f, vec.y + 0.2f, vec.z + 0.2f);
+                        AABB bb1 = new Box(vec.x - 0.2f, vec.y - 0.2f, vec.z - 0.2f, vec.x + 0.2f, vec.y + 0.2f, vec.z + 0.2f);
                         Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), bb1, missColorProperty.value().getRGB());
                     }
                 }

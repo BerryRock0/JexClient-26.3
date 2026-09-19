@@ -10,7 +10,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.entity.MovementType;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.World;
@@ -26,13 +26,13 @@ import java.util.List;
 @Mixin(Entity.class)
 public abstract class MixinEntity {
 
-    @Shadow public abstract Box getBoundingBox();
+    @Shadow public abstract AABB getBoundingBox();
 
     @Shadow protected boolean onGround;
 
     @Shadow public abstract void move(MovementType type, Vec3 movement);
 
-    @Shadow private Box boundingBox;
+    @Shadow private AABB boundingBox;
 
     @Shadow public World world;
 
@@ -76,7 +76,7 @@ public abstract class MixinEntity {
     public void move1(Vec3 movement, CallbackInfoReturnable<Vec3d> cir) {
         if (((Entity)(Object)this) != Wrapper.INSTANCE.getLocalPlayer() || Wrapper.INSTANCE.getLocalPlayer() == null)
             return;
-        Box box = this.getBoundingBox();
+        AABB box = this.getBoundingBox();
         List<VoxelShape> list = this.world.getEntityCollisions((Entity)(Object)this, box.stretch(movement));
         Vec3 vec3d = movement.lengthSquared() == 0.0D ? movement : Entity.adjustMovementForCollisions((Entity)(Object)this, movement, box, this.world, list);
         boolean bl = movement.x != vec3d.x;

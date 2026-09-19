@@ -19,7 +19,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.math.Vec3i;
@@ -87,7 +87,7 @@ public class AutoBreak extends Feature {
 				color = blockinspotColorProperty.value().getRGB();
 			if (block != Blocks.AIR && getDistance(pos, Wrapper.INSTANCE.getLocalPlayer().getX(), Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ()) <= mineDistanceProperty.value())
 				color = miningColorProperty.value().getRGB();
-			Box bb = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
+			AABB bb = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
 			Render3DHelper.INSTANCE.drawBox(((EventRender3D) event).getPoseStack(), bb, color);
 		}
 	});

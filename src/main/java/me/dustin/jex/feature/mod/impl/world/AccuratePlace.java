@@ -24,7 +24,7 @@ import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
 import org.apache.commons.lang3.StringUtils;
@@ -87,7 +87,7 @@ public class AccuratePlace extends Feature {
             Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(centerOf);
             matrixStack.translate(renderPos.x, renderPos.y, renderPos.z);
             Render3DHelper.INSTANCE.directionTranslate(matrixStack, facing);
-            Box box = new Box(-0.5f, -0.5f, -0.5f, 0.5f, -0.45f, 0.5f);
+            AABB box = new Box(-0.5f, -0.5f, -0.5f, 0.5f, -0.45f, 0.5f);
             Render3DHelper.INSTANCE.drawBox(matrixStack, box, 0xffff0000);
             matrixStack.translate(-centerOf.x, -centerOf.y, -centerOf.z);
             Render3DHelper.INSTANCE.end3DRender();

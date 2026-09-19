@@ -16,7 +16,7 @@ import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.network.packet.s2c.play.BlockUpdateS2CPacket;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.chunk.Chunk;
@@ -86,7 +86,7 @@ public class NewChunks extends Feature {
             if (!Wrapper.INSTANCE.getWorld().getChunkManager().isChunkLoaded(chunk.getPos().x, chunk.getPos().z))
                 return;
             Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(chunk.getPos().getStartX(), chunk.getBottomY(), chunk.getPos().getStartZ());
-            Box bb = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 16, renderPos.y + 0.1f, renderPos.z + 16);
+            AABB bb = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 16, renderPos.y + 0.1f, renderPos.z + 16);
             Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), bb, newChunkColorProperty.value().getRGB());
         });
     });

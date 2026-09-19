@@ -12,7 +12,7 @@ import me.dustin.jex.helper.render.Render3DHelper;
 import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.block.Blocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
 import java.awt.*;
@@ -70,12 +70,12 @@ public class HoleESP extends Feature {
             Vec3 vec3d = Render3DHelper.INSTANCE.getRenderPosition(blockPos.getX(), blockPos.getY(), blockPos.getZ());
             int color = WorldHelper.INSTANCE.getBlock(blockPos.down()) == Blocks.BEDROCK ? bedrockColorProperty.value().getRGB() : obsidianColorProperty.value().getRGB();
             if (fadeBoxProperty.value()) {
-                Box box = new Box(vec3d.x, vec3d.y, vec3d.z, vec3d.x + 1, vec3d.y + 1.5f, vec3d.z + 1);
+                AABB box = new Box(vec3d.x, vec3d.y, vec3d.z, vec3d.x + 1, vec3d.y + 1.5f, vec3d.z + 1);
                 Render3DHelper.INSTANCE.setup3DRender(true);
                 Render3DHelper.INSTANCE.drawFadeBox(event.getPoseStack(), box, color & 0xa9ffffff);
                 Render3DHelper.INSTANCE.end3DRender();
             } else {
-                Box box = new Box(vec3d.x, vec3d.y, vec3d.z, vec3d.x + 1, vec3d.y + 1, vec3d.z + 1);
+                AABB box = new Box(vec3d.x, vec3d.y, vec3d.z, vec3d.x + 1, vec3d.y + 1, vec3d.z + 1);
                 Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), box, color);
             }
         }

@@ -32,7 +32,7 @@ import net.minecraft.network.packet.s2c.play.BlockUpdateS2CPacket;
 import net.minecraft.network.packet.s2c.play.ChunkDataS2CPacket;
 import net.minecraft.network.packet.s2c.play.ChunkDeltaUpdateS2CPacket;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.chunk.Chunk;
 import me.dustin.jex.feature.mod.core.Feature;
@@ -123,7 +123,7 @@ public class Search extends Feature {
             if (limitRangeProperty.value() && ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), ClientMathHelper.INSTANCE.getVec(pos)) > rangeProperty.value())
                 continue;
             Vec3 entityPos = Render3DHelper.INSTANCE.getRenderPosition(new Vec3(pos.getX() + 0.5f, pos.getY(), pos.getZ() + 0.5f));
-            Box box = new Box(entityPos.x - 0.5f, entityPos.y, entityPos.z - 0.5f, entityPos.x + 1 - 0.5f, entityPos.y + 1, entityPos.z + 1 - 0.5f);
+            AABB box = new Box(entityPos.x - 0.5f, entityPos.y, entityPos.z - 0.5f, entityPos.x + 1 - 0.5f, entityPos.y + 1, entityPos.z + 1 - 0.5f);
             Render3DHelper.BoxStorage boxStorage = new Render3DHelper.BoxStorage(box, blocks.get(block));
             boxList.add(boxStorage);
         }

@@ -18,7 +18,7 @@ import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import java.awt.*;
 import java.util.ArrayList;
@@ -59,19 +59,19 @@ public class SpawnSphere extends Feature {
         ArrayList<Render3DHelper.BoxStorage> boxes = new ArrayList<>();
         innerSphere.forEach(blockPos -> {
             Vec3 vec3d = Render3DHelper.INSTANCE.getRenderPosition(blockPos);
-            Box box = WorldHelper.SINGLE_BOX.offset(vec3d);
+            AABB box = WorldHelper.SINGLE_BOX.offset(vec3d);
             boxes.add(new Render3DHelper.BoxStorage(box, nonSpawnableSphereColorProperty.value().getRGB()));
         });
         outerSphere.forEach(blockPos -> {
             Vec3 vec3d = Render3DHelper.INSTANCE.getRenderPosition(blockPos);
-            Box box = WorldHelper.SINGLE_BOX.offset(vec3d);
+            AABB box = WorldHelper.SINGLE_BOX.offset(vec3d);
             boxes.add(new Render3DHelper.BoxStorage(box, spawnableSphereColorProperty.value().getRGB()));
         });
 
         Render3DHelper.INSTANCE.setup3DRender(seethroughProperty.value());
         BufferBuilder bufferBuilder = BufferHelper.INSTANCE.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
         boxes.forEach(blockStorage -> {
-            Box box = blockStorage.box();
+            AABB box = blockStorage.box();
             int color = blockStorage.color();
             Render3DHelper.INSTANCE.drawFilledBox(matrixStack, box, color & 0x50ffffff, false);
         });

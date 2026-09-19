@@ -22,7 +22,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.shape.VoxelShapes;
@@ -88,8 +88,8 @@ public class Tunneller extends Feature {
             }
         }
         //make sure floor is there
-        Box tunnelBox = getTunnelBox();
-        Box floorBox = new Box(tunnelBox.minX, tunnelBox.minY - 1, tunnelBox.minZ, tunnelBox.maxX, tunnelBox.minY - 1, tunnelBox.maxZ);
+        AABB tunnelAABB = getTunnelBox();
+        AABB floorAABB = new Box(tunnelBox.minX, tunnelBox.minY - 1, tunnelBox.minZ, tunnelBox.maxX, tunnelBox.minY - 1, tunnelBox.maxZ);
         ArrayList<BlockPos> floorBlocks = WorldHelper.INSTANCE.getBlocksInBox(floorBox);
         for (BlockPos floorBlock : floorBlocks) {
             if (WorldHelper.INSTANCE.getBlockState(floorBlock).getOutlineShape(Wrapper.INSTANCE.getWorld(), floorBlock) == VoxelShapes.empty()) {
@@ -157,7 +157,7 @@ public class Tunneller extends Feature {
     }
 
     private ArrayList<BlockPos> getLiquidCheckSpots() {
-        Box box = getTunnelBox().expand(1);
+        AABB box = getTunnelBox().expand(1);
         ArrayList<BlockPos> blocks = WorldHelper.INSTANCE.getBlocksInBox(box);
         blocks.sort(Comparator.comparingDouble(value -> ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos(), Vec3d.ofCenter(value))));
         blocks.sort(Comparator.comparingInt(value -> -value.getY()));
@@ -165,15 +165,15 @@ public class Tunneller extends Feature {
     }
 
     private ArrayList<BlockPos> getBlocksInTunnel() {
-        Box box = getTunnelBox();
+        AABB box = getTunnelBox();
         ArrayList<BlockPos> blocks = WorldHelper.INSTANCE.getBlocksInBox(box);
         blocks.sort(Comparator.comparingDouble(value -> ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos(), Vec3d.ofCenter(value))));
         blocks.sort(Comparator.comparingInt(value -> -value.getY()));
         return blocks;
     }
 
-    private Box getTunnelBox() {
-        Box box = new Box(Wrapper.INSTANCE.getPlayer().getBlockX() - widthProperty.value() / 2.f, Wrapper.INSTANCE.getPlayer().getBlockY(), Wrapper.INSTANCE.getPlayer().getBlockZ() - widthProperty.value() / 2.f, Wrapper.INSTANCE.getPlayer().getBlockX() + widthProperty.value() / 2.f, Wrapper.INSTANCE.getPlayer().getBlockY() + heightProperty.value() - 1, Wrapper.INSTANCE.getPlayer().getBlockZ() + widthProperty.value() / 2.f);
+    private AABB getTunnelBox() {
+        AABB box = new Box(Wrapper.INSTANCE.getPlayer().getBlockX() - widthProperty.value() / 2.f, Wrapper.INSTANCE.getPlayer().getBlockY(), Wrapper.INSTANCE.getPlayer().getBlockZ() - widthProperty.value() / 2.f, Wrapper.INSTANCE.getPlayer().getBlockX() + widthProperty.value() / 2.f, Wrapper.INSTANCE.getPlayer().getBlockY() + heightProperty.value() - 1, Wrapper.INSTANCE.getPlayer().getBlockZ() + widthProperty.value() / 2.f);
         switch (direction) {
             case NORTH -> box = box.offset(0, 0, -widthProperty.value() / 2.f);
             case SOUTH -> box = box.offset(0, 0, widthProperty.value() / 2.f);

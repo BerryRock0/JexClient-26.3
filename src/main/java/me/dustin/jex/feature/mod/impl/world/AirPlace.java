@@ -18,7 +18,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import me.dustin.jex.feature.mod.core.Feature;
 import me.dustin.jex.feature.mod.impl.render.BlockOverlay;
@@ -60,7 +60,7 @@ public class AirPlace extends Feature {
 		if (hitResult instanceof BlockHitResult blockHitResult) {
 			if (canReplaceBlock(WorldHelper.INSTANCE.getBlock(blockHitResult.getBlockPos()))) {
 				Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockHitResult.getBlockPos());
-				Box box = new Box(renderPos.getX(), renderPos.getY(), renderPos.getZ(), renderPos.getX() + 1, renderPos.getY() + 1, renderPos.getZ() + 1);
+				AABB box = new Box(renderPos.getX(), renderPos.getY(), renderPos.getZ(), renderPos.getX() + 1, renderPos.getY() + 1, renderPos.getZ() + 1);
 				Render3DHelper.INSTANCE.drawBoxOutline(event.getPoseStack(), box, Feature.getState(BlockOverlay.class) ? ColorHelper.INSTANCE.getClientColor() : 0xff000000);
 			}
 		}

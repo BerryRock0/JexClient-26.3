@@ -22,7 +22,7 @@ import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.util.math.Matrix4f;
 import net.minecraft.world.phys.Vec3;
 
@@ -59,14 +59,14 @@ public class BarrierView extends Feature {
 		ArrayList<Render3DHelper.BoxStorage> list = new ArrayList<>();
 		renderPositions.forEach(blockPos -> {
 			Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockPos);
-			Box box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
+			AABB box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
 			list.add(new Render3DHelper.BoxStorage(box, colorProperty.value().getRGB()));
 		});
 		//Render3DHelper.INSTANCE.drawList(eventRender3D.getMatrixStack(), list);
 		Render3DHelper.INSTANCE.setup3DRender(true);
 		BufferBuilder bufferBuilder = BufferHelper.INSTANCE.begin(VertexFormat.DrawMode.DEBUG_LINES, VertexFormats.POSITION_COLOR);
 		list.forEach(blockStorage -> {
-			Box box = blockStorage.box();
+			AABB box = blockStorage.box();
 			int color = blockStorage.color();
 			Render3DHelper.INSTANCE.drawOutlineBox(event.getPoseStack(), box, color, false);
 			Color color1 = ColorHelper.INSTANCE.getColor(color);
@@ -104,7 +104,7 @@ public class BarrierView extends Feature {
         BufferHelper.INSTANCE.drawWithShader(bufferBuilder, ShaderHelper.INSTANCE.getPosColorShader());
 		BufferHelper.INSTANCE.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
 		list.forEach(blockStorage -> {
-			Box box = blockStorage.box();
+			AABB box = blockStorage.box();
 			int color = blockStorage.color();
 			Render3DHelper.INSTANCE.drawFilledBox(event.getPoseStack(), box, color & 0x45ffffff, false);
 		});

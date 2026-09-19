@@ -17,7 +17,7 @@ import net.minecraft.network.packet.s2c.play.BlockUpdateS2CPacket;
 import net.minecraft.network.packet.s2c.play.ChunkDataS2CPacket;
 import net.minecraft.network.packet.s2c.play.ChunkDeltaUpdateS2CPacket;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.chunk.Chunk;
 import me.dustin.jex.feature.mod.core.Feature;
@@ -86,7 +86,7 @@ public class TunnelFinder extends Feature {
                 continue;
             }
             Vec3 entityPos = Render3DHelper.INSTANCE.getRenderPosition(new Vec3(pos.getX(), pos.getY(), pos.getZ()));
-            Box box = new Box(entityPos.x, entityPos.y, entityPos.z, entityPos.x + 1, entityPos.y + 2, entityPos.z + 1);
+            AABB box = new Box(entityPos.x, entityPos.y, entityPos.z, entityPos.x + 1, entityPos.y + 2, entityPos.z + 1);
             Render3DHelper.INSTANCE.drawBoxOutline(event.getPoseStack(), box, colorProperty.value().getRGB());
         }
     });

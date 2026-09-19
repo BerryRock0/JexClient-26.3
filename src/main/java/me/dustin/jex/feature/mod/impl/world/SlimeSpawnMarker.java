@@ -14,7 +14,7 @@ import me.dustin.jex.helper.misc.ChatHelper;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.render.Render3DHelper;
 import net.minecraft.entity.mob.SlimeEntity;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.phys.Vec3;
 import java.awt.*;
@@ -86,7 +86,7 @@ public class SlimeSpawnMarker extends Feature {
         chunkPositions.forEach(chunkPos -> {
             if (Wrapper.INSTANCE.getWorld().getChunkManager().isChunkLoaded(chunkPos.x, chunkPos.z)) {
                 Vec3 renderVec = Render3DHelper.INSTANCE.getRenderPosition(chunkPos.x * 16, -64, chunkPos.z * 16);
-                Box box = new Box(renderVec.getX(), renderVec.getY(), renderVec.getZ(), renderVec.getX() + 16, renderVec.getY() + 64 + 40, renderVec.getZ() + 16);
+                AABB box = new Box(renderVec.getX(), renderVec.getY(), renderVec.getZ(), renderVec.getX() + 16, renderVec.getY() + 64 + 40, renderVec.getZ() + 16);
                 Render3DHelper.INSTANCE.drawBox(((EventRender3D) event).getPoseStack(), box, chunkColorProperty.value().getRGB());
             }
         });

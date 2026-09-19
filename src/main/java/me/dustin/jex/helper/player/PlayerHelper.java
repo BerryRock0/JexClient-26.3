@@ -33,7 +33,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.phys.Vec3;
@@ -321,7 +321,7 @@ public enum PlayerHelper {
                 Vec3 vec3d2 = getRotationVector(rots.getPitch(), rots.getYaw());
                 Vec3 vec3d3 = vec3d.add(vec3d2.x * reach, vec3d2.y * reach, vec3d2.z * reach);
 
-                Box box = entity.getBoundingBox().stretch(vec3d2.multiply(reach)).expand(1.0D, 1.0D, 1.0D);
+                AABB box = entity.getBoundingBox().stretch(vec3d2.multiply(reach)).expand(1.0D, 1.0D, 1.0D);
                 EntityHitResult entityHitResult = ProjectileUtil.raycast(entity, vec3d, vec3d3, box, (entityx) -> !entityx.isSpectator() && entityx.canHit(), reach);
                 if (entityHitResult != null) {
                     Entity entity2 = entityHitResult.getEntity();

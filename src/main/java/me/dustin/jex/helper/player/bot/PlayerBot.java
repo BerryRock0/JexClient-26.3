@@ -62,7 +62,7 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.phys.Vec3;
@@ -331,7 +331,7 @@ public class PlayerBot {
                 Vec3 vec3d2 = getRotationVector(player.getPitch(), player.getYaw());
                 Vec3 vec3d3 = vec3d.add(vec3d2.x * reach, vec3d2.y * reach, vec3d2.z * reach);
 
-                Box box = player.getBoundingBox().stretch(vec3d2.multiply(reach)).expand(1.0D, 1.0D, 1.0D);
+                AABB box = player.getBoundingBox().stretch(vec3d2.multiply(reach)).expand(1.0D, 1.0D, 1.0D);
                 EntityHitResult entityHitResult = raycast(player, vec3d, vec3d3, box, (entityx) -> !entityx.isSpectator() && entityx.canHit(), reach);
                 if (entityHitResult != null) {
                     Entity entity2 = entityHitResult.getEntity();
@@ -344,14 +344,14 @@ public class PlayerBot {
         return null;
     }
 
-    public EntityHitResult raycast(Entity entity, Vec3 min, Vec3 max, Box box, Predicate<Entity> predicate, double d) {
+    public EntityHitResult raycast(Entity entity, Vec3 min, Vec3 max, AABB box, Predicate<Entity> predicate, double d) {
         double e = d;
         Entity entity2 = null;
         Vec3 vec3d = null;
         for (Entity entity3 : world.getOtherEntities(entity, box, predicate)) {
             Vec3 vec3d2;
             double f;
-            Box box2 = entity3.getBoundingBox().expand(entity3.getTargetingMargin());
+            AABB box2 = entity3.getBoundingBox().expand(entity3.getTargetingMargin());
             Optional<Vec3d> optional = box2.raycast(min, max);
             if (box2.contains(min)) {
                 if (!(e >= 0.0)) continue;

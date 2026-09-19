@@ -19,7 +19,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
 import me.dustin.jex.feature.mod.core.Feature;
@@ -96,11 +96,11 @@ public class FarmAura extends Feature {
                     BlockPos blockPos = Wrapper.INSTANCE.getLocalPlayer().getBlockPos().add(x, y, z);
                     if (WorldHelper.INSTANCE.isCrop(blockPos, checkAgeProperty.value())) {
                         Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockPos);
-                        Box box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
+                        AABB box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
                         Render3DHelper.INSTANCE.drawBoxOutline(event.getPoseStack(), box, 0xffff0000);
                     } else if (WorldHelper.INSTANCE.getBlock(blockPos.down()) == Blocks.FARMLAND && WorldHelper.INSTANCE.getBlock(blockPos) == Blocks.AIR) {
                         Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockPos.down());
-                        Box box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
+                        AABB box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
                         Render3DHelper.INSTANCE.drawBoxOutline(event.getPoseStack(), box, 0xff00ff00);
                     }
                 }

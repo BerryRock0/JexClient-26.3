@@ -27,14 +27,14 @@ import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.util.shape.VoxelShapes;
 
 public class BoxStorageESP extends FeatureExtension {
     private StorageESP storageESP;
-    private final Box SINGLE_CHEST = new Box(0.0625, 0, 0.0625, 0.9375, 0.875, 0.9375);
+    private final AABB SINGLE_CHEST = new Box(0.0625, 0, 0.0625, 0.9375, 0.875, 0.9375);
     public BoxStorageESP() {
         super(StorageESP.Mode.BOX, StorageESP.class);
     }
@@ -56,7 +56,7 @@ public class BoxStorageESP extends FeatureExtension {
                     }
 
                     Vec3 renderPos = Render3DHelper.INSTANCE.getEntityRenderPosition(entity, eventRender3D.getPartialTicks());
-                    Box box = WorldHelper.SINGLE_BOX.offset(renderPos).offset(-0.5, 0, -0.5);
+                    AABB box = WorldHelper.SINGLE_BOX.offset(renderPos).offset(-0.5, 0, -0.5);
                     list.add(new CustomBoxStorage(box, storageESP.getColor(entity), distance));
                 }
             });
@@ -74,7 +74,7 @@ public class BoxStorageESP extends FeatureExtension {
                         Direction facingDir = WorldHelper.INSTANCE.chestMergeDirection(chestBlockEntity);
                         chestPositions.add(blockEntity.getPos().offset(facingDir));
                     }
-                    Box box = getBox(blockEntity).offset(renderPos);
+                    AABB box = getBox(blockEntity).offset(renderPos);
                     list.add(new CustomBoxStorage(box, storageESP.getColor(blockEntity), distance));
                 }
             });
@@ -82,7 +82,7 @@ public class BoxStorageESP extends FeatureExtension {
             Render3DHelper.INSTANCE.setup3DRender(true);
             BufferBuilder bufferBuilder = BufferHelper.INSTANCE.begin(VertexFormat.DrawMode.DEBUG_LINES, VertexFormats.POSITION_COLOR);
             list.forEach(blockStorage -> {
-                Box box = blockStorage.box();
+                AABB box = blockStorage.box();
                 Color alphaColor = new Color((int)255, (int)255, (int)255, !storageESP.fadeBoxesWhenCloseProperty.value() ? 255 : Math.max(0, Math.min(255, (int)(blockStorage.distance - storageESP.fadeDistanceProperty.value()) * 12)));
                 int color = blockStorage.color();
                 Render3DHelper.INSTANCE.drawOutlineBox(eventRender3D.getPoseStack(), box, color & alphaColor.getRGB(), false);
@@ -91,7 +91,7 @@ public class BoxStorageESP extends FeatureExtension {
 
             BufferHelper.INSTANCE.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
             list.forEach(blockStorage -> {
-                Box box = blockStorage.box();
+                AABB box = blockStorage.box();
                 Color alphaColor = new Color((int)255, (int)255, (int)255, !storageESP.fadeBoxesWhenCloseProperty.value() ? 100 : Math.max(0, Math.min(100, (int)(blockStorage.distance - storageESP.fadeDistanceProperty.value()) * 12)));
                 int color = blockStorage.color();
                 Render3DHelper.INSTANCE.drawFilledBox(eventRender3D.getPoseStack(), box, color & alphaColor.getRGB(), false);
@@ -101,20 +101,20 @@ public class BoxStorageESP extends FeatureExtension {
         }
     }
 
-    public Box getBox(BlockEntity blockEntity) {
+    public AABB getBox(BlockEntity blockEntity) {
         if (blockEntity instanceof ChestBlockEntity chestBlockEntity) {
-            Box box = SINGLE_CHEST;
+            AABB box = SINGLE_CHEST;
             BlockState blockState = WorldHelper.INSTANCE.getBlockState(blockEntity.getPos());
             ChestBlock chestBlock = (ChestBlock) blockState.getBlock();
             if (blockState.get(ChestBlock.CHEST_TYPE) != ChestType.SINGLE) {
-                Box thisShape = chestBlock.getOutlineShape(blockState, Wrapper.INSTANCE.getWorld(), chestBlockEntity.getPos(), ShapeContext.absent()).getBoundingBox();
+                AABB thisShape = chestBlock.getOutlineShape(blockState, Wrapper.INSTANCE.getWorld(), chestBlockEntity.getPos(), ShapeContext.absent()).getBoundingBox();
                 Direction facingDir = WorldHelper.INSTANCE.chestMergeDirection(chestBlockEntity);
                 if (facingDir == Direction.UP)
                     return box;
                 BlockState connectedState = WorldHelper.INSTANCE.getBlockState(blockEntity.getPos().offset(facingDir));
                 if (!(connectedState.getBlock() instanceof ChestBlock))
                     return box;
-                Box connectionShape = chestBlock.getOutlineShape(connectedState, Wrapper.INSTANCE.getWorld(), chestBlockEntity.getPos().offset(facingDir), ShapeContext.absent()).getBoundingBox();
+                AABB connectionShape = chestBlock.getOutlineShape(connectedState, Wrapper.INSTANCE.getWorld(), chestBlockEntity.getPos().offset(facingDir), ShapeContext.absent()).getBoundingBox();
                 box = VoxelShapes.union(VoxelShapes.cuboid(thisShape), VoxelShapes.cuboid(connectionShape).offset(Vec3d.of(BlockPos.ORIGIN.offset(facingDir)).x, Vec3d.of(BlockPos.ORIGIN.offset(facingDir)).y, Vec3d.of(BlockPos.ORIGIN.offset(facingDir)).z)).getBoundingBox();
             }
             return box;
@@ -124,5 +124,5 @@ public class BoxStorageESP extends FeatureExtension {
         return WorldHelper.SINGLE_BOX;
     }
 
-    public record CustomBoxStorage (Box box, int color, double distance) {}
+    public record CustomBoxStorage (AABB box, int color, double distance) {}
 }

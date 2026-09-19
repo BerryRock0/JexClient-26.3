@@ -27,7 +27,7 @@ import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.entity.EntityPose;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import java.awt.*;
@@ -108,7 +108,7 @@ public class Waypoints extends Feature {
 				float distance = ClientMathHelper.INSTANCE.getDistance2D(Wrapper.INSTANCE.getLocalPlayer().getPos(), new Vec3(x, y, z));
 				Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(new Vec3(x, waypoint.getY(), z));
 				if (distance < 270) {
-					Box box = new Box(renderPos.x - 0.2f, renderPos.y, renderPos.z - 0.2f, renderPos.x + 0.2f, (256 - waypoint.y), renderPos.z + 0.2f);
+					AABB box = new Box(renderPos.x - 0.2f, renderPos.y, renderPos.z - 0.2f, renderPos.x + 0.2f, (256 - waypoint.y), renderPos.z + 0.2f);
 					Render3DHelper.INSTANCE.drawBox(((EventRender3D) event).getPoseStack(), box, waypoint.getColor());
 				} else {
 					float yaw = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3(x, y, z)).getYaw();

@@ -18,7 +18,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 public class BonemealAura extends Feature {
@@ -64,7 +64,7 @@ public class BonemealAura extends Feature {
         BlockPos crop = getCrop();
         if (crop != null && InventoryHelper.INSTANCE.getFromHotbar(Items.BONE_MEAL) != -1) {
             Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(crop);
-            Box box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
+            AABB box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
             Render3DHelper.INSTANCE.drawBoxOutline(event.getPoseStack(), box, 0xffffff00);
         }
     });

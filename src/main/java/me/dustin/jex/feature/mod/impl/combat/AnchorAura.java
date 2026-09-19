@@ -26,7 +26,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.math.Box;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
 import me.dustin.events.core.annotate.EventPointer;
@@ -170,7 +170,7 @@ public class AnchorAura extends Feature {
                     BlockPos placingPos = getOpenBlockPos(entityPlayer);
                     if (placingPos != null && !FriendHelper.INSTANCE.isFriend(entityPlayer.getDisplayName().getString())) {
                         Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(placingPos.getX(), placingPos.getY(), placingPos.getZ());
-                        Box box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
+                        AABB box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
                         Render3DHelper.INSTANCE.drawBox(event.getPoseStack(), box, shouldExplode(placingPos) ? placingColorProperty.value().getRGB() : thinkingColorProperty.value().getRGB());
                     }
                 }
@@ -256,7 +256,7 @@ public class AnchorAura extends Feature {
     }
 
     private boolean isBlocking(BlockPos blockPos, Player playerEntity) {
-        Box box = new Box(blockPos.up());
+        AABB box = new Box(blockPos.up());
         return playerEntity.getBoundingBox().intersects(box) || Wrapper.INSTANCE.getLocalPlayer().getBoundingBox().intersects(box);
     }
 
