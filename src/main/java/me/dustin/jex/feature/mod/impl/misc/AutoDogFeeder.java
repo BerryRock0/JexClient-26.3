@@ -11,7 +11,7 @@ import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.player.InventoryHelper;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.world.item.Items;
-import net.minecraft.util.Hand;
+import net.minecraft.world.InteractionHand;
 
 public class AutoDogFeeder extends Feature {
 

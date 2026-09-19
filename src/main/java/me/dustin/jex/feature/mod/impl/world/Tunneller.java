@@ -19,7 +19,7 @@ import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.math.Box;

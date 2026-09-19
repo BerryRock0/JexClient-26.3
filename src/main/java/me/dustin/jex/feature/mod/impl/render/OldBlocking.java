@@ -14,7 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ShieldItem;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolItem;
-import net.minecraft.util.Hand;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.util.math.Quaternion;
 import net.minecraft.util.math.Vec3f;
 import me.dustin.jex.feature.mod.core.Feature;

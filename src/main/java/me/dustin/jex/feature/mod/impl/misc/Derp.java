@@ -10,7 +10,7 @@ import me.dustin.jex.helper.math.vector.RotationVector;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.network.NetworkHelper;
 import net.minecraft.network.packet.c2s.play.HandSwingC2SPacket;
-import net.minecraft.util.Hand;
+import net.minecraft.world.InteractionHand;
 import me.dustin.jex.feature.mod.core.Feature;
 import java.util.Random;
 

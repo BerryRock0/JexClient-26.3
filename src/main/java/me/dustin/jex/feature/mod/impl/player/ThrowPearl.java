@@ -13,7 +13,7 @@ import me.dustin.jex.helper.network.NetworkHelper;
 import me.dustin.jex.helper.player.InventoryHelper;
 import net.minecraft.world.item.Items;
 import net.minecraft.network.packet.c2s.play.HandSwingC2SPacket;
-import net.minecraft.util.Hand;
+import net.minecraft.world.InteractionHand;
 import org.lwjgl.glfw.GLFW;
 
 public class ThrowPearl extends Feature {

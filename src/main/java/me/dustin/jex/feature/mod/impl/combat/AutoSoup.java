@@ -11,7 +11,7 @@ import me.dustin.jex.helper.player.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.screen.slot.SlotActionType;
-import net.minecraft.util.Hand;
+import net.minecraft.world.InteractionHand;
 import me.dustin.events.core.annotate.EventPointer;
 
 public class AutoSoup extends Feature {

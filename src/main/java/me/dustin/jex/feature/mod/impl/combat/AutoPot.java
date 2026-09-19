@@ -12,7 +12,7 @@ import me.dustin.jex.helper.player.PlayerHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SplashPotionItem;
 import net.minecraft.screen.slot.SlotActionType;
-import net.minecraft.util.Hand;
+import net.minecraft.world.InteractionHand;
 import me.dustin.events.core.annotate.EventPointer;
 
 public class AutoPot extends Feature {
