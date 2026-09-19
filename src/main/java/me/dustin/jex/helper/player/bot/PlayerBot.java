@@ -311,10 +311,10 @@ public class PlayerBot {
     protected final Vec3 getRotationVector(float pitch, float yaw) {
         float f = pitch * ((float)Math.PI / 180);
         float g = -yaw * ((float)Math.PI / 180);
-        float h = MathHelper.cos(g);
-        float i = MathHelper.sin(g);
-        float j = MathHelper.cos(f);
-        float k = MathHelper.sin(f);
+        float h = Math.cos(g);
+        float i = Math.sin(g);
+        float j = Math.cos(f);
+        float k = Math.sin(f);
         return new Vec3(i * j, -k, h * j);
     }
 

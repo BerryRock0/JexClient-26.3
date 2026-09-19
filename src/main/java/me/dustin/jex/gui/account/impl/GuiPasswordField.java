@@ -251,7 +251,7 @@ public class GuiPasswordField extends ClickableWidget implements Drawable, Eleme
     }
 
     public void setSelectionStart(int cursor) {
-        this.selectionStart = MathHelper.clamp(cursor, 0, this.text.length());
+        this.selectionStart = Math.clamp(cursor, 0, this.text.length());
     }
 
     public void setCursorToStart() {
@@ -367,7 +367,7 @@ public class GuiPasswordField extends ClickableWidget implements Drawable, Eleme
             }
 
             if (this.isFocused() && bl && button == 0) {
-                int i = MathHelper.floor(mouseX) - this.x;
+                int i = Math.floor(mouseX) - this.x;
                 if (this.drawsBackground) {
                     i -= 4;
                 }
@@ -560,7 +560,7 @@ public class GuiPasswordField extends ClickableWidget implements Drawable, Eleme
 
     public void setSelectionEnd(int index) {
         int i = this.text.length();
-        this.selectionEnd = MathHelper.clamp(index, 0, i);
+        this.selectionEnd = Math.clamp(index, 0, i);
         if (this.textRenderer != null) {
             if (this.firstCharacterIndex > i) {
                 this.firstCharacterIndex = i;
@@ -579,7 +579,7 @@ public class GuiPasswordField extends ClickableWidget implements Drawable, Eleme
                 this.firstCharacterIndex -= this.firstCharacterIndex - this.selectionEnd;
             }
 
-            this.firstCharacterIndex = MathHelper.clamp(this.firstCharacterIndex, 0, i);
+            this.firstCharacterIndex = Math.clamp(this.firstCharacterIndex, 0, i);
         }
 
     }

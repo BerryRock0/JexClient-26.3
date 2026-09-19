@@ -60,7 +60,7 @@ public class JexBooleanPropertyButton extends JexPropertyButton {
             if (colorShift > 0)
                 colorShift-=0.2f;
         }
-        colorShift = MathHelper.clamp(colorShift, 0, 1);
+        colorShift = Math.clamp(colorShift, 0, 1);
         super.tick();
     }
 

@@ -27,9 +27,9 @@ public class BoostElytraFly extends FeatureExtension {
                 float radianYaw = (float) Math.toRadians(player.getYaw());
                 if (currentVel <= elytraPlus.maxBoostProperty.value()) {
                     if (KeyboardHelper.INSTANCE.isPressed(elytraPlus.boostKeyProperty.value())) {
-                        player.addVelocity(MathHelper.sin(radianYaw) * -elytraPlus.boostProperty.value(), 0, MathHelper.cos(radianYaw) * elytraPlus.boostProperty.value());
+                        player.addVelocity(Math.sin(radianYaw) * -elytraPlus.boostProperty.value(), 0, Math.cos(radianYaw) * elytraPlus.boostProperty.value());
                     } else if (KeyboardHelper.INSTANCE.isPressed(elytraPlus.slowKeyProperty.value())) {
-                        player.addVelocity(MathHelper.sin(radianYaw) * elytraPlus.boostProperty.value(), 0, MathHelper.cos(radianYaw) * -elytraPlus.boostProperty.value());
+                        player.addVelocity(Math.sin(radianYaw) * elytraPlus.boostProperty.value(), 0, Math.cos(radianYaw) * -elytraPlus.boostProperty.value());
                     }
                 }
             }

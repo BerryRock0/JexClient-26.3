@@ -41,23 +41,23 @@ public class JexCapeFeatureRenderer extends FeatureRenderer<PlayerEntity, Player
     public void render(PoseStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, Player playerEntity, float tickDelta, Identifier texture, boolean enchanted) {
         matrixStack.push();
         matrixStack.translate(0.0, 0.0, 0.125);
-        double d = MathHelper.lerp(tickDelta, playerEntity.prevCapeX, playerEntity.capeX) - MathHelper.lerp(tickDelta, playerEntity.prevX, playerEntity.getX());
-        double e = MathHelper.lerp(tickDelta, playerEntity.prevCapeY, playerEntity.capeY) - MathHelper.lerp(tickDelta, playerEntity.prevY, playerEntity.getY());
-        double m = MathHelper.lerp(tickDelta, playerEntity.prevCapeZ, playerEntity.capeZ) - MathHelper.lerp(tickDelta, playerEntity.prevZ, playerEntity.getZ());
+        double d = Math.lerp(tickDelta, playerEntity.prevCapeX, playerEntity.capeX) - Math.lerp(tickDelta, playerEntity.prevX, playerEntity.getX());
+        double e = Math.lerp(tickDelta, playerEntity.prevCapeY, playerEntity.capeY) - Math.lerp(tickDelta, playerEntity.prevY, playerEntity.getY());
+        double m = Math.lerp(tickDelta, playerEntity.prevCapeZ, playerEntity.capeZ) - Math.lerp(tickDelta, playerEntity.prevZ, playerEntity.getZ());
         float n = playerEntity.prevBodyYaw + (playerEntity.bodyYaw - playerEntity.prevBodyYaw);
-        double o = MathHelper.sin(n * ((float)Math.PI / 180));
-        double p = -MathHelper.cos(n * ((float)Math.PI / 180));
+        double o = Math.sin(n * ((float)Math.PI / 180));
+        double p = -Math.cos(n * ((float)Math.PI / 180));
         float q = (float)e * 10.0f;
-        q = MathHelper.clamp(q, -6.0f, 32.0f);
+        q = Math.clamp(q, -6.0f, 32.0f);
         float r = (float)(d * o + m * p) * 100.0f;
-        r = MathHelper.clamp(r, 0.0f, 150.0f);
+        r = Math.clamp(r, 0.0f, 150.0f);
         float s = (float)(d * p - m * o) * 100.0f;
-        s = MathHelper.clamp(s, -20.0f, 20.0f);
+        s = Math.clamp(s, -20.0f, 20.0f);
         if (r < 0.0f) {
             r = 0.0f;
         }
-        float t = MathHelper.lerp(tickDelta, playerEntity.prevStrideDistance, playerEntity.strideDistance);
-        q += MathHelper.sin(MathHelper.lerp(tickDelta, playerEntity.prevHorizontalSpeed, playerEntity.horizontalSpeed) * 6.0f) * 32.0f * t;
+        float t = Math.lerp(tickDelta, playerEntity.prevStrideDistance, playerEntity.strideDistance);
+        q += Math.sin(Math.lerp(tickDelta, playerEntity.prevHorizontalSpeed, playerEntity.horizontalSpeed) * 6.0f) * 32.0f * t;
         if (playerEntity.isInSneakingPose()) {
             q += 25.0f;
         }

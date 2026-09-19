@@ -194,14 +194,14 @@ public class JexTitleScreen extends Screen {
         int midX = Render2DHelper.INSTANCE.getScaledWidth() / 2;
         float f = this.doBackgroundFade ? (float) (Util.getMeasuringTimeMs() - this.backgroundFadeStart) / 1000.0F : 1.0F;
         fill(matrices, 0, 0, this.width, this.height, -1);
-        this.backgroundRenderer.render(delta, MathHelper.clamp(f, 0.0F, 1.0F));
+        this.backgroundRenderer.render(delta, Math.clamp(f, 0.0F, 1.0F));
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.blendFunc(SrcFactor.SRC_ALPHA, DstFactor.ONE_MINUS_SRC_ALPHA);
         RenderSystem.setShaderTexture(0, PANORAMA_OVERLAY);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, this.doBackgroundFade ? (float) MathHelper.ceil(MathHelper.clamp(f, 0.0F, 1.0F)) : 1.0F);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, this.doBackgroundFade ? (float) Math.ceil(Math.clamp(f, 0.0F, 1.0F)) : 1.0F);
         drawTexture(matrices, 0, 0, this.width, this.height, 0.0F, 0.0F, 16, 128, 16, 128);
-        float g = this.doBackgroundFade ? MathHelper.clamp(f - 1.0F, 0.0F, 1.0F) : 1.0F;
-        int l = MathHelper.ceil(g * 255.0F) << 24;
+        float g = this.doBackgroundFade ? Math.clamp(f - 1.0F, 0.0F, 1.0F) : 1.0F;
+        int l = Math.ceil(g * 255.0F) << 24;
 
         if (!JexTitleScreen.backgrounds.isEmpty() && customMainMenu.customBackgroundProperty.value()) {
             Background currentBackground = backgrounds.get(background);
@@ -217,7 +217,7 @@ public class JexTitleScreen extends Screen {
 
             this.splashText = isMinceraft ? "Minceraft" : "Build " + JexClient.INSTANCE.getVersion().version() + " for MC" + SharedConstants.getGameVersion().getName();
             matrices.push();
-            float h = 1.8F - MathHelper.abs(MathHelper.sin((float)(Util.getMeasuringTimeMs() % 1000L) / 1000.0F * 6.2831855F) * 0.1F);
+            float h = 1.8F - Math.abs(Math.sin((float)(Util.getMeasuringTimeMs() % 1000L) / 1000.0F * 6.2831855F) * 0.1F);
             h = h * 100.0F / (float)(this.textRenderer.getWidth(this.splashText) + 32);
             matrices.scale(h, h, h);
             FontHelper.INSTANCE.drawWithShadow(matrices, splashText, 2 / h, (j1 + 44) / h, ColorHelper.INSTANCE.getClientColor());

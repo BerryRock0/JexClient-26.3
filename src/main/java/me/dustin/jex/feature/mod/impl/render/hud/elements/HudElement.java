@@ -78,8 +78,8 @@ public class HudElement {
                 x = xDif + MouseHelper.INSTANCE.getMouseX();
                 y = yDif + MouseHelper.INSTANCE.getMouseY();
                 checkCollisions();
-                this.setX(MathHelper.clamp(this.getX(), 0, Render2DHelper.INSTANCE.getScaledWidth() - this.getWidth()));
-                this.setY(MathHelper.clamp(this.getY(), 0, Render2DHelper.INSTANCE.getScaledHeight() - this.getHeight()));
+                this.setX(Math.clamp(this.getX(), 0, Render2DHelper.INSTANCE.getScaledWidth() - this.getWidth()));
+                this.setY(Math.clamp(this.getY(), 0, Render2DHelper.INSTANCE.getScaledHeight() - this.getHeight()));
             }
         }
 

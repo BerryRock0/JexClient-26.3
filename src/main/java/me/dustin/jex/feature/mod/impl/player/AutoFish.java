@@ -167,7 +167,7 @@ public class AutoFish extends Feature {
         float float_1 = (float) (entity.getX() - vec3d.x);
         float float_2 = (float) (entity.getY() - vec3d.y);
         float float_3 = (float) (entity.getZ() - vec3d.z);
-        return MathHelper.sqrt(float_1 * float_1 + float_2 * float_2 + float_3 * float_3);
+        return Math.sqrt(float_1 * float_1 + float_2 * float_2 + float_3 * float_3);
     }
 
     public FishingBobberEntity getHook() {

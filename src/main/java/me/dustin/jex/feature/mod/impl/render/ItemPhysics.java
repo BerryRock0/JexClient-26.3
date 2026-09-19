@@ -61,9 +61,9 @@ public class ItemPhysics extends Feature {//fancier version that's not just flat
         Vec3 current = itemRotations.get(itemEntity);
         matrixStack.translate(0, itemEntity.getHeight() / 1.5f, 0);
         BakedModel bakedModel = Wrapper.INSTANCE.getMinecraft().getItemRenderer().getModel(itemEntity.getStack(), itemEntity.world, null, itemEntity.getId());
-        float roll = (float)MathHelper.lerp(Wrapper.INSTANCE.getMinecraft().getTickDelta(), prev.z, current.z);
-        float pitch = (float)MathHelper.lerp(Wrapper.INSTANCE.getMinecraft().getTickDelta(), prev.x, current.x);
-        float yaw = (float)MathHelper.lerp(Wrapper.INSTANCE.getMinecraft().getTickDelta(), prev.y, current.y);
+        float roll = (float)Math.lerp(Wrapper.INSTANCE.getMinecraft().getTickDelta(), prev.z, current.z);
+        float pitch = (float)Math.lerp(Wrapper.INSTANCE.getMinecraft().getTickDelta(), prev.x, current.x);
+        float yaw = (float)Math.lerp(Wrapper.INSTANCE.getMinecraft().getTickDelta(), prev.y, current.y);
 
         if (itemEntity.isOnGround())
             matrixStack.translate(0, bakedModel.hasDepth() ? -0.04 : -0.151f, 0);
@@ -75,7 +75,7 @@ public class ItemPhysics extends Feature {//fancier version that's not just flat
         matrixStack.translate(0, -(itemEntity.getHeight() / 1.5f), 0);
 
         matrixStack.multiply(Vec3f.NEGATIVE_Y.getRadialQuaternion(n));
-        float l = MathHelper.sin(((float)itemEntity.getItemAge() + g) / 10.0F + itemEntity.uniqueOffset) * 0.1F + 0.1F;
+        float l = Math.sin(((float)itemEntity.getItemAge() + g) / 10.0F + itemEntity.uniqueOffset) * 0.1F + 0.1F;
         float m = bakedModel.getTransformation().getTransformation(ModelTransformation.Mode.GROUND).scale.getY();
         matrixStack.translate(0.0D, -(l + 0.25F * m), 0.0D);
     });

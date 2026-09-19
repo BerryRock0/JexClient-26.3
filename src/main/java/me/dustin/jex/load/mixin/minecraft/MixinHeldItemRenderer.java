@@ -59,11 +59,11 @@ public class MixinHeldItemRenderer {
             }
 
             if (clientPlayerEntity.isRiding()) {
-                this.equipProgressMainHand = MathHelper.clamp(this.equipProgressMainHand - 0.4F, 0.0F, 1.0F);
-                this.equipProgressOffHand = MathHelper.clamp(this.equipProgressOffHand - 0.4F, 0.0F, 1.0F);
+                this.equipProgressMainHand = Math.clamp(this.equipProgressMainHand - 0.4F, 0.0F, 1.0F);
+                this.equipProgressOffHand = Math.clamp(this.equipProgressOffHand - 0.4F, 0.0F, 1.0F);
             } else {//                                                                             \/ This part here is what changed, it used to calculate with attack progress
-                this.equipProgressMainHand += MathHelper.clamp((this.mainHand == itemStack ? 1 : 0.0F) - this.equipProgressMainHand, -0.4F, 0.4F);
-                this.equipProgressOffHand += MathHelper.clamp((float)(this.offHand == itemStack2 ? 1 : 0) - this.equipProgressOffHand, -0.4F, 0.4F);
+                this.equipProgressMainHand += Math.clamp((this.mainHand == itemStack ? 1 : 0.0F) - this.equipProgressMainHand, -0.4F, 0.4F);
+                this.equipProgressOffHand += Math.clamp((float)(this.offHand == itemStack2 ? 1 : 0) - this.equipProgressOffHand, -0.4F, 0.4F);
             }
 
             if (this.equipProgressMainHand < 0.1F) {

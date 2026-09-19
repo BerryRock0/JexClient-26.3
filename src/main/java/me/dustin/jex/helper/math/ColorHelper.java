@@ -57,7 +57,7 @@ public enum ColorHelper {
     }
 
     public int redGreenShift(float value) {
-        value = MathHelper.clamp(value, 0, 1);
+        value = Math.clamp(value, 0, 1);
         return new Color(1 - value, value, 0).getRGB();
     }
 

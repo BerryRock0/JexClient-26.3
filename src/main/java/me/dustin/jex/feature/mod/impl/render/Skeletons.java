@@ -54,11 +54,11 @@ public class Skeletons extends Feature {//it looks cool as fuck but seriously fu
                 PlayerEntityRenderer livingEntityRenderer = (PlayerEntityRenderer)(LivingEntityRenderer<?, ?>) Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().getRenderer(playerEntity);
                 PlayerEntityModel<PlayerEntity> playerEntityModel = (PlayerEntityModel)livingEntityRenderer.getModel();
 
-                float h = MathHelper.lerpAngleDegrees(g, playerEntity.prevBodyYaw, playerEntity.bodyYaw);
-                float j = MathHelper.lerpAngleDegrees(g, playerEntity.prevHeadYaw, playerEntity.headYaw);
+                float h = Math.lerpAngleDegrees(g, playerEntity.prevBodyYaw, playerEntity.bodyYaw);
+                float j = Math.lerpAngleDegrees(g, playerEntity.prevHeadYaw, playerEntity.headYaw);
 
                 float q = playerEntity.limbAngle - playerEntity.limbDistance * (1.0F - g);
-                float p = MathHelper.lerp(g, playerEntity.lastLimbDistance, playerEntity.limbDistance);
+                float p = Math.lerp(g, playerEntity.lastLimbDistance, playerEntity.limbDistance);
                 float o = (float)playerEntity.age + g;
                 float k = j - h;
                 float m = EntityHelper.INSTANCE.getPitch(playerEntity);

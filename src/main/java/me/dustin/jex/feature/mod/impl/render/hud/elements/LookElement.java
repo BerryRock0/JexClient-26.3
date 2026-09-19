@@ -18,7 +18,7 @@ public class LookElement extends HudElement {
         if (!isVisible())
             return;
         super.render(matrixStack);
-        String str = String.format("Look\247f: \2477%.2f \2477%.2f", MathHelper.wrapDegrees(PlayerHelper.INSTANCE.getYaw()), MathHelper.wrapDegrees(PlayerHelper.INSTANCE.getPitch()));
+        String str = String.format("Look\247f: \2477%.2f \2477%.2f", Math.wrapDegrees(PlayerHelper.INSTANCE.getYaw()), Math.wrapDegrees(PlayerHelper.INSTANCE.getPitch()));
         float x = isLeftSide() ? getX() + 2.5f : getX() + getWidth() - 0.5f - FontHelper.INSTANCE.getStringWidth(str);
         FontHelper.INSTANCE.drawWithShadow(matrixStack, str, x, getY() + 1.5f, ColorHelper.INSTANCE.getClientColor());
         this.setWidth(FontHelper.INSTANCE.getStringWidth(str) + 3);

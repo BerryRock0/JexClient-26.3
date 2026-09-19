@@ -130,19 +130,19 @@ public enum ClientMathHelper {
         double d0 = vec.x - vec1.x;
         double d1 = vec.y - vec1.y;
         double d2 = vec.z - vec1.z;
-        return MathHelper.sqrt((float)(d0 * d0 + d1 * d1 + d2 * d2));
+        return Math.sqrt((float)(d0 * d0 + d1 * d1 + d2 * d2));
     }
 
     public float getDistance2D(Vec2 vec, Vec2 vec1) {
         double d0 = vec.x - vec1.x;
         double d1 = vec.y - vec1.y;
-        return MathHelper.sqrt((float)(d0 * d0 + d1 * d1));
+        return Math.sqrt((float)(d0 * d0 + d1 * d1));
     }
 
     public float getDistance2D(Vec3 vec, Vec3 vec1) {
         double d0 = vec.x - vec1.x;
         double d1 = vec.z - vec1.z;
-        return MathHelper.sqrt((float)(d0 * d0 + d1 * d1));
+        return Math.sqrt((float)(d0 * d0 + d1 * d1));
     }
 
     public Vec3 getVec(Entity entity) {

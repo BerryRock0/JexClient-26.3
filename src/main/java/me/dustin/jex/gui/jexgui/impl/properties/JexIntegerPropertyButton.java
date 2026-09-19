@@ -39,7 +39,7 @@ public class JexIntegerPropertyButton extends JexPropertyButton {
 
     public void handleSlider() {
         float position = MouseHelper.INSTANCE.getMouseX() - this.getX();
-        float percent = MathHelper.clamp(position / this.getWidth(), 0, 1);
+        float percent = Math.clamp(position / this.getWidth(), 0, 1);
         int increment = (int)getIntegerProperty().getInc();
         int value = (int) (getIntegerProperty().getMin() + (int) (percent * (getIntegerProperty().getMax() - getIntegerProperty().getMin())));
         integerProperty.setValue((int) ((int) Math.round(value * (1.0D / increment)) / (1.0D / increment)));

@@ -34,7 +34,7 @@ public class ECMEElytraFly extends FeatureExtension {
                 double currentVel = Math.abs(Wrapper.INSTANCE.getLocalPlayer().getVelocity().x) + Math.abs(Wrapper.INSTANCE.getLocalPlayer().getVelocity().y) + Math.abs(Wrapper.INSTANCE.getLocalPlayer().getVelocity().z);
                 if (Wrapper.INSTANCE.getOptions().forwardKey.isPressed()) {
                     if (currentVel <= 2f)
-                        Wrapper.INSTANCE.getLocalPlayer().addVelocity(MathHelper.sin(radianYaw) * -0.05, 0, MathHelper.cos(radianYaw) * 0.05);
+                        Wrapper.INSTANCE.getLocalPlayer().addVelocity(Math.sin(radianYaw) * -0.05, 0, Math.cos(radianYaw) * 0.05);
                 } else {
                     eventMove.setX(0);
                     eventMove.setZ(0);

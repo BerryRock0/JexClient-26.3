@@ -661,7 +661,7 @@ public enum Render2DHelper {
                 RenderSystem.defaultBlendFunc();
                 Tessellator tessellator2 = Tessellator.getInstance();
                 BufferBuilder bufferBuilder2 = tessellator2.getBuffer();
-                this.renderGuiQuad(bufferBuilder2, x, y + MathHelper.floor(16.0F * (1.0F - f)), 16, MathHelper.ceil(16.0F * f), 255, 255, 255, 127);
+                this.renderGuiQuad(bufferBuilder2, x, y + Math.floor(16.0F * (1.0F - f)), 16, Math.ceil(16.0F * f), 255, 255, 255, 127);
                 RenderSystem.enableTexture();
                 RenderSystem.enableDepthTest();
             }

@@ -164,7 +164,7 @@ public abstract class MixinClientPlayer extends AbstractClientPlayer implements 
         boolean bl2 = this.input.sneaking;
         boolean bl3 = this.isWalking();
         this.inSneakingPose = !this.getAbilities().flying && !this.isSwimming() && this.wouldPoseNotCollide(EntityPose.CROUCHING) && (this.isSneaking() || !this.isSleeping() && !this.wouldPoseNotCollide(EntityPose.STANDING));
-        float f = MathHelper.clamp(0.3F + EnchantmentHelper.getSwiftSneakSpeedBoost(this), 0.0F, 1.0F);
+        float f = Math.clamp(0.3F + EnchantmentHelper.getSwiftSneakSpeedBoost(this), 0.0F, 1.0F);
         this.input.tick(this.shouldSlowDown(), f);
         this.client.getTutorialManager().onMovement(this.input);
         if ((this.isUsingItem() || AutoEat.isEating) && !this.hasVehicle()) {
@@ -257,10 +257,10 @@ public abstract class MixinClientPlayer extends AbstractClientPlayer implements 
         int i;
         if (this.isSubmergedIn(FluidTags.WATER)) {
             i = this.isSpectator() ? 10 : 1;
-            this.underwaterVisibilityTicks = MathHelper.clamp(this.underwaterVisibilityTicks + i, 0, 600);
+            this.underwaterVisibilityTicks = Math.clamp(this.underwaterVisibilityTicks + i, 0, 600);
         } else if (this.underwaterVisibilityTicks > 0) {
             this.isSubmergedIn(FluidTags.WATER);
-            this.underwaterVisibilityTicks = MathHelper.clamp(this.underwaterVisibilityTicks - 10, 0, 600);
+            this.underwaterVisibilityTicks = Math.clamp(this.underwaterVisibilityTicks - 10, 0, 600);
         }
 
         if (this.getAbilities().flying && this.isCamera()) {
@@ -289,7 +289,7 @@ public abstract class MixinClientPlayer extends AbstractClientPlayer implements 
 
             if (bl && !this.input.jumping) {
                 this.field_3938 = -10;
-                playerRideableJumping.setJumpStrength(MathHelper.floor(this.getMountJumpStrength() * 100.0F));
+                playerRideableJumping.setJumpStrength(Math.floor(this.getMountJumpStrength() * 100.0F));
                 this.startRidingJump();
             } else if (!bl && this.input.jumping) {
                 this.field_3938 = 0;

@@ -122,10 +122,10 @@ public enum Render3DHelper {
     }
 
     public void renderEntity(PoseStack matrixStack, VertexConsumerProvider vertexConsumerProvider, Entity entity, float tickDelta, Camera camera) {
-        double d = MathHelper.lerp(tickDelta, entity.lastRenderX, entity.getX());
-        double e = MathHelper.lerp(tickDelta, entity.lastRenderY, entity.getY());
-        double f = MathHelper.lerp(tickDelta, entity.lastRenderZ, entity.getZ());
-        float g = MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw());
+        double d = Math.lerp(tickDelta, entity.lastRenderX, entity.getX());
+        double e = Math.lerp(tickDelta, entity.lastRenderY, entity.getY());
+        double f = Math.lerp(tickDelta, entity.lastRenderZ, entity.getZ());
+        float g = Math.lerp(tickDelta, entity.prevYaw, entity.getYaw());
         Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().render(entity, d - camera.getPos().getX(), e - camera.getPos().getY(), f - camera.getPos().getZ(), g, tickDelta, matrixStack, vertexConsumerProvider, 0xF000F0);
     }
 

@@ -40,7 +40,7 @@ public class JexLongPropertyButton extends JexPropertyButton {
 
     public void handleSlider() {
         float position = MouseHelper.INSTANCE.getMouseX() - this.getX();
-        float percent = MathHelper.clamp(position / this.getWidth(), 0, 1);
+        float percent = Math.clamp(position / this.getWidth(), 0, 1);
         long increment = (long)getLongProperty().getInc();
         long value = (long) (getLongProperty().getMin() + (long) (percent * (getLongProperty().getMax() - getLongProperty().getMin())));
         longProperty.setValue((long) (Math.round(value * (1.0D / increment)) / (1.0D / increment)));

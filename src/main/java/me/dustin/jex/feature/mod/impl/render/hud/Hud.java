@@ -320,8 +320,8 @@ public class Hud extends Feature {
     private final EventListener<EventKeyPressed> eventKeyPressedEventListener = new EventListener<>(event -> {
         if (Wrapper.INSTANCE.getMinecraft().currentScreen instanceof ChatScreen && event.getKey() == this.constrictKeyProperty.value())
             hudElements.forEach(hudElement -> {
-                hudElement.setX(MathHelper.clamp(hudElement.getX(), 0, Render2DHelper.INSTANCE.getScaledWidth() - hudElement.getWidth()));
-                hudElement.setY(MathHelper.clamp(hudElement.getY(), 0, Render2DHelper.INSTANCE.getScaledHeight() - hudElement.getHeight()));
+                hudElement.setX(Math.clamp(hudElement.getX(), 0, Render2DHelper.INSTANCE.getScaledWidth() - hudElement.getWidth()));
+                hudElement.setY(Math.clamp(hudElement.getY(), 0, Render2DHelper.INSTANCE.getScaledHeight() - hudElement.getHeight()));
             });
     });
 

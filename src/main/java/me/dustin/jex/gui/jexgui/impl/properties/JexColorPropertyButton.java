@@ -63,17 +63,17 @@ public class JexColorPropertyButton extends JexPropertyButton {
         float[] hsb = toHSB();
         if (MouseHelper.INSTANCE.getMouseX() > this.getX() + (this.getWidth() / 2.f)) {
             float position = MouseHelper.INSTANCE.getMouseY() - (this.getY() + 15);
-            float percent = MathHelper.clamp(position / 79, 0, 1);
+            float percent = Math.clamp(position / 79, 0, 1);
             float value = percent * 270;
             hsb[0] = value;
         } else {
             hsb[0] *= 270;
             float position = MouseHelper.INSTANCE.getMouseX() - (this.getX() + 5);
-            float percent = MathHelper.clamp(position / 80, 0, 1);
+            float percent = Math.clamp(position / 80, 0, 1);
             hsb[1] = percent;
 
             position = MouseHelper.INSTANCE.getMouseY() - (this.getY() + 15);
-            percent = MathHelper.clamp(position / 79, 0, 1);
+            percent = Math.clamp(position / 79, 0, 1);
             hsb[2] = 1 - percent;
         }
         getColorProperty().setValue(ColorHelper.INSTANCE.getColorViaHue(hsb[0], hsb[1], hsb[2]));

@@ -24,14 +24,14 @@ public abstract class MixinWorld {
 
     @Inject(method = "getRainGradient", at = @At("HEAD"), cancellable = true)
     public void getRainGradient(float delta, CallbackInfoReturnable<Float> cir) {
-        EventWeatherGradient eventWeatherGradient = new EventWeatherGradient(MathHelper.lerp(delta, this.rainGradientPrev, this.rainGradient)).run();
+        EventWeatherGradient eventWeatherGradient = new EventWeatherGradient(Math.lerp(delta, this.rainGradientPrev, this.rainGradient)).run();
         if (eventWeatherGradient.isCancelled())
             cir.setReturnValue(eventWeatherGradient.getWeatherGradient());
     }
 
     @Inject(method = "getThunderGradient", at = @At("HEAD"), cancellable = true)
     public void getThunderGradient(float delta, CallbackInfoReturnable<Float> cir) {
-        EventWeatherGradient eventWeatherGradient = new EventWeatherGradient(MathHelper.lerp(delta, this.thunderGradientPrev, this.thunderGradient) * this.getRainGradient(delta)).run();
+        EventWeatherGradient eventWeatherGradient = new EventWeatherGradient(Math.lerp(delta, this.thunderGradientPrev, this.thunderGradient) * this.getRainGradient(delta)).run();
         if (eventWeatherGradient.isCancelled())
             cir.setReturnValue(eventWeatherGradient.getWeatherGradient());
     }

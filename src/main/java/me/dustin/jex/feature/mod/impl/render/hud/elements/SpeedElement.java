@@ -66,6 +66,6 @@ public class SpeedElement extends HudElement {
     }
 
     public double length2D(Vec3 vec3d) {
-        return MathHelper.sqrt((float)(vec3d.x * vec3d.x + vec3d.z * vec3d.z));
+        return Math.sqrt((float)(vec3d.x * vec3d.x + vec3d.z * vec3d.z));
     }
 }

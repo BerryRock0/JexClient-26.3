@@ -20,8 +20,8 @@ public class RotationVector {
     }
 
     public void normalize() {
-        this.yaw = MathHelper.wrapDegrees(yaw);
-        this.pitch = MathHelper.wrapDegrees(pitch);
+        this.yaw = Math.wrapDegrees(yaw);
+        this.pitch = Math.wrapDegrees(pitch);
     }
 
     public void add(float yaw, float pitch) {

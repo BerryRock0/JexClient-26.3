@@ -239,8 +239,8 @@ public enum WorldHelper {
         boundingAABB = boundingBox.expand(-0.01D, -0.0D, -0.01D).offset(0.0D, -0.01D, 0.0D);
         boolean onLiquid = false;
         int y = (int) boundingBox.minY;
-        for (int x = MathHelper.floor(boundingBox.minX); x < MathHelper.floor(boundingBox.maxX + 1.0D); x++) {
-            for (int z = MathHelper.floor(boundingBox.minZ); z < MathHelper.floor(boundingBox.maxZ + 1.0D); z++) {
+        for (int x = Math.floor(boundingBox.minX); x < Math.floor(boundingBox.maxX + 1.0D); x++) {
+            for (int z = Math.floor(boundingBox.minZ); z < Math.floor(boundingBox.maxZ + 1.0D); z++) {
                 BlockPos blockPos = new BlockPos(x, y, z);
                 Block block = getBlock(new BlockPos(x, y, z));
                 if (block != Blocks.AIR) {
@@ -275,9 +275,9 @@ public enum WorldHelper {
         boundingAABB = boundingBox.expand(-0.01D, -0.0D, -0.01D).offset(0.0D, -0.01D, 0.0D);
         boolean onLiquid = false;
         int y = (int) boundingBox.minY;
-        for (int x = MathHelper.floor(boundingBox.minX); x < MathHelper.floor(boundingBox.maxX + 1.0D); x++) {
-            for (int z = MathHelper.floor(boundingBox.minZ); z <
-                    MathHelper.floor(boundingBox.maxZ + 1.0D); z++) {
+        for (int x = Math.floor(boundingBox.minX); x < Math.floor(boundingBox.maxX + 1.0D); x++) {
+            for (int z = Math.floor(boundingBox.minZ); z <
+                    Math.floor(boundingBox.maxZ + 1.0D); z++) {
                 Block block = getBlock(new BlockPos(x, y, z));
                 if (block != Blocks.AIR) {
                     if (!isWaterlogged(new BlockPos(x, y, z))) {
@@ -296,12 +296,12 @@ public enum WorldHelper {
         }
         AABB boundingAABB = entity.getBoundingBox();
         boundingAABB = boundingBox.expand(-0, -0.081D, -0.081D);
-        int var4 = MathHelper.floor(boundingBox.minX);
-        int var5 = MathHelper.floor(boundingBox.maxX + 1.0D);
-        int var6 = MathHelper.floor(boundingBox.minY);
-        int var7 = MathHelper.floor(boundingBox.maxY + 0.8D);
-        int var8 = MathHelper.floor(boundingBox.minZ);
-        int var9 = MathHelper.floor(boundingBox.maxZ + 1.0D);
+        int var4 = Math.floor(boundingBox.minX);
+        int var5 = Math.floor(boundingBox.maxX + 1.0D);
+        int var6 = Math.floor(boundingBox.minY);
+        int var7 = Math.floor(boundingBox.maxY + 0.8D);
+        int var8 = Math.floor(boundingBox.minZ);
+        int var9 = Math.floor(boundingBox.maxZ + 1.0D);
         if (Wrapper.INSTANCE.getWorld().getChunk(
                 new BlockPos(entity.getX(), entity.getY(), entity.getZ())) == null) {
             return false;
@@ -465,9 +465,9 @@ public enum WorldHelper {
             for(double k = 0.0D; k <= 1.0D; k += d) {
                 for(double l = 0.0D; l <= 1.0D; l += e) {
                     for(double m = 0.0D; m <= 1.0D; m += f) {
-                        double n = MathHelper.lerp(k, box.minX, box.maxX);
-                        double o = MathHelper.lerp(l, box.minY, box.maxY);
-                        double p = MathHelper.lerp(m, box.minZ, box.maxZ);
+                        double n = Math.lerp(k, box.minX, box.maxX);
+                        double o = Math.lerp(l, box.minY, box.maxY);
+                        double p = Math.lerp(m, box.minZ, box.maxZ);
                         Vec3 vec3d = new Vec3(n + g, o, p + h);
                         if (Wrapper.INSTANCE.getWorld().raycast(new RaycastContext(vec3d, source, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getType() == HitResult.Type.MISS) {
                             ++i;

@@ -25,7 +25,7 @@ public class Scrollbar {
         updateHeight();
         if (contentHeight > viewportHeight) {
             Render2DHelper.INSTANCE.fill(matrixStack, x, viewportY, x + width, viewportY + viewportHeight, 0xff353535);
-            y = MathHelper.clamp(y, viewportY, viewportY + viewportHeight - height);
+            y = Math.clamp(y, viewportY, viewportY + viewportHeight - height);
             Render2DHelper.INSTANCE.fill(matrixStack, x, y, x + width, y + height, color);
         }
     }

@@ -40,7 +40,7 @@ public class JexDoublePropertyButton extends JexPropertyButton {
 
     public void handleSlider() {
         float position = MouseHelper.INSTANCE.getMouseX() - this.getX();
-        float percent = MathHelper.clamp(position / this.getWidth(), 0, 1);
+        float percent = Math.clamp(position / this.getWidth(), 0, 1);
         float increment = getDoubleProperty().getInc();
         double value = getDoubleProperty().getMin() + percent * (getDoubleProperty().getMax() - getDoubleProperty().getMin());
         getDoubleProperty().setValue(Math.round(value * (1.0D / increment)) / (1.0D / increment));

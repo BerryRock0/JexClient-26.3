@@ -97,7 +97,7 @@ public class CustomWidgets extends Feature {
             } else if (hovered > 0) {
                 hovered-=growSpeedProperty.value();
             }
-            hovered = MathHelper.clamp(hovered, 0, 10);
+            hovered = Math.clamp(hovered, 0, 10);
             hoverChecks.replace(widget, hovered);
         }
     }, new TickFilter(EventTick.Mode.PRE));

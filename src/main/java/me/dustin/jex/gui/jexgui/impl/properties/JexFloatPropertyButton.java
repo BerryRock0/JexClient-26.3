@@ -40,7 +40,7 @@ public class JexFloatPropertyButton extends JexPropertyButton {
 
     public void handleSlider() {
         float position = MouseHelper.INSTANCE.getMouseX() - this.getX();
-        float percent = MathHelper.clamp(position / this.getWidth(), 0, 1);
+        float percent = Math.clamp(position / this.getWidth(), 0, 1);
         float increment = floatProperty.getInc();
         float value = floatProperty.getMin() + percent * (floatProperty.getMax() - floatProperty.getMin());
         floatProperty.setValue((float) ((float) Math.round(value * (1.0D / increment)) / (1.0D / increment)));

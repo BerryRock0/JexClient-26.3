@@ -58,7 +58,7 @@ public abstract class MixinWorldRenderer implements IWorldRenderer {
                 float k = (float)(maxX - minX);
                 float l = (float)(maxY - minY);
                 float m = (float)(maxZ - minZ);
-                float n = MathHelper.sqrt(k * k + l * l + m * m);
+                float n = Math.sqrt(k * k + l * l + m * m);
                 vertexConsumer.vertex(entry.getPositionMatrix(), (float)(minX + offsetX), (float)(minY + offsetY), (float)(minZ + offsetZ)).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).normal(entry.getNormalMatrix(), k /= n, l /= n, m /= n).next();
                 vertexConsumer.vertex(entry.getPositionMatrix(), (float)(maxX + offsetX), (float)(maxY + offsetY), (float)(maxZ + offsetZ)).color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()).normal(entry.getNormalMatrix(), k, l, m).next();
             });

@@ -92,8 +92,8 @@ public class HudElementsFile extends ConfigFile {
                 }
                 hudElement.setLastWidth(hudElement.getWidth());
                 hudElement.setLastHeight(hudElement.getHeight());
-                hudElement.setX(MathHelper.clamp(hudElement.getX(), 0, Render2DHelper.INSTANCE.getScaledWidth() - hudElement.getWidth()));
-                hudElement.setY(MathHelper.clamp(hudElement.getY(), 0, Render2DHelper.INSTANCE.getScaledHeight() - hudElement.getHeight()));
+                hudElement.setX(Math.clamp(hudElement.getX(), 0, Render2DHelper.INSTANCE.getScaledWidth() - hudElement.getWidth()));
+                hudElement.setY(Math.clamp(hudElement.getY(), 0, Render2DHelper.INSTANCE.getScaledHeight() - hudElement.getHeight()));
                 hudElement.setLastX(hudElement.getX());
                 hudElement.setLastY(hudElement.getY());
             }
@@ -164,8 +164,8 @@ public class HudElementsFile extends ConfigFile {
                         }
                         hudElement.setLastWidth(hudElement.getWidth());
                         hudElement.setLastHeight(hudElement.getHeight());
-                        hudElement.setX(MathHelper.clamp(hudElement.getX(), 0, Render2DHelper.INSTANCE.getScaledWidth() - hudElement.getWidth()));
-                        hudElement.setY(MathHelper.clamp(hudElement.getY(), 0, Render2DHelper.INSTANCE.getScaledHeight() - hudElement.getHeight()));
+                        hudElement.setX(Math.clamp(hudElement.getX(), 0, Render2DHelper.INSTANCE.getScaledWidth() - hudElement.getWidth()));
+                        hudElement.setY(Math.clamp(hudElement.getY(), 0, Render2DHelper.INSTANCE.getScaledHeight() - hudElement.getHeight()));
                         hudElement.setLastX(hudElement.getX());
                         hudElement.setLastY(hudElement.getY());
                     }

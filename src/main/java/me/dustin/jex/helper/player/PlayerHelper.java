@@ -260,7 +260,7 @@ public enum PlayerHelper {
             yDif = (entityIn.getBoundingBox().minY + entityIn.getBoundingBox().maxY) / 2.0D - (Wrapper.INSTANCE.getLocalPlayer().getY() + (double) (Wrapper.INSTANCE.getLocalPlayer().getEyeHeight(Wrapper.INSTANCE.getLocalPlayer().getPose()) * Math.random()));
         }
 
-        double var141 = MathHelper.sqrt((float)(xDif * xDif + zDif * zDif));
+        double var141 = Math.sqrt((float)(xDif * xDif + zDif * zDif));
         float var12 = (float) (Math.atan2(zDif, xDif) * 180.0D / Math.PI) - 90.0F;
         float var13 = (float) (-(Math.atan2(yDif, var141) * 180.0D / Math.PI));
         return new RotationVector(var12, var13);
@@ -271,7 +271,7 @@ public enum PlayerHelper {
         double zDif = entityIn.getZ() - Wrapper.INSTANCE.getLocalPlayer().getZ();
         double yDif = (entityIn.getY() + entityIn.getHeight() / 2.f) - (Wrapper.INSTANCE.getLocalPlayer().getY() + (double) Wrapper.INSTANCE.getLocalPlayer().getEyeHeight(Wrapper.INSTANCE.getLocalPlayer().getPose()));
 
-        double var141 = MathHelper.sqrt((float)(xDif * xDif + zDif * zDif));
+        double var141 = Math.sqrt((float)(xDif * xDif + zDif * zDif));
         float var12 = (float) (Math.atan2(zDif, xDif) * 180.0D / Math.PI) - 90.0F;
         float var13 = (float) (-(Math.atan2(yDif, var141) * 180.0D / Math.PI));
         return new RotationVector(var12, var13);
@@ -282,7 +282,7 @@ public enum PlayerHelper {
         double zDif = vec3d.z - entityIn.getZ();
         double yDif = vec3d.y - (entityIn.getBoundingBox().minY + entityIn.getBoundingBox().maxY) / 2.0D;
 
-        double var141 = MathHelper.sqrt((float)(xDif * xDif + zDif * zDif));
+        double var141 = Math.sqrt((float)(xDif * xDif + zDif * zDif));
         float yaw = (float) (Math.atan2(zDif, xDif) * 180.0D / Math.PI) - 90.0F;
         float pitch = (float) (-(Math.atan2(yDif, var141) * 180.0D / Math.PI));
         return new RotationVector(yaw, pitch);
@@ -293,7 +293,7 @@ public enum PlayerHelper {
         double zDif = entityIn.getZ() - vec3d.z;
         double yDif = (entityIn.getBoundingBox().minY + entityIn.getBoundingBox().maxY) / 2.0D - vec3d.y;
 
-        double var141 = MathHelper.sqrt((float)(xDif * xDif + zDif * zDif));
+        double var141 = Math.sqrt((float)(xDif * xDif + zDif * zDif));
         float yaw = (float) (Math.atan2(zDif, xDif) * 180.0D / Math.PI) - 90.0F;
         float pitch = (float) (-(Math.atan2(yDif, var141) * 180.0D / Math.PI));
         return new RotationVector(yaw, pitch);
@@ -307,7 +307,7 @@ public enum PlayerHelper {
         double zDif = (ent2.getZ() - sideOffset + (random.nextFloat() * (sideOffset * 2))) - Wrapper.INSTANCE.getLocalPlayer().getZ();
         double yDif = (ent2.getY() + (double) (ent2.getHeight() / 2) - heightOffset + (random.nextFloat() * (heightOffset * 2))) - (Wrapper.INSTANCE.getLocalPlayer().getY() + (double) Wrapper.INSTANCE.getLocalPlayer().getEyeHeight(Wrapper.INSTANCE.getLocalPlayer().getPose()));
 
-        double var141 = MathHelper.sqrt((float)(xDif * xDif + zDif * zDif));
+        double var141 = Math.sqrt((float)(xDif * xDif + zDif * zDif));
         float yaw = (float) (Math.atan2(zDif, xDif) * 180.0D / Math.PI) - 90.0F;
         float pitch = (float) (-(Math.atan2(yDif, var141) * 180.0D / Math.PI));
         return new RotationVector(yaw, pitch);
@@ -337,10 +337,10 @@ public enum PlayerHelper {
     public Vec3 getRotationVector(float pitch, float yaw) {
         float f = pitch * 0.017453292F;
         float g = -yaw * 0.017453292F;
-        float h = MathHelper.cos(g);
-        float i = MathHelper.sin(g);
-        float j = MathHelper.cos(f);
-        float k = MathHelper.sin(f);
+        float h = Math.cos(g);
+        float i = Math.sin(g);
+        float j = Math.cos(f);
+        float k = Math.sin(f);
         return new Vec3((double) (i * j), (double) (-k), (double) (h * j));
     }
 
@@ -351,7 +351,7 @@ public enum PlayerHelper {
         currentRotations.normalize();
         float neededYaw = currentRotations.getYaw() - neededRotations.getYaw();
         float neededPitch = currentRotations.getPitch() - neededRotations.getPitch();
-        float distanceFromMouse = MathHelper.sqrt(neededYaw * neededYaw + neededPitch * neededPitch);
+        float distanceFromMouse = Math.sqrt(neededYaw * neededYaw + neededPitch * neededPitch);
         return (int) distanceFromMouse;
     }
 
@@ -362,7 +362,7 @@ public enum PlayerHelper {
         currentRotations.normalize();
         float neededYaw = currentRotations.getYaw() - neededRotations.getYaw();
         float neededPitch = currentRotations.getPitch() - neededRotations.getPitch();
-        float distanceFromMouse = MathHelper.sqrt(neededYaw * neededYaw + neededPitch * neededPitch);
+        float distanceFromMouse = Math.sqrt(neededYaw * neededYaw + neededPitch * neededPitch);
         return (int) distanceFromMouse;
     }
 
@@ -431,8 +431,8 @@ public enum PlayerHelper {
     }
 
     public void centerOnBlock() {
-        double fracX = MathHelper.fractionalPart(Wrapper.INSTANCE.getLocalPlayer().getX());
-        double fracZ = MathHelper.fractionalPart(Wrapper.INSTANCE.getLocalPlayer().getZ());
+        double fracX = Math.fractionalPart(Wrapper.INSTANCE.getLocalPlayer().getX());
+        double fracZ = Math.fractionalPart(Wrapper.INSTANCE.getLocalPlayer().getZ());
         if (fracX < 0.3) {
             double x = Wrapper.INSTANCE.getLocalPlayer().getX() - fracX + 0.3;
             Wrapper.INSTANCE.getLocalPlayer().setPos(x, Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ());
@@ -455,8 +455,8 @@ public enum PlayerHelper {
     }
 
     public void centerPerfectlyOnBlock() {
-        double fracX = MathHelper.fractionalPart(Wrapper.INSTANCE.getLocalPlayer().getX());
-        double fracZ = MathHelper.fractionalPart(Wrapper.INSTANCE.getLocalPlayer().getZ());
+        double fracX = Math.fractionalPart(Wrapper.INSTANCE.getLocalPlayer().getX());
+        double fracZ = Math.fractionalPart(Wrapper.INSTANCE.getLocalPlayer().getZ());
         if (fracX < 0.5) {
             double x = Wrapper.INSTANCE.getLocalPlayer().getX() - fracX + 0.5;
             Wrapper.INSTANCE.getLocalPlayer().setPos(x, Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ());
@@ -479,8 +479,8 @@ public enum PlayerHelper {
     }
 
     public boolean isOnEdgeOfBlock() {
-        double fracX = MathHelper.fractionalPart(Wrapper.INSTANCE.getLocalPlayer().getX());
-        double fracZ = MathHelper.fractionalPart(Wrapper.INSTANCE.getLocalPlayer().getZ());
+        double fracX = Math.fractionalPart(Wrapper.INSTANCE.getLocalPlayer().getX());
+        double fracZ = Math.fractionalPart(Wrapper.INSTANCE.getLocalPlayer().getZ());
         return fracX < 0.3 || fracX > 0.7 || fracZ < 0.3 || fracZ > 0.7;
     }
 
