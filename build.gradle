@@ -1,18 +1,19 @@
-plugins {
+plugins
+{
 	id 'net.fabricmc.fabric-loom' version '1.17-SNAPSHOT'
 }
 
 version = project.mod_version
 group = project.maven_group
 
-repositories {
+repositories
+{
 	mavenCentral()
 }
 
-dependencies {
-	def dependency = { id ->
-		implementation id
-	} as Object
+dependencies
+{
+	def dependency = { id -> implementation id} as Object
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 
@@ -27,20 +28,29 @@ dependencies {
 	implementation files('lib/sodium.jar')
 }
 
-processResources {
+processResources
+{
 	inputs.property "version", project.version
 
-	filesMatching("fabric.mod.json") {
+	filesMatching("fabric.mod.json")
+	{
 		expand "version": project.version
 	}
 }
 
-tasks.withType(JavaCompile).configureEach {
+tasks.withType(JavaCompile).configureEach
+{
 	// Minecraft 26.3 upwards uses Java 21.
 	it.options.release = 21
+	options.errorprone
+	{
+    	disableWarningsInGeneratedCode.set(true)
+        compilerArgs.addAll(listOf("-Xmaxerrs", "2147483647", "-Xmaxwarns", "2147483647"))
+    }
 }
 
-java {
+java
+{
 	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
 	// if it is present.
 	// If you remove this line, sources will not be generated.
