@@ -39,9 +39,9 @@ public class ItemPhysics extends Feature {//fancier version that's not just flat
             .max(50)
             .build();
 
-    private final HashMap<ItemEntity, Vec3d> itemRotations = new HashMap<>();
-    private final HashMap<ItemEntity, Vec3d> prevItemRotations = new HashMap<>();
-    private final HashMap<ItemEntity, Vec3d> negValues = new HashMap<>();
+    private final HashMap<ItemEntity, Vec3> itemRotations = new HashMap<>();
+    private final HashMap<ItemEntity, Vec3> prevItemRotations = new HashMap<>();
+    private final HashMap<ItemEntity, Vec3> negValues = new HashMap<>();
 
     public ItemPhysics() {
         super(Category.VISUAL, "Items will rotate around in the air and flop down");

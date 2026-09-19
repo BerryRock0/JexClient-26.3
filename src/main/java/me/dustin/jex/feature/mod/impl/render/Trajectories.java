@@ -70,7 +70,7 @@ public class Trajectories extends Feature {
             .build();
 
     private Entity hitEntity = null;
-    private final ArrayList<Vec3d> positions = new ArrayList<>();
+    private final ArrayList<Vec3> positions = new ArrayList<>();
 
     public Trajectories() {
         super(Category.VISUAL, "Show a trajectory line for things like bows and snowballs");

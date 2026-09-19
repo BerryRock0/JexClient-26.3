@@ -292,7 +292,7 @@ public class PlayerBot {
     }
 
     public boolean canUseOnPos(BlockPos pos) {
-        return world.getBlockState(pos).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3d.ZERO, Direction.UP, BlockPos.ORIGIN, false)) != ActionResult.PASS;
+        return world.getBlockState(pos).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3.ZERO, Direction.UP, BlockPos.ORIGIN, false)) != ActionResult.PASS;
     }
 
     public HitResult raycast(double maxDistance, float tickDelta, boolean includeFluids) {
@@ -314,7 +314,7 @@ public class PlayerBot {
 
     public final Vec3 getCameraPosVec() {
         if (player == null)
-            return Vec3d.ZERO;
+            return Vec3.ZERO;
         return new Vec3(player.getX(), player.getY() + player.getStandingEyeHeight(), player.getZ());
     }
 
@@ -346,7 +346,7 @@ public class PlayerBot {
             Vec3 vec3d2;
             double f;
             AABB box2 = entity3.getBoundingBox().expand(entity3.getTargetingMargin());
-            Optional<Vec3d> optional = box2.raycast(min, max);
+            Optional<Vec3> optional = box2.raycast(min, max);
             if (box2.contains(min)) {
                 if (!(e >= 0.0)) continue;
                 entity2 = entity3;

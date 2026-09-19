@@ -82,7 +82,7 @@ public class AccuratePlace extends Feature {
         if (hitResult instanceof BlockHitResult blockHitResult && WorldHelper.INSTANCE.getBlock(blockHitResult.getBlockPos()) != Blocks.AIR) {
             matrixStack.push();
             Render3DHelper.INSTANCE.setup3DRender(true);
-            Vec3 centerOf = Vec3d.ofCenter(blockHitResult.getBlockPos().offset(blockHitResult.getSide()));
+            Vec3 centerOf = Vec3.ofCenter(blockHitResult.getBlockPos().offset(blockHitResult.getSide()));
             Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(centerOf);
             matrixStack.translate(renderPos.x, renderPos.y, renderPos.z);
             Render3DHelper.INSTANCE.directionTranslate(matrixStack, facing);

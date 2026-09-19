@@ -93,10 +93,10 @@ public class AntiAFK extends Feature {
         @Override
         public boolean checkDone() {
             //more than 5 blocks away from current player position and no more than 15 blocks away from the start position and 3 or more blocks away from the last position so it doesn't loop two spots
-            Vec3 currentVec = Vec3d.of(current);
+            Vec3 currentVec = Vec3.of(current);
             double playerDistance = ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos(), currentVec);
-            double origSpotDistance = ClientMathHelper.INSTANCE.getDistance(Vec3d.of(getGoal()), currentVec);
-            double lastSpotDistance = ClientMathHelper.INSTANCE.getDistance(Vec3d.of(antiAFK.lastSpots[0]), currentVec);
+            double origSpotDistance = ClientMathHelper.INSTANCE.getDistance(Vec3.of(getGoal()), currentVec);
+            double lastSpotDistance = ClientMathHelper.INSTANCE.getDistance(Vec3.of(antiAFK.lastSpots[0]), currentVec);
 
             Block below = WorldHelper.INSTANCE.getBlock(current.down());
 

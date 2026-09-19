@@ -39,7 +39,7 @@ public class SignReader extends Feature {
             .value(true)
             .build();
 
-    private final HashMap<SignBlockEntity, Vec3d> positions = Maps.newHashMap();
+    private final HashMap<SignBlockEntity, Vec3> positions = Maps.newHashMap();
 
     public SignReader() {
         super(Category.VISUAL, "Display the text of a hovered sign on screen.");

@@ -99,11 +99,11 @@ public class Excavator extends Feature {
             return;
         BlockPos closestBlock = miningArea.getClosest();
         if (closestBlock != null) {
-            double distanceTo = ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos(), Vec3d.ofCenter(closestBlock));
+            double distanceTo = ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos(), Vec3.ofCenter(closestBlock));
             if (distanceTo <= (WorldHelper.INSTANCE.getBlock(closestBlock) == Blocks.BEDROCK ? 3 : Wrapper.INSTANCE.getClientPlayerInteractionManager().getReachDistance() - 1)) {
                 if (!KillAura.INSTANCE.hasTarget() && !BreakingFlowController.isWorking()) {
                     BlockHitResult blockHitResult = rayCast(Wrapper.INSTANCE.getPlayer(), closestBlock);
-                    RotationVector rotationVector = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getPlayer(), Vec3d.ofCenter(closestBlock));
+                    RotationVector rotationVector = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getPlayer(), Vec3.ofCenter(closestBlock));
                     event.setRotation(rotationVector);
                     Wrapper.INSTANCE.getPlayer().setHeadYaw(rotationVector.getYaw());
                     Wrapper.INSTANCE.getPlayer().setBodyYaw(rotationVector.getYaw());
@@ -298,7 +298,7 @@ public class Excavator extends Feature {
     }
 
     public BlockHitResult rayCast(Player player, BlockPos blockPos) {
-        RotationVector rotationVector = PlayerHelper.INSTANCE.rotateToVec(player, Vec3d.of(blockPos).add(0.5, 0, 0.5));
+        RotationVector rotationVector = PlayerHelper.INSTANCE.rotateToVec(player, Vec3.of(blockPos).add(0.5, 0, 0.5));
         RotationVector saved = new RotationVector(player);
         Wrapper.INSTANCE.getPlayer().setYaw(rotationVector.getYaw());
         Wrapper.INSTANCE.getPlayer().setPitch(rotationVector.getPitch());
@@ -388,7 +388,7 @@ public class Excavator extends Feature {
         }
 
         public void sortList() {
-            blockPosList.sort(Comparator.comparingDouble(value -> ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos().add(0, 2, 0), Vec3d.ofCenter(value))));
+            blockPosList.sort(Comparator.comparingDouble(value -> ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos().add(0, 2, 0), Vec3.ofCenter(value))));
         }
     }
 

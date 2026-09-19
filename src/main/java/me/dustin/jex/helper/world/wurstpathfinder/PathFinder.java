@@ -547,14 +547,14 @@ public class PathFinder
 		ArrayList<Render3DHelper.BoxStorage> boxes = new ArrayList<>();
 		if (debugMode) {
 			for (PathPos pathPos : queue.toArray()) {
-				Vec3 vec = Render3DHelper.INSTANCE.getRenderPosition(Vec3d.ofCenter(pathPos));
+				Vec3 vec = Render3DHelper.INSTANCE.getRenderPosition(Vec3.ofCenter(pathPos));
 				AABB box = new Box(vec.getX() - 0.05, vec.getY() - 0.05, vec.getZ() - 0.05, vec.getX() + 0.05, vec.getY() + 0.05, vec.getZ() + 0.05);
 				if (boxes.size() < 5000)
 					boxes.add(new Render3DHelper.BoxStorage(box, 0xffffff00));
 			}
 
 			for(Map.Entry<PathPos, PathPos> entry : prevPosMap.entrySet()) {
-				Vec3 vec = Render3DHelper.INSTANCE.getRenderPosition(Vec3d.ofCenter(entry.getKey()));
+				Vec3 vec = Render3DHelper.INSTANCE.getRenderPosition(Vec3.ofCenter(entry.getKey()));
 				AABB box = new Box(vec.getX() - 0.05, vec.getY() - 0.05, vec.getZ() - 0.05, vec.getX() + 0.05, vec.getY() + 0.05, vec.getZ() + 0.05);
 				if (boxes.size() < 5000)
 					boxes.add(new Render3DHelper.BoxStorage(box, 0xffff00ff));
@@ -562,7 +562,7 @@ public class PathFinder
 		}
 
 		for (PathPos pathPos : path) {
-			Vec3 vec = Render3DHelper.INSTANCE.getRenderPosition(Vec3d.ofCenter(pathPos));
+			Vec3 vec = Render3DHelper.INSTANCE.getRenderPosition(Vec3.ofCenter(pathPos));
 			AABB box = new Box(vec.getX() - 0.05, vec.getY() - 0.05, vec.getZ() - 0.05, vec.getX() + 0.05, vec.getY() + 0.05, vec.getZ() + 0.05);
 			if (boxes.size() < 5000)
 				boxes.add(new Render3DHelper.BoxStorage(box, ColorHelper.INSTANCE.getClientColor()));

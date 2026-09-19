@@ -63,7 +63,7 @@ public class BoxStorageESP extends FeatureExtension {
             WorldHelper.INSTANCE.getBlockEntities().forEach(blockEntity -> {
                 if (storageESP.isValid(blockEntity)) {
                 	Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(blockEntity.getPos());
-                    float distance = ClientMathHelper.INSTANCE.getDistance(Vec3d.ofCenter(blockEntity.getPos()), Wrapper.INSTANCE.getLocalPlayer().getPos());
+                    float distance = ClientMathHelper.INSTANCE.getDistance(Vec3.ofCenter(blockEntity.getPos()), Wrapper.INSTANCE.getLocalPlayer().getPos());
                     if (blockEntity instanceof ChestBlockEntity chestBlockEntity) {
                         if (chestPositions.contains(blockEntity.getPos()))
                             return;
@@ -115,7 +115,7 @@ public class BoxStorageESP extends FeatureExtension {
                 if (!(connectedState.getBlock() instanceof ChestBlock))
                     return box;
                 AABB connectionShape = chestBlock.getOutlineShape(connectedState, Wrapper.INSTANCE.getWorld(), chestBlockEntity.getPos().offset(facingDir), ShapeContext.absent()).getBoundingBox();
-                box = VoxelShapes.union(VoxelShapes.cuboid(thisShape), VoxelShapes.cuboid(connectionShape).offset(Vec3d.of(BlockPos.ORIGIN.offset(facingDir)).x, Vec3d.of(BlockPos.ORIGIN.offset(facingDir)).y, Vec3d.of(BlockPos.ORIGIN.offset(facingDir)).z)).getBoundingBox();
+                box = VoxelShapes.union(VoxelShapes.cuboid(thisShape), VoxelShapes.cuboid(connectionShape).offset(Vec3.of(BlockPos.ORIGIN.offset(facingDir)).x, Vec3.of(BlockPos.ORIGIN.offset(facingDir)).y, Vec3.of(BlockPos.ORIGIN.offset(facingDir)).z)).getBoundingBox();
             }
             return box;
         }

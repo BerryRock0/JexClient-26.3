@@ -150,7 +150,7 @@ public class Nametag extends Feature {
             .build();
 
     int count = 0;
-    private final HashMap<Entity, Vec3d> positions = Maps.newHashMap();
+    private final HashMap<Entity, Vec3> positions = Maps.newHashMap();
 
     public Nametag() {
         super(Category.VISUAL, "Render names above players with more info.");

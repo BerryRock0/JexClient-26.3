@@ -126,7 +126,7 @@ public enum PathingHelper {
 
         @Override
         protected boolean checkDone() {
-            return done = WorldHelper.INSTANCE.getBlockState(current.down()).getCollisionShape(Wrapper.INSTANCE.getWorld(), current.down()) != VoxelShapes.empty() && ClientMathHelper.INSTANCE.getDistance(Vec3d.of(getGoal()), Vec3d.of(current)) <= this.range;
+            return done = WorldHelper.INSTANCE.getBlockState(current.down()).getCollisionShape(Wrapper.INSTANCE.getWorld(), current.down()) != VoxelShapes.empty() && ClientMathHelper.INSTANCE.getDistance(Vec3.of(getGoal()), Vec3.of(current)) <= this.range;
         }
     }
 

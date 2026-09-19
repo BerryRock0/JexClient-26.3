@@ -14,9 +14,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinFluidState {
 
     @Inject(method = "getVelocity", at = @At("HEAD"), cancellable = true)
-    public void getVelocity(BlockView world, BlockPos pos, CallbackInfoReturnable<Vec3d> cir) {
+    public void getVelocity(BlockView world, BlockPos pos, CallbackInfoReturnable<Vec3> cir) {
         if (((EventWaterVelocity) new EventWaterVelocity().run()).isCancelled())
-            cir.setReturnValue(Vec3d.ZERO);
+            cir.setReturnValue(Vec3.ZERO);
     }
 
 }

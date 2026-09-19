@@ -78,7 +78,7 @@ public class SpawnProofing extends Feature {
                             spawnproofItem = 8;
                         }
                         InventoryHelper.INSTANCE.setSlot(spawnproofItem, true, true);
-                        BlockHitResult blockHitResult = new BlockHitResult(Vec3d.ofBottomCenter(pos), Direction.UP, pos.down(), false);
+                        BlockHitResult blockHitResult = new BlockHitResult(Vec3.ofBottomCenter(pos), Direction.UP, pos.down(), false);
                         Wrapper.INSTANCE.getClientPlayerInteractionManager().interactBlock(Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, blockHitResult);
                         Wrapper.INSTANCE.getLocalPlayer().swingHand(Hand.MAIN_HAND);
 

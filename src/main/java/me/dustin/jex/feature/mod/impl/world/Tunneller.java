@@ -153,13 +153,13 @@ public class Tunneller extends Feature {
     }
 
     public boolean shouldUse(BlockItem blockItem) {
-        return blockItem.getBlock().getDefaultState().hasSolidTopSurface(Wrapper.INSTANCE.getWorld(), BlockPos.ORIGIN, Wrapper.INSTANCE.getPlayer()) && blockItem.getBlock().getDefaultState().onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3d.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS;
+        return blockItem.getBlock().getDefaultState().hasSolidTopSurface(Wrapper.INSTANCE.getWorld(), BlockPos.ORIGIN, Wrapper.INSTANCE.getPlayer()) && blockItem.getBlock().getDefaultState().onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS;
     }
 
     private ArrayList<BlockPos> getLiquidCheckSpots() {
         AABB box = getTunnelBox().expand(1);
         ArrayList<BlockPos> blocks = WorldHelper.INSTANCE.getBlocksInBox(box);
-        blocks.sort(Comparator.comparingDouble(value -> ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos(), Vec3d.ofCenter(value))));
+        blocks.sort(Comparator.comparingDouble(value -> ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos(), Vec3.ofCenter(value))));
         blocks.sort(Comparator.comparingInt(value -> -value.getY()));
         return blocks;
     }
@@ -167,7 +167,7 @@ public class Tunneller extends Feature {
     private ArrayList<BlockPos> getBlocksInTunnel() {
         AABB box = getTunnelBox();
         ArrayList<BlockPos> blocks = WorldHelper.INSTANCE.getBlocksInBox(box);
-        blocks.sort(Comparator.comparingDouble(value -> ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos(), Vec3d.ofCenter(value))));
+        blocks.sort(Comparator.comparingDouble(value -> ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos(), Vec3.ofCenter(value))));
         blocks.sort(Comparator.comparingInt(value -> -value.getY()));
         return blocks;
     }

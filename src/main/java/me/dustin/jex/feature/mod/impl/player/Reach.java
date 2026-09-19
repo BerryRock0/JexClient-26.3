@@ -46,7 +46,7 @@ public class Reach extends Feature {
         if (event.getMode() == EventClickBlock.Mode.PRE) {
             storedPos = Wrapper.INSTANCE.getPlayer().getPos();
             BlockPos blockPos = event.getBlockPos();
-            if (ClientMathHelper.INSTANCE.getDistance(storedPos, Vec3d.ofCenter(blockPos)) > 6) {
+            if (ClientMathHelper.INSTANCE.getDistance(storedPos, Vec3.ofCenter(blockPos)) > 6) {
                 Wrapper.INSTANCE.getPlayer().setPos(blockPos.getX(), blockPos.getY(), blockPos.getZ());
             } else
                 storedPos = null;
@@ -65,7 +65,7 @@ public class Reach extends Feature {
         if (event.getMode() == EventInteractBlock.Mode.PRE) {
             storedPos = Wrapper.INSTANCE.getPlayer().getPos();
             BlockPos blockPos = event.getPos().offset(event.getBlockHitResult().getSide()).offset(event.getBlockHitResult().getSide());
-            if (ClientMathHelper.INSTANCE.getDistance(storedPos, Vec3d.ofCenter(blockPos)) > 6) {
+            if (ClientMathHelper.INSTANCE.getDistance(storedPos, Vec3.ofCenter(blockPos)) > 6) {
                 Wrapper.INSTANCE.getPlayer().setPos(blockPos.getX(), blockPos.getY(), blockPos.getZ());
                 NetworkHelper.INSTANCE.sendPacketDirect(new PlayerMoveC2SPacket.PositionAndOnGround(blockPos.getX(), blockPos.getY(), blockPos.getZ(), false));
             } else

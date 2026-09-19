@@ -100,7 +100,7 @@ public class AutoFarm extends Feature {
                     PathingHelper.INSTANCE.setAllowMining(false);
                     PathingHelper.INSTANCE.pathTo(closest);
                 }
-                double distanceTo = ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), Vec3d.ofCenter(closest));
+                double distanceTo = ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), Vec3.ofCenter(closest));
 
                 if (distanceTo <= 3) {
                     breakBlock(closest, event);
@@ -126,7 +126,7 @@ public class AutoFarm extends Feature {
                     PathingHelper.INSTANCE.setAllowMining(false);
                     PathingHelper.INSTANCE.pathTo(closest);
                 }
-                double distanceTo = ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), Vec3d.ofCenter(closest));
+                double distanceTo = ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos(), Vec3.ofCenter(closest));
 
                 InventoryHelper.INSTANCE.setSlot(cropSlot, true, true);
 
@@ -318,7 +318,7 @@ public class AutoFarm extends Feature {
                 blockPos = blockHitResult.getBlockPos();
             }
         }
-        RotationVector rotationVector = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), Vec3d.ofCenter(blockPos));
+        RotationVector rotationVector = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), Vec3.ofCenter(blockPos));
         event.setRotation(rotationVector);
         Wrapper.INSTANCE.getLocalPlayer().setHeadYaw(rotationVector.getYaw());
         Wrapper.INSTANCE.getLocalPlayer().setBodyYaw(rotationVector.getYaw());
@@ -358,7 +358,7 @@ public class AutoFarm extends Feature {
     }
 
     public BlockHitResult rayCast(BlockPos blockPos) {
-        RotationVector rotationVector = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), Vec3d.of(blockPos).add(0.5, 0, 0.5));
+        RotationVector rotationVector = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), Vec3.of(blockPos).add(0.5, 0, 0.5));
         RotationVector saved = new RotationVector(Wrapper.INSTANCE.getLocalPlayer());
         PlayerHelper.INSTANCE.setRotation(rotationVector);
         HitResult result = Wrapper.INSTANCE.getLocalPlayer().raycast(Wrapper.INSTANCE.getClientPlayerInteractionManager().getReachDistance(), 1, false);// Wrapper.clientWorld().rayTraceBlock(getVec(entity), getVec(entity).add(0, -256, 0), false, true, false);
@@ -423,7 +423,7 @@ public class AutoFarm extends Feature {
         }
 
         public void sortList() {
-            blockPosList.sort(Comparator.comparingDouble(value -> ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos().add(0, 2, 0), Vec3d.ofCenter(value))));
+            blockPosList.sort(Comparator.comparingDouble(value -> ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getLocalPlayer().getPos().add(0, 2, 0), Vec3.ofCenter(value))));
         }
     }
 

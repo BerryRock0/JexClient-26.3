@@ -72,8 +72,8 @@ public abstract class MixinEntity {
             ci.cancel();
     }
 
-    @Inject(method = "adjustMovementForCollisions(Lnet/minecraft/util/math/Vec3d;)Lnet/minecraft/util/math/Vec3d;", at = @At("HEAD"), cancellable = true)
-    public void move1(Vec3 movement, CallbackInfoReturnable<Vec3d> cir) {
+    @Inject(method = "adjustMovementForCollisions(Lnet/minecraft/util/math/Vec3;)Lnet/minecraft/util/math/Vec3;", at = @At("HEAD"), cancellable = true)
+    public void move1(Vec3 movement, CallbackInfoReturnable<Vec3> cir) {
         if (((Entity)(Object)this) != Wrapper.INSTANCE.getLocalPlayer() || Wrapper.INSTANCE.getLocalPlayer() == null)
             return;
         AABB box = this.getBoundingBox();

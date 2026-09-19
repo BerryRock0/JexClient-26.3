@@ -46,7 +46,7 @@ public class Freecam extends Feature {
             .inc(0.1f)
             .build();
 
-    private Vec3 savedCoords = Vec3d.ZERO;
+    private Vec3 savedCoords = Vec3.ZERO;
     private RotationVector lookVec = new RotationVector(0, 0);
     public static Player playerEntity;
 
@@ -151,7 +151,7 @@ public class Freecam extends Feature {
                 NetworkHelper.INSTANCE.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), false));
             }
         }
-        savedCoords = Vec3d.ZERO;
+        savedCoords = Vec3.ZERO;
         if (Player != null) {
             playerEntity.setPos(Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
             if (Wrapper.INSTANCE.getWorld() != null)

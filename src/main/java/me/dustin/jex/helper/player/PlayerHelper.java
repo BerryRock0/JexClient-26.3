@@ -158,22 +158,22 @@ public enum PlayerHelper {
         BlockPos placePos = null;
         Direction placeDir = null;
 
-        if (!WorldHelper.INSTANCE.getBlockState(north).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(north).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3d.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
+        if (!WorldHelper.INSTANCE.getBlockState(north).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(north).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
             placePos = north;
             placeDir = Direction.SOUTH;
-        } else if (!WorldHelper.INSTANCE.getBlockState(south).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(south).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3d.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
+        } else if (!WorldHelper.INSTANCE.getBlockState(south).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(south).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
             placePos = south;
             placeDir = Direction.NORTH;
-        } else if (!WorldHelper.INSTANCE.getBlockState(east).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(east).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3d.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
+        } else if (!WorldHelper.INSTANCE.getBlockState(east).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(east).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
             placePos = east;
             placeDir = Direction.WEST;
-        } else if (!WorldHelper.INSTANCE.getBlockState(west).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(west).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3d.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
+        } else if (!WorldHelper.INSTANCE.getBlockState(west).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(west).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
             placePos = west;
             placeDir = Direction.EAST;
-        } else if (!WorldHelper.INSTANCE.getBlockState(up).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(up).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3d.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
+        } else if (!WorldHelper.INSTANCE.getBlockState(up).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(up).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
             placePos = up;
             placeDir = Direction.DOWN;
-        } else if (!WorldHelper.INSTANCE.getBlockState(down).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(down).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3d.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
+        } else if (!WorldHelper.INSTANCE.getBlockState(down).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(down).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
             placePos = down;
             placeDir = Direction.UP;
         }
@@ -200,17 +200,17 @@ public enum PlayerHelper {
 
         BlockPos placePos = null;
 
-        if (!WorldHelper.INSTANCE.getBlockState(north).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(north).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3d.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
+        if (!WorldHelper.INSTANCE.getBlockState(north).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(north).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
             placePos = north;
-        } else if (!WorldHelper.INSTANCE.getBlockState(south).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(south).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3d.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
+        } else if (!WorldHelper.INSTANCE.getBlockState(south).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(south).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
             placePos = south;
-        } else if (!WorldHelper.INSTANCE.getBlockState(east).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(east).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3d.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
+        } else if (!WorldHelper.INSTANCE.getBlockState(east).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(east).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
             placePos = east;
-        } else if (!WorldHelper.INSTANCE.getBlockState(west).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(west).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3d.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
+        } else if (!WorldHelper.INSTANCE.getBlockState(west).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(west).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
             placePos = west;
-        } else if (!WorldHelper.INSTANCE.getBlockState(up).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(up).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3d.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
+        } else if (!WorldHelper.INSTANCE.getBlockState(up).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(up).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
             placePos = up;
-        } else if (!WorldHelper.INSTANCE.getBlockState(down).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(down).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3d.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
+        } else if (!WorldHelper.INSTANCE.getBlockState(down).getMaterial().isReplaceable() && WorldHelper.INSTANCE.getBlockState(down).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS) {
             placePos = down;
         }
         return placePos != null;

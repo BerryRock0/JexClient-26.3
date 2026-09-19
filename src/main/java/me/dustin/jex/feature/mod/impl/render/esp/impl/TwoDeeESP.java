@@ -32,8 +32,8 @@ public class TwoDeeESP extends FeatureExtension {
     }
 
 
-    private HashMap<Entity, Vec3d> headPos = Maps.newHashMap();
-    private HashMap<Entity, Vec3d> footPos = Maps.newHashMap();
+    private HashMap<Entity, Vec3> headPos = Maps.newHashMap();
+    private HashMap<Entity, Vec3> footPos = Maps.newHashMap();
 
     @Override
     public void pass(Event event) {

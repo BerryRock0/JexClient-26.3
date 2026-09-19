@@ -93,7 +93,7 @@ public enum WorldHelper {
     }
 
     public boolean canUseOnPos(BlockPos pos) {
-        return WorldHelper.INSTANCE.getBlockState(pos).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3d.ZERO, Direction.UP, BlockPos.ORIGIN, false)) != ActionResult.PASS;
+        return WorldHelper.INSTANCE.getBlockState(pos).onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3.ZERO, Direction.UP, BlockPos.ORIGIN, false)) != ActionResult.PASS;
     }
 
     public boolean isCrop(BlockPos blockPos, boolean checkAge) {
@@ -171,14 +171,14 @@ public enum WorldHelper {
 
     public Vec3 sideOfBlock(BlockPos pos, Direction direction) {
         switch (direction) {
-            case NORTH -> Vec3d.ofCenter(pos).add(0, 0, -0.5);
-            case SOUTH -> Vec3d.ofCenter(pos).add(0, 0, 0.5);
-            case EAST -> Vec3d.ofCenter(pos).add(0.5, 0, 0);
-            case WEST -> Vec3d.ofCenter(pos).add(-0.5, 0, 0);
-            case UP -> Vec3d.ofCenter(pos).add(0, 0.5, 0);
-            case DOWN -> Vec3d.ofCenter(pos).add(0, -0.5, 0);
+            case NORTH -> Vec3.ofCenter(pos).add(0, 0, -0.5);
+            case SOUTH -> Vec3.ofCenter(pos).add(0, 0, 0.5);
+            case EAST -> Vec3.ofCenter(pos).add(0.5, 0, 0);
+            case WEST -> Vec3.ofCenter(pos).add(-0.5, 0, 0);
+            case UP -> Vec3.ofCenter(pos).add(0, 0.5, 0);
+            case DOWN -> Vec3.ofCenter(pos).add(0, -0.5, 0);
         }
-        return Vec3d.ofCenter(pos);
+        return Vec3.ofCenter(pos);
     }
 
     public Block getBlockAboveEntity(Entity entity) {

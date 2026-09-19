@@ -71,7 +71,7 @@ public class AutoLibrarianRoll extends Feature {
     private boolean checkedTrades;
     private boolean tradeFound;
 
-    private Vec3 villagerPos = Vec3d.ZERO;
+    private Vec3 villagerPos = Vec3.ZERO;
 
     // Map of Enchantments to their accepted Levels
     public static Map<Enchantment, ArrayList<Integer>> enchantments = new HashMap<>();

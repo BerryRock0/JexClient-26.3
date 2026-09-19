@@ -80,7 +80,7 @@ public class FarmAura extends Feature {
                 }
                 InventoryHelper.INSTANCE.setSlot(cropSlot, true, true);
 
-                RotationVector rot = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), Vec3d.ofCenter(farmland));
+                RotationVector rot = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), Vec3.ofCenter(farmland));
                 rot.normalize();
                 event.setRotation(rot);
                 PlayerHelper.INSTANCE.placeBlockInPos(getFarmland().up(), Hand.MAIN_HAND, false);

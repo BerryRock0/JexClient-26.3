@@ -105,7 +105,7 @@ public class SpawnHighlighter extends Feature {
 			int color = this.colorProperty.value().getRGB();
 			if (Feature.getState(SpawnSphere.class)) {
 				Vec3 pos = Feature.get(SpawnSphere.class).pos;
-				if (ClientMathHelper.INSTANCE.getDistance(pos, Vec3d.of(blockPos)) <= 128)
+				if (ClientMathHelper.INSTANCE.getDistance(pos, Vec3.of(blockPos)) <= 128)
 					color = spawnSphereColorProperty.value().getRGB();
 			}
 			Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(new Vec3(blockPos.getX(), blockPos.getY(), blockPos.getZ()));

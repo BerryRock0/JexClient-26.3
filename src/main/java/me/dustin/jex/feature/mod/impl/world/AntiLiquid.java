@@ -87,10 +87,10 @@ public class AntiLiquid extends Feature {
 
             AABB box = new Box(Wrapper.INSTANCE.getPlayer().getBlockX() - distanceProperty.value(), Wrapper.INSTANCE.getPlayer().getBlockY() - distanceProperty.value(), Wrapper.INSTANCE.getPlayer().getBlockZ() - distanceProperty.value(), Wrapper.INSTANCE.getPlayer().getBlockX() + distanceProperty.value(), Wrapper.INSTANCE.getPlayer().getBlockY() + distanceProperty.value(), Wrapper.INSTANCE.getPlayer().getBlockZ() + distanceProperty.value());
             list = WorldHelper.INSTANCE.getBlocksInBox(box);
-            list.sort(Comparator.comparingDouble(value -> ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos(), Vec3d.ofCenter(value))));
+            list.sort(Comparator.comparingDouble(value -> ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos(), Vec3.ofCenter(value))));
 
             for (BlockPos blockPos : list) {
-                if (blockPos != Wrapper.INSTANCE.getPlayer().getBlockPos() && blockPos != Wrapper.INSTANCE.getPlayer().getBlockPos().up() && canPlaceHere(blockPos) && isReplaceable(blockPos) && ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos().add(0, Wrapper.INSTANCE.getPlayer().getEyeHeight(Wrapper.INSTANCE.getPlayer().getPose()), 0), Vec3d.ofCenter(blockPos)) <= Wrapper.INSTANCE.getClientPlayerInteractionManager().getReachDistance()) {
+                if (blockPos != Wrapper.INSTANCE.getPlayer().getBlockPos() && blockPos != Wrapper.INSTANCE.getPlayer().getBlockPos().up() && canPlaceHere(blockPos) && isReplaceable(blockPos) && ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos().add(0, Wrapper.INSTANCE.getPlayer().getEyeHeight(Wrapper.INSTANCE.getPlayer().getPose()), 0), Vec3.ofCenter(blockPos)) <= Wrapper.INSTANCE.getClientPlayerInteractionManager().getReachDistance()) {
                     List<Entity> list = Wrapper.INSTANCE.getWorld().getOtherEntities(null, new Box(blockPos.getX(), blockPos.getY(), blockPos.getZ(), blockPos.getX() + 1, blockPos.getY() + 1, blockPos.getZ() + 1));
                     boolean collides = !list.isEmpty();
                     if (collides)
@@ -143,7 +143,7 @@ public class AntiLiquid extends Feature {
         boolean foundPlacing = false;
         ArrayList<Render3DHelper.BoxStorage> renderList = new ArrayList<>();
         for (BlockPos pos : list) {
-            if (pos != Wrapper.INSTANCE.getPlayer().getBlockPos() && pos != Wrapper.INSTANCE.getPlayer().getBlockPos().up() && isReplaceable(pos) && ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos().add(0, Wrapper.INSTANCE.getPlayer().getEyeHeight(Wrapper.INSTANCE.getPlayer().getPose()), 0), Vec3d.ofCenter(pos)) <= Wrapper.INSTANCE.getClientPlayerInteractionManager().getReachDistance()) {
+            if (pos != Wrapper.INSTANCE.getPlayer().getBlockPos() && pos != Wrapper.INSTANCE.getPlayer().getBlockPos().up() && isReplaceable(pos) && ClientMathHelper.INSTANCE.getDistance(Wrapper.INSTANCE.getPlayer().getPos().add(0, Wrapper.INSTANCE.getPlayer().getEyeHeight(Wrapper.INSTANCE.getPlayer().getPose()), 0), Vec3.ofCenter(pos)) <= Wrapper.INSTANCE.getClientPlayerInteractionManager().getReachDistance()) {
                 Vec3 renderPos = Render3DHelper.INSTANCE.getRenderPosition(pos);
                 AABB box = new Box(renderPos.x, renderPos.y, renderPos.z, renderPos.x + 1, renderPos.y + 1, renderPos.z + 1);
                 renderList.add(new Render3DHelper.BoxStorage(box, canPlaceHere(pos) && !foundPlacing ? 0xff00ff00 : 0xffff0000));
@@ -215,7 +215,7 @@ public class AntiLiquid extends Feature {
     }
 
     public boolean shouldUse(BlockItem blockItem) {
-        return blockItem.getBlock().getDefaultState().isFullCube(Wrapper.INSTANCE.getWorld(), BlockPos.ORIGIN) && blockItem.getBlock().getDefaultState().onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3d.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS;
+        return blockItem.getBlock().getDefaultState().isFullCube(Wrapper.INSTANCE.getWorld(), BlockPos.ORIGIN) && blockItem.getBlock().getDefaultState().onUse(Wrapper.INSTANCE.getWorld(), Wrapper.INSTANCE.getPlayer(), Hand.MAIN_HAND, new BlockHitResult(Vec3.ZERO, Direction.UP, BlockPos.ORIGIN, false)) == ActionResult.PASS;
     }
 
     public BlockPos getPos() {

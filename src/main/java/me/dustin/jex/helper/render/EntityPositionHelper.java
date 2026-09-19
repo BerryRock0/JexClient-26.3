@@ -11,8 +11,8 @@ import java.util.HashMap;
 
 public enum EntityPositionHelper {
     INSTANCE;
-    private final HashMap<Entity, Vec3d> headPositions = Maps.newHashMap();
-    private final HashMap<Entity, Vec3d> footPositions = Maps.newHashMap();
+    private final HashMap<Entity, Vec3> headPositions = Maps.newHashMap();
+    private final HashMap<Entity, Vec3> footPositions = Maps.newHashMap();
 
     @EventPointer
     private final EventListener<EventRender3D> eventRender3DEventListener = new EventListener<>(event -> {

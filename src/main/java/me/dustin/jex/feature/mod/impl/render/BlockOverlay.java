@@ -70,7 +70,7 @@ public class BlockOverlay extends Feature {
 
     @EventPointer
     private final EventListener<EventClickBlock> eventClickBlockEventListener = new EventListener<>(event -> {
-        this.clickedBlock = new BlockHitResult(Vec3d.of(event.getBlockPos()), event.getFace(), event.getBlockPos(), false);
+        this.clickedBlock = new BlockHitResult(Vec3.of(event.getBlockPos()), event.getFace(), event.getBlockPos(), false);
     }, new ClickBlockFilter(EventClickBlock.Mode.PRE));
 
 }

@@ -50,7 +50,7 @@ public class TestPathFinder {
                         isDone = true;
                         return;
                     } else {
-                        double distance = ClientMathHelper.INSTANCE.getDistance(Vec3d.of(testNode), Vec3d.of(goal));
+                        double distance = ClientMathHelper.INSTANCE.getDistance(Vec3.of(testNode), Vec3.of(goal));
                         if (distance < bestDistance) {
                             bestDistance = distance;
                             nextNode = testNode;
