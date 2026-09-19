@@ -3,7 +3,7 @@ package me.dustin.jex.event.render;
 import me.dustin.events.core.Event;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 
 public class EventRenderItem extends Event {
 

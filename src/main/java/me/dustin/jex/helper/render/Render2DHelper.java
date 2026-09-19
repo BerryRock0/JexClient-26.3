@@ -32,7 +32,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.FilledMapItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.item.map.MapState;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;

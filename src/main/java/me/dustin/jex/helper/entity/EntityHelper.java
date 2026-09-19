@@ -44,7 +44,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterials;
 import net.minecraft.item.DyeableArmorItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.item.ShieldItem;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.core.BlockPos;

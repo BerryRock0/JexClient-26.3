@@ -3,7 +3,7 @@ package me.dustin.jex.event.render;
 import me.dustin.events.core.Event;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 
 public class EventRender2DItem extends Event {
     private final ItemRenderer itemRenderer;

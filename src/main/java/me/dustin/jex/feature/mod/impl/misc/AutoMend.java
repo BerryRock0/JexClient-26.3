@@ -10,7 +10,7 @@ import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.player.InventoryHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.AirBlockItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.screen.slot.SlotActionType;
 
 public class AutoMend extends Feature {

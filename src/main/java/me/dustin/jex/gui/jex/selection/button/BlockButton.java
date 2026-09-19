@@ -6,7 +6,7 @@ import me.dustin.jex.helper.math.ColorHelper;
 import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.text.Text;
 import me.dustin.jex.helper.render.Render2DHelper;
 

@@ -2,7 +2,7 @@ package me.dustin.jex.load.mixin.minecraft;
 
 import me.dustin.jex.event.misc.EventItemStackDecrement;
 import me.dustin.jex.event.misc.EventItemStackSetCount;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;

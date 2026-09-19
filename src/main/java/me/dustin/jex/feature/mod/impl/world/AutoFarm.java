@@ -32,7 +32,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.util.Formatting;

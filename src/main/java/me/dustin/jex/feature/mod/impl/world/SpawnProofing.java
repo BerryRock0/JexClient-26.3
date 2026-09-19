@@ -23,7 +23,7 @@ import net.minecraft.block.SlabBlock;
 import net.minecraft.block.SoulSandBlock;
 import net.minecraft.block.StainedGlassBlock;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.core.BlockPos;

@@ -2,7 +2,7 @@ package me.dustin.jex.event.render;
 
 import me.dustin.events.core.Event;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.InteractionHand;
 
 public class EventRenderHeldItem extends Event {

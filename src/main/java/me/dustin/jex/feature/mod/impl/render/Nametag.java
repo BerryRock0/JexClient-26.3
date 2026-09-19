@@ -37,7 +37,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.AirBlockItem;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.FishingRodItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.item.TridentItem;
 import net.minecraft.nbt.NbtCompound;

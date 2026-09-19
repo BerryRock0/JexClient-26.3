@@ -42,7 +42,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.world.InteractionHand;
