@@ -3,7 +3,7 @@ package me.dustin.jex.load.mixin.minecraft;
 import me.dustin.jex.event.misc.EventGetToolTipFromItem;
 import me.dustin.jex.event.render.EventDrawScreen;
 import me.dustin.jex.event.render.EventRenderBackground;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.network.chat.Component;

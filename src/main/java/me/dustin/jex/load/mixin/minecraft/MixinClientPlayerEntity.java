@@ -8,7 +8,7 @@ import me.dustin.jex.event.player.*;
 import me.dustin.jex.feature.mod.impl.player.AutoEat;
 import me.dustin.jex.load.impl.IClientPlayerEntity;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.Input;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayNetworkHandler;

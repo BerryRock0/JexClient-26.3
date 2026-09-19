@@ -13,7 +13,7 @@ import me.dustin.jex.helper.render.Button;
 import me.dustin.jex.helper.render.Render2DHelper;
 import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.util.InputUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import org.lwjgl.glfw.GLFW;

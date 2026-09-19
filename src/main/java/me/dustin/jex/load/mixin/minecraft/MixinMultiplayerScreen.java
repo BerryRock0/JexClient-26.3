@@ -5,7 +5,7 @@ import me.dustin.jex.gui.thealtening.TheAlteningScreen;
 import me.dustin.jex.gui.mcleaks.MCLeaksScreen;
 import me.dustin.jex.gui.proxy.ProxyScreen;
 import me.dustin.jex.helper.misc.Wrapper;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.network.chat.Component;

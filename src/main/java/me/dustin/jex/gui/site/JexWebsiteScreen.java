@@ -12,7 +12,7 @@ import me.dustin.jex.helper.render.ButtonListener;
 import me.dustin.jex.helper.render.FileBrowser;
 import me.dustin.jex.helper.render.Render2DHelper;
 import me.dustin.jex.helper.render.font.FontHelper;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.network.chat.Component;

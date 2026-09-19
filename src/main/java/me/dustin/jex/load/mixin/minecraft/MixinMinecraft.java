@@ -6,7 +6,7 @@ import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import me.dustin.jex.event.misc.*;
 import me.dustin.jex.load.impl.IMinecraft;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.util.ProfileKeys;

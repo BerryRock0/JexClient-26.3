@@ -7,7 +7,7 @@ import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.network.NetworkHelper;
 import me.dustin.jex.helper.network.WebHelper;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.network.ClientLoginNetworkHandler;
 import net.minecraft.client.util.NetworkUtils;
 import net.minecraft.network.ClientConnection;

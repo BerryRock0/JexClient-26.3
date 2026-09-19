@@ -6,7 +6,7 @@ import me.dustin.jex.feature.mod.core.Feature;
 import me.dustin.jex.feature.mod.impl.render.ToolTips;
 import me.dustin.jex.helper.render.Render2DHelper;
 import me.dustin.jex.load.impl.IHandledScreen;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.item.ItemStack;

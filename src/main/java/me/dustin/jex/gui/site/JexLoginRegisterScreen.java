@@ -4,7 +4,7 @@ import me.dustin.jex.gui.account.impl.GuiPasswordField;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.network.jexsite.JexSiteHelper;
 import me.dustin.jex.helper.render.font.FontHelper;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import com.mojang.blaze3d.vertex.PoseStack;

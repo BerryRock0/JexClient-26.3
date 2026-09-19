@@ -23,7 +23,7 @@ import me.dustin.jex.helper.render.Scissor;
 import me.dustin.jex.helper.render.Stencil;
 import me.dustin.jex.helper.render.font.FontHelper;
 import me.dustin.jex.helper.render.shader.post.impl.PostProcessOutline;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import com.mojang.blaze3d.vertex.PoseStack;
