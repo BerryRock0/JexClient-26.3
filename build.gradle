@@ -42,11 +42,7 @@ tasks.withType(JavaCompile).configureEach
 {
 	// Minecraft 26.3 upwards uses Java 21.
 	it.options.release = 21
-	options.errorprone
-	{
-    	disableWarningsInGeneratedCode.set(true)
-        compilerArgs.addAll(listOf("-Xmaxerrs", "2147483647", "-Xmaxwarns", "2147483647"))
-    }
+	compilerArgs.addAll(listOf("-Xmaxerrs", "2147483647", "-Xmaxwarns", "2147483647"))
 }
 
 java
