@@ -4,29 +4,29 @@ import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import me.dustin.jex.feature.command.core.arguments.Vec3ArgumentType;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
-import net.minecraft.command.argument.CoordinateArgument;
-import net.minecraft.util.math.Vec2f;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.commands.arguments.coordinates.Coordinates;
+import net.minecraft.world.phys.Vec2;
+import net.minecraft.world.phys.Vec3;
 
 public class DefaultPosArgument implements PosArgument {
-   private final CoordinateArgument x;
-   private final CoordinateArgument y;
-   private final CoordinateArgument z;
+   private final Coordinates x;
+   private final Coordinates y;
+   private final Coordinates z;
 
-   public DefaultPosArgument(CoordinateArgument x, CoordinateArgument y, CoordinateArgument z) {
+   public DefaultPosArgument(Coordinates x, Coordinates y, Coordinates z) {
       this.x = x;
       this.y = y;
       this.z = z;
    }
 
    public Vec3d toAbsolutePos(FabricClientCommandSource source) {
-      Vec3d vec3d = source.getPlayer().getPos();
-      return new Vec3d(this.x.toAbsoluteCoordinate(vec3d.x), this.y.toAbsoluteCoordinate(vec3d.y), this.z.toAbsoluteCoordinate(vec3d.z));
+      Vec3 vec3d = source.getPlayer().getPos();
+      return new Vec3(this.x.toAbsoluteCoordinate(vec3d.x), this.y.toAbsoluteCoordinate(vec3d.y), this.z.toAbsoluteCoordinate(vec3d.z));
    }
 
    public Vec2f toAbsoluteRotation(FabricClientCommandSource source) {
-      Vec2f vec2f = source.getPlayer().getRotationClient();
-      return new Vec2f((float)this.x.toAbsoluteCoordinate((double)vec2f.x), (float)this.y.toAbsoluteCoordinate((double)vec2f.y));
+      Vec2 vec2f = source.getPlayer().getRotationClient();
+      return new Vec2((float)this.x.toAbsoluteCoordinate((double)vec2f.x), (float)this.y.toAbsoluteCoordinate((double)vec2f.y));
    }
 
    public boolean isXRelative() {
@@ -78,13 +78,13 @@ public class DefaultPosArgument implements PosArgument {
 
    public static DefaultPosArgument parse(StringReader reader, boolean centerIntegers) throws CommandSyntaxException {
       int i = reader.getCursor();
-      CoordinateArgument coordinateArgument = CoordinateArgument.parse(reader, centerIntegers);
+      Coordinates coordinateArgument = Coordinates.parse(reader, centerIntegers);
       if (reader.canRead() && reader.peek() == ' ') {
          reader.skip();
-         CoordinateArgument coordinateArgument2 = CoordinateArgument.parse(reader, false);
+         Coordinates coordinateArgument2 = Coordinates.parse(reader, false);
          if (reader.canRead() && reader.peek() == ' ') {
             reader.skip();
-            CoordinateArgument coordinateArgument3 = CoordinateArgument.parse(reader, centerIntegers);
+            Coordinates coordinateArgument3 = Coordinates.parse(reader, centerIntegers);
             return new DefaultPosArgument(coordinateArgument, coordinateArgument2, coordinateArgument3);
          } else {
             reader.setCursor(i);
@@ -97,15 +97,15 @@ public class DefaultPosArgument implements PosArgument {
    }
 
    public static DefaultPosArgument absolute(double x, double y, double z) {
-      return new DefaultPosArgument(new CoordinateArgument(false, x), new CoordinateArgument(false, y), new CoordinateArgument(false, z));
+      return new DefaultPosArgument(new Coordinates(false, x), new Coordinates(false, y), new Coordinates(false, z));
    }
 
    public static DefaultPosArgument absolute(Vec2f vec) {
-      return new DefaultPosArgument(new CoordinateArgument(false, (double)vec.x), new CoordinateArgument(false, (double)vec.y), new CoordinateArgument(true, 0.0D));
+      return new DefaultPosArgument(new Coordinates(false, (double)vec.x), new Coordinates(false, (double)vec.y), new Coordinates(true, 0.0D));
    }
 
    public static DefaultPosArgument zero() {
-      return new DefaultPosArgument(new CoordinateArgument(true, 0.0D), new CoordinateArgument(true, 0.0D), new CoordinateArgument(true, 0.0D));
+      return new DefaultPosArgument(new Coordinates(true, 0.0D), new Coordinates(true, 0.0D), new Coordinates(true, 0.0D));
    }
 
    public int hashCode() {
