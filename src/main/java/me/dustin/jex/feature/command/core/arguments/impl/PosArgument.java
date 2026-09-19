@@ -15,6 +15,6 @@ public interface PosArgument {
    }
 
    boolean isXRelative();
-   boolean isYRelative():
+   boolean isYRelative();
    boolean isZRelative();
 }
