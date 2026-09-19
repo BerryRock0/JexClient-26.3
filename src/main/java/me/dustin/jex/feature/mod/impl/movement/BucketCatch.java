@@ -11,7 +11,7 @@ import me.dustin.jex.helper.player.InventoryHelper;
 import me.dustin.jex.helper.player.PlayerHelper;
 import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.Items;
+import net.minecraft.world.item.Items;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import me.dustin.jex.feature.mod.core.Feature;

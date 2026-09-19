@@ -7,7 +7,7 @@ import me.dustin.jex.feature.mod.core.Feature;
 import me.dustin.jex.feature.property.Property;
 import me.dustin.jex.helper.misc.Wrapper;
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.item.Items;
+import net.minecraft.world.item.Items;
 import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import me.dustin.events.core.annotate.EventPointer;

@@ -13,7 +13,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.world.item.Items;
 
 public class HolidayEvents extends Feature {
 

@@ -33,7 +33,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.world.item.Items;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;

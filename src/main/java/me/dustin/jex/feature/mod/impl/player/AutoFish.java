@@ -19,7 +19,7 @@ import me.dustin.jex.helper.world.WorldHelper;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.entity.projectile.FishingBobberEntity;
-import net.minecraft.item.Items;
+import net.minecraft.world.item.Items;
 import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;

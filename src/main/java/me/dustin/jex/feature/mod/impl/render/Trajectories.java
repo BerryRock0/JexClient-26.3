@@ -38,7 +38,7 @@ import net.minecraft.item.BowItem;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.EnderPearlItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.world.item.Items;
 import net.minecraft.item.SnowballItem;
 import net.minecraft.item.ThrowablePotionItem;
 import net.minecraft.item.TridentItem;

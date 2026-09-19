@@ -10,7 +10,7 @@ import me.dustin.jex.helper.player.PlayerHelper;
 import me.dustin.jex.helper.render.font.FontHelper;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.world.item.Items;
 import me.dustin.jex.helper.render.Render2DHelper;
 import java.util.UUID;
 

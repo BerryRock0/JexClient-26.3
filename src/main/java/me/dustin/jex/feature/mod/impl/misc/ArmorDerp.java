@@ -14,7 +14,7 @@ import me.dustin.jex.helper.player.InventoryHelper;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.world.item.Items;
 import net.minecraft.screen.slot.SlotActionType;
 import java.util.ArrayList;
 import java.util.Random;
