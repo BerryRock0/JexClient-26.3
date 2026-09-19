@@ -14,5 +14,7 @@ public interface PosArgument {
       return new BlockPos(this.toAbsolutePos(source));
    }
 
-   boolean isXRelative(),isYRelative(),isZRelative();
+   boolean isXRelative();
+   boolean isYRelative():
+   boolean isZRelative();
 }
