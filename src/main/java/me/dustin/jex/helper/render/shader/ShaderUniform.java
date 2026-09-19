@@ -38,7 +38,7 @@ public class ShaderUniform {
         glUniform2f(location, (float)value.getX(), (float)value.getY());
     }
 
-    public final void setVec(Vec2f value) {
+    public final void setVec(Vec2 value) {
         glUniform2f(location, value.x, value.y);
     }
 

@@ -25,7 +25,7 @@ public class OutlineShader extends ShaderProgram {
     @Override
     public void updateUniforms() {
         this.width.setInt(1);
-        this.size.setVec(new Vec2f(Wrapper.INSTANCE.getMinecraft().getFramebuffer().viewportWidth, Wrapper.INSTANCE.getMinecraft().getFramebuffer().viewportHeight));
+        this.size.setVec(new Vec2(Wrapper.INSTANCE.getMinecraft().getFramebuffer().viewportWidth, Wrapper.INSTANCE.getMinecraft().getFramebuffer().viewportHeight));
         this.sampler.setInt(FabricLoaderImpl.INSTANCE.isModLoaded("sodium") ? 2 : 0);
         this.glowIntensity.setFloat(1);
         this.glow.setBoolean(false);

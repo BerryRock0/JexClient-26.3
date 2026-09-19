@@ -11,7 +11,7 @@ public class Vector2D {
 		this.y = 0;
 	}
 
-	public Vector2D(Vec2f vec2f) {
+	public Vector2D(Vec2 vec2f) {
 		this.x = vec2f.x;
 		this.y = vec2f.y;
 	}
@@ -101,7 +101,7 @@ public class Vector2D {
 		return this;
 	}
 
-	public Vec2f toMinecraft() {
-		return new Vec2f((float) x, (float) y);
+	public Vec2 toMinecraft() {
+		return new Vec2((float) x, (float) y);
 	}
 }

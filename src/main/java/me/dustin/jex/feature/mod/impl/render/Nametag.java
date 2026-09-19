@@ -260,7 +260,7 @@ public class Nametag extends Feature {
                     if (entity instanceof ItemEntity itemEntity) {
                         int stackCount = itemEntity.getStack().getCount();
                         for (Entity entity1 : exceptions) {
-                            Vec3 Vec3 = positions.get(entity1);
+                            Vec3 vec3d = positions.get(entity1);
                             if (vec3d.equals(vec) && entity1 instanceof ItemEntity itemEntity1) {
                                 if (itemEntity1.getStack().getItem() == itemEntity.getStack().getItem()) {
                                     stackCount += itemEntity1.getStack().getCount();

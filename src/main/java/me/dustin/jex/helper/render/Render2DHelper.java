@@ -118,7 +118,7 @@ public enum Render2DHelper {
         ShaderProgram shader = postProcessBlur.getShader();
         postProcessBlur.setFirst(in);
         shader.setUpdateUniforms(() -> {
-            shader.getUniform("BlurDir").setVec(new Vec2f(0, 1));
+            shader.getUniform("BlurDir").setVec(new Vec2(0, 1));
             shader.getUniform("Radius").setFloat(radius);
         });
         postProcessBlur.render();
@@ -606,8 +606,8 @@ public enum Render2DHelper {
     }
 
     public boolean hoversCircle(float centerX, float centerY, float radius) {
-        Vec2f vec2f = new Vec2f(MouseHelper.INSTANCE.getMouseX(), MouseHelper.INSTANCE.getMouseY());
-        float distance = ClientMathHelper.INSTANCE.getDistance2D(vec2f, new Vec2f(centerX, centerY));
+        Vec2 Vec2 = new Vec2(MouseHelper.INSTANCE.getMouseX(), MouseHelper.INSTANCE.getMouseY());
+        float distance = ClientMathHelper.INSTANCE.getDistance2D(vec2f, new Vec2(centerX, centerY));
         return distance <= radius;
     }
 

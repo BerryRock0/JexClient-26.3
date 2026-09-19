@@ -58,12 +58,12 @@ public class SpawnSphere extends Feature {
         MatrixStack matrixStack = event.getPoseStack();
         ArrayList<Render3DHelper.BoxStorage> boxes = new ArrayList<>();
         innerSphere.forEach(blockPos -> {
-            Vec3 Vec3 = Render3DHelper.INSTANCE.getRenderPosition(blockPos);
+            Vec3 vec3d = Render3DHelper.INSTANCE.getRenderPosition(blockPos);
             Box box = WorldHelper.SINGLE_BOX.offset(vec3d);
             boxes.add(new Render3DHelper.BoxStorage(box, nonSpawnableSphereColorProperty.value().getRGB()));
         });
         outerSphere.forEach(blockPos -> {
-            Vec3 Vec3 = Render3DHelper.INSTANCE.getRenderPosition(blockPos);
+            Vec3 vec3d = Render3DHelper.INSTANCE.getRenderPosition(blockPos);
             Box box = WorldHelper.SINGLE_BOX.offset(vec3d);
             boxes.add(new Render3DHelper.BoxStorage(box, spawnableSphereColorProperty.value().getRGB()));
         });

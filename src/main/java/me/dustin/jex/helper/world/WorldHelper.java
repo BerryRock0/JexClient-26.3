@@ -443,7 +443,7 @@ public enum WorldHelper {
     }
 
     public float calcExplosionDamage(float power, Player playerEntity, BlockPos explosionPos) {
-        Vec3 Vec3 = ClientMathHelper.INSTANCE.getVec(explosionPos);
+        Vec3 vec3d = ClientMathHelper.INSTANCE.getVec(explosionPos);
         float j = power * 2.0F;
         double h = Math.sqrt(playerEntity.squaredDistanceTo(vec3d)) / (double) j;
         double v = 1 - h * getExposure(vec3d, playerEntity);
@@ -468,7 +468,7 @@ public enum WorldHelper {
                         double n = MathHelper.lerp(k, box.minX, box.maxX);
                         double o = MathHelper.lerp(l, box.minY, box.maxY);
                         double p = MathHelper.lerp(m, box.minZ, box.maxZ);
-                        Vec3 Vec3 = new Vec3(n + g, o, p + h);
+                        Vec3 vec3d = new Vec3(n + g, o, p + h);
                         if (Wrapper.INSTANCE.getWorld().raycast(new RaycastContext(vec3d, source, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getType() == HitResult.Type.MISS) {
                             ++i;
                         }

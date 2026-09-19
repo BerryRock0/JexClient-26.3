@@ -146,7 +146,7 @@ public enum EntityHelper {
     }
 
     public boolean canSee(Entity entity, BlockPos blockPos) {
-        Vec3 Vec3 = new Vec3(entity.getX(), entity.getEyeY(), entity.getZ());
+        Vec3 vec3d = new Vec3(entity.getX(), entity.getEyeY(), entity.getZ());
         Vec3 vec3d2 = new Vec3(blockPos.getX(), blockPos.getY() + 0.5f, blockPos.getZ());
         return Wrapper.INSTANCE.getWorld().raycast(new RaycastContext(vec3d, vec3d2, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getType() == HitResult.Type.MISS;
     }

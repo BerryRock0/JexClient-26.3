@@ -133,7 +133,7 @@ public class BotClientPlayNetworkHandler extends ClientPlayNetworkHandler {
             if (packet.shouldDismount()) {
                 ((PlayerEntity)playerEntity).dismountVehicle();
             }
-            Vec3 Vec3 = playerEntity.getVelocity();
+            Vec3 vec3d = playerEntity.getVelocity();
             boolean bl = packet.getFlags().contains((Object)PlayerPositionLookS2CPacket.Flag.X);
             boolean bl2 = packet.getFlags().contains((Object)PlayerPositionLookS2CPacket.Flag.Y);
             boolean bl3 = packet.getFlags().contains((Object)PlayerPositionLookS2CPacket.Flag.Z);

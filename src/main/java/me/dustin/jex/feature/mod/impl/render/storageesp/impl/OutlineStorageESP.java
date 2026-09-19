@@ -76,7 +76,7 @@ public class OutlineStorageESP extends FeatureExtension {
                         int l = i >> 8 & 0xFF;
                         int m = i & 0xFF;
                         outlineVertexConsumerProvider.setColor(k, l, m, j);
-                        Vec3 Vec3 = Render3DHelper.INSTANCE.getRenderPosition(blockEntity.getPos());
+                        Vec3 vec3d = Render3DHelper.INSTANCE.getRenderPosition(blockEntity.getPos());
                         eventWorldRender.getPoseStack().push();
                         eventWorldRender.getPoseStack().translate(vec3d.x, vec3d.y, vec3d.z);
                         BlockEntityRenderer<BlockEntity> blockEntityBlockEntityRenderer = Wrapper.INSTANCE.getMinecraft().getBlockEntityRenderDispatcher().get(blockEntity);

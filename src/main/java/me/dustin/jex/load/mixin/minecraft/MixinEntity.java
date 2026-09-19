@@ -78,7 +78,7 @@ public abstract class MixinEntity {
             return;
         Box box = this.getBoundingBox();
         List<VoxelShape> list = this.world.getEntityCollisions((Entity)(Object)this, box.stretch(movement));
-        Vec3 Vec3 = movement.lengthSquared() == 0.0D ? movement : Entity.adjustMovementForCollisions((Entity)(Object)this, movement, box, this.world, list);
+        Vec3 vec3d = movement.lengthSquared() == 0.0D ? movement : Entity.adjustMovementForCollisions((Entity)(Object)this, movement, box, this.world, list);
         boolean bl = movement.x != vec3d.x;
         boolean bl2 = movement.y != vec3d.y;
         boolean bl3 = movement.z != vec3d.z;

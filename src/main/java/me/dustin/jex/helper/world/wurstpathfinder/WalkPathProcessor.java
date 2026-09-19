@@ -128,7 +128,7 @@ public class WalkPathProcessor extends PathProcessor
 			if(index > 0 && path.get(index - 1).isJumping() || pos.getY() < nextPos.getY()) {
 				if (!Feature.getState(Step.class)) {
 					double d = (double)(0.42f * getJumpVelocityMultiplier()) + Wrapper.INSTANCE.getPlayer().getJumpBoostVelocityModifier();
-					Vec3 Vec3 = Wrapper.INSTANCE.getPlayer().getVelocity();
+					Vec3 vec3d = Wrapper.INSTANCE.getPlayer().getVelocity();
 					if (Wrapper.INSTANCE.getPlayer().isOnGround())
 						Wrapper.INSTANCE.getPlayer().setVelocity(vec3d.x, d, vec3d.z);
 				}
@@ -151,7 +151,7 @@ public class WalkPathProcessor extends PathProcessor
 					// jump up
 					if (!Feature.getState(Step.class)) {
 						double d = (double)(0.42f * getJumpVelocityMultiplier()) + Wrapper.INSTANCE.getPlayer().getJumpBoostVelocityModifier();
-						Vec3 Vec3 = Wrapper.INSTANCE.getPlayer().getVelocity();
+						Vec3 vec3d = Wrapper.INSTANCE.getPlayer().getVelocity();
 						if (Wrapper.INSTANCE.getPlayer().isOnGround())
 							Wrapper.INSTANCE.getPlayer().setVelocity(vec3d.x, d, vec3d.z);
 					}

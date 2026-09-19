@@ -52,7 +52,7 @@ public class BlockPlacer {
                 break;
         }
 
-        Vec3 Vec3 = new Vec3(x, pos.getY(), pos.getZ());
+        Vec3 vec3d = new Vec3(x, pos.getY(), pos.getZ());
 
         InventoryManager.switchToItem(Blocks.PISTON);
         BlockHitResult hitResult = new BlockHitResult(vec3d, Direction.UP, pos, false);

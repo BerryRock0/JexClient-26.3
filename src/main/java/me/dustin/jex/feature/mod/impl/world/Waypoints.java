@@ -171,7 +171,7 @@ public class Waypoints extends Feature {
 				}
 				float x = (float) renderPos.x;
 				float y = (float) renderPos.y;
-				float crosshairFOV = ClientMathHelper.INSTANCE.getDistance2D(new Vec2f(x, y), new Vec2f(Render2DHelper.INSTANCE.getScaledWidth() / 2.f, Render2DHelper.INSTANCE.getScaledHeight() / 2.f));
+				float crosshairFOV = ClientMathHelper.INSTANCE.getDistance2D(new Vec2(x, y), new Vec2(Render2DHelper.INSTANCE.getScaledWidth() / 2.f, Render2DHelper.INSTANCE.getScaledHeight() / 2.f));
 				if (fovBasedTagProperty.value() && crosshairFOV > fovDistanceProperty.value())
 					name = "[]";
 				float width = FontHelper.INSTANCE.getStringWidth(name);

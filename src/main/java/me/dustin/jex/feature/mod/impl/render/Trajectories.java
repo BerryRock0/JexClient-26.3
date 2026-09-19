@@ -146,7 +146,7 @@ public class Trajectories extends Feature {
                     ArrowItem arrowItem = (ArrowItem) itemStack.getItem();
                     PersistentProjectileEntity persistentProjectileEntity = arrowItem.createArrow(Wrapper.INSTANCE.getWorld(), itemStack, Wrapper.INSTANCE.getLocalPlayer());
 
-                    Vec3 Vec3 = Wrapper.INSTANCE.getLocalPlayer().getOppositeRotationVector(1.0F);
+                    Vec3 vec3d = Wrapper.INSTANCE.getLocalPlayer().getOppositeRotationVector(1.0F);
                     Quaternion quaternion = new Quaternion(new Vec3f(vec3d), 0, true);
                     Vec3 vec3d2 = Wrapper.INSTANCE.getLocalPlayer().getRotationVec(1.0F);
                     Vec3f vector3f = new Vec3f(vec3d2);

@@ -87,7 +87,7 @@ public class AutoFish extends Feature {
                 Wrapper.INSTANCE.getLocalPlayer().fishHook = getClosest();
             if (Wrapper.INSTANCE.getLocalPlayer() == null || Wrapper.INSTANCE.getLocalPlayer().fishHook == null)
                 return;
-            Vec3 Vec3 = new Vec3(soundPacket.getX(), soundPacket.getY(), soundPacket.getZ());
+            Vec3 vec3d = new Vec3(soundPacket.getX(), soundPacket.getY(), soundPacket.getZ());
             if (distanceTo(Wrapper.INSTANCE.getLocalPlayer().fishHook, vec3d) < 3 || !distanceCheckProperty.value()) {
                 reel();
                 hasReeled = true;

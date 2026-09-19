@@ -62,7 +62,7 @@ public class Enderman extends Feature {
         if (itemStack.getItem() == Blocks.CARVED_PUMPKIN.asItem()) {
             return false;
         } else {
-            Vec3 Vec3 = player.getRotationVec(1.0F).normalize();
+            Vec3 vec3d = player.getRotationVec(1.0F).normalize();
             Vec3 vec3d2 = new Vec3(endermanEntity.getX() - player.getX(), endermanEntity.getEyeY() - player.getEyeY(), endermanEntity.getZ() - player.getZ());
             double d = vec3d2.length();
             vec3d2 = vec3d2.normalize();

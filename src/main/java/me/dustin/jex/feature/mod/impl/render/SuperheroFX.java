@@ -74,7 +74,7 @@ public class SuperheroFX extends Feature{
                 double x = livingEntity.getX() - sideOffset + (random.nextDouble() * (sideOffset * 2));
                 double y = livingEntity.getY() + (double) (livingEntity.getHeight() / 2) - heightOffset + (random.nextFloat() * (heightOffset * 2));
                 double z = livingEntity.getZ() - sideOffset + (random.nextDouble() * (sideOffset * 2));
-                Vec3 Vec3 = new Vec3(x, y, z);
+                Vec3 vec3d = new Vec3(x, y, z);
                 KapowParticle kapowParticle = new KapowParticle(vec3d, type);
                 kapowParticle.setTwoDPosition(Render2DHelper.INSTANCE.to2D(kapowParticle.getPosition(), event.getPoseStack()));
                 particles.add(kapowParticle);
@@ -116,7 +116,7 @@ public class SuperheroFX extends Feature{
             if (stopWatch.hasPassed(maxAgeProperty.value()))
                 this.age = 0;
             if (visibleOnlyProperty.value()) {
-                Vec3 Vec3 = new Vec3(Wrapper.INSTANCE.getLocalPlayer().getX(), Wrapper.INSTANCE.getLocalPlayer().getEyeY(), Wrapper.INSTANCE.getLocalPlayer().getZ());
+                Vec3 vec3d = new Vec3(Wrapper.INSTANCE.getLocalPlayer().getX(), Wrapper.INSTANCE.getLocalPlayer().getEyeY(), Wrapper.INSTANCE.getLocalPlayer().getZ());
                 Vec3 vec3d2 = new Vec3(position.getX(), position.getY(), position.getZ());
                 if (vec3d2.distanceTo(vec3d) > 128.0D || Wrapper.INSTANCE.getWorld().raycast(new RaycastContext(vec3d, vec3d2, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, Wrapper.INSTANCE.getLocalPlayer())).getType() != HitResult.Type.MISS)
                     return;

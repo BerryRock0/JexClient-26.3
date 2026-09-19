@@ -317,7 +317,7 @@ public enum PlayerHelper {
         Entity entity = Wrapper.INSTANCE.getMinecraft().getCameraEntity();
         if (entity != null) {
             if (Wrapper.INSTANCE.getMinecraft().world != null) {
-                Vec3 Vec3 = entity.getCameraPosVec(tickDelta);
+                Vec3 vec3d = entity.getCameraPosVec(tickDelta);
                 Vec3 vec3d2 = getRotationVector(rots.getPitch(), rots.getYaw());
                 Vec3 vec3d3 = vec3d.add(vec3d2.x * reach, vec3d2.y * reach, vec3d2.z * reach);
 

@@ -302,7 +302,7 @@ public class PlayerBot {
     }
 
     public HitResult raycast(double maxDistance, float tickDelta, boolean includeFluids) {
-        Vec3 Vec3 = getCameraPosVec();
+        Vec3 vec3d = getCameraPosVec();
         Vec3 vec3d2 = getRotationVector(player.getPitch(), player.getYaw());
         Vec3 vec3d3 = vec3d.add(vec3d2.x * maxDistance, vec3d2.y * maxDistance, vec3d2.z * maxDistance);
         return world.raycast(new RaycastContext(vec3d, vec3d3, RaycastContext.ShapeType.OUTLINE, includeFluids ? RaycastContext.FluidHandling.ANY : RaycastContext.FluidHandling.NONE, player));
@@ -327,7 +327,7 @@ public class PlayerBot {
     public Entity getCrosshairEntity(float reach) {
         if (player != null) {
             if (world != null) {
-                Vec3 Vec3 = getCameraPosVec();
+                Vec3 vec3d = getCameraPosVec();
                 Vec3 vec3d2 = getRotationVector(player.getPitch(), player.getYaw());
                 Vec3 vec3d3 = vec3d.add(vec3d2.x * reach, vec3d2.y * reach, vec3d2.z * reach);
 
@@ -347,7 +347,7 @@ public class PlayerBot {
     public EntityHitResult raycast(Entity entity, Vec3 min, Vec3 max, Box box, Predicate<Entity> predicate, double d) {
         double e = d;
         Entity entity2 = null;
-        Vec3 Vec3 = null;
+        Vec3 vec3d = null;
         for (Entity entity3 : world.getOtherEntities(entity, box, predicate)) {
             Vec3 vec3d2;
             double f;
@@ -356,7 +356,7 @@ public class PlayerBot {
             if (box2.contains(min)) {
                 if (!(e >= 0.0)) continue;
                 entity2 = entity3;
-                Vec3 = optional.orElse(min);
+                vec3d = optional.orElse(min);
                 e = 0.0;
                 continue;
             }
@@ -364,11 +364,11 @@ public class PlayerBot {
             if (entity3.getRootVehicle() == entity.getRootVehicle()) {
                 if (e != 0.0) continue;
                 entity2 = entity3;
-                Vec3 = vec3d2;
+                vec3d = vec3d2;
                 continue;
             }
             entity2 = entity3;
-            Vec3 = vec3d2;
+            vec3d = vec3d2;
             e = f;
         }
         if (entity2 == null) {
