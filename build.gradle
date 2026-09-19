@@ -1,10 +1,10 @@
 plugins {
-	id 'fabric-loom' version '0.11-SNAPSHOT'
-	id "com.github.johnrengelman.shadow" version "7.1.2"
+	id 'fabric-loom' version '1.17-SNAPSHOT'
+	id "com.github.johnrengelman.shadow" version "9.6.1"
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_25
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
@@ -27,9 +27,9 @@ dependencies {
 
 	dependency group: 'org.yaml', name: 'snakeyaml', version: '1.30'
 	dependency files('lib/IRCClient.jar')
-	implementation group: 'io.netty', name: 'netty-handler-proxy', version: '4.1.77.Final'
+	implementation group: 'io.netty', name: 'netty-handler-proxy', version: '4.2.15.Final'
 
-	implementation files('lib/baritone-1.6.3-dev.jar')
+	implementation files('lib/baritone.jar')
 	implementation files('lib/sodium.jar')
 }
 
@@ -42,8 +42,8 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	// Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
-	it.options.release = 17
+	// Minecraft 26.3 (1.18-pre2) upwards uses Java 21.
+	it.options.release = 21
 }
 
 java {
