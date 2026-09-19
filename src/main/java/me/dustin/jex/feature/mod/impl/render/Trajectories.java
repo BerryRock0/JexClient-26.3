@@ -50,7 +50,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.util.math.Matrix4f;
 import org.joml.Quaterniond;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.world.phys.Vec3;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -147,9 +147,9 @@ public class Trajectories extends Feature {
                     PersistentProjectileEntity persistentProjectileEntity = arrowItem.createArrow(Wrapper.INSTANCE.getWorld(), itemStack, Wrapper.INSTANCE.getLocalPlayer());
 
                     Vec3 vec3d = Wrapper.INSTANCE.getLocalPlayer().getOppositeRotationVector(1.0F);
-                    Quaterniond quaternion = new Quaterniond(new Vec3f(vec3d), 0, true);
+                    Quaterniond quaternion = new Quaterniond(new Vec3(vec3d), 0, true);
                     Vec3 vec3d2 = Wrapper.INSTANCE.getLocalPlayer().getRotationVec(1.0F);
-                    Vec3f vector3f = new Vec3f(vec3d2);
+                    Vec3 vector3f = new Vec3(vec3d2);
                     vector3f.rotate(quaternion);
                     ((ProjectileEntity) persistentProjectileEntity).setVelocity(vector3f.getX(), vector3f.getY(), vector3f.getZ(), getSpeed(mainStack), 0);
                     for (int j = 0; j < 200; j++) {

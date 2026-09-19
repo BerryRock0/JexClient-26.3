@@ -18,7 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.world.phys.Vec3;
 
 public class JexCapeFeatureRenderer extends FeatureRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>> {
     public JexCapeFeatureRenderer(FeatureRendererContext<PlayerEntity, PlayerEntityModel<PlayerEntity>> featureRendererContext) {
@@ -61,9 +61,9 @@ public class JexCapeFeatureRenderer extends FeatureRenderer<PlayerEntity, Player
         if (playerEntity.isInSneakingPose()) {
             q += 25.0f;
         }
-        matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(6.0f + r / 2.0f + q));
-        matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(s / 2.0f));
-        matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0f - s / 2.0f));
+        matrixStack.multiply(Vec3.POSITIVE_X.getDegreesQuaternion(6.0f + r / 2.0f + q));
+        matrixStack.multiply(Vec3.POSITIVE_Z.getDegreesQuaternion(s / 2.0f));
+        matrixStack.multiply(Vec3.POSITIVE_Y.getDegreesQuaternion(180.0f - s / 2.0f));
         VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumerProvider, RenderLayer.getArmorCutoutNoCull(texture), false, enchanted);
         this.getContextModel().renderCape(matrixStack, vertexConsumer, light, OverlayTexture.DEFAULT_UV);
         matrixStack.pop();

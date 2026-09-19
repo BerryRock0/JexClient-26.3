@@ -16,7 +16,7 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.util.math.MathHelper;
 import org.joml.Quaterniond;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -68,13 +68,13 @@ public class ItemPhysics extends Feature {//fancier version that's not just flat
         if (itemEntity.isOnGround())
             matrixStack.translate(0, bakedModel.hasDepth() ? -0.04 : -0.151f, 0);
 
-        matrixStack.multiply(new Quaterniond(new Vec3f(negValues.get(itemEntity).x == 1 ? -1 : 1, 0, 0), pitch, true));
-        matrixStack.multiply(new Quaterniond(new Vec3f(0, 0, negValues.get(itemEntity).z == 1 ? -1 : 1), roll, true));
-        matrixStack.multiply(new Quaterniond(new Vec3f(0, negValues.get(itemEntity).y == 1 ? -1 : 1, 0), yaw, true));
+        matrixStack.multiply(new Quaterniond(new Vec3(negValues.get(itemEntity).x == 1 ? -1 : 1, 0, 0), pitch, true));
+        matrixStack.multiply(new Quaterniond(new Vec3(0, 0, negValues.get(itemEntity).z == 1 ? -1 : 1), roll, true));
+        matrixStack.multiply(new Quaterniond(new Vec3(0, negValues.get(itemEntity).y == 1 ? -1 : 1, 0), yaw, true));
 
         matrixStack.translate(0, -(itemEntity.getHeight() / 1.5f), 0);
 
-        matrixStack.multiply(Vec3f.NEGATIVE_Y.getRadialQuaternion(n));
+        matrixStack.multiply(Vec3.NEGATIVE_Y.getRadialQuaternion(n));
         float l = Math.sin(((float)itemEntity.getItemAge() + g) / 10.0F + itemEntity.uniqueOffset) * 0.1F + 0.1F;
         float m = bakedModel.getTransformation().getTransformation(ModelTransformation.Mode.GROUND).scale.getY();
         matrixStack.translate(0.0D, -(l + 0.25F * m), 0.0D);

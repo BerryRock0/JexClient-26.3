@@ -16,7 +16,7 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolItem;
 import net.minecraft.world.InteractionHand;
 import org.joml.Quaterniond;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.world.phys.Vec3;
 import me.dustin.jex.feature.mod.core.Feature;
 
 public class OldBlocking extends Feature {
@@ -43,11 +43,11 @@ public class OldBlocking extends Feature {
                         if (!offHand) {
                             if (isGoodItem(event.getItemStack().getItem())) {
                                 //point the tip outward
-                                matrixStack.multiply(new Quaterniond(new Vec3f(1.0F, 0.0F, 0.0F), -60, true));
+                                matrixStack.multiply(new Quaterniond(new Vec3(1.0F, 0.0F, 0.0F), -60, true));
                                 //rotate infront of camera
-                                matrixStack.multiply(new Quaterniond(new Vec3f(0.0F, 0.0F, 1.0F), 60, true));
+                                matrixStack.multiply(new Quaterniond(new Vec3(0.0F, 0.0F, 1.0F), 60, true));
                                 //tilt
-                                matrixStack.multiply(new Quaterniond(new Vec3f(0.0F, 1.0F, 0.0F), 50, true));
+                                matrixStack.multiply(new Quaterniond(new Vec3(0.0F, 1.0F, 0.0F), 50, true));
                                 matrixStack.translate(-0.05, 0.1, 0.07);
                             }
                         }

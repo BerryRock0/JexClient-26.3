@@ -91,14 +91,14 @@ public enum Render3DHelper {
 
     public void fixCameraRots(PoseStack matrixStack) {
         Camera camera = Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera;
-        matrixStack.multiply(Vec3f.NEGATIVE_Y.getDegreesQuaternion(camera.getYaw() + 180.0F));
-        matrixStack.multiply(Vec3f.NEGATIVE_X.getDegreesQuaternion(camera.getPitch()));
+        matrixStack.multiply(Vec3.NEGATIVE_Y.getDegreesQuaternion(camera.getYaw() + 180.0F));
+        matrixStack.multiply(Vec3.NEGATIVE_X.getDegreesQuaternion(camera.getPitch()));
     }
 
     public void applyCameraRots(PoseStack matrixStack) {
         Camera camera = Wrapper.INSTANCE.getMinecraft().getEntityRenderDispatcher().camera;
-        matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(camera.getPitch()));
-        matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(camera.getYaw() + 180.0F));
+        matrixStack.multiply(Vec3.POSITIVE_X.getDegreesQuaternion(camera.getPitch()));
+        matrixStack.multiply(Vec3.POSITIVE_Y.getDegreesQuaternion(camera.getYaw() + 180.0F));
     }
 
     public void setup3DRender(boolean disableDepth) {
@@ -195,7 +195,7 @@ public enum Render3DHelper {
         float yaw = EntityHelper.INSTANCE.getYaw(entity);
         setup3DRender(true);
         matrixstack.translate(x, y, z);
-        matrixstack.multiply(new Quaterniond(new Vec3f(0, -1, 0), yaw, true));
+        matrixstack.multiply(new Quaterniond(new Vec3(0, -1, 0), yaw, true));
         matrixstack.translate(-x, -y, -z);
 
         AABB bb = new Box(x - entity.getWidth() + 0.25, y, z - entity.getWidth() + 0.25, x + entity.getWidth() - 0.25, y + entity.getHeight() + 0.1, z + entity.getWidth() - 0.25);
@@ -209,7 +209,7 @@ public enum Render3DHelper {
 
         end3DRender();
         matrixstack.translate(x, y, z);
-        matrixstack.multiply(new Quaterniond(new Vec3f(0, 1, 0), yaw, true));
+        matrixstack.multiply(new Quaterniond(new Vec3(0, 1, 0), yaw, true));
         matrixstack.translate(-x, -y, -z);
     }
 
@@ -244,20 +244,20 @@ public enum Render3DHelper {
 
     public void directionTranslate(PoseStack poseStack, Direction direction) {
         switch (direction) {
-            case UP -> poseStack.multiply(new Quaterniond(new Vec3f(1, 0, 0), 180, true));
+            case UP -> poseStack.multiply(new Quaterniond(new Vec3(1, 0, 0), 180, true));
             case NORTH -> {
-                poseStack.multiply(new Quaterniond(new Vec3f(1, 0, 0), 90, true));
+                poseStack.multiply(new Quaterniond(new Vec3(1, 0, 0), 90, true));
             }
             case SOUTH -> {
-                poseStack.multiply(new Quaterniond(new Vec3f(1, 0, 0), -90, true));
+                poseStack.multiply(new Quaterniond(new Vec3(1, 0, 0), -90, true));
             }
             case WEST -> {
-                poseStack.multiply(new Quaterniond(new Vec3f(0, 1, 0), 90, true));
-                poseStack.multiply(new Quaterniond(new Vec3f(1, 0, 0), 90, true));
+                poseStack.multiply(new Quaterniond(new Vec3(0, 1, 0), 90, true));
+                poseStack.multiply(new Quaterniond(new Vec3(1, 0, 0), 90, true));
             }
             case EAST -> {
-                poseStack.multiply(new Quaterniond(new Vec3f(0, 1, 0), 90, true));
-                poseStack.multiply(new Quaterniond(new Vec3f(1, 0, 0), -90, true));
+                poseStack.multiply(new Quaterniond(new Vec3(0, 1, 0), 90, true));
+                poseStack.multiply(new Quaterniond(new Vec3(1, 0, 0), -90, true));
             }
         }
     }

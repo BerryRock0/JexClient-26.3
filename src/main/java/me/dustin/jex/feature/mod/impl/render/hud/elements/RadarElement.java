@@ -24,7 +24,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.math.Matrix4f;
 import org.joml.Quaterniond;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.Heightmap;
 import java.awt.*;
 
@@ -76,7 +76,7 @@ public class RadarElement extends HudElement{
             matrixStack.push();
             matrixStack.translate(this.getX() + midPos + 0.5, this.getY() + midPos + 0.5, 0);
             Render2DHelper.INSTANCE.fill(matrixStack, -0.5f, -0.5f, 0.5f, 0.5f, ColorHelper.INSTANCE.getClientColor());
-            matrixStack.multiply(new Quaterniond(new Vec3f(0.0F, 0.0F, 1.0F), PlayerHelper.INSTANCE.getYaw() + 180, true));
+            matrixStack.multiply(new Quaterniond(new Vec3(0.0F, 0.0F, 1.0F), PlayerHelper.INSTANCE.getYaw() + 180, true));
             drawPointer(matrixStack);
             matrixStack.pop();
 

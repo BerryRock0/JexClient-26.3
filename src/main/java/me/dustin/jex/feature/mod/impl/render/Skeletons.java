@@ -28,7 +28,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Matrix4f;
 import org.joml.Quaterniond;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.world.phys.Vec3;
 import java.awt.*;
 
 public class Skeletons extends Feature {//it looks cool as fuck but seriously fuck this was a massive pain in the ass
@@ -79,8 +79,8 @@ public class Skeletons extends Feature {//it looks cool as fuck but seriously fu
                 matrixStack.translate(footPos.x, footPos.y, footPos.z);
                 if (swimming) matrixStack.translate(0, 0.35f, 0);
 
-                matrixStack.multiply(new Quaterniond(new Vec3f(0, -1, 0), playerEntity.bodyYaw + 180, true));
-                if (swimming || flying) matrixStack.multiply(new Quaterniond(new Vec3f(-1, 0, 0), 90 + m, true));
+                matrixStack.multiply(new Quaterniond(new Vec3(0, -1, 0), playerEntity.bodyYaw + 180, true));
+                if (swimming || flying) matrixStack.multiply(new Quaterniond(new Vec3(-1, 0, 0), 90 + m, true));
 
                 if (swimming) matrixStack.translate(0, -0.95f, 0);
 
@@ -139,10 +139,10 @@ public class Skeletons extends Feature {//it looks cool as fuck but seriously fu
                 BufferHelper.INSTANCE.drawWithShader(bufferBuilder, ShaderHelper.INSTANCE.getPosColorShader());
 
                 if (swimming) matrixStack.translate(0, 0.95f, 0);
-                if (swimming || flying) matrixStack.multiply(new Quaterniond(new Vec3f(1, 0, 0), 90 + m, true));
+                if (swimming || flying) matrixStack.multiply(new Quaterniond(new Vec3(1, 0, 0), 90 + m, true));
                 if (swimming) matrixStack.translate(0, -0.35f, 0);
 
-                matrixStack.multiply(new Quaterniond(new Vec3f(0, 1, 0), playerEntity.bodyYaw + 180, true));
+                matrixStack.multiply(new Quaterniond(new Vec3(0, 1, 0), playerEntity.bodyYaw + 180, true));
                 matrixStack.translate(-footPos.x, -footPos.y, -footPos.z);
             }
         });
@@ -151,15 +151,15 @@ public class Skeletons extends Feature {//it looks cool as fuck but seriously fu
 
     private void rotate(PoseStack matrix, ModelPart modelPart) {
         if (modelPart.roll != 0.0F) {
-            matrix.multiply(Vec3f.POSITIVE_Z.getRadialQuaternion(modelPart.roll));
+            matrix.multiply(Vec3.POSITIVE_Z.getRadialQuaternion(modelPart.roll));
         }
 
         if (modelPart.yaw != 0.0F) {
-            matrix.multiply(Vec3f.NEGATIVE_Y.getRadialQuaternion(modelPart.yaw));
+            matrix.multiply(Vec3.NEGATIVE_Y.getRadialQuaternion(modelPart.yaw));
         }
 
         if (modelPart.pitch != 0.0F) {
-            matrix.multiply(Vec3f.NEGATIVE_X.getRadialQuaternion(modelPart.pitch));
+            matrix.multiply(Vec3.NEGATIVE_X.getRadialQuaternion(modelPart.pitch));
         }
     }
 }
