@@ -21,8 +21,7 @@ import me.dustin.jex.helper.render.Render2DHelper;
 import me.dustin.jex.load.impl.IChatScreen;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
-import net.minecraft.client.gui.screen.ChatScreen;
-import net.minecraft.command.CommandException;
+import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.text.Text;
 import net.minecraft.text.Texts;
 
@@ -38,18 +37,24 @@ public enum CommandManager {
     private CommandDispatcher<FabricClientCommandSource> DISPATCHER;
     private static final ArrayList<Command> commands = new ArrayList<>();
 
-    public void initializeCommandManager() {
-        ClientCommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+    public void initializeCommandManager()
+    {
+        ClientCommandRegistrationCallback.EVENT.register((dispatcher, dedicated) ->
+        {
             DISPATCHER = dispatcher;
             EventManager.unregister(this);
             this.getCommands().clear();
             List<Class<?>> classList = ClassHelper.INSTANCE.getClasses("me.dustin.jex.feature.command.impl", Command.class);
-            classList.forEach(clazz -> {
-                try {
+            classList.forEach(clazz ->
+            {
+                try
+                {
                     @SuppressWarnings("deprecation")
                     Command instance = (Command) clazz.newInstance();
                     this.getCommands().add(instance);
-                } catch (InstantiationException | IllegalAccessException e) {
+                }
+                catch (Exception e)
+                {
                     e.printStackTrace();
                 }
             });
@@ -75,10 +80,13 @@ public enum CommandManager {
     @EventPointer
     private final EventListener<EventDrawScreen> eventDrawScreenEventListener = new EventListener<>(event -> {
         IChatScreen chatScreen = (IChatScreen) event.getScreen();
-        if (chatScreen.getText().startsWith(this.getPrefix())) {
+        if (chatScreen.getText().startsWith(this.getPrefix()))
+        {
             overlayOn = true;
             chatScreen.getWidget().setMaxLength(100000);
-        } else {
+        }
+        else
+        {
             overlayOn = false;
             chatScreen.getWidget().setMaxLength(256);
         }
@@ -90,30 +98,35 @@ public enum CommandManager {
 
     @EventPointer
     private final EventListener<EventTick> eventTickEventListener = new EventListener<>(event -> {
-        if (!(Wrapper.INSTANCE.getMinecraft().currentScreen instanceof ChatScreen)) {
+        if (!(Wrapper.INSTANCE.getMinecraft().currentScreen instanceof ChatScreen))
+        {
             overlayOn = false;
             overlayAlpha = 0;
         }
-        if (overlayOn) {
-            if (overlayAlpha < 255) {
+        if (overlayOn)
+        {
+            if (overlayAlpha < 255)
                 overlayAlpha+=35;
-            }
-        } else {
-            if (overlayAlpha > 0) {
+        }
+        else
+        {
+            if (overlayAlpha > 0)
                 overlayAlpha-=35;
-            }
         }
         if (overlayAlpha > 255)
             overlayAlpha = 255;
         if (overlayAlpha < 0)
             overlayAlpha = 0;
+
     }, new TickFilter(EventTick.Mode.PRE));
 
     @EventPointer
     private final EventListener<EventShouldPreviewChat> eventShouldPreviewChatEventListener = new EventListener<>(event -> {
-        if (Wrapper.INSTANCE.getMinecraft().currentScreen instanceof ChatScreen chatScreen) {
+        if (Wrapper.INSTANCE.getMinecraft().currentScreen instanceof ChatScreen chatScreen)
+        {
             IChatScreen iChatScreen = (IChatScreen)chatScreen;
-            if (iChatScreen.getText().startsWith(prefix)) {
+            if (iChatScreen.getText().startsWith(prefix))
+            {
                 event.cancel();
                 event.setEnabled(false);
             }
@@ -134,40 +147,43 @@ public enum CommandManager {
         return false;
     }
 
-    private boolean executeCommand(String message) {
+    private boolean executeCommand(String message)
+    {
+        
         if (message.isEmpty() || !message.startsWith(getPrefix()))
             return false;
-        FabricClientCommandSource commandSource = (FabricClientCommandSource) Wrapper.INSTANCE.getMinecraft().getNetworkHandler().getCommandSource();
-        try {
+        
+        FabricClientCommandSource commandSource = Wrapper.INSTANCE.getMinecraft().getNetworkHandler().getCommandSource();
+        
+        try
+        {
             DISPATCHER.execute(message.substring(getPrefix().length()), commandSource);
-        } catch (CommandSyntaxException e) {
-            commandSource.sendError(getErrorMessage(e));
-        } catch (CommandException e) {
-            commandSource.sendError(e.getTextMessage());
-        } catch (RuntimeException e) {
-            commandSource.sendError(Text.of(e.getMessage()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        } 
+        catch (Exception e) {}
+
         return true;
     }
 
-    private Text getErrorMessage(CommandSyntaxException e) {
+    private Text getErrorMessage(CommandSyntaxException e)
+    {
         Text message = Texts.toText(e.getRawMessage());
         String context = e.getContext();
 
         return context != null ? Text.translatable("command.context.parse_error", message, context) : message;
     }
     
-    public ArrayList<Command> getCommands() {
+    public ArrayList<Command> getCommands()
+    {
         return commands;
     }
 
-    public String getPrefix() {
+    public String getPrefix()
+    {
         return prefix;
     }
 
-    public void setPrefix(String prefix) {
+    public void setPrefix(String prefix)
+    {
         this.prefix = prefix;
     }
 }
