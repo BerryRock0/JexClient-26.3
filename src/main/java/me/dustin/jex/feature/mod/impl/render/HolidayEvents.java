@@ -42,7 +42,7 @@ public class HolidayEvents extends Feature {
     @EventPointer
     private final EventListener<EventPlayerPackets> eventPlayerPacketsEventListener = new EventListener<>(event -> {
         Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
-            if (entity instanceof PlayerEntity || !(entity instanceof LivingEntity livingEntity))
+            if (entity instanceof Player || !(entity instanceof LivingEntity livingEntity))
                 return;
             if (getState() && halloweenProperty.value()) {
                 if (livingEntity.hasStackEquipped(EquipmentSlot.HEAD)) {
@@ -61,7 +61,7 @@ public class HolidayEvents extends Feature {
     @Override
     public void onDisable() {
         Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
-            if (entity instanceof PlayerEntity || !(entity instanceof LivingEntity livingEntity))
+            if (entity instanceof Player || !(entity instanceof LivingEntity livingEntity))
                 return;
             if (livingEntity.getEquippedStack(EquipmentSlot.HEAD).getItem() != Items.JACK_O_LANTERN) {
                 return;

@@ -32,7 +32,7 @@ public enum InventoryHelper {
         return Wrapper.INSTANCE.getLocalPlayer().getInventory();
     }
 
-    public PlayerInventory getInventory(PlayerEntity playerEntity) {
+    public PlayerInventory getInventory(Player playerEntity) {
         return playerEntity.getInventory();
     }
 
@@ -260,7 +260,7 @@ public enum InventoryHelper {
     }
 
     public float getBlockBreakingSpeed(BlockState block, int slot) {
-        PlayerEntity player = Wrapper.INSTANCE.getLocalPlayer();
+        Player player = Wrapper.INSTANCE.getLocalPlayer();
         ItemStack stack = player.getInventory().getStack(slot);
 
         float f = stack.getMiningSpeedMultiplier(block);

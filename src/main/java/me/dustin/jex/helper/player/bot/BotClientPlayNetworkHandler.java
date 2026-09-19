@@ -129,7 +129,7 @@ public class BotClientPlayNetworkHandler extends ClientPlayNetworkHandler {
             double e;
             double d;
             NetworkThreadUtils.forceMainThread(packet, this, Wrapper.INSTANCE.getMinecraft());
-            PlayerEntity playerEntity = playerBot.getPlayer();
+            Player Player = playerBot.getPlayer();
             if (packet.shouldDismount()) {
                 ((PlayerEntity)playerEntity).dismountVehicle();
             }

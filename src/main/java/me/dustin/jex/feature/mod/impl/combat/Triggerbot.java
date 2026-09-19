@@ -59,7 +59,7 @@ public class Triggerbot extends Feature {
             return neutralsProperty.value();
         if (EntityHelper.INSTANCE.isHostileMob(entity))
             return hostilesProperty.value();
-        if (entity instanceof PlayerEntity playerEntity && !FriendHelper.INSTANCE.isFriend(playerEntity))
+        if (entity instanceof Player Player && !FriendHelper.INSTANCE.isFriend(playerEntity))
             return playersProperty.value();
         return false;
     }

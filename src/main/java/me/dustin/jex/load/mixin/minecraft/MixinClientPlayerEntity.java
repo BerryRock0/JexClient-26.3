@@ -43,7 +43,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientPlayerEntity.class)
-public abstract class MixinClientPlayerEntity extends AbstractClientPlayerEntity implements IClientPlayerEntity {
+public abstract class MixinClientPlayer extends AbstractClientPlayer implements IClientPlayer {
 
     private EventPlayerPackets preEvent;
 
@@ -113,7 +113,7 @@ public abstract class MixinClientPlayerEntity extends AbstractClientPlayerEntity
 
     @Inject(method = "tick", at = @At(value = "INVOKE", target = "net/minecraft/client/network/ClientPlayerEntity.hasVehicle()Z"), cancellable = true)
     public void tick(CallbackInfo ci) {
-        ClientPlayerEntity me = (ClientPlayerEntity) (Object) this;
+        ClientPlayer me = (ClientPlayerEntity) (Object) this;
         preEvent = new EventPlayerPackets(me.getYaw(1), me.getPitch(1), me.isOnGround()).run();
         if (preEvent.isCancelled())
             ci.cancel();
@@ -161,7 +161,7 @@ public abstract class MixinClientPlayerEntity extends AbstractClientPlayerEntity
     }
 
     @Redirect(method = "updateNausea", at = @At(value = "INVOKE", target = "net/minecraft/client/network/ClientPlayerEntity.closeHandledScreen()V"))
-    public void closeContainerOverride(ClientPlayerEntity me) {
+    public void closeContainerOverride(ClientPlayer me) {
         EventPortalCloseGUI eventPortalCloseGUI = new EventPortalCloseGUI().run();
         if (!eventPortalCloseGUI.isCancelled())
             me.closeHandledScreen();
@@ -340,27 +340,27 @@ public abstract class MixinClientPlayerEntity extends AbstractClientPlayerEntity
 
 
     @Redirect(method = "tick", at = @At(value = "INVOKE", target = "net/minecraft/client/network/ClientPlayerEntity.getYaw()F"))
-    public float ridingYaw(ClientPlayerEntity me) {
+    public float ridingYaw(ClientPlayer me) {
         return preEvent.getYaw();
     }
 
     @Redirect(method = "tick", at = @At(value = "INVOKE", target = "net/minecraft/client/network/ClientPlayerEntity.getPitch()F"))
-    public float ridingPitch(ClientPlayerEntity me) {
+    public float ridingPitch(ClientPlayer me) {
         return preEvent.getPitch();
     }
 
     @Redirect(method = "sendMovementPackets", at = @At(value = "INVOKE", target = "net/minecraft/client/network/ClientPlayerEntity.getYaw()F"))
-    public float redirYaw(ClientPlayerEntity me) {
+    public float redirYaw(ClientPlayer me) {
         return preEvent.getYaw();
     }
 
     @Redirect(method = "sendMovementPackets", at = @At(value = "INVOKE", target = "net/minecraft/client/network/ClientPlayerEntity.getPitch()F"))
-    public float redirPitch(ClientPlayerEntity me) {
+    public float redirPitch(ClientPlayer me) {
         return preEvent.getPitch();
     }
 
     @Redirect(method = "sendMovementPackets", at = @At(value = "FIELD", target = "net/minecraft/client/network/ClientPlayerEntity.onGround:Z"))
-    public boolean redirOG(ClientPlayerEntity me) {
+    public boolean redirOG(ClientPlayer me) {
         return preEvent.isOnGround();
     }
 

@@ -32,7 +32,7 @@ public enum PeglegHelper {
 
     @EventPointer
     private final EventListener<EventLivingEntityCallRender> eventLivingEntityCallRenderEventListener = new EventListener<>(event -> {
-        if (event.getLivingEntity() instanceof PlayerEntity playerEntity)
+        if (event.getLivingEntity() instanceof Player playerEntity)
             currentRender = playerEntity.getGameProfile().getId();
     });
 
@@ -105,7 +105,7 @@ public enum PeglegHelper {
         return PeglegType.STICK;
     }
 
-    public PeglegType getType(PlayerEntity playerEntity) {
+    public PeglegType getType(Player playerEntity) {
         String uuid = playerEntity.getUuidAsString().replace("-", "");
         if (!peglegs.containsKey(uuid))
             return null;
@@ -118,8 +118,8 @@ public enum PeglegHelper {
         return peglegs.get(uuid);
     }
 
-    public boolean hasPegleg(PlayerEntity playerEntity) {
-        if (playerEntity == null)
+    public boolean hasPegleg(Player playerEntity) {
+        if (Player == null)
             return false;
         return hasPegleg(playerEntity.getUuid().toString().replace("-", ""));
     }

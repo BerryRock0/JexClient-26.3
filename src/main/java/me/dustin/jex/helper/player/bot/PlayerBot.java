@@ -84,7 +84,7 @@ public class PlayerBot {
     public static ClientPlayNetworkHandler savedNetworkHandler;
     public static BotClientConnection currentConnection;
     private BotClientConnection clientConnection;
-    private PlayerEntity player;
+    private Player player;
     private PlayerInventory playerInventory;
     private boolean connected;
 
@@ -423,11 +423,11 @@ public class PlayerBot {
         return playerInventory;
     }
 
-    public PlayerEntity getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
-    public void setPlayer(OtherClientPlayerEntity player) {
+    public void setPlayer(OtherClientPlayer player) {
         this.player = player;
     }
 

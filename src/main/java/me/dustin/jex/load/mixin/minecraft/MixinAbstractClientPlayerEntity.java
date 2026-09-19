@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AbstractClientPlayerEntity.class)
-public class MixinAbstractClientPlayerEntity {
+public class MixinAbstractClientPlayer {
 
     @Inject(method = "getSkinTexture", at = @At("HEAD"), cancellable = true)
     public void getSkinTexture(CallbackInfoReturnable<Identifier> cir) {

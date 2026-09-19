@@ -47,7 +47,7 @@ public class Radar extends Feature {
     }
 
     public boolean isValid(Entity entity) {
-        if (entity instanceof PlayerEntity && entity != Wrapper.INSTANCE.getLocalPlayer())
+        if (entity instanceof Player && entity != Wrapper.INSTANCE.getLocalPlayer())
             return playersProperty.value();
         if (entity instanceof ItemEntity)
             return itemsProperty.value();

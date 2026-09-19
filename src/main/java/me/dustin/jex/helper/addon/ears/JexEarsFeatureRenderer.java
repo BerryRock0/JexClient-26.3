@@ -20,7 +20,7 @@ public class JexEarsFeatureRenderer extends FeatureRenderer<PlayerEntity, Player
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, PlayerEntity playerEntity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, Player playerEntity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         String uuid = playerEntity.getUuidAsString().replace("-", "");
         if (playerEntity.isInvisible() || !EarsHelper.INSTANCE.hasEars(uuid)) {
             return;
@@ -29,7 +29,7 @@ public class JexEarsFeatureRenderer extends FeatureRenderer<PlayerEntity, Player
         render(matrices, vertexConsumers, light, playerEntity, EarsHelper.INSTANCE.getEars(uuid), addonResponse.enchantedears());
     }
 
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, PlayerEntity playerEntity, Identifier texture, boolean enchanted) {
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, Player playerEntity, Identifier texture, boolean enchanted) {
         VertexConsumer vertexConsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, RenderLayer.getArmorCutoutNoCull(texture), false, enchanted);
         matrices.push();
         if (playerEntity.isInSneakingPose())

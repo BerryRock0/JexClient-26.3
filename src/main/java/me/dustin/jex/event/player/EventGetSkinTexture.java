@@ -5,15 +5,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.Identifier;
 
 public class EventGetSkinTexture extends Event {
-    private final PlayerEntity playerEntity;
+    private final Player playerEntity;
     private Identifier skin;
 
-    public EventGetSkinTexture(PlayerEntity playerEntity, Identifier skin) {
-        this.playerEntity = playerEntity;
+    public EventGetSkinTexture(Player playerEntity, Identifier skin) {
+        this.Player = playerEntity;
         this.skin = skin;
     }
 
-    public PlayerEntity getPlayerEntity() {
+    public Player getPlayerEntity() {
         return playerEntity;
     }
 

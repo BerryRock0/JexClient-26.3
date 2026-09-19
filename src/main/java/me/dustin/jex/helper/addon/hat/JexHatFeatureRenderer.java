@@ -16,13 +16,13 @@ public class JexHatFeatureRenderer extends FeatureRenderer<PlayerEntity, PlayerE
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, PlayerEntity playerEntity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, Player playerEntity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         String uuid = playerEntity.getUuidAsString().replace("-", "");
         if (HatHelper.INSTANCE.hasHat(uuid))
             this.render(matrices, vertexConsumers, light, playerEntity, HatHelper.INSTANCE.getHatTexture(uuid), HatHelper.INSTANCE.getType(playerEntity));
     }
 
-    public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, PlayerEntity playerEntity, Identifier texture, HatHelper.HatType hatType) {
+    public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, Player playerEntity, Identifier texture, HatHelper.HatType hatType) {
         if (playerEntity.isInvisible())
             return;
         matrixStack.push();

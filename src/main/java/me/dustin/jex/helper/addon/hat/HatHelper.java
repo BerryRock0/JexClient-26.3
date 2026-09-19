@@ -125,7 +125,7 @@ public enum HatHelper {
         return HatType.TOP_HAT;
     }
 
-    public HatType getType(PlayerEntity playerEntity) {
+    public HatType getType(Player playerEntity) {
         String uuid = playerEntity.getUuidAsString().replace("-", "");
         if (!hats.containsKey(uuid))
             return null;
@@ -138,7 +138,7 @@ public enum HatHelper {
         return hats.get(uuid);
     }
 
-    public boolean hasHat(PlayerEntity playerEntity) {
+    public boolean hasHat(Player playerEntity) {
         return hasHat(playerEntity.getUuid().toString().replace("-", ""));
     }
 

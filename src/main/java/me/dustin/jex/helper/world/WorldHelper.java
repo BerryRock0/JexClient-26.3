@@ -442,7 +442,7 @@ public enum WorldHelper {
         return positions;
     }
 
-    public float calcExplosionDamage(float power, PlayerEntity playerEntity, BlockPos explosionPos) {
+    public float calcExplosionDamage(float power, Player playerEntity, BlockPos explosionPos) {
         Vec3d vec3d = ClientMathHelper.INSTANCE.getVec(explosionPos);
         float j = power * 2.0F;
         double h = Math.sqrt(playerEntity.squaredDistanceTo(vec3d)) / (double) j;

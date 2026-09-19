@@ -61,14 +61,14 @@ public class MixinClientPlayerInteractionManager implements IClientPlayerInterac
     }
 
     @Inject(method = "interactBlock", at = @At("HEAD"), cancellable = true)
-    public void interactBlockPre(ClientPlayerEntity player, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir) {
+    public void interactBlockPre(ClientPlayer player, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir) {
         EventInteractBlock eventInteractBlock = new EventInteractBlock(hitResult.getBlockPos(), hitResult, EventInteractBlock.Mode.PRE).run();
         if (eventInteractBlock.isCancelled())
             cir.setReturnValue(ActionResult.PASS);
     }
 
     @Inject(method = "interactBlock", at = @At("RETURN"), cancellable = true)
-    public void interactBlockPost(ClientPlayerEntity player, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir) {
+    public void interactBlockPost(ClientPlayer player, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir) {
         new EventInteractBlock(hitResult.getBlockPos(), hitResult, EventInteractBlock.Mode.POST).run();
     }
 
@@ -78,7 +78,7 @@ public class MixinClientPlayerInteractionManager implements IClientPlayerInterac
     }
 
     @Inject(method = "attackEntity", at = @At("HEAD"), cancellable = true)
-    public void attackEntity1(PlayerEntity player, Entity target, CallbackInfo ci) {
+    public void attackEntity1(Player player, Entity target, CallbackInfo ci) {
         EventAttackEntity eventAttackEntity = new EventAttackEntity(target).run();
         if (eventAttackEntity.isCancelled()) {
             ci.cancel();

@@ -45,14 +45,14 @@ public class LogOutSpot extends Feature {
 			for (Entry entry : playerLists2CPacket.getEntries()) {
 				int id = 69420 + ClientMathHelper.INSTANCE.getRandom(200);
 				UUID uuid = entry.getProfile().getId();
-				PlayerEntity player = Wrapper.INSTANCE.getWorld().getPlayerByUuid(uuid);
+				Player player = Wrapper.INSTANCE.getWorld().getPlayerByUuid(uuid);
 				if (player == null || player.getName().getString().isEmpty() || EntityHelper.INSTANCE.isNPC(player))
 					return;
 				PlayerData playerInfo = new PlayerData(player.getName().getString(), uuid, id);
 				String name = "LOG: \247b" + player.getName().getString();
 				logOutList.add(playerInfo);
 				ChatHelper.INSTANCE.addClientMessage(player.getName().getString() + " logged out");
-				FakePlayerEntity fakePlayer = new FakePlayerEntity(Wrapper.INSTANCE.getWorld(), new GameProfile(UUID.randomUUID(), name));
+				FakePlayer fakePlayer = new FakePlayerEntity(Wrapper.INSTANCE.getWorld(), new GameProfile(UUID.randomUUID(), name));
 				fakePlayer.copyFrom(player);
 				fakePlayer.copyPositionAndRotation(player);
 				Wrapper.INSTANCE.getWorld().addEntity(id, fakePlayer);
@@ -64,7 +64,7 @@ public class LogOutSpot extends Feature {
 					PlayerData data = logOutList.get(i);
 					if (data.uuid().compareTo(entry.getProfile().getId()) == 0) {
 						for (int j = 0; j < fakePlayers.size(); j++) {
-							FakePlayerEntity fakePlayer = fakePlayers.get(j);
+							FakePlayer fakePlayer = fakePlayers.get(j);
 							if (fakePlayer.getName().getString().contains(data.name())) {
 								fakePlayer.setPos(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
 								Wrapper.INSTANCE.getWorld().removeEntity(fakePlayer.getId(), RemovalReason.DISCARDED);

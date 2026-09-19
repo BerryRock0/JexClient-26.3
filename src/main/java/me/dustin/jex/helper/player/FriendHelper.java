@@ -25,7 +25,7 @@ public enum FriendHelper {
         return getFriendViaName(name) != null;
     }
 
-    public boolean isFriend(PlayerEntity playerEntity) {
+    public boolean isFriend(Player playerEntity) {
         return isFriend(playerEntity.getName().getString());
     }
 

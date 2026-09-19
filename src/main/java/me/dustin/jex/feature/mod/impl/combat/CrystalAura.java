@@ -120,7 +120,7 @@ public class CrystalAura extends Feature {
 			if (stopWatch.hasPassed(placeDelayProperty.value()))
 				if (autoPlaceProperty.value() && ((Wrapper.INSTANCE.getLocalPlayer().getMainHandStack() != null && Wrapper.INSTANCE.getLocalPlayer().getMainHandStack().getItem() == Items.END_CRYSTAL) || offhand)) {
 					Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
-						if (entity instanceof PlayerEntity entityPlayer && entity != Wrapper.INSTANCE.getLocalPlayer() && !FriendHelper.INSTANCE.isFriend(entity.getDisplayName().getString())) {
+						if (entity instanceof Player entityPlayer && entity != Wrapper.INSTANCE.getLocalPlayer() && !FriendHelper.INSTANCE.isFriend(entity.getDisplayName().getString())) {
 							BlockPos placingPos = getOpenBlockPos(entityPlayer);
 							if (placingPos != null) {
 								EndCrystalEntity crystal = new EndCrystalEntity(Wrapper.INSTANCE.getWorld(), placingPos.getX(), placingPos.getY(), placingPos.getZ());
@@ -159,7 +159,7 @@ public class CrystalAura extends Feature {
 	private final EventListener<EventRender3D> eventRender3DEventListener = new EventListener<>(event -> {
 		if (autoPlaceProperty.value() && visualizeProperty.value())
 			Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
-				if (entity instanceof PlayerEntity entityPlayer && entity != Wrapper.INSTANCE.getLocalPlayer()) {
+				if (entity instanceof Player entityPlayer && entity != Wrapper.INSTANCE.getLocalPlayer()) {
 					BlockPos placingPos = getOpenBlockPos(entityPlayer);
 					if (placingPos != null && !FriendHelper.INSTANCE.isFriend(entityPlayer.getDisplayName().getString())) {
 						EndCrystalEntity crystal = new EndCrystalEntity(Wrapper.INSTANCE.getWorld(), placingPos.getX(), placingPos.getY(), placingPos.getZ());
@@ -171,7 +171,7 @@ public class CrystalAura extends Feature {
 			});
 	});
 
-	public BlockPos getOpenBlockPos(PlayerEntity entityPlayer) {
+	public BlockPos getOpenBlockPos(Player entityPlayer) {
 		double d = 0;
 		BlockPos closest = null;
 		for (int x = -4; x < 4; x++) {
@@ -205,7 +205,7 @@ public class CrystalAura extends Feature {
 		return closest;
 	}
 
-	private boolean isBlocking(BlockPos blockPos, PlayerEntity EntityPlayer) {
+	private boolean isBlocking(BlockPos blockPos, Player EntityPlayer) {
 		Box box = new Box(blockPos.up());
 		if (EntityPlayer.getBoundingBox().intersects(box))
 			return true;
@@ -232,7 +232,7 @@ public class CrystalAura extends Feature {
 	}
 
 	public boolean isTarget(LivingEntity livingEntity, EndCrystalEntity enderCrystalEntity) {
-		if (livingEntity instanceof PlayerEntity && livingEntity != Wrapper.INSTANCE.getLocalPlayer()) {
+		if (livingEntity instanceof Player && livingEntity != Wrapper.INSTANCE.getLocalPlayer()) {
 			return !FriendHelper.INSTANCE.isFriend(livingEntity.getName().getString()) && livingEntity.distanceTo(enderCrystalEntity) <= 6 && livingEntity.getHealth() > 0;
 		}
 		return false;

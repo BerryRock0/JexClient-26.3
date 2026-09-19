@@ -652,8 +652,8 @@ public enum Render2DHelper {
                 RenderSystem.enableDepthTest();
             }
 
-            ClientPlayerEntity clientPlayerEntity = MinecraftClient.getInstance().player;
-            float f = clientPlayerEntity == null ? 0.0F : clientPlayerEntity.getItemCooldownManager().getCooldownProgress(stack.getItem(), MinecraftClient.getInstance().getTickDelta());
+            ClientPlayer clientPlayer = MinecraftClient.getInstance().player;
+            float f = clientPlayer == null ? 0.0F : clientPlayerEntity.getItemCooldownManager().getCooldownProgress(stack.getItem(), MinecraftClient.getInstance().getTickDelta());
             if (f > 0.0F) {
                 RenderSystem.disableDepthTest();
                 RenderSystem.disableTexture();

@@ -57,7 +57,7 @@ public class Enderman extends Feature {
         }
     }, Priority.SECOND, new PlayerPacketsFilter(EventPlayerPackets.Mode.PRE));
 
-    private boolean isPlayerStaring(PlayerEntity player, EndermanEntity endermanEntity) {
+    private boolean isPlayerStaring(Player player, EndermanEntity endermanEntity) {
         ItemStack itemStack = InventoryHelper.INSTANCE.getInventory(player).armor.get(3);
         if (itemStack.getItem() == Blocks.CARVED_PUMPKIN.asItem()) {
             return false;

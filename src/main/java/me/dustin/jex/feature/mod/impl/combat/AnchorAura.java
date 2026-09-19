@@ -138,7 +138,7 @@ public class AnchorAura extends Feature {
             if (placeStopWatch.hasPassed(placeDelayProperty.value()))
                 if (autoPlaceProperty.value() && ((Wrapper.INSTANCE.getLocalPlayer().getMainHandStack() != null && Wrapper.INSTANCE.getLocalPlayer().getMainHandStack().getItem() == Items.RESPAWN_ANCHOR))) {
                     for (Entity entity : Wrapper.INSTANCE.getWorld().getEntities()) {
-                        if (entity instanceof PlayerEntity entityPlayer && entity != Wrapper.INSTANCE.getLocalPlayer() && !FriendHelper.INSTANCE.isFriend(entity.getDisplayName().getString())) {
+                        if (entity instanceof Player entityPlayer && entity != Wrapper.INSTANCE.getLocalPlayer() && !FriendHelper.INSTANCE.isFriend(entity.getDisplayName().getString())) {
                             BlockPos placingPos = getOpenBlockPos(entityPlayer);
                             if (placingPos != null) {
                                 if (ClientMathHelper.INSTANCE.getDistance(entityPlayer.getPos(), new Vec3d(placingPos.getX(), placingPos.getY(), placingPos.getZ())) <= 6 && !FriendHelper.INSTANCE.isFriend(entityPlayer.getName().getString()) && entityPlayer.getHealth() > 0 && shouldExplode(placingPos)) {
@@ -166,7 +166,7 @@ public class AnchorAura extends Feature {
             return;
         if (autoPlaceProperty.value() && visualizeProperty.value())
             Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
-                if (entity instanceof PlayerEntity entityPlayer && entity != Wrapper.INSTANCE.getLocalPlayer()) {
+                if (entity instanceof Player entityPlayer && entity != Wrapper.INSTANCE.getLocalPlayer()) {
                     BlockPos placingPos = getOpenBlockPos(entityPlayer);
                     if (placingPos != null && !FriendHelper.INSTANCE.isFriend(entityPlayer.getDisplayName().getString())) {
                         Vec3d renderPos = Render3DHelper.INSTANCE.getRenderPosition(placingPos.getX(), placingPos.getY(), placingPos.getZ());
@@ -177,7 +177,7 @@ public class AnchorAura extends Feature {
             });
     });
 
-    public BlockPos getOpenBlockPos(PlayerEntity entityPlayer) {
+    public BlockPos getOpenBlockPos(Player entityPlayer) {
         double distance = 6;
         BlockPos closest = null;
         for (int x = -4; x < 4; x++) {
@@ -207,7 +207,7 @@ public class AnchorAura extends Feature {
         return closest;
     }
 
-    private BlockPos getChargedAnchor(PlayerEntity entityPlayer) {
+    private BlockPos getChargedAnchor(Player entityPlayer) {
         double distance = 6;
         BlockPos closest = null;
         for (int x = -explodeDistanceProperty.value(); x < explodeDistanceProperty.value(); x++) {
@@ -231,7 +231,7 @@ public class AnchorAura extends Feature {
         return closest;
     }
 
-    private BlockPos getAnchor(PlayerEntity entityPlayer) {
+    private BlockPos getAnchor(Player entityPlayer) {
         double distance = 6;
         BlockPos closest = null;
         for (int x = -explodeDistanceProperty.value(); x < explodeDistanceProperty.value(); x++) {
@@ -255,7 +255,7 @@ public class AnchorAura extends Feature {
         return closest;
     }
 
-    private boolean isBlocking(BlockPos blockPos, PlayerEntity playerEntity) {
+    private boolean isBlocking(BlockPos blockPos, Player playerEntity) {
         Box box = new Box(blockPos.up());
         return playerEntity.getBoundingBox().intersects(box) || Wrapper.INSTANCE.getLocalPlayer().getBoundingBox().intersects(box);
     }
@@ -292,7 +292,7 @@ public class AnchorAura extends Feature {
     }
 
     public boolean isTarget(LivingEntity livingEntity, BlockPos blockPos) {
-        if (livingEntity instanceof PlayerEntity && livingEntity != Wrapper.INSTANCE.getLocalPlayer()) {
+        if (livingEntity instanceof Player && livingEntity != Wrapper.INSTANCE.getLocalPlayer()) {
             return !FriendHelper.INSTANCE.isFriend(livingEntity.getName().getString()) && ClientMathHelper.INSTANCE.getDistance(livingEntity.getPos(), new Vec3d(blockPos.getX(), blockPos.getY(), blockPos.getZ())) <= 6 && livingEntity.getHealth() > 0;
         }
         return false;

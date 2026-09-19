@@ -94,7 +94,7 @@ public enum EntityHelper {
         return doesPlayerOwn(entity, Wrapper.INSTANCE.getLocalPlayer());
     }
 
-    public boolean doesPlayerOwn(Entity entity, PlayerEntity playerEntity) {
+    public boolean doesPlayerOwn(Entity entity, Player playerEntity) {
         if (entity instanceof LivingEntity)
             return getOwnerUUID((LivingEntity)entity) != null && getOwnerUUID((LivingEntity)entity).toString().equals(playerEntity.getUuid().toString());
         return false;
@@ -120,7 +120,7 @@ public enum EntityHelper {
         return Wrapper.INSTANCE.getLocalPlayer() != null && Wrapper.INSTANCE.getLocalPlayer().getHungerManager().getFoodLevel() > 6 && !Wrapper.INSTANCE.getLocalPlayer().horizontalCollision;
     }
 
-    public boolean isOnSameTeam(PlayerEntity player_1, PlayerEntity player_2, boolean armor) {
+    public boolean isOnSameTeam(Player player_1, Player player_2, boolean armor) {
         String all = "0123456789abcdef";
         for (int i = 0; i < all.length(); i++) {
             char s = all.charAt(i);
@@ -164,7 +164,7 @@ public enum EntityHelper {
         return dist;
     }
 
-    public boolean isNPC(PlayerEntity player) {
+    public boolean isNPC(Player player) {
         if (Wrapper.INSTANCE.getLocalPlayer() == null)
             return true;
         if (player instanceof FakePlayerEntity)

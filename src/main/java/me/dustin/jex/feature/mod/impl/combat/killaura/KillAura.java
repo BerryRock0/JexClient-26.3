@@ -254,7 +254,7 @@ public class KillAura extends Feature {
     @EventPointer
     private final EventListener<EventPlayerPackets> eventPlayerPacketsEventListener = new EventListener<>(event -> {
         for(Entity entity : Wrapper.INSTANCE.getWorld().getEntities()) {
-            if(entity instanceof PlayerEntity playerEntity) {
+            if(entity instanceof Player playerEntity) {
                 if(playerEntity.isOnGround() && !touchedGround.contains(playerEntity))
                     touchedGround.add(playerEntity);
                 if(playerEntity.handSwingProgress > 0 && !swung.contains(playerEntity))
@@ -262,14 +262,14 @@ public class KillAura extends Feature {
             }
         }
         for(int i = 0; i < swung.size() - 1; i++) {
-            PlayerEntity playerEntity = swung.get(i);
-            if(playerEntity == null) {
+            Player Player = swung.get(i);
+            if(Player == null) {
                 swung.remove(i);
             }
         }
         for(int i = 0; i < touchedGround.size() - 1; i++) {
-            PlayerEntity playerEntity = touchedGround.get(i);
-            if(playerEntity == null) {
+            Player Player = touchedGround.get(i);
+            if(Player == null) {
                 touchedGround.remove(i);
             }
         }
@@ -336,7 +336,7 @@ public class KillAura extends Feature {
             if (entity.distanceTo(Wrapper.INSTANCE.getPlayer()) > distance)
                 return false;
         }
-        if (entity instanceof PlayerEntity && entity != Wrapper.INSTANCE.getLocalPlayer()) {
+        if (entity instanceof Player && entity != Wrapper.INSTANCE.getLocalPlayer()) {
             if (FriendHelper.INSTANCE.isFriend(entity.getName().getString()))
                 return false;
             if (EntityHelper.INSTANCE.isOnSameTeam((PlayerEntity) entity, Wrapper.INSTANCE.getLocalPlayer(), checkArmorProperty.value()) && teamCheckProperty.value())
@@ -364,7 +364,7 @@ public class KillAura extends Feature {
         return false;
     }
 
-    public boolean isBot(PlayerEntity playerEntity) {
+    public boolean isBot(Player playerEntity) {
         if (EntityHelper.INSTANCE.isNPC(playerEntity)) {
             return true;
         } else {

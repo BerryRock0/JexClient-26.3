@@ -138,7 +138,7 @@ public class SingleAura extends FeatureExtension {
         float distance = KillAura.INSTANCE.reachProperty.value();
         for (Entity entity : Wrapper.INSTANCE.getWorld().getEntities()) {
             if (entity instanceof LivingEntity livingEntity1) {
-                if (KillAura.INSTANCE.isValid(livingEntity1, true) && livingEntity1.distanceTo(Freecam.playerEntity != null ? Freecam.playerEntity : Wrapper.INSTANCE.getLocalPlayer()) <= distance) {
+                if (KillAura.INSTANCE.isValid(livingEntity1, true) && livingEntity1.distanceTo(Freecam.Player != null ? Freecam.Player : Wrapper.INSTANCE.getLocalPlayer()) <= distance) {
                     livingEntity = livingEntity1;
                     distance = livingEntity1.distanceTo(Wrapper.INSTANCE.getLocalPlayer());
                 }

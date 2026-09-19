@@ -8,6 +8,6 @@ import net.minecraft.network.message.MessageMetadata;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
 
-public interface IClientPlayerEntity {
+public interface IClientPlayer {
     ArgumentSignatureDataMap callSignArguments(MessageMetadata signer, ParseResults<CommandSource> parseResults, @Nullable Text preview, LastSeenMessageList lastSeenMessages);
 }

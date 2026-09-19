@@ -191,7 +191,7 @@ public class ESP extends Feature {
             return false;
         if (livingEntity == Wrapper.INSTANCE.getLocalPlayer())
             return false;
-        if (livingEntity instanceof PlayerEntity && EntityHelper.INSTANCE.isNPC((PlayerEntity) livingEntity))
+        if (livingEntity instanceof Player && EntityHelper.INSTANCE.isNPC((PlayerEntity) livingEntity))
             return false;
         if (livingEntity instanceof PlayerEntity)
             return playerProperty.value();

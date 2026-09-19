@@ -35,7 +35,7 @@ public class MixinHeldItemRenderer {
     @Shadow @Final private MinecraftClient client;
 
     @Inject(method = "renderFirstPersonItem", at = @At("HEAD"), cancellable = true)
-    public void renderFirstPersonItem(AbstractClientPlayerEntity player, float tickDelta, float pitch, Hand hand, float swingProgress, ItemStack item, float equipProgress, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
+    public void renderFirstPersonItem(AbstractClientPlayer player, float tickDelta, float pitch, Hand hand, float swingProgress, ItemStack item, float equipProgress, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
         EventRenderHeldItem eventRenderHeldItem = new EventRenderHeldItem(item, hand, tickDelta, matrices).run();
         if (eventRenderHeldItem.isCancelled())
             ci.cancel();
@@ -47,7 +47,7 @@ public class MixinHeldItemRenderer {
             ci.cancel();
             this.prevEquipProgressMainHand = this.equipProgressMainHand;
             this.prevEquipProgressOffHand = this.equipProgressOffHand;
-            ClientPlayerEntity clientPlayerEntity = this.client.player;
+            ClientPlayer clientPlayer = this.client.player;
             ItemStack itemStack = clientPlayerEntity.getMainHandStack();
             ItemStack itemStack2 = clientPlayerEntity.getOffHandStack();
             if (ItemStack.areEqual(this.mainHand, itemStack)) {

@@ -22,7 +22,7 @@ public class BoostElytraFly extends FeatureExtension {
             elytraPlus = Feature.get(ElytraPlus.class);
         if (event instanceof EventMove eventMove) {
             if (Wrapper.INSTANCE.getLocalPlayer().isFallFlying()) {
-                ClientPlayerEntity player = Wrapper.INSTANCE.getLocalPlayer();
+                ClientPlayer player = Wrapper.INSTANCE.getLocalPlayer();
                 double currentVel = Math.abs(player.getVelocity().x) + Math.abs(player.getVelocity().y) + Math.abs(player.getVelocity().z);
                 float radianYaw = (float) Math.toRadians(player.getYaw());
                 if (currentVel <= elytraPlus.maxBoostProperty.value()) {

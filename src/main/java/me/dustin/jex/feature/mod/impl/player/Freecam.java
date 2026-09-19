@@ -50,7 +50,7 @@ public class Freecam extends Feature {
 
     private Vec3d savedCoords = Vec3d.ZERO;
     private RotationVector lookVec = new RotationVector(0, 0);
-    public static PlayerEntity playerEntity;
+    public static Player playerEntity;
 
     public Freecam() {
         super(Category.PLAYER, "Take a look around like a ghost.");
@@ -69,7 +69,7 @@ public class Freecam extends Feature {
 
     @EventPointer
     private final EventListener<EventPlayerPackets> eventPlayerPacketsEventListener = new EventListener<>(event -> {
-        if (playerEntity != null) {
+        if (Player != null) {
             if (hasMoved(playerEntity)) {
                 PlayerMoveC2SPacket playerMoveC2SPacket = new PlayerMoveC2SPacket.Full(playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), playerEntity.getYaw(), playerEntity.getPitch(), playerEntity.isOnGround());
                 NetworkHelper.INSTANCE.sendPacket(playerMoveC2SPacket);
@@ -130,7 +130,7 @@ public class Freecam extends Feature {
             savedCoords = new Vec3d(Wrapper.INSTANCE.getLocalPlayer().getX(), Wrapper.INSTANCE.getLocalPlayer().getY(), Wrapper.INSTANCE.getLocalPlayer().getZ());
             lookVec = new RotationVector(Wrapper.INSTANCE.getLocalPlayer());
 
-            playerEntity = new FakePlayerEntity(Wrapper.INSTANCE.getWorld(), new GameProfile(UUID.randomUUID(), Wrapper.INSTANCE.getMinecraft().getSession().getUsername()));
+            Player = new FakePlayerEntity(Wrapper.INSTANCE.getWorld(), new GameProfile(UUID.randomUUID(), Wrapper.INSTANCE.getMinecraft().getSession().getUsername()));
             playerEntity.copyFrom(Wrapper.INSTANCE.getLocalPlayer());
             playerEntity.copyPositionAndRotation(Wrapper.INSTANCE.getLocalPlayer());
             Wrapper.INSTANCE.getWorld().addEntity(69420, playerEntity);
@@ -145,7 +145,7 @@ public class Freecam extends Feature {
         if (Wrapper.INSTANCE.getLocalPlayer() != null && resetPosProperty.value()) {
             Wrapper.INSTANCE.getLocalPlayer().noClip = false;
             Wrapper.INSTANCE.getWorldRenderer().reload();
-            if (playerEntity == null) {
+            if (Player == null) {
                 Wrapper.INSTANCE.getLocalPlayer().setPos(savedCoords.getX(), savedCoords.getY(), savedCoords.getZ());
                 NetworkHelper.INSTANCE.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(savedCoords.getX(), savedCoords.getY(), savedCoords.getZ(), false));
             } else {
@@ -154,17 +154,17 @@ public class Freecam extends Feature {
             }
         }
         savedCoords = Vec3d.ZERO;
-        if (playerEntity != null) {
+        if (Player != null) {
             playerEntity.setPos(Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
             if (Wrapper.INSTANCE.getWorld() != null)
                 Wrapper.INSTANCE.getWorld().removeEntity(playerEntity.getId(), Entity.RemovalReason.DISCARDED);
-            playerEntity = null;
+            Player = null;
         }
         if (Wrapper.INSTANCE.getLocalPlayer() != null)
             Wrapper.INSTANCE.getLocalPlayer().setVelocity(0, 0, 0);
     }
 
-    private boolean hasMoved(PlayerEntity playerEntity) {
+    private boolean hasMoved(Player playerEntity) {
         return playerEntity.prevX != playerEntity.getX() || playerEntity.prevY != playerEntity.getY() || playerEntity.prevZ != playerEntity.getZ() || playerEntity.prevYaw != playerEntity.getYaw() || playerEntity.prevPitch != playerEntity.getPitch();
     }
 }

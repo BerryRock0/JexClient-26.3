@@ -297,7 +297,7 @@ public class Excavator extends Feature {
         return Color.getHSBColor((float) H, (float) S, (float) B);
     }
 
-    public BlockHitResult rayCast(PlayerEntity player, BlockPos blockPos) {
+    public BlockHitResult rayCast(Player player, BlockPos blockPos) {
         RotationVector rotationVector = PlayerHelper.INSTANCE.rotateToVec(player, Vec3d.of(blockPos).add(0.5, 0, 0.5));
         RotationVector saved = new RotationVector(player);
         Wrapper.INSTANCE.getPlayer().setYaw(rotationVector.getYaw());

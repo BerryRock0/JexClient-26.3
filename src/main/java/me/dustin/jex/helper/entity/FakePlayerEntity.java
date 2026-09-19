@@ -9,7 +9,7 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.Identifier;
 import java.util.UUID;
 
-public class FakePlayerEntity extends AbstractClientPlayerEntity {
+public class FakePlayer extends AbstractClientPlayer {
 
     public FakePlayerEntity(ClientWorld world, GameProfile profile) {
         super(world, profile, null);
@@ -24,6 +24,6 @@ public class FakePlayerEntity extends AbstractClientPlayerEntity {
         if (hasSkinTexture())
             return super.getSkinTexture();
         else
-            return MCAPIHelper.INSTANCE.getPlayerSkin(this == Freecam.playerEntity ? Wrapper.INSTANCE.getMinecraft().getSession().getProfile().getId() : this.uuid);
+            return MCAPIHelper.INSTANCE.getPlayerSkin(this == Freecam.Player ? Wrapper.INSTANCE.getMinecraft().getSession().getProfile().getId() : this.uuid);
     }
 }

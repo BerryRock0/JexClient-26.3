@@ -175,7 +175,7 @@ public class Nametag extends Feature {
         Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
             if (isValid(entity) && !positions.containsKey(entity)) {
                 float offset = entity.getHeight() + 0.2f;
-                if (entity instanceof PlayerEntity playerEntity) {
+                if (entity instanceof Player playerEntity) {
                     if (HatHelper.INSTANCE.hasHat(playerEntity)) {
                         if (HatHelper.INSTANCE.getType(playerEntity) == HatHelper.HatType.TOP_HAT || playerEntity.getEquippedStack(EquipmentSlot.HEAD).getItem() == Items.DRAGON_HEAD || EarsHelper.INSTANCE.hasEars(playerEntity.getUuidAsString().replace("-", "")))
                             offset = entity.getHeight() + 0.7f;
@@ -213,7 +213,7 @@ public class Nametag extends Feature {
                 Vec3d vec = positions.get(entity);
                 if (isOnScreen(vec)) {
                     float x = (float) vec.x;
-                    float y = (float) vec.y - (showPlayerFaceProperty.value() && entity instanceof PlayerEntity ? 18 : 0);
+                    float y = (float) vec.y - (showPlayerFaceProperty.value() && entity instanceof Player ? 18 : 0);
                     String nameString = getNameString(entity);
                     if (entity instanceof ItemEntity itemEntity) {
                         AtomicInteger stackCount = new AtomicInteger(itemEntity.getStack().getCount());
@@ -254,7 +254,7 @@ public class Nametag extends Feature {
                 Vec3d vec = positions.get(entity);
                 if (isOnScreen(vec)) {
                     float x = (float) vec.x;
-                    float y = (float) vec.y - (showPlayerFaceProperty.value() && entity instanceof PlayerEntity ? 18 : 0);
+                    float y = (float) vec.y - (showPlayerFaceProperty.value() && entity instanceof Player ? 18 : 0);
                     String nameString = getNameString(entity);
 
                     if (entity instanceof ItemEntity itemEntity) {
@@ -284,7 +284,7 @@ public class Nametag extends Feature {
 
     public void drawInventoryItems(MatrixStack matrixStack, Vec3d vec, LivingEntity livingEntity) {
         float x = (float) vec.x;
-        float y = (float) vec.y - (showPlayerFaceProperty.value() && livingEntity instanceof PlayerEntity ? 18 : 0);
+        float y = (float) vec.y - (showPlayerFaceProperty.value() && livingEntity instanceof Player ? 18 : 0);
         int itemWidth = 16;
         int totalCount = getItems(livingEntity).size();
         float startX = (x - ((totalCount * itemWidth) / 2.f));
@@ -320,7 +320,7 @@ public class Nametag extends Feature {
 
     public void drawInventoryBackgrounds(MatrixStack matrixStack, Vec3d vec, LivingEntity livingEntity) {
         float x = (float) vec.x;
-        float y = (float) vec.y - (showPlayerFaceProperty.value() && livingEntity instanceof PlayerEntity ? 18 : 0);
+        float y = (float) vec.y - (showPlayerFaceProperty.value() && livingEntity instanceof Player ? 18 : 0);
         int itemWidth = 16;
         int totalCount = getItems(livingEntity).size();
         float startX = (x - ((totalCount * itemWidth) / 2.f));
@@ -412,14 +412,14 @@ public class Nametag extends Feature {
         String name = entity.getDisplayName().getString();
         if (name.trim().isEmpty())
             name = entity.getName().getString();
-        if (entity instanceof PlayerEntity && FriendHelper.INSTANCE.isFriend(entity.getName().getString()))
+        if (entity instanceof Player && FriendHelper.INSTANCE.isFriend(entity.getName().getString()))
             name = FriendHelper.INSTANCE.getFriendViaName(entity.getName().getString()).alias();
         if (entity instanceof ItemEntity itemEntity) {
             name = entity.getDisplayName().getString();
             if (itemEntity.getStack().getCount() > 1)
                 name += " \247fx" + itemEntity.getStack().getCount();
         }
-        if (pingProperty.value() && entity instanceof PlayerEntity playerEntity && Wrapper.INSTANCE.getLocalPlayer().networkHandler != null) {
+        if (pingProperty.value() && entity instanceof Player Player && Wrapper.INSTANCE.getLocalPlayer().networkHandler != null) {
             PlayerListEntry entry = Wrapper.INSTANCE.getLocalPlayer().networkHandler.getPlayerListEntry(playerEntity.getUuid());
             if (entry != null) {
                 int ping = entry.getLatency();
@@ -455,7 +455,7 @@ public class Nametag extends Feature {
             return ESP.INSTANCE.passiveColorProperty.value().getRGB();
         if (EntityHelper.INSTANCE.isNeutralMob(entity))
             return ESP.INSTANCE.neutralColorProperty.value().getRGB();
-        if (entity instanceof PlayerEntity playerEntity) {
+        if (entity instanceof Player playerEntity) {
             if (FriendHelper.INSTANCE.isFriend(playerEntity))
                 return ESP.INSTANCE.friendColorProperty.value().getRGB();
             else if (entity.isInvisible())

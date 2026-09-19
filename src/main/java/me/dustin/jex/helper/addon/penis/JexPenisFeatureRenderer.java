@@ -17,7 +17,7 @@ public class JexPenisFeatureRenderer extends FeatureRenderer<PlayerEntity, Playe
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, PlayerEntity playerEntity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, Player playerEntity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         String uuid = playerEntity.getUuidAsString().replace("-", "");
         if (playerEntity.isInvisible() || !PenisHelper.INSTANCE.hasPenis(uuid))
             return;

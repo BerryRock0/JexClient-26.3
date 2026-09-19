@@ -31,7 +31,7 @@ public abstract class MixinMinecraft implements IMinecraft {
 
     @Shadow @Final public GameOptions options;
 
-    @Shadow @Nullable public ClientPlayerEntity player;
+    @Shadow @Nullable public ClientPlayer player;
 
     @Mutable
     @Shadow @Final private MinecraftSessionService sessionService;

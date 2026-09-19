@@ -24,12 +24,12 @@ public enum Wrapper {
         return (IMinecraft)MinecraftClient.getInstance();
     }
 
-    public ClientPlayerEntity getLocalPlayer() {
+    public ClientPlayer getLocalPlayer() {
         return getMinecraft().player;
     }
 
-    public PlayerEntity getPlayer() {
-        return Feature.getState(Freecam.class) ? Freecam.playerEntity : getLocalPlayer();
+    public Player getPlayer() {
+        return Feature.getState(Freecam.class) ? Freecam.Player : getLocalPlayer();
     }
 
     public ClientWorld getWorld() {

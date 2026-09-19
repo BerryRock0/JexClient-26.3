@@ -30,7 +30,7 @@ public enum ChatHelper {
     public void sendCommand(String command) {
         MessageMetadata chatMessageSigner = MessageMetadata.of(Wrapper.INSTANCE.getLocalPlayer().getUuid());
         ParseResults<CommandSource> parseResults = Wrapper.INSTANCE.getMinecraft().getNetworkHandler().getCommandDispatcher().parse(command, Wrapper.INSTANCE.getMinecraft().getNetworkHandler().getCommandSource());
-        IClientPlayerEntity iClientPlayerEntity = (IClientPlayerEntity)Wrapper.INSTANCE.getLocalPlayer();
+        IClientPlayer iClientPlayer = (IClientPlayerEntity)Wrapper.INSTANCE.getLocalPlayer();
         LastSeenMessageList.Acknowledgment acknowledgment = Wrapper.INSTANCE.getMinecraft().getNetworkHandler().consumeAcknowledgment();
         ArgumentSignatureDataMap argumentSignatureDataMap = iClientPlayerEntity.callSignArguments(chatMessageSigner, parseResults, null, acknowledgment.lastSeen());
         NetworkHelper.INSTANCE.sendPacket(new CommandExecutionC2SPacket(command, chatMessageSigner.timestamp(), new Random().nextLong(), argumentSignatureDataMap, false, acknowledgment));

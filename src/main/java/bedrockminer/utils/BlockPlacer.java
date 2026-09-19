@@ -34,7 +34,7 @@ public class BlockPlacer {
                 x = x + 2 + direction.getId() * 2;
                 break;
             case VANILLA://直接发包，改变服务端玩家实体视角
-                PlayerEntity player = minecraftClient.player;
+                Player player = minecraftClient.player;
                 float pitch;
                 switch (direction) {
                     case UP:
@@ -61,7 +61,7 @@ public class BlockPlacer {
     }
 
     private static void placeBlockWithoutInteractingBlock(MinecraftClient minecraftClient, BlockHitResult hitResult) {
-        ClientPlayerEntity player = minecraftClient.player;
+        ClientPlayer player = minecraftClient.player;
         ItemStack itemStack = player.getStackInHand(Hand.MAIN_HAND);
 
         Wrapper.INSTANCE.getClientPlayerInteractionManager().interactBlock(Wrapper.INSTANCE.getLocalPlayer(), Hand.MAIN_HAND, hitResult);

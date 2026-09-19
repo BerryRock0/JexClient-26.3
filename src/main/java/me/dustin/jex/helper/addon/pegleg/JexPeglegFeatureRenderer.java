@@ -20,13 +20,13 @@ public class JexPeglegFeatureRenderer extends FeatureRenderer<PlayerEntity, Play
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, PlayerEntity playerEntity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, Player playerEntity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         String uuid = playerEntity.getUuidAsString().replace("-", "");
         if (PeglegHelper.INSTANCE.hasPegleg(uuid))
             this.render(matrices, vertexConsumers, light, playerEntity, PeglegHelper.INSTANCE.getPeglegTexture(uuid), PeglegHelper.INSTANCE.getType(playerEntity), AddonHelper.INSTANCE.getResponse(uuid).enchantedleg());
     }
 
-    public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, PlayerEntity playerEntity, Identifier texture, PeglegHelper.PeglegType peglegType, boolean enchanted) {
+    public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, Player playerEntity, Identifier texture, PeglegHelper.PeglegType peglegType, boolean enchanted) {
         if (playerEntity.isInvisible())
             return;
         matrixStack.push();

@@ -38,7 +38,7 @@ public class Blink extends Feature {
 			.build();
 
 	private final ArrayList<PlayerMoveC2SPacket> packets = new ArrayList<>();
-	public static PlayerEntity playerEntity;
+	public static Player playerEntity;
 	private boolean stopCatching;
 
 	public Blink() {
@@ -73,7 +73,7 @@ public class Blink extends Feature {
 	public void onEnable() {
 		stopCatching = false;
 		if (Wrapper.INSTANCE.getLocalPlayer() != null) {
-			playerEntity = new FakePlayerEntity(Wrapper.INSTANCE.getWorld(), new GameProfile(UUID.randomUUID(), Wrapper.INSTANCE.getMinecraft().getSession().getUsername()));
+			Player = new FakePlayerEntity(Wrapper.INSTANCE.getWorld(), new GameProfile(UUID.randomUUID(), Wrapper.INSTANCE.getMinecraft().getSession().getUsername()));
 			playerEntity.copyFrom(Wrapper.INSTANCE.getLocalPlayer());
 			playerEntity.copyPositionAndRotation(Wrapper.INSTANCE.getLocalPlayer());
 			Wrapper.INSTANCE.getWorld().addEntity(42069, playerEntity);
@@ -89,11 +89,11 @@ public class Blink extends Feature {
 		if (!bufferPacketsProperty.value())
 			packets.forEach(NetworkHelper.INSTANCE::sendPacket);
 		packets.clear();
-		if (playerEntity != null) {
+		if (Player != null) {
 			playerEntity.setPos(Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
 			if (Wrapper.INSTANCE.getWorld() != null)
 				Wrapper.INSTANCE.getWorld().removeEntity(playerEntity.getId(), Entity.RemovalReason.DISCARDED);
-			playerEntity = null;
+			Player = null;
 		}
 	}
 }

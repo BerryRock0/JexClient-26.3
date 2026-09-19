@@ -47,14 +47,14 @@ public enum AddonHelper {
 
 	@EventPointer
 	private final EventListener<EventShouldFlipUpsideDown> eventShouldFlipUpsideDownEventListener = new EventListener<>(event -> {
-		if (event.getLivingEntity() instanceof PlayerEntity playerEntity) {
+		if (event.getLivingEntity() instanceof Player playerEntity) {
 			AddonResponse response = getResponse(playerEntity.getUuidAsString().replace("-", ""));
 			if (response != null && response.upsideDown())
 				event.setFlip(true);
 		}
 	});
 
-	public void loadAddons(PlayerEntity player) {
+	public void loadAddons(Player player) {
 		if (EntityHelper.INSTANCE.isNPC(player))
 			return;
 		String s = player.getGameProfile().getId().toString().replace("-", "");

@@ -62,7 +62,7 @@ public class InventoryManager {
 
     private static float getBlockBreakingSpeed(BlockState block, int slot) {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
-        PlayerEntity player = minecraftClient.player;
+        Player player = minecraftClient.player;
         ItemStack stack = player.getInventory().getStack(slot);
 
         float f = stack.getMiningSpeedMultiplier(block);

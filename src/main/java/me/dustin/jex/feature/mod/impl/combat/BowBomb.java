@@ -27,7 +27,7 @@ public class BowBomb extends Feature {
     }
     @EventPointer
     private final EventListener<EventStopUsingItem> eventStopUsingItem = new EventListener<>(event -> {
-        ClientPlayerEntity player = Wrapper.INSTANCE.getLocalPlayer();
+        ClientPlayer player = Wrapper.INSTANCE.getLocalPlayer();
         if (player.getMainHandStack().getItem().equals(Items.BOW)) {
             player.networkHandler.sendPacket(new ClientCommandC2SPacket(player, ClientCommandC2SPacket.Mode.START_SPRINTING));
             for (int i = 0; i < amountProperty.value(); ++i) {

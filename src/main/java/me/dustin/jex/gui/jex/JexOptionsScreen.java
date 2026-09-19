@@ -79,7 +79,7 @@ public class JexOptionsScreen extends Screen {
             AddonHelper.INSTANCE.clearAddons();
             if (Wrapper.INSTANCE.getWorld() != null) {
                 Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
-                    if (entity instanceof PlayerEntity playerEntity) {
+                    if (entity instanceof Player playerEntity) {
                         AddonHelper.INSTANCE.loadAddons(playerEntity);
                     }
                 });

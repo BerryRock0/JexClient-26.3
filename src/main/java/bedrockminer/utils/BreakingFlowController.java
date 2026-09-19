@@ -40,7 +40,7 @@ public class BreakingFlowController {
             return;
         }
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
-        PlayerEntity player = minecraftClient.player;
+        Player player = minecraftClient.player;
         if (player == null)
             return;
         if (!"survival".equals(minecraftClient.interactionManager.getCurrentGameMode().getName())) {
@@ -71,7 +71,7 @@ public class BreakingFlowController {
         }
     }
 
-    private static boolean blockInPlayerRange(BlockPos blockPos, PlayerEntity player, float range) {
+    private static boolean blockInPlayerRange(BlockPos blockPos, Player player, float range) {
         return (blockPos.getSquaredDistance(player.getPos()) <= range * range);
     }
 

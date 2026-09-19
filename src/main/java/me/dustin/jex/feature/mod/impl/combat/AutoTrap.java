@@ -76,7 +76,7 @@ public class AutoTrap extends Feature {
             this.setState(false);
             return;
         }
-        PlayerEntity player = getPlayerToTrap();
+        Player player = getPlayerToTrap();
         if (player != null) {
             InventoryHelper.INSTANCE.setSlot(obby, true, true);
 
@@ -122,7 +122,7 @@ public class AutoTrap extends Feature {
 
     @EventPointer
     private final EventListener<EventRender3D> eventRender3DEventListener = new EventListener<>(event -> {
-        PlayerEntity player = getPlayerToTrap();
+        Player player = getPlayerToTrap();
         if (player == null)return;
         ArrayList<BlockPos> placePos = new ArrayList<>();
         placePos.add(player.getBlockPos().north());
@@ -148,13 +148,13 @@ public class AutoTrap extends Feature {
         Render3DHelper.INSTANCE.drawBox(((EventRender3D) event).getPoseStack(), bb, placeColorProperty.value().getRGB());
     });
 
-    private PlayerEntity getPlayerToTrap() {
-        PlayerEntity playerEntity = null;
+    private Player getPlayerToTrap() {
+        Player Player = null;
         float distance = targetDistanceProperty.value();
         for (Entity entity : Wrapper.INSTANCE.getWorld().getEntities()) {
-            if (entity instanceof PlayerEntity && !FriendHelper.INSTANCE.isFriend(entity.getName().getString()) && entity != Wrapper.INSTANCE.getLocalPlayer()) {
+            if (entity instanceof Player && !FriendHelper.INSTANCE.isFriend(entity.getName().getString()) && entity != Wrapper.INSTANCE.getLocalPlayer()) {
                 if (Wrapper.INSTANCE.getLocalPlayer().distanceTo(entity) < distance && Wrapper.INSTANCE.getLocalPlayer().distanceTo(entity) > 2 && !Wrapper.INSTANCE.getWorld().isOutOfHeightLimit((int)entity.getY())) {
-                    playerEntity = (PlayerEntity)entity;
+                    Player = (PlayerEntity)entity;
                     distance = Wrapper.INSTANCE.getLocalPlayer().distanceTo(entity);
                 }
             }
