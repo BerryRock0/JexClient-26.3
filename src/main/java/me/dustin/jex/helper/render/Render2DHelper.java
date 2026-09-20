@@ -125,7 +125,7 @@ public enum Render2DHelper {
         RenderSystem.setProjectionMatrix(proj);
     }
 
-    public void fill(GuiGraphics graphics, poseStack, float left, float top, float right, float bottom, int color)
+    public void fill(GuiGraphics graphics, float left, float top, float right, float bottom, int color)
     {
         graphics.fill((int)left, (int)top, (int)right, (int)bottom, color);
     }
