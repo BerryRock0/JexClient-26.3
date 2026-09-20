@@ -8,9 +8,9 @@ import me.dustin.jex.feature.property.Property;
 import me.dustin.jex.helper.misc.StopWatch;
 import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.player.InventoryHelper;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
+
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
-import net.minecraft.client.gui.screen.ingame.MerchantScreen;
+
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
@@ -37,7 +37,7 @@ public class AutoArmor extends Feature {
         if (stopWatch.hasPassed(delayProperty.value())) {
             int stackToMove = -1;
             ArmorItem equipped = null;
-            if (Wrapper.INSTANCE.getMinecraft().currentScreen instanceof HandledScreen || Wrapper.INSTANCE.getMinecraft().currentScreen instanceof InventoryScreen || Wrapper.INSTANCE.getMinecraft().currentScreen instanceof MerchantScreen)
+            if (Wrapper.INSTANCE.getMinecraft().currentScreen instanceof InventoryScreen)
                 return;
             int armorSlot = 0;
             for (; armorSlot < 4; armorSlot++) {
