@@ -293,12 +293,13 @@ public enum Render2DHelper {
         poseStack.pop();
     }
 
-    public void fillAndBorder(PoseStack poseStack, float left, float top, float right, float bottom, int bcolor, int icolor, float f) {
-        fill(poseStack, left + f, top + f, right - f, bottom - f, icolor);
-        fill(poseStack, left, top, left + f, bottom, bcolor);
-        fill(poseStack, left + f, top, right, top + f, bcolor);
-        fill(poseStack, left + f, bottom - f, right, bottom, bcolor);
-        fill(poseStack, right - f, top + f, right, bottom - f, bcolor);
+    public void fillAndBorder(GuiGraphics graphics, float left, float top, float right, float bottom, int borderColor, int fillColor, int borderWidth)
+    {
+        fill(graphics, left, top, right, bottom, fillColor);
+        fill(graphics, left, top, right, top + borderWidth, borderColor);
+        fill(graphics, left, bottom - borderWidth, right, bottom, borderColor);
+        fill(graphics, left, top, left + borderWidth, bottom, borderColor);
+        fill(graphics, right - borderWidth, top, right, bottom, borderColor);
     }
 
     public void drawGradientRect(double x, double y, double x2, double y2, int col1, int col2) {
