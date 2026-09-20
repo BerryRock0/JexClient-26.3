@@ -1,24 +1,24 @@
 package me.dustin.jex.event.render;
 
 import me.dustin.events.core.Event;
-import net.minecraft.client.gui.widget.ClickableWidget;
-import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.AbstractWidget;
 
 public class EventRenderWidget extends Event {
 
     private final ClickableWidget abstractWidget;
-    private final PoseStack poseStack;
+    private final GuiGraphics guiGraphics;
 
-    public EventRenderWidget(ClickableWidget abstractWidget, PoseStack poseStack) {
+    public EventRenderWidget(ClickableWidget abstractWidget, GuiGraphics guiGraphics) {
         this.abstractWidget = abstractWidget;
-        this.poseStack = poseStack;
+        this.guiGraphics = guiGraphics;
     }
 
     public ClickableWidget getAbstractWidget() {
         return abstractWidget;
     }
 
-    public PoseStack getPoseStack() {
+    public GuiGraphics getGuiGraphics() {
         return poseStack;
     }
 }
