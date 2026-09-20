@@ -1,5 +1,7 @@
 package me.dustin.jex.feature.mod.impl.combat;
 
+import java.util.Map;
+
 import me.dustin.events.core.EventListener;
 import me.dustin.events.core.annotate.EventPointer;
 import me.dustin.jex.event.player.EventAttackEntity;
@@ -8,13 +10,12 @@ import me.dustin.jex.feature.mod.core.Feature;
 import me.dustin.jex.feature.mod.impl.player.AutoEat;
 import me.dustin.jex.feature.property.Property;
 import me.dustin.jex.helper.player.InventoryHelper;
+
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.item.*;
-
-import java.util.Map;
+import net.minecraft.world.item.*;
 
 public class AutoWeapon extends Feature {
 
