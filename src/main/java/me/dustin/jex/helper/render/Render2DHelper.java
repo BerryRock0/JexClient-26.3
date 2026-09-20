@@ -125,36 +125,9 @@ public enum Render2DHelper {
         RenderSystem.setProjectionMatrix(proj);
     }
 
-    public void fill(PoseStack poseStack, float x1, float y1, float x2, float y2, int color) {
-        Matrix4f matrix = poseStack.peek().getPositionMatrix();
-        float j;
-        if (x1 < x2) {
-            j = x1;
-            x1 = x2;
-            x2 = j;
-        }
-
-        if (y1 < y2) {
-            j = y1;
-            y1 = y2;
-            y2 = j;
-        }
-
-        float f = (float)(color >> 24 & 255) / 255.0F;
-        float g = (float)(color >> 16 & 255) / 255.0F;
-        float h = (float)(color >> 8 & 255) / 255.0F;
-        float k = (float)(color & 255) / 255.0F;
-        RenderSystem.enableBlend();
-        RenderSystem.disableTexture();
-        RenderSystem.defaultBlendFunc();
-        BufferBuilder bufferBuilder = BufferHelper.INSTANCE.begin(DrawMode.QUADS, VertexFormats.POSITION_COLOR);
-        bufferBuilder.vertex(matrix, x1, y2, 0.0F).color(g, h, k, f).next();
-        bufferBuilder.vertex(matrix, x2, y2, 0.0F).color(g, h, k, f).next();
-        bufferBuilder.vertex(matrix, x2, y1, 0.0F).color(g, h, k, f).next();
-        bufferBuilder.vertex(matrix, x1, y1, 0.0F).color(g, h, k, f).next();
-        BufferHelper.INSTANCE.drawWithShader(bufferBuilder, ShaderHelper.INSTANCE.getPosColorShader());
-        RenderSystem.enableTexture();
-        RenderSystem.disableBlend();
+    public void fill(GuiGraphics graphics, poseStack, float left, float top, float right, float bottom, int color)
+    {
+        graphics.fill((int)left, (int)top, (int)right, (int)bottom, color);
     }
 
     public void fillNoDraw(PoseStack poseStack, float x1, float y1, float x2, float y2, int color) {
