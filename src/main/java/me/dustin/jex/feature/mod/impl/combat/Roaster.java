@@ -12,7 +12,6 @@ import me.dustin.jex.helper.player.FriendHelper;
 import me.dustin.jex.helper.player.PlayerHelper;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -24,8 +23,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
 import me.dustin.jex.feature.mod.core.Feature;
 
-public class Roaster extends Feature {
-
+public class Roaster extends Feature
+{
     public final Property<Boolean> playerProperty = new Property.PropertyBuilder<Boolean>(this.getClass())
             .name("Player")
             .value(true)
@@ -68,13 +67,15 @@ public class Roaster extends Feature {
     private Hand hand = null;
     private BlockPos blockPos = null;
 
-    public Roaster() {
+    public Roaster()
+    {
         super(Category.COMBAT, "Roast your friends.");
     }
 
     @EventPointer
     private final EventListener<EventPlayerPackets> eventPlayerPacketsEventListener = new EventListener<>(event -> {
-        if (event.getMode() == EventPlayerPackets.Mode.PRE) {
+        if (event.getMode() == EventPlayerPackets.Mode.PRE)
+        {
             ItemStack mainHandStack = Wrapper.INSTANCE.getLocalPlayer().getMainHandStack();
             ItemStack offHandStack = Wrapper.INSTANCE.getLocalPlayer().getOffHandStack();
             hand = null;
@@ -85,12 +86,16 @@ public class Roaster extends Feature {
             if (hand == null)
                 return;
             Wrapper.INSTANCE.getWorld().getEntities().forEach(entity -> {
-                if (entity instanceof LivingEntity livingEntity) {
-                    if (isValid(livingEntity)) {
+                if (entity instanceof LivingEntity livingEntity)
+                {
+                    if (isValid(livingEntity))
+                    {
                         Block footBlock = Wrapper.INSTANCE.getWorld().getBlockState(livingEntity.getBlockPos()).getBlock();
-                        if (footBlock == Blocks.AIR) {
+                        if (footBlock == Blocks.AIR)
+                        {
                             blockPos = livingEntity.getBlockPos().down();
-                            if (rotateProperty.value()) {
+                            if (rotateProperty.value())
+                            {
                                 RotationVector rotations = PlayerHelper.INSTANCE.rotateToVec(Wrapper.INSTANCE.getLocalPlayer(), new Vec3(blockPos.getX(), blockPos.getY(), blockPos.getZ()));
                                 event.setRotation(rotations);
                             }
@@ -99,7 +104,8 @@ public class Roaster extends Feature {
                 }
             });
         } else {
-            if (blockPos != null) {
+            if (blockPos != null)
+            {
                 Vec3 pos = new Vec3(blockPos.getX(), blockPos.getY(), blockPos.getZ());
                 BlockHitResult hitResult = new BlockHitResult(pos, Direction.UP, blockPos, false);
                 Wrapper.INSTANCE.getClientPlayerInteractionManager().interactBlock(Wrapper.INSTANCE.getLocalPlayer(), hand, hitResult);
@@ -110,9 +116,8 @@ public class Roaster extends Feature {
         }
     });
 
-    private boolean isValid(LivingEntity livingEntity) {
-        if (livingEntity instanceof ClientPlayerEntity)
-            return false;
+    private boolean isValid(LivingEntity livingEntity)
+    {
         if (Wrapper.INSTANCE.getLocalPlayer().distanceTo(livingEntity) > 4)
             return false;
         if (livingEntity.isOnFire() && !onFireProperty.value())
@@ -121,7 +126,8 @@ public class Roaster extends Feature {
             return false;
         if (!livingEntity.isOnGround())
             return false;
-        if (livingEntity instanceof Player) {
+        if (livingEntity instanceof Player)
+        {
             if (FriendHelper.INSTANCE.isFriend(livingEntity.getName().getString()))
                 return friendsProperty.value();
             return playerProperty.value();
