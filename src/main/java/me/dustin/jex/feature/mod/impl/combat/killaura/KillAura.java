@@ -18,9 +18,6 @@ import me.dustin.jex.helper.misc.Wrapper;
 import me.dustin.jex.helper.player.FriendHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.entity.mob.PiglinEntity;
-import net.minecraft.entity.mob.ZombifiedPiglinEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.world.entity.player.Player;
 import me.dustin.events.core.annotate.EventPointer;
 import me.dustin.events.core.priority.Priority;
@@ -120,28 +117,6 @@ public class KillAura extends Feature {
     public final Property<Boolean> passiveProperty = new Property.PropertyBuilder<Boolean>(this.getClass())
             .name("Passive")
             .value(true)
-            .build();
-    public final Property<Boolean> specificFilterProperty = new Property.PropertyBuilder<Boolean>(this.getClass())
-            .name("Specific Filter")
-            .value(true)
-            .build();
-    public final Property<Boolean> ironGolemProperty = new Property.PropertyBuilder<Boolean>(this.getClass())
-            .name("Iron Golem")
-            .value(true)
-            .parent(specificFilterProperty)
-            .depends(parent -> (boolean) parent.value())
-            .build();
-    public final Property<Boolean> piglinProperty = new Property.PropertyBuilder<Boolean>(this.getClass())
-            .name("Piglin")
-            .value(true)
-            .parent(specificFilterProperty)
-            .depends(parent -> (boolean) parent.value())
-            .build();
-    public final Property<Boolean> zombiePiglinProperty = new Property.PropertyBuilder<Boolean>(this.getClass())
-            .name("Zombie Piglin")
-            .value(false)
-            .parent(specificFilterProperty)
-            .depends(parent -> (boolean) parent.value())
             .build();
     public final Property<Boolean> rayTraceProperty = new Property.PropertyBuilder<Boolean>(this.getClass())
             .name("RayTrace")
@@ -308,10 +283,9 @@ public class KillAura extends Feature {
             return false;
         if (entity == Wrapper.INSTANCE.getLocalPlayer() || entity == Freecam.playerEntity)
             return false;
-        if (Wrapper.INSTANCE.getLocalPlayer().getVehicle() != null) {
+        if (Wrapper.INSTANCE.getLocalPlayer().getVehicle() != null)
             if (entity == Wrapper.INSTANCE.getLocalPlayer().getVehicle())
                 return false;
-        }
         if (livingEntity.isSleeping())
             return false;
         if (entity.age < ticksExistedProperty.value())
@@ -322,13 +296,11 @@ public class KillAura extends Feature {
             return false;
         if (!entity.isAlive() || (((LivingEntity) entity).getHealth() <= 0 && !Double.isNaN(((LivingEntity) entity).getHealth())))
             return false;
+
         boolean canSee = Wrapper.INSTANCE.getLocalPlayer().canSee(entity);
         if (!canSee && !ignoreWallsProperty.value())
             return false;
-        //TODO: fix this with 180/-180 having some issues
-        /*if (PlayerHelper.INSTANCE.getDistanceFromMouse(entity) * 2 > KillAura.INSTANCE.fov) {
-            return false;
-        }*/
+
         if (rangecheck) {
             float distance = reachProperty.value();
             if (!canSee)
@@ -345,14 +317,7 @@ public class KillAura extends Feature {
                 return false;
             return playerProperty.value();
         }
-        if (specificFilterProperty.value()) {
-            if (entity instanceof IronGolemEntity)
-                return ironGolemProperty.value();
-            if (entity instanceof ZombifiedPiglinEntity)
-                return zombiePiglinProperty.value();
-            if (entity instanceof PiglinEntity)
-                return piglinProperty.value();
-        }
+
         if (EntityHelper.INSTANCE.isPassiveMob(entity) && !EntityHelper.INSTANCE.doesPlayerOwn(entity))
             return passiveProperty.value();
         if (EntityHelper.INSTANCE.isBossMob(entity))
